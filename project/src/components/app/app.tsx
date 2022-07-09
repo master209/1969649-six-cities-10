@@ -1,8 +1,12 @@
 import MainScreen from '../../pages/main-screen/main-screen';
 
-function App(): JSX.Element {
+type AppScreenProps = {
+  placesFound: number;
+}
+
+function App({placesFound}: AppScreenProps): JSX.Element {
   return (
-    <MainScreen />
+    <MainScreen placesFound={placesFound} />
   );
 }
 
