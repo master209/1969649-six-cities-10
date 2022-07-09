@@ -1,4 +1,5 @@
 import MainScreen from '../../pages/main-screen/main-screen';
+import Layout from '../../components/layout/layout';
 
 type AppScreenProps = {
   placesFound: number;
@@ -6,7 +7,9 @@ type AppScreenProps = {
 
 function App({placesFound}: AppScreenProps): JSX.Element {
   return (
-    <MainScreen placesFound={placesFound} />
+    <Layout>
+      <MainScreen placesFound={placesFound} />
+    </Layout>
   );
 }
 
