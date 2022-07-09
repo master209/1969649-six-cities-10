@@ -7,7 +7,7 @@ type MainScreenProps = {
 
 function MainScreen({placesFound}: MainScreenProps): JSX.Element {
   return (
-    <main className="page__main page__main--index">
+    <>
       <h1 className="visually-hidden">Cities</h1>
       <Locations />
       <div className="cities">
@@ -97,7 +97,7 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
           </div>
         </div>
       </div>
-    </main>
+    </>
   );
 }
 

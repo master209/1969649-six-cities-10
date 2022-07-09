@@ -7,7 +7,7 @@ type AppScreenProps = {
 
 function App({placesFound}: AppScreenProps): JSX.Element {
   return (
-    <Layout>
+    <Layout withFooter={false} headerWithNav>
       <MainScreen placesFound={placesFound} />
     </Layout>
   );
