@@ -12,9 +12,7 @@ function Layout(props: LayoutProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header headerWithNav={headerWithNav}/>
-      <main className="page__main page__main--index">
-        {children}
-      </main>
+      {children}
       {withFooter && <Footer />}
     </div>
   );
