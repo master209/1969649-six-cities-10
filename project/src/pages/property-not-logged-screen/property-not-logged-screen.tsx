@@ -1,12 +1,8 @@
 import Property from '../../pages/property-screen/property-screen';
 
-type PropertyProps = {
-  isGuest: boolean,
-}
-
-function PropertyNotLogged({isGuest}: PropertyProps): JSX.Element {
+function PropertyNotLogged(): JSX.Element {
   return (
-    <Property isGuest={isGuest} />
+    <Property isGuest />
   );
 }
 

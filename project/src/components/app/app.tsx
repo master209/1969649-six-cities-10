@@ -14,10 +14,10 @@ type AppScreenProps = {
 function App({placesFound}: AppScreenProps): JSX.Element {
   return (
     <Layout withFooter={false} headerWithNav>
-      <MainScreen placesFound={312} />
+      <MainScreen placesFound={placesFound} />
       {/*<MainScreenEmpty />*/}
       {/*<Property isGuest={false}/>*/}
-      {/*<PropertyNotLogged isGuest />*/}
+      {/*<PropertyNotLogged />*/}
       {/*<Favorites />*/}
       {/*<FavoritesEmpty />*/}
       {/*<Auth />*/}
