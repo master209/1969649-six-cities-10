@@ -1,4 +1,4 @@
-import Property from '../../pages/property-screen/property-screen';
+import Property from '../../pages/property-screen';
 
 function PropertyNotLogged(): JSX.Element {
   return (

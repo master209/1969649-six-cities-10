@@ -1,9 +1,9 @@
-import {PropsWithChildren} from 'react'; // https://up.htmlacademy.ru/react/10/module/2/item/11
-import Header from './header';
-import Footer from './footer';
+import {PropsWithChildren} from 'react';
+// import {Header, Footer} from '../../components';   // что-то неправильно, сборщик дает ошибку
+import Header from './internal/header/header';
+import Footer from './internal/footer/footer';
 
 type LayoutProps = PropsWithChildren<{
-  // children: JSX.Element;     // так тоже работает, но корректна ли такая типизация??
   withFooter: boolean,
   headerWithNav: boolean,
 }>

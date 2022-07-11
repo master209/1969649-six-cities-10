@@ -1,4 +1,4 @@
-import HeaderNav from './header-nav';
+import HeaderNav from '../header-nav/header-nav';
 
 type HeaderProps = {
   headerWithNav: boolean;
