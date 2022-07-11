@@ -34,11 +34,10 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
 
             <div className="cities__places-list places__list tabs__content">
               <PlaceCard
-                imgSrc={'img/apartment-01.jpg'}
+                imgSrc="img/apartment-01.jpg"
                 isPremium
                 description={{
                   price: '120',
-                  isBookmarkActive: false,
                   rating: '80%',
                   name: 'Beautiful & luxurious apartment at great location',
                   type: 'Apartment',
@@ -46,7 +45,7 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
               />
 
               <PlaceCard
-                imgSrc={'img/room.jpg'}
+                imgSrc="img/room.jpg"
                 description={{
                   price: '80',
                   isBookmarkActive: true,
@@ -57,10 +56,9 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
               />
 
               <PlaceCard
-                imgSrc={'img/apartment-02.jpg'}
+                imgSrc="img/apartment-02.jpg"
                 description={{
                   price: '132',
-                  isBookmarkActive: false,
                   rating: '80%',
                   name: 'Canal View Prinsengracht',
                   type: 'Apartment',
@@ -68,11 +66,10 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
               />
 
               <PlaceCard
-                imgSrc={'img/apartment-03.jpg'}
+                imgSrc="img/apartment-03.jpg"
                 isPremium
                 description={{
                   price: '180',
-                  isBookmarkActive: false,
                   rating: '100%',
                   name: 'Nice, cozy, warm big bed apartment',
                   type: 'Apartment',
@@ -80,7 +77,7 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
               />
 
               <PlaceCard
-                imgSrc={'img/room.jpg'}
+                imgSrc="img/room.jpg"
                 description={{
                   price: '80',
                   isBookmarkActive: true,

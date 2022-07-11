@@ -1,4 +1,4 @@
-import Layout from '../../components/layout/layout';
+import Layout from '../../components/layout';
 import MainScreen from '../../pages/main-screen/main-screen';
 // import MainScreenEmpty from '../../pages/main-empty-screen/main-empty-screen';
 // import Property from '../../pages/property-screen/property-screen';

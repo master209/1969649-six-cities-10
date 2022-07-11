@@ -10,6 +10,7 @@ type LayoutProps = PropsWithChildren<{
 
 function Layout(props: LayoutProps): JSX.Element {
   const {children, withFooter, headerWithNav} = props;
+
   return (
     <div className="page page--gray page--main">
       <Header headerWithNav={headerWithNav}/>
