@@ -1,14 +1,15 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute/*, AuthorizationStatus*/} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 // import {Layout} from '../../components';     // что-то неправильно, сборщик дает ошибку
 import MainScreen from '../../pages/main-screen';
 import MainEmptyScreen from '../../pages/main-empty-screen';
 import PropertyScreen from '../../pages/property-screen';
-// import PropertyNotLoggedScreen from '../../pages/property-not-logged-screen';
+import PropertyNotLoggedScreen from '../../pages/property-not-logged-screen';
 import FavoritesScreen from '../../pages/favorites-screen';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen';
 import AuthScreen from '../../pages/auth-screen';
 import NotFoundScreen from '../../pages/not-found-screen';
+import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
   placesFound: number;
@@ -34,6 +35,14 @@ function App({placesFound}: AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.Property}
           element={<PropertyScreen isGuest={false} />}
+        />
+        <Route
+          path={AppRoute.PropertyNotLogged}
+          element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <PropertyNotLoggedScreen />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Favorites}

@@ -3,6 +3,7 @@ export enum AppRoute {
   Login = '/login',
   Empty = '/empty',
   Property = '/property',
+  PropertyNotLogged = '/property-not-logged',
   Favorites = '/favorites',
   FavoritesEmpty = '/favorites-empty'
 }
@@ -10,5 +11,5 @@ export enum AppRoute {
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
+  // Unknown = 'UNKNOWN',
 }
