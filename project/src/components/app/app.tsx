@@ -1,6 +1,7 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 // import {Layout} from '../../components';     // что-то неправильно, сборщик дает ошибку
+import Layout from '../../components/layout/index';
 import MainScreen from '../../pages/main-screen';
 import MainEmptyScreen from '../../pages/main-empty-screen';
 import PropertyScreen from '../../pages/property-screen';
@@ -17,45 +18,58 @@ type AppScreenProps = {
 
 function App({placesFound}: AppScreenProps): JSX.Element {
   return (
-  /*
-      <Layout withFooter={false} headerWithNav>
-        <MainScreen placesFound={placesFound} />
-      </Layout>
-  */
     <BrowserRouter>
       <Routes>
-        <Route
-          path={AppRoute.Root}
-          element={<MainScreen placesFound={placesFound} />}
-        />
-        <Route
-          path={AppRoute.Empty}
-          element={<MainEmptyScreen />}
-        />
-        <Route
-          path={AppRoute.Property}
-          element={<PropertyScreen isGuest={false} />}
-        />
-        <Route
-          path={AppRoute.PropertyNotLogged}
-          element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <PropertyNotLoggedScreen />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Favorites}
-          element={<FavoritesScreen />}
-        />
-        <Route
-          path={AppRoute.FavoritesEmpty}
-          element={<FavoritesEmptyScreen />}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<AuthScreen />}
-        />
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={<MainScreen placesFound={placesFound} />}
+          />
+          <Route
+            path={AppRoute.Root}
+            element={<MainScreen placesFound={placesFound} />}
+          />
+          <Route
+            path={AppRoute.Empty}
+            element={<MainEmptyScreen />}
+          />
+        </Route>
+
+        <Route path="/" element={<Layout />}>
+          <Route
+            path={AppRoute.Property}
+            element={<PropertyScreen isGuest={false} />}
+          />
+          <Route
+            path={AppRoute.PropertyNotLogged}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+                <PropertyNotLoggedScreen />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+
+        <Route path="/" element={<Layout withFooter />}>
+          <Route
+            path={AppRoute.Favorites}
+            element={<FavoritesScreen />}
+          />
+        </Route>
+        <Route path="/" element={<Layout withFooter containerClass="page--favorites-empty" />}>
+          <Route
+            path={AppRoute.FavoritesEmpty}
+            element={<FavoritesEmptyScreen />}
+          />
+        </Route>
+
+        <Route path="/" element={<Layout containerClass="page--gray page--login" />}>
+          <Route
+            path={AppRoute.Login}
+            element={<AuthScreen />}
+          />
+        </Route>
+
         <Route
           path="*"
           element={<NotFoundScreen />}

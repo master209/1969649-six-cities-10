@@ -14,7 +14,7 @@ type PlaceCardProps = {
 }
 function PlaceCard({imgSrc, isPremium, description}: PlaceCardProps): JSX.Element {
   const {price, isBookmarkActive, rating, name, type} = description;
-  const bookmarkClass = `place-card__bookmark-button ${isBookmarkActive && 'place-card__bookmark-button--active'} button`;
+  const bookmarkClass = isBookmarkActive ? 'place-card__bookmark-button place-card__bookmark-button--active button' : 'place-card__bookmark-icon';
 
   return (
     <article className="cities__card place-card">

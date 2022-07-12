@@ -1,4 +1,4 @@
-function HeaderNav(): JSX.Element {
+function Nav(): JSX.Element {
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
@@ -20,4 +20,4 @@ function HeaderNav(): JSX.Element {
   );
 }
 
-export default HeaderNav;
+export default Nav;
