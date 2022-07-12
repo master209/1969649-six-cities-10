@@ -4,7 +4,7 @@ type PropertyProps = {
   isGuest: boolean,
 }
 
-function Property({isGuest}: PropertyProps): JSX.Element {
+function PropertyScreen({isGuest}: PropertyProps): JSX.Element {
   return (
     <main className="page__main page__main--property">
 
@@ -274,4 +274,4 @@ function Property({isGuest}: PropertyProps): JSX.Element {
   );
 }
 
-export default Property;
+export default PropertyScreen;

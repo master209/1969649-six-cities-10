@@ -1,9 +1,9 @@
-import Property from '../../pages/property-screen';
+import PropertyScreen from '../../pages/property-screen';
 
-function PropertyNotLogged(): JSX.Element {
+function PropertyNotLoggedScreen(): JSX.Element {
   return (
-    <Property isGuest />
+    <PropertyScreen isGuest />
   );
 }
 
-export default PropertyNotLogged;
+export default PropertyNotLoggedScreen;

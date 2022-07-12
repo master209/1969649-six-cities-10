@@ -1,4 +1,4 @@
-function Favorites(): JSX.Element {
+function FavoritesScreen(): JSX.Element {
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
@@ -132,4 +132,4 @@ function Favorites(): JSX.Element {
   );
 }
 
-export default Favorites;
+export default FavoritesScreen;
