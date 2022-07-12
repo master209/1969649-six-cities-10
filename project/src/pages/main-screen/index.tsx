@@ -1,11 +1,11 @@
 import PlaceCard from '../../components/main-screen/place-card';
 import Locations from '../../components/main-screen/locations';
 
-type MainScreenProps = {
+type MainProps = {
   placesFound: number;
 }
 
-function MainScreen({placesFound}: MainScreenProps): JSX.Element {
+function Main({placesFound}: MainProps): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -98,4 +98,4 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
   );
 }
 
-export default MainScreen;
+export default Main;

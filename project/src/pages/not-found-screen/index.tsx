@@ -1,4 +1,4 @@
-function NotFoundScreen(): JSX.Element {
+function NotFound(): JSX.Element {
   return (
     <section className="game">
       <section className="game__screen">
@@ -9,4 +9,4 @@ function NotFoundScreen(): JSX.Element {
   );
 }
 
-export default NotFoundScreen;
+export default NotFound;

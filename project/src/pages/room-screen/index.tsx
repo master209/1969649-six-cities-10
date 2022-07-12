@@ -1,10 +1,10 @@
 import ReviewsForm from '../../components/property-not-logged-screen/reviews-form';
 
-type PropertyProps = {
+type RoomProps = {
   isGuest?: boolean | undefined,
 }
 
-function PropertyScreen({isGuest}: PropertyProps): JSX.Element {
+function Room({isGuest}: RoomProps): JSX.Element {
   return (
     <main className="page__main page__main--property">
 
@@ -274,4 +274,4 @@ function PropertyScreen({isGuest}: PropertyProps): JSX.Element {
   );
 }
 
-export default PropertyScreen;
+export default Room;

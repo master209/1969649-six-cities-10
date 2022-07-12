@@ -4,11 +4,11 @@ import App from './components/app/app';
 import {AuthorizationStatus} from './const';
 
 // пока в приложении нет логики авторизации, здесь можно явно задать состояние
-const authorizationStatus = AuthorizationStatus.NoAuth;
+const authorizationStatus = AuthorizationStatus.Auth; //NoAuth
 
 const Setting = {
   PLACES_FOUND: 312,
-  isGuest: authorizationStatus === AuthorizationStatus.NoAuth, // через перечисление это условие выдает ошибку
+  isGuest: authorizationStatus === AuthorizationStatus.NoAuth, //через перечисление это условие выдает ошибку
 };
 
 

@@ -1,6 +1,6 @@
 import Locations from '../../components/main-screen/locations';
 
-function MainEmptyScreen(): JSX.Element {
+function MainEmpty(): JSX.Element {
   return (
     <main className="page__main page__main--index page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>
@@ -20,4 +20,4 @@ function MainEmptyScreen(): JSX.Element {
   );
 }
 
-export default MainEmptyScreen;
+export default MainEmpty;

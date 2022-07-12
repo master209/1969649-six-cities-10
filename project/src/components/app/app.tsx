@@ -1,52 +1,52 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute,} from '../../const';
 import Layout from '../../components/layout/index';
-import MainScreen from '../../pages/main-screen';
-import MainEmptyScreen from '../../pages/main-empty-screen';
-import PropertyScreen from '../../pages/property-screen';
-import PropertyNotLoggedScreen from '../../pages/property-not-logged-screen';
-import FavoritesScreen from '../../pages/favorites-screen';
-import FavoritesEmptyScreen from '../../pages/favorites-empty-screen';
-import AuthScreen from '../../pages/auth-screen';
+import Main from '../../pages/main-screen';
+import MainEmpty from '../../pages/main-empty-screen';
+import Room from '../../pages/room-screen';
+import RoomNotLogged from '../../pages/room-not-logged-screen';
+import Favorites from '../../pages/favorites-screen';
+import FavoritesEmpty from '../../pages/favorites-empty-screen';
+import Auth from '../../pages/auth-screen';
 import PrivateRoute from '../private-route/private-route';
-import NotFoundScreen from '../../pages/not-found-screen';
+import NotFound from '../../pages/not-found-screen';
 
-type AppScreenProps = {
+type AppProps = {
   isGuest: boolean,
   placesFound: number,
 }
 
-function App({isGuest, placesFound}: AppScreenProps): JSX.Element {
+function App({isGuest, placesFound}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
             index
-            element={<MainScreen placesFound={placesFound} />}
+            element={<Main placesFound={placesFound} />}
           />
           <Route
-            path={AppRoute.Root}
-            element={<MainScreen placesFound={placesFound} />}
+            path={AppRoute.Main}
+            element={<Main placesFound={placesFound} />}
           />
           <Route
-            path={AppRoute.Empty}
-            element={<MainEmptyScreen />}
+            path={AppRoute.MainEmpty}
+            element={<MainEmpty />}
           />
         </Route>
 
         <Route path="/" element={<Layout />}>
           <Route
-            path={AppRoute.Property}
+            path={AppRoute.Room}
             element={
               <PrivateRoute isGuest={isGuest}>
-                <PropertyScreen />
+                <Room />
               </PrivateRoute>
             }
           />
           <Route
-            path={AppRoute.PropertyNotLogged}
-            element={<PropertyNotLoggedScreen />}
+            path={AppRoute.RoomNotLogged}
+            element={<RoomNotLogged />}
           />
         </Route>
 
@@ -55,7 +55,7 @@ function App({isGuest, placesFound}: AppScreenProps): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute isGuest={isGuest}>
-                <FavoritesScreen />
+                <Favorites />
               </PrivateRoute>
             }
           />
@@ -65,7 +65,7 @@ function App({isGuest, placesFound}: AppScreenProps): JSX.Element {
             path={AppRoute.FavoritesEmpty}
             element={
               <PrivateRoute isGuest={isGuest}>
-                <FavoritesEmptyScreen />
+                <FavoritesEmpty />
               </PrivateRoute>
             }
           />
@@ -74,13 +74,13 @@ function App({isGuest, placesFound}: AppScreenProps): JSX.Element {
         <Route path="/" element={<Layout containerClass="page--gray page--login" />}>
           <Route
             path={AppRoute.Login}
-            element={<AuthScreen />}
+            element={<Auth />}
           />
         </Route>
 
         <Route
           path="*"
-          element={<NotFoundScreen />}
+          element={<NotFound />}
         />
       </Routes>
     </BrowserRouter>
