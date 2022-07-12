@@ -1,6 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
-// import {Layout} from '../../components';     // что-то неправильно, сборщик дает ошибку
+import {AppRoute,} from '../../const';
 import Layout from '../../components/layout/index';
 import MainScreen from '../../pages/main-screen';
 import MainEmptyScreen from '../../pages/main-empty-screen';
@@ -9,14 +8,15 @@ import PropertyNotLoggedScreen from '../../pages/property-not-logged-screen';
 import FavoritesScreen from '../../pages/favorites-screen';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen';
 import AuthScreen from '../../pages/auth-screen';
-import NotFoundScreen from '../../pages/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
+import NotFoundScreen from '../../pages/not-found-screen';
 
 type AppScreenProps = {
-  placesFound: number;
+  isGuest: boolean,
+  placesFound: number,
 }
 
-function App({placesFound}: AppScreenProps): JSX.Element {
+function App({isGuest, placesFound}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -38,28 +38,36 @@ function App({placesFound}: AppScreenProps): JSX.Element {
         <Route path="/" element={<Layout />}>
           <Route
             path={AppRoute.Property}
-            element={<PropertyScreen isGuest={false} />}
+            element={
+              <PrivateRoute isGuest={isGuest}>
+                <PropertyScreen />
+              </PrivateRoute>
+            }
           />
           <Route
             path={AppRoute.PropertyNotLogged}
-            element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <PropertyNotLoggedScreen />
-              </PrivateRoute>
-            }
+            element={<PropertyNotLoggedScreen />}
           />
         </Route>
 
         <Route path="/" element={<Layout withFooter />}>
           <Route
             path={AppRoute.Favorites}
-            element={<FavoritesScreen />}
+            element={
+              <PrivateRoute isGuest={isGuest}>
+                <FavoritesScreen />
+              </PrivateRoute>
+            }
           />
         </Route>
         <Route path="/" element={<Layout withFooter containerClass="page--favorites-empty" />}>
           <Route
             path={AppRoute.FavoritesEmpty}
-            element={<FavoritesEmptyScreen />}
+            element={
+              <PrivateRoute isGuest={isGuest}>
+                <FavoritesEmptyScreen />
+              </PrivateRoute>
+            }
           />
         </Route>
 

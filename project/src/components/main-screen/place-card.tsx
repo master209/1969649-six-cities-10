@@ -1,8 +1,8 @@
 import Premium from './premium';
 
 type cardDescription = {
-  price: string,
   isBookmarkActive?: boolean,
+  price: string,
   rating: string,
   name: string,
   type: string,
@@ -13,8 +13,10 @@ type PlaceCardProps = {
   description: cardDescription,
 }
 function PlaceCard({imgSrc, isPremium, description}: PlaceCardProps): JSX.Element {
-  const {price, isBookmarkActive, rating, name, type} = description;
-  const bookmarkClass = isBookmarkActive ? 'place-card__bookmark-button place-card__bookmark-button--active button' : 'place-card__bookmark-icon';
+  const {isBookmarkActive, price, rating, name, type} = description;
+  const bookmarkClass = isBookmarkActive
+    ? 'place-card__bookmark-button place-card__bookmark-button--active button'
+    : 'place-card__bookmark-icon';
 
   return (
     <article className="cities__card place-card">

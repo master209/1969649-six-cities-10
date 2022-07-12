@@ -47,8 +47,8 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
               <PlaceCard
                 imgSrc="img/room.jpg"
                 description={{
-                  price: '80',
                   isBookmarkActive: true,
+                  price: '80',
                   rating: '80%',
                   name: 'Wood and stone place',
                   type: 'Private room',
@@ -79,8 +79,8 @@ function MainScreen({placesFound}: MainScreenProps): JSX.Element {
               <PlaceCard
                 imgSrc="img/room.jpg"
                 description={{
-                  price: '80',
                   isBookmarkActive: true,
+                  price: '80',
                   rating: '80%',
                   name: 'Wood and stone place',
                   type: 'Apartment',

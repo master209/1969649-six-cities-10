@@ -8,8 +8,8 @@ export enum AppRoute {
   FavoritesEmpty = '/favorites-empty'
 }
 
-export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
+export const AuthorizationStatus = {
+  Auth: 'AUTH',
+  NoAuth: 'NO_AUTH',
   // Unknown = 'UNKNOWN',
-}
+};
