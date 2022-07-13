@@ -4,7 +4,7 @@ import App from './components/app/app';
 import {AuthorizationStatus} from './const';
 
 // пока в приложении нет логики авторизации, здесь можно явно задать состояние
-const authorizationStatus = AuthorizationStatus.Auth; //NoAuth
+const authorizationStatus = AuthorizationStatus.NoAuth; //Auth
 
 const Setting = {
   PLACES_FOUND: 312,

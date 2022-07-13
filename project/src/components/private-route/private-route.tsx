@@ -11,7 +11,10 @@ function PrivateRoute({children, isGuest}: PrivateRouteProps): JSX.Element {
 
   const renderOffer = () => (
     <>
-      <p>{id}</p>
+      {
+        // eslint-disable-next-line no-console
+        console.log(id)
+      }
       {children}
     </>
   );
