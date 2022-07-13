@@ -1,27 +1,57 @@
-import Layout from '../../components/layout';
-import MainScreen from '../../pages/main-screen/main-screen';
-// import MainScreenEmpty from '../../pages/main-empty-screen/main-empty-screen';
-// import Property from '../../pages/property-screen/property-screen';
-// import PropertyNotLogged from '../../pages/property-not-logged-screen/property-not-logged-screen';
-// import Favorites from '../../pages/favorites-screen/favorites-screen';
-// import FavoritesEmpty from '../../pages/favorites-empty-screen/favorites-empty-screen';
-// import Auth from '../../pages/auth-screen/auth-screen';
+import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-type AppScreenProps = {
-  placesFound: number;
+import {AppRoute} from '../../const';
+import {
+  Main,
+  MainEmpty,
+  Room,
+  RoomNotLogged,
+  Favorites,
+  FavoritesEmpty,
+  Auth,
+  NotFound,
+} from '../../pages';
+
+import PrivateRoute from '../private-route';
+
+type AppProps = {
+  isGuest: boolean,
+  placesFound: number,
 }
 
-function App({placesFound}: AppScreenProps): JSX.Element {
+function App({isGuest, placesFound}: AppProps): JSX.Element {
   return (
-    <Layout withFooter={false} headerWithNav>
-      <MainScreen placesFound={placesFound} />
-      {/*<MainScreenEmpty />*/}
-      {/*<Property isGuest={false}/>*/}
-      {/*<PropertyNotLogged />*/}
-      {/*<Favorites />*/}
-      {/*<FavoritesEmpty />*/}
-      {/*<Auth />*/}
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Main placesFound={placesFound} />} />
+        <Route path={AppRoute.Main} element={<Main placesFound={placesFound} />} />
+        <Route path={AppRoute.MainEmpty} element={<MainEmpty />} />
+
+        <Route path={AppRoute.Offer}>
+          <Route index element={<Room />} />
+          <Route path={AppRoute.OfferId} element={<Room />}/>
+        </Route>
+        <Route path={AppRoute.OfferNotLogged} element={<RoomNotLogged />} />
+
+        <Route path={AppRoute.Favorites} element={
+          <PrivateRoute isGuest={isGuest}>
+            <Favorites />
+          </PrivateRoute>
+        }
+        />
+
+        <Route path={AppRoute.FavoritesEmpty} element={
+          <PrivateRoute isGuest={isGuest}>
+            <FavoritesEmpty />
+          </PrivateRoute>
+        }
+        />
+
+        <Route path={AppRoute.Login} element={<Auth />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

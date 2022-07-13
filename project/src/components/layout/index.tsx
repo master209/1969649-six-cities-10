@@ -1,22 +1,20 @@
-import {PropsWithChildren} from 'react'; // https://up.htmlacademy.ru/react/10/module/2/item/11
-import Header from './header';
-import Footer from './footer';
+import {PropsWithChildren} from 'react';
+
+import {Header, Footer} from './internal';
 
 type LayoutProps = PropsWithChildren<{
-  // children: JSX.Element;     // так тоже работает, но корректна ли такая типизация??
-  withFooter: boolean,
-  headerWithNav: boolean,
+  children: JSX.Element;
+  withFooter?: boolean,
+  container?: boolean;
 }>
 
-function Layout(props: LayoutProps): JSX.Element {
-  const {children, withFooter, headerWithNav} = props;
-
+function Layout({children, withFooter, container}: LayoutProps): JSX.Element {
   return (
-    <div className="page page--gray page--main">
-      <Header headerWithNav={headerWithNav}/>
+    <>
+      <Header />
       {children}
-      {withFooter && <Footer />}
-    </div>
+      {withFooter && <Footer container={container} />}
+    </>
   );
 }
 
