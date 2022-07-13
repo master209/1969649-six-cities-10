@@ -1,8 +1,7 @@
 import {PropsWithChildren} from 'react';
 import {Outlet} from 'react-router-dom';
-// import {Header, Footer} from '../../components';   // что-то неправильно, сборщик дает ошибку
-import Header from './internal/header/header';
-import Footer from './internal/footer/footer';
+
+import {Header, Footer} from './internal';
 
 type LayoutProps = PropsWithChildren<{
   withFooter?: boolean,

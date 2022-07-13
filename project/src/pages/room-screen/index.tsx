@@ -1,17 +1,13 @@
-import {useParams} from 'react-router-dom';
-import ReviewsForm from '../../components/property-not-logged-screen/reviews-form';
+// import {useParams} from 'react-router-dom';
+
+import ReviewsForm from '../../components/property-not-logged-screen';
 
 type RoomProps = {
   isGuest?: boolean | undefined,
 }
 
 function Room({isGuest}: RoomProps): JSX.Element {
-  const params = useParams();
-
-  if (params.id) {
-    // eslint-disable-next-line no-console
-    console.log('id: ', params.id);
-  }
+  // const params = useParams();
 
   return (
     <main className="page__main page__main--property">

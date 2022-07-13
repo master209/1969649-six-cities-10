@@ -1,15 +1,21 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute,} from '../../const';
-import Layout from '../../components/layout/index';
-import Main from '../../pages/main-screen';
-import MainEmpty from '../../pages/main-empty-screen';
-import Room from '../../pages/room-screen';
-import RoomNotLogged from '../../pages/room-not-logged-screen';
-import Favorites from '../../pages/favorites-screen';
-import FavoritesEmpty from '../../pages/favorites-empty-screen';
-import Auth from '../../pages/auth-screen';
-import PrivateRoute from '../private-route/private-route';
-import NotFound from '../../pages/not-found-screen';
+
+import {AppRoute} from '../../const';
+import {
+  Main,
+  MainEmpty,
+  Room,
+  RoomNotLogged,
+  Favorites,
+  FavoritesEmpty,
+  Auth,
+  NotFound,
+} from '../../pages';
+
+// import {Layout} from '../../components'; // так не работает: Uncaught ReferenceError: Cannot access '__WEBPACK_DEFAULT_EXPORT__' before initialization
+// import {PrivateRoute} from '../../components'; // так не работает: Uncaught ReferenceError: Cannot access '__WEBPACK_DEFAULT_EXPORT__' before initialization
+import PrivateRoute from '../private-route';
+import Layout from '../../components/layout';
 
 type AppProps = {
   isGuest: boolean,
