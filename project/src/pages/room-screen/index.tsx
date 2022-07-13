@@ -1,3 +1,4 @@
+import {useParams} from 'react-router-dom';
 import ReviewsForm from '../../components/property-not-logged-screen/reviews-form';
 
 type RoomProps = {
@@ -5,6 +6,13 @@ type RoomProps = {
 }
 
 function Room({isGuest}: RoomProps): JSX.Element {
+  const params = useParams();
+
+  if (params.id) {
+    // eslint-disable-next-line no-console
+    console.log('id: ', params.id);
+  }
+
   return (
     <main className="page__main page__main--property">
 
