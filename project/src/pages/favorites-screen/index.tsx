@@ -3,7 +3,7 @@ import Layout from '../../components/layout';
 function Favorites(): JSX.Element {
   return (
     <div className="page">
-      <Layout withFooter container>
+      <Layout withFooter withFooterContainer>
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">
             <section className="favorites">

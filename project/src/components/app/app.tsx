@@ -1,6 +1,7 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
+import PrivateRoute from '../private-route';
 import {
   Main,
   MainEmpty,
@@ -12,8 +13,6 @@ import {
   NotFound,
 } from '../../pages';
 
-import PrivateRoute from '../private-route';
-
 type AppProps = {
   isGuest: boolean,
   placesFound: number,
@@ -23,7 +22,6 @@ function App({isGuest, placesFound}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Main placesFound={placesFound} />} />
         <Route path={AppRoute.Main} element={<Main placesFound={placesFound} />} />
         <Route path={AppRoute.MainEmpty} element={<MainEmpty />} />
 

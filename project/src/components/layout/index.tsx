@@ -1,19 +1,17 @@
 import {PropsWithChildren} from 'react';
-
 import {Header, Footer} from './internal';
 
 type LayoutProps = PropsWithChildren<{
-  children: JSX.Element;
   withFooter?: boolean,
-  container?: boolean;
+  withFooterContainer?: boolean,
 }>
 
-function Layout({children, withFooter, container}: LayoutProps): JSX.Element {
+function Layout({children, withFooter, withFooterContainer}: LayoutProps): JSX.Element {
   return (
     <>
       <Header />
       {children}
-      {withFooter && <Footer container={container} />}
+      {withFooter && <Footer withContainer={withFooterContainer} />}
     </>
   );
 }
