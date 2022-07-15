@@ -1,8 +1,8 @@
 import {isGuest} from '../../const';
-import Layout from '../../components/layout';
-import withPrivateRoute from '../../components/private-route';
+import Layout from '../../components/layout/layout';
+import withPrivateRoute from '../../hocs/private-route/private-route';
 
-function Favorites(): JSX.Element {
+function FavoritesScreen(): JSX.Element {
   return (
     <div className="page">
       <Layout withFooter withFooterContainer>
@@ -140,4 +140,4 @@ function Favorites(): JSX.Element {
   );
 }
 
-export default withPrivateRoute(Favorites, isGuest);
+export default withPrivateRoute(FavoritesScreen, isGuest);

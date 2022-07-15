@@ -1,8 +1,8 @@
 import {isGuest} from '../../const';
-import Layout from '../../components/layout';
-import withPrivateRoute from '../../components/private-route';
+import Layout from '../../components/layout/layout';
+import withPrivateRoute from '../../hocs/private-route/private-route';
 
-function FavoritesEmpty(): JSX.Element {
+function FavoritesEmptyScreen(): JSX.Element {
   return (
     <div className="page page--favorites-empty">
       <Layout withFooter>
@@ -22,4 +22,4 @@ function FavoritesEmpty(): JSX.Element {
   );
 }
 
-export default withPrivateRoute(FavoritesEmpty, isGuest);
+export default withPrivateRoute(FavoritesEmptyScreen, isGuest);

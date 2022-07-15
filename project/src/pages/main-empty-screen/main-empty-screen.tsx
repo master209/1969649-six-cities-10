@@ -1,7 +1,7 @@
-import Layout from '../../components/layout';
+import Layout from '../../components/layout/layout';
 import Locations from '../../components/main-screen/locations';
 
-function MainEmpty(): JSX.Element {
+function MainEmptyScreen(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Layout>
@@ -25,4 +25,4 @@ function MainEmpty(): JSX.Element {
   );
 }
 
-export default MainEmpty;
+export default MainEmptyScreen;

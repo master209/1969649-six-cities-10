@@ -1,13 +1,13 @@
 // import {useParams} from 'react-router-dom';
 
-import Layout from '../../components/layout';
-import ReviewsForm from '../../components/property-not-logged-screen';
+import Layout from '../../components/layout/layout';
+import ReviewsForm from '../../components/property-not-logged-screen/property-not-logged-screen';
 
 type RoomProps = {
   isGuest?: boolean,
 }
 
-function Room({isGuest}: RoomProps): JSX.Element {
+function RoomScreen({isGuest}: RoomProps): JSX.Element {
   // const params = useParams();
 
   return (
@@ -279,4 +279,4 @@ function Room({isGuest}: RoomProps): JSX.Element {
   );
 }
 
-export default Room;
+export default RoomScreen;

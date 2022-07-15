@@ -1,15 +1,15 @@
 export enum AppRoute {
   Main = '/',
   MainEmpty = '/empty',
-  Offer = '/offer',
-  OfferId = ':id',
-  OfferNotLogged = '/offer-not-logged',
   Favorites = '/favorites',
   FavoritesEmpty = '/favorites-empty',
-  Login = '/login'
+  Login = '/login',
+  OfferNotLogged = '/offer-not-logged',
+  Offer = '/offer',
+  OfferId = ':id'
 }
 
-export enum AuthorizationStatus {
+export enum AuthStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN', // будет задействована при запросе данных с сервера

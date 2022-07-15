@@ -1,4 +1,4 @@
-import Layout from '../../components/layout';
+import Layout from '../../components/layout/layout';
 import PlaceCard from '../../components/main-screen/place-card';
 import Locations from '../../components/main-screen/locations';
 
@@ -6,7 +6,7 @@ type MainProps = {
   placesFound: number,
 }
 
-function Main({placesFound}: MainProps): JSX.Element {
+function MainScreen({placesFound}: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Layout>
@@ -103,4 +103,4 @@ function Main({placesFound}: MainProps): JSX.Element {
   );
 }
 
-export default Main;
+export default MainScreen;

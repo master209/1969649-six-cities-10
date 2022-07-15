@@ -1,10 +1,10 @@
-import {ComponentType} from 'react';
+import {ComponentProps} from 'react';
 import {Navigate} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
 
 type Props = {
-  [key: string]: ComponentType
+  [key: string]: ComponentProps<any>
 }
 
 function withPrivateRoute(Component: () => JSX.Element, isGuest: boolean) {
