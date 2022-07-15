@@ -1,11 +1,13 @@
+import {ComponentType} from 'react';
 import {Navigate} from 'react-router-dom';
+
 import {AppRoute} from '../../const';
 
-interface Props {
-  [key: string]: any
+type Props = {
+  [key: string]: ComponentType
 }
 
-function withPrivateRoute(Component: () => JSX.Element, isGuest: boolean): (props: Props) => JSX.Element {
+function withPrivateRoute(Component: () => JSX.Element, isGuest: boolean) {
   return function Wrapped(props: Props): JSX.Element {
     /* eslint-disable-next-line no-console */
     console.log('Wrapped: ', Component.name, props); // для просмотра свойств оборачиваемого компонента

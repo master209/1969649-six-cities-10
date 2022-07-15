@@ -22,17 +22,14 @@ function App({placesFound}: AppProps): JSX.Element {
       <Routes>
         <Route path={AppRoute.Main} element={<Main placesFound={placesFound} />} />
         <Route path={AppRoute.MainEmpty} element={<MainEmpty />} />
-
+        <Route path={AppRoute.Favorites} element={<Favorites />}/>
+        <Route path={AppRoute.FavoritesEmpty} element={<FavoritesEmpty />}/>
+        <Route path={AppRoute.Login} element={<Auth />} />
+        <Route path={AppRoute.OfferNotLogged} element={<RoomNotLogged />} />
         <Route path={AppRoute.Offer}>
           <Route index element={<Room />} />
           <Route path={AppRoute.OfferId} element={<Room />}/>
         </Route>
-        <Route path={AppRoute.OfferNotLogged} element={<RoomNotLogged />} />
-
-        <Route path={AppRoute.Favorites} element={<Favorites />}/>
-        <Route path={AppRoute.FavoritesEmpty} element={<FavoritesEmpty />}/>
-        <Route path={AppRoute.Login} element={<Auth />} />
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
