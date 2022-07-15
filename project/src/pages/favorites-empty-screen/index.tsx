@@ -1,4 +1,6 @@
+import {isGuest} from '../../const';
 import Layout from '../../components/layout';
+import withPrivateRoute from '../../components/private-route';
 
 function FavoritesEmpty(): JSX.Element {
   return (
@@ -20,4 +22,4 @@ function FavoritesEmpty(): JSX.Element {
   );
 }
 
-export default FavoritesEmpty;
+export default withPrivateRoute(FavoritesEmpty, isGuest);

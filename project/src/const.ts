@@ -9,8 +9,11 @@ export enum AppRoute {
   Login = '/login'
 }
 
-export const AuthorizationStatus = {
-  Auth: 'AUTH',
-  NoAuth: 'NO_AUTH',
-  // Unknown = 'UNKNOWN',   // будет задействована при запросе данных с сервера
-};
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN', // будет задействована при запросе данных с сервера
+}
+
+// пока в приложении нет логики авторизации, здесь можно явно задать состояние
+export const isGuest = true;

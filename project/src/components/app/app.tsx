@@ -1,7 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
-import PrivateRoute from '../private-route';
 import {
   Main,
   MainEmpty,
@@ -14,11 +13,10 @@ import {
 } from '../../pages';
 
 type AppProps = {
-  isGuest: boolean,
   placesFound: number,
 }
 
-function App({isGuest, placesFound}: AppProps): JSX.Element {
+function App({placesFound}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -31,20 +29,8 @@ function App({isGuest, placesFound}: AppProps): JSX.Element {
         </Route>
         <Route path={AppRoute.OfferNotLogged} element={<RoomNotLogged />} />
 
-        <Route path={AppRoute.Favorites} element={
-          <PrivateRoute isGuest={isGuest}>
-            <Favorites />
-          </PrivateRoute>
-        }
-        />
-
-        <Route path={AppRoute.FavoritesEmpty} element={
-          <PrivateRoute isGuest={isGuest}>
-            <FavoritesEmpty />
-          </PrivateRoute>
-        }
-        />
-
+        <Route path={AppRoute.Favorites} element={<Favorites />}/>
+        <Route path={AppRoute.FavoritesEmpty} element={<FavoritesEmpty />}/>
         <Route path={AppRoute.Login} element={<Auth />} />
 
         <Route path="*" element={<NotFound />} />
