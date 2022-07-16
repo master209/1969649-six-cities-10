@@ -4,8 +4,8 @@ import Layout from '../../components/layout/layout';
 import ReviewsForm from '../../components/property-not-logged-screen/property-not-logged-screen';
 
 type RoomProps = {
-  isGuest?: boolean,
-}
+  isGuest?: boolean;
+};
 
 function RoomScreen({isGuest}: RoomProps): JSX.Element {
   // const params = useParams();

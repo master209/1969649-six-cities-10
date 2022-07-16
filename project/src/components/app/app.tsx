@@ -13,8 +13,8 @@ import {
 } from '../../pages';
 
 type AppProps = {
-  placesFound: number,
-}
+  placesFound: number;
+};
 
 function App({placesFound}: AppProps): JSX.Element {
   return (

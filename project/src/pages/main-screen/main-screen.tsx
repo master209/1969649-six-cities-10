@@ -3,8 +3,8 @@ import PlaceCard from '../../components/main-screen/place-card';
 import Locations from '../../components/main-screen/locations';
 
 type MainProps = {
-  placesFound: number,
-}
+  placesFound: number;
+};
 
 function MainScreen({placesFound}: MainProps): JSX.Element {
   return (

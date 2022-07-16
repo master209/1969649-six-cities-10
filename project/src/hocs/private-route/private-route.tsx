@@ -4,8 +4,8 @@ import {Navigate} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
 type Props = {
-  [key: string]: ComponentProps<any>
-}
+  [key: string]: ComponentProps<any>;
+};
 
 function withPrivateRoute(Component: () => JSX.Element, isGuest: boolean) {
   return function Wrapped(props: Props): JSX.Element {
