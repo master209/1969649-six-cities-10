@@ -1,7 +1,11 @@
 import {Offer} from '../../types/offers';
 
-function OfferCard(props: Offer): JSX.Element {
-  const {photo, isPremium, isFavorite, price, name, type, rating} = props;
+type OfferCardProps = {
+  offer: Offer;
+}
+
+function OfferCard({offer}: OfferCardProps): JSX.Element {
+  const {photo, isPremium, isFavorite, price, name, type, rating} = offer;
 
   const favoriteClass = isFavorite
     ? 'place-card__bookmark-button place-card__bookmark-button--active button'
