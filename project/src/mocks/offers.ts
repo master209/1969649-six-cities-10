@@ -95,13 +95,13 @@ export const offers: Offers = [
   },
   {
     id: '5aeeihfusdfsd',
-    photo: 'img/apartment-01.jpg',
+    photo: 'img/room.jpg',
     isPremium: false,
-    price: '80',
-    name: 'Wood and stone place',
-    type: OfferType.Room,
+    price: '180',
+    name: 'White castle',
+    type: OfferType.Apartment,
     rating: {
-      stars: '80%',
+      stars: '100%',
       value: '4'
     },
     features: {

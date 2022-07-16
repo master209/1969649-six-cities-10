@@ -24,7 +24,7 @@ function App({placesFound, offers}: AppProps): JSX.Element {
       <Routes>
         <Route path={AppRoute.Main} element={<MainScreen placesFound={placesFound} offers={offers} />} />
         <Route path={AppRoute.MainEmpty} element={<MainEmptyScreen />} />
-        <Route path={AppRoute.Favorites} element={<FavoritesScreen />}/>
+        <Route path={AppRoute.Favorites} element={<FavoritesScreen offers={offers} />}/>
         <Route path={AppRoute.FavoritesEmpty} element={<FavoritesEmptyScreen />}/>
         <Route path={AppRoute.Login} element={<AuthScreen />} />
         <Route path={AppRoute.OfferNotLogged} element={<RoomNotLoggedScreen />} />

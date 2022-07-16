@@ -7,7 +7,7 @@ type Props = {
   [key: string]: ComponentProps<any>;
 };
 
-function withPrivateRoute(Component: () => JSX.Element, isGuest: boolean) {
+function withPrivateRoute(Component: (props: any) => JSX.Element, isGuest: boolean) {
   return function Wrapped(props: Props): JSX.Element {
     /* eslint-disable-next-line no-console */
     console.log('Wrapped: ', Component.name, props); // для просмотра свойств оборачиваемого компонента

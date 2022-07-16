@@ -16,4 +16,4 @@ export enum AuthStatus {
 }
 
 // пока в приложении нет логики авторизации, здесь можно явно задать состояние
-export const isGuest = true;
+export const isGuest = false;
