@@ -1,20 +1,30 @@
-// import {useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import ReviewsForm from '../../components/property-not-logged-screen/property-not-logged-screen';
+import Premium from '../../components/common/premium';
+import HosterPro from '../../components/common/hoster-pro';
+import FeaturesInside from '../../components/room-screen/features-inside';
+import {offers} from '../../mocks/offers';
 
 type RoomProps = {
   isGuest?: boolean;
 };
 
 function RoomScreen({isGuest}: RoomProps): JSX.Element {
-  // const params = useParams();
+  const params = useParams();
+
+  const offer = offers.filter((item) => (item.id === params.id));
+  const {isPremium, price, name, type, rating, features, hoster} = offer[0];
+
+  const hostProClass = hoster.isPro ? 'property__avatar-wrapper--pro' : '';
 
   return (
     <div className="page">
       <Layout>
         <main className="page__main page__main--property">
           <section className="property">
+
             <div className="property__gallery-container container">
               <div className="property__gallery">
                 <div className="property__image-wrapper">
@@ -37,15 +47,12 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                 </div>
               </div>
             </div>
+
             <div className="property__container container">
               <div className="property__wrapper">
-                <div className="property__mark">
-                  <span>Premium</span>
-                </div>
+                {isPremium && <Premium containerClass="property__mark" /> }
                 <div className="property__name-wrapper">
-                  <h1 className="property__name">
-                    Beautiful &amp; luxurious studio at great location
-                  </h1>
+                  <h1 className="property__name">{name}</h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
@@ -55,73 +62,44 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: '80%'}}></span>
+                    <span style={{width: rating.stars}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">4.8</span>
+                  <span className="property__rating-value rating__value">{rating.value}</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    Apartment
+                    {type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    3 Bedrooms
+                    {features.bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max 4 adults
+                    Max {features.adults} adults
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">&euro;120</b>
+                  <b className="property__price-value">&euro;{price}</b>
                   <span className="property__price-text">&nbsp;night</span>
                 </div>
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    <li className="property__inside-item">
-                      Wi-Fi
-                    </li>
-                    <li className="property__inside-item">
-                      Washing machine
-                    </li>
-                    <li className="property__inside-item">
-                      Towels
-                    </li>
-                    <li className="property__inside-item">
-                      Heating
-                    </li>
-                    <li className="property__inside-item">
-                      Coffee machine
-                    </li>
-                    <li className="property__inside-item">
-                      Baby seat
-                    </li>
-                    <li className="property__inside-item">
-                      Kitchen
-                    </li>
-                    <li className="property__inside-item">
-                      Dishwasher
-                    </li>
-                    <li className="property__inside-item">
-                      Cabel TV
-                    </li>
-                    <li className="property__inside-item">
-                      Fridge
-                    </li>
+                    {features.whatInside.map((item) => (
+                      <FeaturesInside key={item} item={item} />
+                    ))}
                   </ul>
                 </div>
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
-                    <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                      <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                    <div className={`property__avatar-wrapper ${hostProClass} user__avatar-wrapper`}>
+                      <img className="property__avatar user__avatar" src={hoster.avatar} width="74" height="74" alt="Host avatar" />
                     </div>
                     <span className="property__user-name">
-                      Angelina
+                      {hoster.name}
                     </span>
-                    <span className="property__user-status">
-                      Pro
-                    </span>
+                    {hoster.isPro && <HosterPro />}
                   </div>
                   <div className="property__description">
                     <p className="property__text">
@@ -230,16 +208,14 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#todo">Canal View Prinsengracht</a>
+                      <a href="#todo">{name}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
                 </article>
 
                 <article className="near-places__card place-card">
-                  <div className="place-card__mark">
-                    <span>Premium</span>
-                  </div>
+                  {isPremium && <Premium /> }
                   <div className="near-places__image-wrapper place-card__image-wrapper">
                     <a href="#todo">
                       <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />

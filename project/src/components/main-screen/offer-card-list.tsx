@@ -8,7 +8,7 @@ type PlaceCardListProps = {
 };
 
 function OfferCardList({offers}: PlaceCardListProps): JSX.Element {
-  const [activeCardId, setActiveCardId] = useState('1aeeihfusdfsd');
+  const [activeCardId, setActiveCardId] = useState(offers[0].id);
 
   const handleMouseOver = (id: string) => () => {
     /* eslint-disable-next-line no-console */

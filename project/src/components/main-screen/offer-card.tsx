@@ -1,11 +1,17 @@
+import {Link} from 'react-router-dom';
+
+import {AppRoute} from '../../const';
 import {Offer} from '../../types/offers';
 import Premium from '../../components/common/premium';
+
 type OfferCardProps = {
   offer: Offer;
 }
 
 function OfferCard({offer}: OfferCardProps): JSX.Element {
   const {photo, isPremium, isFavorite, price, name, type, rating} = offer;
+
+  const toRoute = `${AppRoute.Offer}/${offer.id}`;
 
   const favoriteClass = isFavorite
     ? 'place-card__bookmark-button place-card__bookmark-button--active button'
@@ -15,9 +21,9 @@ function OfferCard({offer}: OfferCardProps): JSX.Element {
     <>
       {isPremium && <Premium /> }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={toRoute}>
           <img className="place-card__image" src={photo} width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

@@ -14,15 +14,15 @@ import {
 } from '../../pages';
 
 type AppProps = {
-  placesFound: number;
+  offersFound: number;
   offers: Offers;
 };
 
-function App({placesFound, offers}: AppProps): JSX.Element {
+function App({offersFound, offers}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainScreen placesFound={placesFound} offers={offers} />} />
+        <Route path={AppRoute.Main} element={<MainScreen offersFound={offersFound} offers={offers} />} />
         <Route path={AppRoute.MainEmpty} element={<MainEmptyScreen />} />
         <Route path={AppRoute.Favorites} element={<FavoritesScreen offers={offers} />}/>
         <Route path={AppRoute.FavoritesEmpty} element={<FavoritesEmptyScreen />}/>

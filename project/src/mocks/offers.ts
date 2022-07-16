@@ -43,7 +43,7 @@ export const offers: Offers = [
     hoster: {
       avatar: 'img/avatar-angelina.jpg',
       name: 'Angelina',
-      isPro: true
+      isPro: false
     },
     isFavorite: true
   },
@@ -82,8 +82,8 @@ export const offers: Offers = [
       value: '5.5'
     },
     features: {
-      bedrooms: '2',
-      adults: '2',
+      bedrooms: '6',
+      adults: '12',
       whatInside: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Cabel TV', 'Fridge'],
     },
     hoster: {
@@ -102,7 +102,7 @@ export const offers: Offers = [
     type: OfferType.Apartment,
     rating: {
       stars: '100%',
-      value: '4'
+      value: '9.9'
     },
     features: {
       bedrooms: '2',
@@ -112,7 +112,7 @@ export const offers: Offers = [
     hoster: {
       avatar: 'img/avatar-angelina.jpg',
       name: 'Angelina',
-      isPro: true
+      isPro: false
     },
     isFavorite: true
   },

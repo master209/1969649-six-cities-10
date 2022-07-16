@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      placesFound = {Setting.PLACES_FOUND}
+      offersFound = {Setting.PLACES_FOUND}
       offers = {offers}
     />
   </React.StrictMode>,
