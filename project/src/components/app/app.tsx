@@ -1,6 +1,7 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
+import {Offers} from '../../types/offers';
 import {
   MainScreen,
   MainEmptyScreen,
@@ -14,13 +15,14 @@ import {
 
 type AppProps = {
   placesFound: number;
+  offers: Offers;
 };
 
-function App({placesFound}: AppProps): JSX.Element {
+function App({placesFound, offers}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainScreen placesFound={placesFound} />} />
+        <Route path={AppRoute.Main} element={<MainScreen placesFound={placesFound} offers={offers} />} />
         <Route path={AppRoute.MainEmpty} element={<MainEmptyScreen />} />
         <Route path={AppRoute.Favorites} element={<FavoritesScreen />}/>
         <Route path={AppRoute.FavoritesEmpty} element={<FavoritesEmptyScreen />}/>

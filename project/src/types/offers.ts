@@ -1,4 +1,4 @@
-export enum FeaturesType {
+export enum OfferType {
   Apartment = 'Apartment',
   Room = 'Private Room',
   House = 'House',
@@ -11,9 +11,9 @@ export type Rating = {
 };
 
 export type Features = {
-  type: FeaturesType;
   bedrooms: string;
   adults: string;
+  whatInside: string[];
 };
 
 export type Hoster = {
@@ -25,15 +25,14 @@ export type Hoster = {
 export type Offer = {
   id: string;
   photo: string;
-  name: string;
-  description: string;
   isPremium: boolean;
+  price: string;
+  name: string;
+  type: OfferType;
   rating: Rating;
   features: Features;
-  price: string;
-  whatInside: string[];
   hoster: Hoster;
-  isFavorit: boolean;
+  isFavorite: boolean;
 };
 
 export type Offers = Offer[];
