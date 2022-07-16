@@ -6,7 +6,8 @@ export enum AppRoute {
   Login = '/login',
   OfferNotLogged = '/offer-not-logged',
   Offer = '/offer',
-  OfferId = ':id'
+  OfferId = ':id',
+  NotFound = '/not-found-screen'
 }
 
 export enum AuthStatus {

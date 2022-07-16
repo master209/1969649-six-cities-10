@@ -1,5 +1,6 @@
-import {useParams} from 'react-router-dom';
+import {useParams, Navigate} from 'react-router-dom';
 
+import {AppRoute} from '../../const';
 import Layout from '../../components/layout/layout';
 import ReviewsForm from '../../components/property-not-logged-screen/property-not-logged-screen';
 import Premium from '../../components/common/premium';
@@ -15,8 +16,13 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
   const params = useParams();
 
   const offer = offers.filter((item) => (item.id === params.id));
-  const {isPremium, price, name, type, rating, features, hoster} = offer[0];
 
+  // обработка ошибки несуществующего OfferId
+  if(!offer[0]) {
+    return <Navigate to={AppRoute.NotFound} />;
+  }
+
+  const {isPremium, price, name, type, rating, features, hoster} = offer[0];
   const hostProClass = hoster.isPro ? 'property__avatar-wrapper--pro' : '';
 
   return (
