@@ -2,10 +2,8 @@ import {useParams, Navigate} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
 import Layout from '../../components/layout/layout';
-import ReviewForm from '../../components/room-screen/reviews-form';
-import FeaturesInside from '../../components/room-screen/features-inside';
-import Premium from '../../components/common/premium';
-import HosterPro from '../../components/common/hoster-pro';
+import {ReviewForm, FeaturesInside} from '../../components/room-screen';
+import {Premium, HosterPro} from '../../components/common';
 import {offers} from '../../mocks/offers';
 
 type RoomProps = {

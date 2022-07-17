@@ -1,6 +1,5 @@
 import Layout from '../../components/layout/layout';
-import Locations from '../../components/main-screen/locations';
-import OfferCardList from '../../components/main-screen/offer-card-list';
+import {Locations, OfferCardList} from '../../components/main-screen';
 import {Offers} from '../../types/offers';
 
 type MainProps = {

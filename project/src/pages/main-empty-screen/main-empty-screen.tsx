@@ -1,5 +1,5 @@
 import Layout from '../../components/layout/layout';
-import Locations from '../../components/main-screen/locations';
+import {Locations} from '../../components/main-screen';
 
 function MainEmptyScreen(): JSX.Element {
   return (

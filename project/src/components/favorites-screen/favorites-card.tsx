@@ -1,5 +1,8 @@
+import {Link} from 'react-router-dom';
+
+import {AppRoute} from '../../const';
 import {Offer} from '../../types/offers';
-import Premium from '../common/premium';
+import {Premium} from '../common';
 
 type FavoritesCardProps = {
   offer: Offer;
@@ -8,13 +11,15 @@ type FavoritesCardProps = {
 function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
   const {photo, isPremium, price, name, type, rating} = offer;
 
+  const toRoute = `${AppRoute.Offer}/${offer.id}`;
+
   return (
     <article className="favorites__card place-card">
       {isPremium && <Premium /> }
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="#todo">
+        <Link to={toRoute}>
           <img className="place-card__image" src={photo} width="150" height="110" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
