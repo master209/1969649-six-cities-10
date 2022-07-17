@@ -2,10 +2,10 @@ import {useParams, Navigate} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
 import Layout from '../../components/layout/layout';
-import ReviewsForm from '../../components/property-not-logged-screen/property-not-logged-screen';
+import ReviewForm from '../../components/room-screen/reviews-form';
+import FeaturesInside from '../../components/room-screen/features-inside';
 import Premium from '../../components/common/premium';
 import HosterPro from '../../components/common/hoster-pro';
-import FeaturesInside from '../../components/room-screen/features-inside';
 import {offers} from '../../mocks/offers';
 
 type RoomProps = {
@@ -143,7 +143,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                       </div>
                     </li>
                   </ul>
-                  {!isGuest && <ReviewsForm />}
+                  {!isGuest && <ReviewForm />}
                 </section>
               </div>
             </div>

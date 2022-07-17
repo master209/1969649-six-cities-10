@@ -18,3 +18,5 @@ export enum AuthStatus {
 
 // пока в приложении нет логики авторизации, здесь можно явно задать состояние
 export const isGuest = false;
+
+export const REVIEW_LENGTH = 10;
