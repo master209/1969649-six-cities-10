@@ -1,16 +1,22 @@
 export enum AppRoute {
   Main = '/',
   MainEmpty = '/empty',
-  Offer = '/offer',
-  OfferId = ':id',
-  OfferNotLogged = '/offer-not-logged',
   Favorites = '/favorites',
   FavoritesEmpty = '/favorites-empty',
-  Login = '/login'
+  Login = '/login',
+  OfferNotLogged = '/offer-not-logged',
+  Offer = '/offer',
+  OfferId = ':id',
+  NotFound = '/not-found-screen'
 }
 
-export const AuthorizationStatus = {
-  Auth: 'AUTH',
-  NoAuth: 'NO_AUTH',
-  // Unknown = 'UNKNOWN',   // будет задействована при запросе данных с сервера
-};
+export enum AuthStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN', // будет задействована при запросе данных с сервера
+}
+
+// пока в приложении нет логики авторизации, здесь можно явно задать состояние
+export const isGuest = false;
+
+export const REVIEW_LENGTH = 10;

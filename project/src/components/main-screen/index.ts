@@ -1,3 +1,3 @@
 export {default as Locations} from './locations';
-export {default as PlaceCard} from './place-card';
-export {default as Premium} from './premium';
+export {default as OfferCard} from './offer-card';
+export {default as OfferCardList} from './offer-card-list';

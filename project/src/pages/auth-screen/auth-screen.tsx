@@ -1,6 +1,6 @@
-import Layout from '../../components/layout';
+import Layout from '../../components/layout/layout';
 
-function Auth(): JSX.Element {
+function AuthScreen(): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <Layout>
@@ -34,4 +34,4 @@ function Auth(): JSX.Element {
   );
 }
 
-export default Auth;
+export default AuthScreen;

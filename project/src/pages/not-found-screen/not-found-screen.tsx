@@ -1,4 +1,4 @@
-function NotFound(): JSX.Element {
+function NotFoundScreen(): JSX.Element {
   return (
     <section className="not-found">
       <h1>404. Page not found</h1>
@@ -7,4 +7,4 @@ function NotFound(): JSX.Element {
   );
 }
 
-export default NotFound;
+export default NotFoundScreen;

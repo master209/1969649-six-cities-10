@@ -1,38 +1,37 @@
-import Premium from './premium';
+import {Link} from 'react-router-dom';
 
-type cardDescription = {
-  isBookmarkActive?: boolean,
-  price: string,
-  rating: string,
-  name: string,
-  type: string,
+import {AppRoute} from '../../const';
+import {Offer} from '../../types/offers';
+import {Premium} from '../../components/common';
+
+type OfferCardProps = {
+  offer: Offer;
 }
-type PlaceCardProps = {
-  imgSrc: string,
-  isPremium?: boolean,
-  description: cardDescription,
-}
-function PlaceCard({imgSrc, isPremium, description}: PlaceCardProps): JSX.Element {
-  const {isBookmarkActive, price, rating, name, type} = description;
-  const bookmarkClass = isBookmarkActive
+
+function OfferCard({offer}: OfferCardProps): JSX.Element {
+  const {photo, isPremium, isFavorite, price, name, type, rating} = offer;
+
+  const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
+
+  const favoriteClass = isFavorite
     ? 'place-card__bookmark-button place-card__bookmark-button--active button'
-    : 'place-card__bookmark-icon';
+    : 'place-card__bookmark-button button';
 
   return (
-    <article className="cities__card place-card">
-      {isPremium && <Premium />}
+    <>
+      {isPremium && <Premium /> }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img className="place-card__image" src={imgSrc} width="260" height="200" alt="Place image" />
-        </a>
+        <Link to={linkToOffer}>
+          <img className="place-card__image" src={photo} width="260" height="200" alt="Place image" />
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
-            <span className="place-card__price-text">&#47;&nbsp;night</span>
+            <span className="place-card__price-text">&nbsp;&#47;&nbsp;night</span>
           </div>
-          <button className={bookmarkClass} type="button">
+          <button className={favoriteClass} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -41,7 +40,7 @@ function PlaceCard({imgSrc, isPremium, description}: PlaceCardProps): JSX.Elemen
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rating}}></span>
+            <span style={{width: rating.stars}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -50,8 +49,8 @@ function PlaceCard({imgSrc, isPremium, description}: PlaceCardProps): JSX.Elemen
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
-    </article>
+    </>
   );
 }
 
-export default PlaceCard;
+export default OfferCard;
