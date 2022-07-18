@@ -1,11 +1,11 @@
 type FeaturesInsideProps = {
-  item: string;
+  offerInsideItem: string;
 };
 
-function FeaturesInside({item}: FeaturesInsideProps): JSX.Element {
+function FeaturesInside({offerInsideItem}: FeaturesInsideProps): JSX.Element {
   return (
-    <li className="property__inside-item">
-      {item}
+    <li className="property__inside-offerInsideItem">
+      {offerInsideItem}
     </li>
   );
 }

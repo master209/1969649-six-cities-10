@@ -20,20 +20,21 @@ type AppProps = {
 };
 
 function App({offersFound, offers}: AppProps): JSX.Element {
+  const {Main, MainEmpty, Favorites, FavoritesEmpty, Offer, OfferId, OfferNotLogged, Login} = AppRoute;
+
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path={AppRoute.Main} element={<MainScreen offersFound={offersFound} offers={offers} />} />
-        <Route path={AppRoute.MainEmpty} element={<MainEmptyScreen />} />
-        <Route path={AppRoute.Favorites} element={<FavoritesScreen offers={offers} />}/>
-        <Route path={AppRoute.FavoritesEmpty} element={<FavoritesEmptyScreen />}/>
-        <Route path={AppRoute.OfferNotLogged} element={<RoomNotLoggedScreen />} />
-        <Route path={AppRoute.Offer}>
-          <Route index element={<RoomScreen />} />
-          <Route path={AppRoute.OfferId} element={<RoomScreen />}/>
+        <Route path={Main} element={<MainScreen offersFound={offersFound} offers={offers} />} />
+        <Route path={MainEmpty} element={<MainEmptyScreen />} />
+        <Route path={Favorites} element={<FavoritesScreen offers={offers} />} />
+        <Route path={FavoritesEmpty} element={<FavoritesEmptyScreen />} />
+        <Route path={OfferNotLogged} element={<RoomNotLoggedScreen />} />
+        <Route path={Offer} element={<RoomScreen />} >
+          <Route path={OfferId} element={<RoomScreen />} />
         </Route>
-        <Route path={AppRoute.Login} element={<AuthScreen />} />
+        <Route path={Login} element={<AuthScreen />} />
         <Route path="*" element={<NotFoundScreen />} />
       </Routes>
     </BrowserRouter>

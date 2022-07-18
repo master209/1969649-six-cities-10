@@ -41,7 +41,7 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#todo">{name}</a>
+          <Link to={toRoute}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

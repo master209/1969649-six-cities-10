@@ -1,4 +1,5 @@
 import {PropsWithChildren} from 'react';
+
 import {Header, Footer} from './internal';
 
 type LayoutProps = PropsWithChildren<{
