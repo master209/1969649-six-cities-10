@@ -1,6 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import {ScrollToTop} from '../common';
+import ScrollToTop from '../../hooks/scroll-to-top';
 import {AppRoute} from '../../const';
 import {Offers} from '../../types/offers';
 import {
