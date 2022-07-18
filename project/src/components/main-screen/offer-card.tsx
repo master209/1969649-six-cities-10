@@ -11,7 +11,7 @@ type OfferCardProps = {
 function OfferCard({offer}: OfferCardProps): JSX.Element {
   const {photo, isPremium, isFavorite, price, name, type, rating} = offer;
 
-  const linkTo = `${AppRoute.Offer}/${offer.id}`;
+  const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
   const favoriteClass = isFavorite
     ? 'place-card__bookmark-button place-card__bookmark-button--active button'
@@ -21,7 +21,7 @@ function OfferCard({offer}: OfferCardProps): JSX.Element {
     <>
       {isPremium && <Premium /> }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={linkTo}>
+        <Link to={linkToOffer}>
           <img className="place-card__image" src={photo} width="260" height="200" alt="Place image" />
         </Link>
       </div>

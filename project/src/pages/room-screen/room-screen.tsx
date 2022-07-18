@@ -13,14 +13,14 @@ type RoomProps = {
 function RoomScreen({isGuest}: RoomProps): JSX.Element {
   const params = useParams();
 
-  const offer = offers.filter((item) => (item.id === params.id));
+  const offer = offers.find((item) => (item.id === params.id));
 
   // обработка ошибки несуществующего OfferId
-  if(!offer[0]) {
+  if(!offer) {
     return <Navigate to={AppRoute.NotFound} />;
   }
 
-  const {isPremium, price, name, type, rating, features, hoster} = offer[0];
+  const {isPremium, price, name, type, rating, features, hoster} = offer;
   const hostProClass = hoster.isPro ? 'property__avatar-wrapper--pro' : '';
 
   return (
