@@ -11,13 +11,13 @@ type OtherPlacesCardProps = {
 function OtherPlacesCard({offer}: OtherPlacesCardProps): JSX.Element {
   const {photo, isPremium, price, name, type, rating} = offer;
 
-  const toRoute = `${AppRoute.Offer}/${offer.id}`;
+  const linkTo = `${AppRoute.Offer}/${offer.id}`;
 
   return (
     <article className="near-places__card place-card">
       {isPremium && <Premium /> }
       <div className="near-places__image-wrapper place-card__image-wrapper">
-        <Link to={toRoute}>
+        <Link to={linkTo}>
           <img className="place-card__image" src={photo} width="260" height="200" alt="Place image" />
         </Link>
       </div>
@@ -41,7 +41,7 @@ function OtherPlacesCard({offer}: OtherPlacesCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={toRoute}>{name}</Link>
+          <Link to={linkTo}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

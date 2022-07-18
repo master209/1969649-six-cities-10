@@ -11,13 +11,13 @@ type FavoritesCardProps = {
 function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
   const {photo, isPremium, price, name, type, rating} = offer;
 
-  const toRoute = `${AppRoute.Offer}/${offer.id}`;
+  const linkTo = `${AppRoute.Offer}/${offer.id}`;
 
   return (
     <article className="favorites__card place-card">
       {isPremium && <Premium /> }
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link to={toRoute}>
+        <Link to={linkTo}>
           <img className="place-card__image" src={photo} width="150" height="110" alt="Place image" />
         </Link>
       </div>
@@ -41,7 +41,7 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={toRoute}>{name}</Link>
+          <Link to={linkTo}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -10,7 +10,6 @@ function ReviewForm(): JSX.Element {
     console.log('ReviewForm: ', form);
   };
 
-  // To submit review please make sure to set star rating and describe your stay with at least 10 characters
   const isFormValid = () => (
     !!(form.stars || form.review)
       && form.stars > 0
