@@ -11,9 +11,7 @@ function ReviewForm(): JSX.Element {
   };
 
   const isFormValid = () => (
-    !!(form.stars || form.review)
-      && form.stars > 0
-      && form.review.length >= REVIEW_LENGTH
+    form.stars > 0 && form.review.length >= REVIEW_LENGTH
   );
 
   return (
