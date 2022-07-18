@@ -1,13 +1,13 @@
-type FeaturesInsideProps = {
-  offerInsideItem: string;
+type OfferInsideItemProps = {
+  inside: string;
 };
 
-function FeaturesInside({offerInsideItem}: FeaturesInsideProps): JSX.Element {
+function OfferInsideItem({inside}: OfferInsideItemProps): JSX.Element {
   return (
-    <li className="property__inside-offerInsideItem">
-      {offerInsideItem}
+    <li className="property__inside-item">
+      {inside}
     </li>
   );
 }
 
-export default FeaturesInside;
+export default OfferInsideItem;

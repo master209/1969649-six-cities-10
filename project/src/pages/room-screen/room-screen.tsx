@@ -2,8 +2,8 @@ import {useParams, Navigate} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
 import Layout from '../../components/layout/layout';
-import {ReviewForm, FeaturesInside, OtherPlacesCard} from '../../components/room-screen';
-import {Premium, HosterPro} from '../../components/common';
+import {ReviewForm, OfferInsideItem, OtherPlacesCard} from '../../components/room-screen';
+import {Premium} from '../../components/common';
 import {offers} from '../../mocks/offers';
 
 type RoomProps = {
@@ -90,7 +90,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
                     {features.whatInside.map((item) => (
-                      <FeaturesInside key={item} offerInsideItem={item} />
+                      <OfferInsideItem key={item} inside={item} />
                     ))}
                   </ul>
                 </div>
@@ -103,7 +103,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                     <span className="property__user-name">
                       {hoster.name}
                     </span>
-                    {hoster.isPro && <HosterPro />}
+                    {hoster.isPro && <span className="property__user-status">Pro</span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">
