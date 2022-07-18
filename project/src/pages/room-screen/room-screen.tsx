@@ -13,7 +13,7 @@ type RoomProps = {
 function RoomScreen({isGuest}: RoomProps): JSX.Element {
   const params = useParams();
 
-  const offer = offers.find((item) => (item.id === params.id));
+  const offer = offers.find(({id}) => (id === params.id));
 
   // обработка ошибки несуществующего OfferId
   if(!offer) {
