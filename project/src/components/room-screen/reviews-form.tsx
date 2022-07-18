@@ -4,7 +4,7 @@ import {REVIEW_LENGTH} from '../../const';
 function ReviewForm(): JSX.Element {
   const [form, setForm] = useState({stars:0, review:''});
 
-  const handleSubmit = () => {
+  const handleFormSubmit = () => {
     /* eslint-disable-next-line no-console */
     console.log('ReviewForm: ', form);
   };
@@ -21,7 +21,7 @@ function ReviewForm(): JSX.Element {
       className="reviews__form form"
       onSubmit={(evt: FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
-        handleSubmit();
+        handleFormSubmit();
       }}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>

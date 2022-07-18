@@ -1,7 +1,7 @@
 import {isGuest} from '../../const';
 import Layout from '../../components/layout/layout';
 import withPrivateRoute from '../../hocs/private-route/private-route';
-import FavoritesCard from '../../components/favorites-screen/favorites-card';
+import {FavoritesCard} from '../../components/favorites-screen';
 import {Offers} from '../../types/offers';
 
 type FavoritesScreenProps = {
