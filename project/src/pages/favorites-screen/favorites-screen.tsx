@@ -1,6 +1,6 @@
 import {isGuest} from '../../const';
 import Layout from '../../components/layout/layout';
-import withPrivateRoute from '../../hocs/private-route/private-route';
+import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 import {FavoritesCard} from '../../components/favorites-screen';
 import {Offers} from '../../types/offers';
 

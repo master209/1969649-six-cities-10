@@ -1,6 +1,6 @@
+import {Offers} from '../../types/offers';
 import Layout from '../../components/layout/layout';
 import {Locations, OfferCardList} from '../../components/main-screen';
-import {Offers} from '../../types/offers';
 
 type MainProps = {
   offersFound: number;
@@ -19,7 +19,6 @@ function MainScreen({offersFound, offers}: MainProps): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offersFound} places to stay in Amsterdam</b>
-
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -35,9 +34,7 @@ function MainScreen({offersFound, offers}: MainProps): JSX.Element {
                     <li className="places__option" tabIndex={0}>Top rated first</li>
                   </ul>
                 </form>
-
                 <OfferCardList offers={offers} />
-
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"></section>

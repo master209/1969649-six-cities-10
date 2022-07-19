@@ -2,7 +2,7 @@ import {useParams, Navigate} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
 import Layout from '../../components/layout/layout';
-import {ReviewForm, OfferInsideItem, OtherPlacesCard} from '../../components/room-screen';
+import {ReviewForm, OfferInsideItem, OffersNearList} from '../../components/room-screen';
 import {Premium} from '../../components/common';
 import {offers} from '../../mocks/offers';
 
@@ -150,14 +150,9 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
           </section>
 
           <div className="container">
-            <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <div className="near-places__list places__list">
-                <OtherPlacesCard offer={offers[1]} />
-                <OtherPlacesCard offer={offers[2]} />
-                <OtherPlacesCard offer={offers[3]} />
-              </div>
-            </section>
+
+            <OffersNearList offers={offers} />
+
           </div>
         </main>
       </Layout>

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-import {Offers, Offer} from '../../types/offers';
+import {Offers} from '../../types/offers';
 import {OfferCard} from './';
 
 type PlaceCardListProps = {
@@ -18,7 +18,7 @@ function OfferCardList({offers}: PlaceCardListProps): JSX.Element {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer: Offer) => (
+      {offers.map((offer) => (
         <OfferCard
           offer={offer}
           key={offer.id}
