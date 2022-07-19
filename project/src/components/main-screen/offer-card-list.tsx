@@ -19,13 +19,11 @@ function OfferCardList({offers}: PlaceCardListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer: Offer) => (
-        <article
+        <OfferCard
+          offer={offer}
           key={offer.id}
           onMouseOver={() => handleMouseOver(offer.id)}
-          className="cities__card place-card"
-        >
-          <OfferCard offer={offer} />
-        </article>
+        />
       ))}
     </div>
   );
