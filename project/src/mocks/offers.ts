@@ -92,28 +92,5 @@ export const offers: Offers = [
       isPro: true
     },
     isFavorite: false
-  },
-  {
-    id: '5aeeihfusdfsd',
-    photo: 'img/room.jpg',
-    isPremium: false,
-    price: '180',
-    name: 'White castle',
-    type: OfferType.Apartment,
-    rating: {
-      stars: '100%',
-      value: '9.9'
-    },
-    features: {
-      bedrooms: '2',
-      adults: '3',
-      whatInside: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Cabel TV']
-    },
-    hoster: {
-      avatar: 'img/avatar-angelina.jpg',
-      name: 'Angelina',
-      isPro: false
-    },
-    isFavorite: true
-  },
+  }
 ];

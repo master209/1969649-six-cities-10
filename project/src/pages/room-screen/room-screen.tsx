@@ -150,9 +150,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
           </section>
 
           <div className="container">
-
             <OffersNearList offers={offers} />
-
           </div>
         </main>
       </Layout>
