@@ -1,5 +1,4 @@
 import Layout from '../../components/layout/layout';
-
 import {FavoritesCard} from '../../components/favorites-screen';
 
 import withPrivateRoute from '../../hocs/with-private-route';

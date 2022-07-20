@@ -1,10 +1,11 @@
 import {useState} from 'react';
 
+import Layout from '../../components/layout/layout';
+import Map from '../../components/map/map';
+import {Locations, OfferCardList} from '../../components/main-screen';
+
 import {Offers} from '../../types/offers';
 import {City, Points, Point} from '../../types/map';
-import Layout from '../../components/layout/layout';
-import {Locations, OfferCardList} from '../../components/main-screen';
-import Map from '../../components/map/map';
 
 type MainProps = {
   offersFound: number;
