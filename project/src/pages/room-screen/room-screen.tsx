@@ -1,10 +1,16 @@
 import {useParams, Navigate} from 'react-router-dom';
 
-import {AppRoute} from '../../const';
 import Layout from '../../components/layout/layout';
-import {ReviewForm, FeaturesInside, OtherPlacesCard} from '../../components/room-screen';
-import {Premium, HosterPro} from '../../components/common';
+import {Premium} from '../../components/common';
+import {
+  ReviewForm,
+  OfferInsideItem,
+  OffersNearList
+} from '../../components/room-screen';
+
 import {offers} from '../../mocks/offers';
+
+import {AppRoute} from '../../const';
 
 type RoomProps = {
   isGuest?: boolean;
@@ -21,7 +27,9 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
   }
 
   const {isPremium, price, name, type, rating, features, hoster} = offer;
-  const hostProClass = hoster.isPro ? 'property__avatar-wrapper--pro' : '';
+  const {avatar, name: avatarName, isPro} = hoster;
+
+  const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
 
   return (
     <div className="page">
@@ -90,7 +98,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
                     {features.whatInside.map((item) => (
-                      <FeaturesInside key={item} offerInsideItem={item} />
+                      <OfferInsideItem key={item} label={item} />
                     ))}
                   </ul>
                 </div>
@@ -98,12 +106,12 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className={`property__avatar-wrapper ${hostProClass} user__avatar-wrapper`}>
-                      <img className="property__avatar user__avatar" src={hoster.avatar} width="74" height="74" alt="Host avatar" />
+                      <img className="property__avatar user__avatar" src={avatar} width="74" height="74" alt="Host avatar" />
                     </div>
                     <span className="property__user-name">
-                      {hoster.name}
+                      {avatarName}
                     </span>
-                    {hoster.isPro && <HosterPro />}
+                    {isPro && <span className="property__user-status">Pro</span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">
@@ -150,14 +158,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
           </section>
 
           <div className="container">
-            <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <div className="near-places__list places__list">
-                <OtherPlacesCard offer={offers[1]} />
-                <OtherPlacesCard offer={offers[2]} />
-                <OtherPlacesCard offer={offers[3]} />
-              </div>
-            </section>
+            <OffersNearList offers={offers} />
           </div>
         </main>
       </Layout>

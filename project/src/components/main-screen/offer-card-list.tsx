@@ -1,31 +1,20 @@
-import {useState} from 'react';
-
-import {Offers, Offer} from '../../types/offers';
+import {Offers} from '../../types/offers';
 import {OfferCard} from './';
 
 type PlaceCardListProps = {
   offers: Offers;
+  handleMouseOver: (id: string) => void;
 };
 
-function OfferCardList({offers}: PlaceCardListProps): JSX.Element {
-  const [activeCardId, setActiveCardId] = useState(offers[0].id);
-
-  const handleMouseOver = (id: string) => {
-    /* eslint-disable-next-line no-console */
-    console.log('activeCardId, id: ', activeCardId, id);
-    setActiveCardId(id);
-  };
-
+function OfferCardList({offers, handleMouseOver}: PlaceCardListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer: Offer) => (
-        <article
+      {offers.map((offer) => (
+        <OfferCard
           key={offer.id}
-          onMouseOver={() => handleMouseOver(offer.id)}
-          className="cities__card place-card"
-        >
-          <OfferCard offer={offer} />
-        </article>
+          offer={offer}
+          handleCardMouseOver={() => handleMouseOver(offer.id)}
+        />
       ))}
     </div>
   );

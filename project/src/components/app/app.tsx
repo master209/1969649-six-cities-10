@@ -1,8 +1,9 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import ScrollToTop from '../../hooks/scroll-to-top';
-import {AppRoute} from '../../const';
 import {Offers} from '../../types/offers';
+import {CITY} from '../../mocks/city';
+import {POINTS} from '../../mocks/points';
 import {
   MainScreen,
   MainEmptyScreen,
@@ -13,6 +14,8 @@ import {
   AuthScreen,
   NotFoundScreen,
 } from '../../pages';
+
+import {AppRoute} from '../../const';
 
 type AppProps = {
   offersFound: number;
@@ -26,7 +29,7 @@ function App({offersFound, offers}: AppProps): JSX.Element {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path={Main} element={<MainScreen offersFound={offersFound} offers={offers} />} />
+        <Route path={Main} element={<MainScreen offersFound={offersFound} offers={offers} points={POINTS} city={CITY} />} />
         <Route path={MainEmpty} element={<MainEmptyScreen />} />
         <Route path={Favorites} element={<FavoritesScreen offers={offers} />} />
         <Route path={FavoritesEmpty} element={<FavoritesEmptyScreen />} />

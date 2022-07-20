@@ -1,14 +1,17 @@
 import {Link} from 'react-router-dom';
 
-import {AppRoute} from '../../const';
-import {Offer} from '../../types/offers';
 import {Premium} from '../common';
 
-type OtherPlacesCardProps = {
+import {Offer} from '../../types/offers';
+
+import {AppRoute} from '../../const';
+
+type OfferNearCardProps = {
   offer: Offer;
 }
 
-function OtherPlacesCard({offer}: OtherPlacesCardProps): JSX.Element {
+/* «Карточка предложения неподалёку» */
+function OfferNearCard({offer}: OfferNearCardProps): JSX.Element {
   const {photo, isPremium, price, name, type, rating} = offer;
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
@@ -49,4 +52,4 @@ function OtherPlacesCard({offer}: OtherPlacesCardProps): JSX.Element {
   );
 }
 
-export default OtherPlacesCard;
+export default OfferNearCard;

@@ -1,14 +1,17 @@
 import {Link} from 'react-router-dom';
 
-import {AppRoute} from '../../const';
-import {Offer} from '../../types/offers';
 import {Premium} from '../../components/common';
+
+import {Offer} from '../../types/offers';
+
+import {AppRoute} from '../../const';
 
 type OfferCardProps = {
   offer: Offer;
+  handleCardMouseOver: () => void;
 }
 
-function OfferCard({offer}: OfferCardProps): JSX.Element {
+function OfferCard({offer, handleCardMouseOver}: OfferCardProps): JSX.Element {
   const {photo, isPremium, isFavorite, price, name, type, rating} = offer;
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
@@ -18,7 +21,7 @@ function OfferCard({offer}: OfferCardProps): JSX.Element {
     : 'place-card__bookmark-button button';
 
   return (
-    <>
+    <article className="cities__card place-card" onMouseOver={handleCardMouseOver}>
       {isPremium && <Premium /> }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={linkToOffer}>
@@ -49,7 +52,7 @@ function OfferCard({offer}: OfferCardProps): JSX.Element {
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
-    </>
+    </article>
   );
 }
 

@@ -1,7 +1,7 @@
 import {ComponentProps} from 'react';
 import {Navigate} from 'react-router-dom';
 
-import {AppRoute} from '../../const';
+import {AppRoute} from '../const';
 
 type Props = {
   [key: string]: ComponentProps<any>;
