@@ -2,7 +2,6 @@ import {Review} from '../../../types/offers';
 
 type ReviewProps = {
   review: Review;
-  // handleMouseOver: (id: string) => void;
 };
 
 // «Отзыв»

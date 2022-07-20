@@ -21,7 +21,6 @@ function MainScreen(props: MainProps): JSX.Element {
 
   const onListItemHover = (offerId: string) => {
     const currentPoint = points.find(({id}) => id === offerId);
-
     setSelectedPoint(currentPoint);
   };
 
@@ -61,6 +60,7 @@ function MainScreen(props: MainProps): JSX.Element {
                   city={city}
                   points={points}
                   selectedPoint={selectedPoint}
+                  mapClass={'cities__map'}
                 />
               </div>
             </div>

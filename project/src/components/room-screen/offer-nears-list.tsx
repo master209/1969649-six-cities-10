@@ -2,14 +2,17 @@ import {OfferNearCard} from '.';
 
 import {Offers} from '../../types/offers';
 
+import {OFFERS_NEAR} from '../../const';
+
 type OfferNearCardProps = {
   offers: Offers;
+  handleMouseOver: (id: string) => void;
 }
 
 /* «Список предложений неподалёку» */
-function OffersNearList({offers}: OfferNearCardProps): JSX.Element {
+function OfferNearsList({offers, handleMouseOver}: OfferNearCardProps): JSX.Element {
   const [...offersNear] = offers;
-  offersNear.length = 3; // согласно ТЗ, пока нам нужно выводить только первые три предложения
+  offersNear.length = OFFERS_NEAR;
 
   return (
     <section className="near-places places">
@@ -19,6 +22,7 @@ function OffersNearList({offers}: OfferNearCardProps): JSX.Element {
           <OfferNearCard
             key={offer.id}
             offer={offer}
+            handleCardMouseOver={() => handleMouseOver(offer.id)}
           />
         ))}
       </div>
@@ -26,4 +30,4 @@ function OffersNearList({offers}: OfferNearCardProps): JSX.Element {
   );
 }
 
-export default OffersNearList;
+export default OfferNearsList;

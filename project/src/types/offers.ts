@@ -7,7 +7,7 @@ export enum OfferType {
 
 export type Rating = {
   stars: string;
-  value: string;
+  value?: string;
 };
 
 export type Features = {

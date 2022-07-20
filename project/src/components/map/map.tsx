@@ -10,12 +10,6 @@ import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 
-type MapProps = {
-  city: City;
-  points: Points;
-  selectedPoint: Point | undefined;
-};
-
 const createIcon = (iconUrl: string) => (
   new Icon({
     iconUrl: iconUrl,
@@ -27,7 +21,14 @@ const createIcon = (iconUrl: string) => (
 const defaultCustomIcon = createIcon(URL_MARKER_DEFAULT);
 const currentCustomIcon = createIcon(URL_MARKER_CURRENT);
 
-function Map({city, points, selectedPoint}: MapProps): JSX.Element {
+type MapProps = {
+  city: City;
+  points: Points;
+  selectedPoint: Point | undefined;
+  mapClass: string;
+};
+
+function Map({city, points, selectedPoint, mapClass}: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -49,7 +50,7 @@ function Map({city, points, selectedPoint}: MapProps): JSX.Element {
   }, [map, points, selectedPoint]);
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className={`${mapClass} map`} ref={mapRef}></section>
   );
 }
 

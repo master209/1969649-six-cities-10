@@ -9,7 +9,6 @@ import {
   FavoritesScreen,
   FavoritesEmptyScreen,
   RoomScreen,
-  RoomNotLoggedScreen,
   AuthScreen,
   NotFoundScreen,
 } from '../../pages';
@@ -24,7 +23,7 @@ type AppProps = {
 };
 
 function App({offersFound, offers}: AppProps): JSX.Element {
-  const {Main, MainEmpty, Favorites, FavoritesEmpty, Offer, OfferId, OfferNotLogged, Login} = AppRoute;
+  const {Main, MainEmpty, Favorites, FavoritesEmpty, Offer, OfferId, Login} = AppRoute;
 
   return (
     <BrowserRouter>
@@ -34,9 +33,8 @@ function App({offersFound, offers}: AppProps): JSX.Element {
         <Route path={MainEmpty} element={<MainEmptyScreen />} />
         <Route path={Favorites} element={<FavoritesScreen offers={offers} />} />
         <Route path={FavoritesEmpty} element={<FavoritesEmptyScreen />} />
-        <Route path={OfferNotLogged} element={<RoomNotLoggedScreen />} />
-        <Route path={Offer} element={<RoomScreen />} >
-          <Route path={OfferId} element={<RoomScreen />} />
+        <Route path={Offer} element={<RoomScreen offers={offers} points={POINTS} city={CITY} />} >
+          <Route path={OfferId} element={<RoomScreen offers={offers} points={POINTS} city={CITY} />} />
         </Route>
         <Route path={Login} element={<AuthScreen />} />
         <Route path="*" element={<NotFoundScreen />} />

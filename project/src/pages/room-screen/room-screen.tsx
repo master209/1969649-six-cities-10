@@ -1,24 +1,35 @@
+import {useState} from 'react';
 import {useParams, Navigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {Premium} from '../../components/common';
+import Map from '../../components/map/map';
 import {
   ReviewForm,
   ReviewsList,
   OfferInsideItem,
-  OffersNearList
+  OfferNearsList
 } from '../../components/room-screen';
 
-import {offers} from '../../mocks/offers';
+import {Offers} from '../../types/offers';
+import {City, Point, Points} from '../../types/map';
+
 import {reviews} from '../../mocks/reviews';
 
-import {AppRoute} from '../../const';
+import {AppRoute, OFFERS_NEAR} from '../../const';
 
 type RoomProps = {
   isGuest?: boolean;
+  offers: Offers;
+  city: City;
+  points: Points;
 };
 
-function RoomScreen({isGuest}: RoomProps): JSX.Element {
+function RoomScreen(props: RoomProps): JSX.Element {
+  const {isGuest, offers, city, points} = props;
+
+  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>();
+
   const params = useParams();
 
   const offer = offers.find(({id}) => (id === params.id));
@@ -31,7 +42,15 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
   const {isPremium, price, name, type, rating, features, hoster} = offer;
   const {avatar, name: userName, isPro} = hoster;
 
+  const [...pointsNear] = points;
+  pointsNear.length = OFFERS_NEAR;
+
   const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
+
+  const onListItemHover = (pointId: string) => {
+    const currentPoint = points.find(({id}) => id === pointId);
+    setSelectedPoint(currentPoint);
+  };
 
   return (
     <div className="page">
@@ -126,18 +145,28 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                 </div>
 
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                  <ReviewsList reviews={reviews} />
+                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+                  <ReviewsList
+                    reviews={reviews}
+                  />
                   {!isGuest && <ReviewForm />}
                 </section>
               </div>
             </div>
 
-            <section className="property__map map"></section>
+            <Map
+              city={city}
+              points={pointsNear}
+              selectedPoint={selectedPoint}
+              mapClass={'property__map'}
+            />
           </section>
 
           <div className="container">
-            <OffersNearList offers={offers} />
+            <OfferNearsList
+              offers={offers}
+              handleMouseOver={onListItemHover}
+            />
           </div>
         </main>
       </Layout>

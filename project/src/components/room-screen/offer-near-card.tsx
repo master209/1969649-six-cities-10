@@ -8,16 +8,17 @@ import {AppRoute} from '../../const';
 
 type OfferNearCardProps = {
   offer: Offer;
+  handleCardMouseOver: () => void;
 }
 
 /* «Карточка предложения неподалёку» */
-function OfferNearCard({offer}: OfferNearCardProps): JSX.Element {
+function OfferNearCard({offer, handleCardMouseOver}: OfferNearCardProps): JSX.Element {
   const {photo, isPremium, price, name, type, rating} = offer;
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
   return (
-    <article className="near-places__card place-card">
+    <article className="near-places__card place-card" onMouseOver={handleCardMouseOver}>
       {isPremium && <Premium /> }
       <div className="near-places__image-wrapper place-card__image-wrapper">
         <Link to={linkToOffer}>
