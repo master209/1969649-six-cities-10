@@ -1,7 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import ScrollToTop from '../../hooks/scroll-to-top';
-import {AppRoute} from '../../const';
 import {Offers} from '../../types/offers';
 import {CITY} from '../../mocks/city';
 import {POINTS} from '../../mocks/points';
@@ -15,6 +14,8 @@ import {
   AuthScreen,
   NotFoundScreen,
 } from '../../pages';
+
+import {AppRoute} from '../../const';
 
 type AppProps = {
   offersFound: number;

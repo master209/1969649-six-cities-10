@@ -1,10 +1,16 @@
 import {useParams, Navigate} from 'react-router-dom';
 
-import {AppRoute} from '../../const';
 import Layout from '../../components/layout/layout';
-import {ReviewForm, OfferInsideItem, OffersNearList} from '../../components/room-screen';
 import {Premium} from '../../components/common';
+import {
+  ReviewForm,
+  OfferInsideItem,
+  OffersNearList
+} from '../../components/room-screen';
+
 import {offers} from '../../mocks/offers';
+
+import {AppRoute} from '../../const';
 
 type RoomProps = {
   isGuest?: boolean;

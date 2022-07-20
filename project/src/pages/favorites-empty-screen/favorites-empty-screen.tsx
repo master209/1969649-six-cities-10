@@ -1,6 +1,8 @@
-import {isGuest} from '../../const';
 import Layout from '../../components/layout/layout';
+
 import withPrivateRoute from '../../hocs/with-private-route';
+
+import {isGuest} from '../../const';
 
 function FavoritesEmptyScreen(): JSX.Element {
   return (
