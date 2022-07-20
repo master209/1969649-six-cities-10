@@ -2,7 +2,7 @@ import {useState} from 'react';
 
 import Layout from '../../components/layout/layout';
 import Map from '../../components/map/map';
-import {Locations, OfferCardList} from '../../components/main-screen';
+import {Locations, OfferCardsList} from '../../components/main-screen';
 
 import {Offers} from '../../types/offers';
 import {City, Points, Point} from '../../types/map';
@@ -51,7 +51,7 @@ function MainScreen(props: MainProps): JSX.Element {
                     <li className="places__option" tabIndex={0}>Top rated first</li>
                   </ul>
                 </form>
-                <OfferCardList
+                <OfferCardsList
                   offers={offers}
                   handleMouseOver={onListItemHover}
                 />

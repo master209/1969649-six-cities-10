@@ -2,12 +2,12 @@ import {OfferCard} from '.';
 
 import {Offers} from '../../types/offers';
 
-type PlaceCardListProps = {
+type OfferCardsListProps = {
   offers: Offers;
   handleMouseOver: (id: string) => void;
 };
 
-function OfferCardList({offers, handleMouseOver}: PlaceCardListProps): JSX.Element {
+function OfferCardsList({offers, handleMouseOver}: OfferCardsListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
@@ -21,4 +21,4 @@ function OfferCardList({offers, handleMouseOver}: PlaceCardListProps): JSX.Eleme
   );
 }
 
-export default OfferCardList;
+export default OfferCardsList;

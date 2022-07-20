@@ -4,11 +4,13 @@ import Layout from '../../components/layout/layout';
 import {Premium} from '../../components/common';
 import {
   ReviewForm,
+  ReviewsList,
   OfferInsideItem,
   OffersNearList
 } from '../../components/room-screen';
 
 import {offers} from '../../mocks/offers';
+import {reviews} from '../../mocks/reviews';
 
 import {AppRoute} from '../../const';
 
@@ -27,7 +29,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
   }
 
   const {isPremium, price, name, type, rating, features, hoster} = offer;
-  const {avatar, name: avatarName, isPro} = hoster;
+  const {avatar, name: userName, isPro} = hoster;
 
   const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
 
@@ -109,7 +111,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                       <img className="property__avatar user__avatar" src={avatar} width="74" height="74" alt="Host avatar" />
                     </div>
                     <span className="property__user-name">
-                      {avatarName}
+                      {userName}
                     </span>
                     {isPro && <span className="property__user-status">Pro</span>}
                   </div>
@@ -125,30 +127,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
 
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                  <ul className="reviews__list">
-                    <li className="reviews__item">
-                      <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
-                        </div>
-                        <span className="reviews__user-name">
-                          Max
-                        </span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{width: '80%'}}></span>
-                            <span className="visually-hidden">Rating</span>
-                          </div>
-                        </div>
-                        <p className="reviews__text">
-                          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                        </p>
-                        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                      </div>
-                    </li>
-                  </ul>
+                  <ReviewsList reviews={reviews} />
                   {!isGuest && <ReviewForm />}
                 </section>
               </div>
