@@ -1,5 +1,6 @@
-import {Offers} from '../../types/offers';
 import {OfferNearCard} from '.';
+
+import {Offers} from '../../types/offers';
 
 type OfferNearCardProps = {
   offers: Offers;
@@ -16,8 +17,8 @@ function OffersNearList({offers}: OfferNearCardProps): JSX.Element {
       <div className="near-places__list places__list">
         {offersTmp.map((offer) => (
           <OfferNearCard
-            offer={offer}
             key={offer.id}
+            offer={offer}
           />
         ))}
       </div>

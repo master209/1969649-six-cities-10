@@ -6,10 +6,10 @@ import {Premium} from '../../components/common';
 
 type OfferCardProps = {
   offer: Offer;
-  onMouseOver: () => void;
+  handleCardMouseOver: () => void;
 }
 
-function OfferCard({offer, onMouseOver}: OfferCardProps): JSX.Element {
+function OfferCard({offer, handleCardMouseOver}: OfferCardProps): JSX.Element {
   const {photo, isPremium, isFavorite, price, name, type, rating} = offer;
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
@@ -19,7 +19,7 @@ function OfferCard({offer, onMouseOver}: OfferCardProps): JSX.Element {
     : 'place-card__bookmark-button button';
 
   return (
-    <article className="cities__card place-card" onMouseOver={onMouseOver}>
+    <article className="cities__card place-card" onMouseOver={handleCardMouseOver}>
       {isPremium && <Premium /> }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={linkToOffer}>

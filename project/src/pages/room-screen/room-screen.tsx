@@ -21,7 +21,9 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
   }
 
   const {isPremium, price, name, type, rating, features, hoster} = offer;
-  const hostProClass = hoster.isPro ? 'property__avatar-wrapper--pro' : '';
+  const {avatar, name: avatarName, isPro} = hoster;
+
+  const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
 
   return (
     <div className="page">
@@ -90,7 +92,7 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
                     {features.whatInside.map((item) => (
-                      <OfferInsideItem key={item} inside={item} />
+                      <OfferInsideItem key={item} label={item} />
                     ))}
                   </ul>
                 </div>
@@ -98,12 +100,12 @@ function RoomScreen({isGuest}: RoomProps): JSX.Element {
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className={`property__avatar-wrapper ${hostProClass} user__avatar-wrapper`}>
-                      <img className="property__avatar user__avatar" src={hoster.avatar} width="74" height="74" alt="Host avatar" />
+                      <img className="property__avatar user__avatar" src={avatar} width="74" height="74" alt="Host avatar" />
                     </div>
                     <span className="property__user-name">
-                      {hoster.name}
+                      {avatarName}
                     </span>
-                    {hoster.isPro && <span className="property__user-status">Pro</span>}
+                    {isPro && <span className="property__user-status">Pro</span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">

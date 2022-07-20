@@ -16,12 +16,10 @@ type MainProps = {
 function MainScreen(props: MainProps): JSX.Element {
   const {offersFound, offers, city, points} = props;
 
-  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(
-    undefined
-  );
+  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>();
 
   const onListItemHover = (offerId: string) => {
-    const currentPoint = points.find((point) => point.id === offerId);
+    const currentPoint = points.find(({id}) => id === offerId);
 
     setSelectedPoint(currentPoint);
   };

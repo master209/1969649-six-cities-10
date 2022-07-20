@@ -1,11 +1,11 @@
 type OfferInsideItemProps = {
-  inside: string;
+  label: string;
 };
 
-function OfferInsideItem({inside}: OfferInsideItemProps): JSX.Element {
+function OfferInsideItem({label}: OfferInsideItemProps): JSX.Element {
   return (
     <li className="property__inside-item">
-      {inside}
+      {label}
     </li>
   );
 }

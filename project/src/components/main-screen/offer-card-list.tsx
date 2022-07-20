@@ -11,9 +11,9 @@ function OfferCardList({offers, handleMouseOver}: PlaceCardListProps): JSX.Eleme
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
         <OfferCard
-          offer={offer}
           key={offer.id}
-          onMouseOver={() => handleMouseOver(offer.id)}
+          offer={offer}
+          handleCardMouseOver={() => handleMouseOver(offer.id)}
         />
       ))}
     </div>
