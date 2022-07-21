@@ -9,7 +9,7 @@ type HOCProps = {
     city: City,
     points: Points,
     selectedPoint: Point | undefined,
-    mapClass: string,
+    className: string,
   ) => void
 };
 
@@ -25,13 +25,13 @@ function withMap<T>(Component: ComponentType<T>): ComponentType<Omit<T, keyof HO
           city: City,
           points: Points,
           selectedPoint: Point | undefined,
-          mapClass: string,
+          className: string,
         ) => (
           <Map
             city={city}
             points={points}
             selectedPoint={selectedPoint}
-            mapClass={mapClass}
+            className={className}
           />
         )}
       />

@@ -26,7 +26,7 @@ type RoomProps = {
     city: City,
     points: Points,
     selectedPoint: Point | undefined,
-    mapClass: string,
+    className: string,
   ) => JSX.Element;
 };
 
@@ -159,7 +159,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
               </div>
             </div>
 
-            {renderMap(city, pointsNear, selectedPoint, 'property__map')}
+            {renderMap(city, points, selectedPoint, 'property__map')}
           </section>
 
           <div className="container">

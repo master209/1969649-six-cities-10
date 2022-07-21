@@ -15,7 +15,7 @@ type MainProps = {
     city: City,
     points: Points,
     selectedPoint: Point | undefined,
-    mapClass: string,
+    className: string,
   ) => JSX.Element;
 };
 
