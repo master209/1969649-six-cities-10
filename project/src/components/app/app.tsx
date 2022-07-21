@@ -30,7 +30,7 @@ type AppProps = {
 };
 
 function App({offersFound, offers}: AppProps): JSX.Element {
-  const {Main, MainEmpty, Favorites, FavoritesEmpty, Offer, OfferId, Login} = AppRoute;
+  const {Main, MainEmpty, Favorites, FavoritesEmpty, OfferId, Login} = AppRoute;
 
   return (
     <BrowserRouter>
@@ -40,9 +40,7 @@ function App({offersFound, offers}: AppProps): JSX.Element {
         <Route path={MainEmpty} element={<MainEmptyScreen />} />
         <Route path={Favorites} element={<FavoritesScreen offers={offers} />} />
         <Route path={FavoritesEmpty} element={<FavoritesEmptyScreen />} />
-        <Route path={Offer} element={<RoomScreenWrapped offers={offers} city={CITY} points={POINTS} />} >
-          <Route path={OfferId} element={<RoomScreenWrapped offers={offers} city={CITY} points={POINTS} />} />
-        </Route>
+        <Route path={OfferId} element={<RoomScreenWrapped offers={offers} city={CITY} points={POINTS} />} />
         <Route path={Login} element={<AuthScreen />} />
         <Route path="*" element={<NotFoundScreen />} />
       </Routes>

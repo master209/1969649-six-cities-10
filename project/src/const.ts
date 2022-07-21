@@ -4,9 +4,9 @@ export enum AppRoute {
   Favorites = '/favorites',
   FavoritesEmpty = '/favorites-empty',
   Login = '/login',
-  OfferNotLogged = '/offer-not-logged',
+  // OfferNotLogged = '/offer-not-logged',
   Offer = '/offer',
-  OfferId = ':id',
+  OfferId = '/offer/:id',
   NotFound = '/not-found-screen'
 }
 

@@ -16,7 +16,7 @@ type HOCProps = {
 function withMap<T>(Component: ComponentType<T>): ComponentType<Omit<T, keyof HOCProps>> {
   type ComponentProps = Omit<T, keyof HOCProps>;
 
-  function WithAudioPlayer(props: ComponentProps): JSX.Element {
+  function WithMap(props: ComponentProps): JSX.Element {
 
     return (
       <Component
@@ -38,7 +38,7 @@ function withMap<T>(Component: ComponentType<T>): ComponentType<Omit<T, keyof HO
     );
   }
 
-  return WithAudioPlayer;
+  return WithMap;
 }
 
 export default withMap;
