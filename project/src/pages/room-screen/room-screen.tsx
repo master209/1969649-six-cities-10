@@ -159,7 +159,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
               </div>
             </div>
 
-            {renderMap(city, points, selectedPoint, 'property__map')}
+            {renderMap(city, pointsNear, selectedPoint, 'property__map')}
           </section>
 
           <div className="container">
