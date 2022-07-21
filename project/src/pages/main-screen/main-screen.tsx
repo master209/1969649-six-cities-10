@@ -1,7 +1,6 @@
 import {useState} from 'react';
 
 import Layout from '../../components/layout/layout';
-import Map from '../../components/map/map';
 import {Locations, OfferCardsList} from '../../components/main-screen';
 
 import {Offers} from '../../types/offers';
@@ -12,10 +11,16 @@ type MainProps = {
   offers: Offers;
   city: City;
   points: Points;
+  renderMap: (
+    city: City,
+    points: Points,
+    selectedPoint: Point | undefined,
+    mapClass: string,
+  ) => JSX.Element;
 };
 
 function MainScreen(props: MainProps): JSX.Element {
-  const {offersFound, offers, city, points} = props;
+  const {offersFound, offers, city, points, renderMap} = props;
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>();
 
@@ -56,12 +61,7 @@ function MainScreen(props: MainProps): JSX.Element {
                 />
               </section>
               <div className="cities__right-section">
-                <Map
-                  city={city}
-                  points={points}
-                  selectedPoint={selectedPoint}
-                  mapClass={'cities__map'}
-                />
+                {renderMap(city, points, selectedPoint, 'cities__map')}
               </div>
             </div>
           </div>

@@ -3,7 +3,6 @@ import {useParams, Navigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {Premium} from '../../components/common';
-import Map from '../../components/map/map';
 import {
   ReviewForm,
   ReviewsList,
@@ -14,19 +13,25 @@ import {
 import {Offers} from '../../types/offers';
 import {City, Point, Points} from '../../types/map';
 
-import {reviews} from '../../mocks/reviews';
-
 import {AppRoute, OFFERS_NEAR} from '../../const';
+
+import {reviews} from '../../mocks/reviews';
 
 type RoomProps = {
   isGuest?: boolean;
   offers: Offers;
   city: City;
   points: Points;
+  renderMap: (
+    city: City,
+    points: Points,
+    selectedPoint: Point | undefined,
+    mapClass: string,
+  ) => JSX.Element;
 };
 
 function RoomScreen(props: RoomProps): JSX.Element {
-  const {isGuest, offers, city, points} = props;
+  const {isGuest, offers, city, points, renderMap} = props;
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>();
 
@@ -154,12 +159,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
               </div>
             </div>
 
-            <Map
-              city={city}
-              points={pointsNear}
-              selectedPoint={selectedPoint}
-              mapClass={'property__map'}
-            />
+            {renderMap(city, pointsNear, selectedPoint, 'property__map')}
           </section>
 
           <div className="container">
