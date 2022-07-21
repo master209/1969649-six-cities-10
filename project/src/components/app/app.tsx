@@ -1,21 +1,28 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import ScrollToTop from '../../hooks/scroll-to-top';
-import {Offers} from '../../types/offers';
-import {CITY} from '../../mocks/city';
-import {POINTS} from '../../mocks/points';
 import {
   MainScreen,
   MainEmptyScreen,
   FavoritesScreen,
   FavoritesEmptyScreen,
   RoomScreen,
-  RoomNotLoggedScreen,
   AuthScreen,
   NotFoundScreen,
 } from '../../pages';
 
+import withMap from '../../hocs/with-map';
+
+import ScrollToTop from '../../hooks/scroll-to-top';
+
+import {Offers} from '../../types/offers';
+
 import {AppRoute} from '../../const';
+
+import {CITY} from '../../mocks/city';
+import {POINTS} from '../../mocks/points';
+
+const MainScreenWrapped = withMap(MainScreen);
+const RoomScreenWrapped = withMap(RoomScreen);
 
 type AppProps = {
   offersFound: number;
@@ -23,19 +30,18 @@ type AppProps = {
 };
 
 function App({offersFound, offers}: AppProps): JSX.Element {
-  const {Main, MainEmpty, Favorites, FavoritesEmpty, Offer, OfferId, OfferNotLogged, Login} = AppRoute;
+  const {Main, MainEmpty, Favorites, FavoritesEmpty, Offer, OfferId, Login} = AppRoute;
 
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path={Main} element={<MainScreen offersFound={offersFound} offers={offers} points={POINTS} city={CITY} />} />
+        <Route path={Main} element={<MainScreenWrapped offersFound={offersFound} offers={offers} city={CITY} points={POINTS} />} />
         <Route path={MainEmpty} element={<MainEmptyScreen />} />
         <Route path={Favorites} element={<FavoritesScreen offers={offers} />} />
         <Route path={FavoritesEmpty} element={<FavoritesEmptyScreen />} />
-        <Route path={OfferNotLogged} element={<RoomNotLoggedScreen />} />
-        <Route path={Offer} element={<RoomScreen />} >
-          <Route path={OfferId} element={<RoomScreen />} />
+        <Route path={Offer} element={<RoomScreenWrapped offers={offers} city={CITY} points={POINTS} />} >
+          <Route path={OfferId} element={<RoomScreenWrapped offers={offers} city={CITY} points={POINTS} />} />
         </Route>
         <Route path={Login} element={<AuthScreen />} />
         <Route path="*" element={<NotFoundScreen />} />

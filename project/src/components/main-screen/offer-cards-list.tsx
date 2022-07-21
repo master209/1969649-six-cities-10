@@ -1,12 +1,13 @@
-import {Offers} from '../../types/offers';
-import {OfferCard} from './';
+import {OfferCard} from '.';
 
-type PlaceCardListProps = {
+import {Offers} from '../../types/offers';
+
+type OfferCardsListProps = {
   offers: Offers;
   handleMouseOver: (id: string) => void;
 };
 
-function OfferCardList({offers, handleMouseOver}: PlaceCardListProps): JSX.Element {
+function OfferCardsList({offers, handleMouseOver}: OfferCardsListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
@@ -20,4 +21,4 @@ function OfferCardList({offers, handleMouseOver}: PlaceCardListProps): JSX.Eleme
   );
 }
 
-export default OfferCardList;
+export default OfferCardsList;

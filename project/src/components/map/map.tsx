@@ -3,18 +3,12 @@ import {Icon, Marker} from 'leaflet';
 
 import useMap from '../../hooks/use-map';
 
-import {City, Points, Point} from '../../types/map';
+import {MapProps} from '../../types/map';
 
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 
 import 'leaflet/dist/leaflet.css';
 import './style.css';
-
-type MapProps = {
-  city: City;
-  points: Points;
-  selectedPoint: Point | undefined;
-};
 
 const createIcon = (iconUrl: string) => (
   new Icon({
@@ -27,7 +21,7 @@ const createIcon = (iconUrl: string) => (
 const defaultCustomIcon = createIcon(URL_MARKER_DEFAULT);
 const currentCustomIcon = createIcon(URL_MARKER_CURRENT);
 
-function Map({city, points, selectedPoint}: MapProps): JSX.Element {
+function Map({city, points, selectedPoint, className}: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -49,7 +43,7 @@ function Map({city, points, selectedPoint}: MapProps): JSX.Element {
   }, [map, points, selectedPoint]);
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className={`${className} map`} ref={mapRef}></section>
   );
 }
 

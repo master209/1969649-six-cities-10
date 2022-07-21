@@ -1,7 +1,8 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
 
-import {REVIEW_LENGTH} from '../../const';
+import {REVIEW_LENGTH} from '../../../const';
 
+// «/Форма отзыва»
 function ReviewForm(): JSX.Element {
   const [form, setForm] = useState({stars:0, review:''});
 

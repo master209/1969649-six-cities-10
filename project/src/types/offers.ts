@@ -7,7 +7,7 @@ export enum OfferType {
 
 export type Rating = {
   stars: string;
-  value: string;
+  value?: string;
 };
 
 export type Features = {
@@ -16,10 +16,10 @@ export type Features = {
   whatInside: string[];
 };
 
-export type Hoster = {
+export type User = {
   avatar: string;
   name: string;
-  isPro: boolean;
+  isPro?: boolean;
 };
 
 export type Offer = {
@@ -31,8 +31,18 @@ export type Offer = {
   type: OfferType;
   rating: Rating;
   features: Features;
-  hoster: Hoster;
+  hoster: User;
   isFavorite: boolean;
 };
 
 export type Offers = Offer[];
+
+export type Review = {
+  id: string;
+  user: User;
+  rating: Rating;
+  text: string;
+  time: string
+}
+
+export type Reviews = Review[];
