@@ -1,5 +1,6 @@
-import {locations, OfferType} from '../const';
 import {Offers} from '../types/offers';
+
+import {locations, OfferType} from '../const';
 
 const [Paris, Amsterdam] = locations;
 const {Apartment, Hotel, House, Room} = OfferType;
@@ -103,7 +104,7 @@ export const offers: Offers = [
   },
 
   {
-    id: '1aeeihfusdfsd',
+    id: '1aeeihfusdfsd+',
     locations: Amsterdam,
     photo: 'img/apartment-01.jpg',
     isPremium: true,
@@ -127,7 +128,7 @@ export const offers: Offers = [
     isFavorite: false
   },
   {
-    id: '2bzfsdfueufaske',
+    id: '2bzfsdfueufaske+',
     locations: Amsterdam,
     photo: 'img/room.jpg',
     isPremium: false,
@@ -151,7 +152,7 @@ export const offers: Offers = [
     isFavorite: true
   },
   {
-    id: '3cruufdsjfdsj',
+    id: '3cruufdsjfdsj+',
     locations: Amsterdam,
     photo: 'img/apartment-02.jpg',
     isPremium: false,
