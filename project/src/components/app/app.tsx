@@ -18,8 +18,8 @@ import {Offers} from '../../types/offers';
 
 import {AppRoute} from '../../const';
 
-import {CITY} from '../../mocks/city';
-import {POINTS} from '../../mocks/points';
+import {CITY} from '../../mocks/map/city';
+import {POINTS} from '../../mocks/map/points';
 
 const MainScreenWrapped = withMap(MainScreen);
 const RoomScreenWrapped = withMap(RoomScreen);

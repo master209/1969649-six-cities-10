@@ -1,4 +1,4 @@
-import {Points} from '../types/map';
+import {Points} from '../../types/map';
 
 export const POINTS: Points = [
   {

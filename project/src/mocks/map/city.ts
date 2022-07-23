@@ -1,4 +1,4 @@
-import {City} from '../types/map';
+import {City} from '../../types/map';
 
 export const CITY: City = {
   title: 'Amsterdam',

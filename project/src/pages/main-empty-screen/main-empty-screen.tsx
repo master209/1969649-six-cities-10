@@ -1,5 +1,5 @@
 import Layout from '../../components/layout/layout';
-import {Locations} from '../../components/main-screen';
+import {LocationsList} from '../../components/main-screen';
 
 function MainEmptyScreen(): JSX.Element {
   return (
@@ -7,7 +7,7 @@ function MainEmptyScreen(): JSX.Element {
       <Layout>
         <main className="page__main page__main--index page__main--index-empty">
           <h1 className="visually-hidden">Cities</h1>
-          <Locations />
+          <LocationsList />
           <div className="cities">
             <div className="cities__places-container cities__places-container--empty container">
               <section className="cities__no-places">

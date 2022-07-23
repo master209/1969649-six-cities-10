@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 import Layout from '../../components/layout/layout';
-import {Locations, OfferCardsList} from '../../components/main-screen';
+import {LocationsList, OfferCardsList} from '../../components/main-screen';
 
 import {Offers} from '../../types/offers';
 import {City, Points, Point} from '../../types/map';
@@ -34,7 +34,7 @@ function MainScreen(props: MainProps): JSX.Element {
       <Layout>
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
-          <Locations />
+          <LocationsList />
           <div className="cities">
             <div className="cities__places-container container">
               <section className="cities__places places">

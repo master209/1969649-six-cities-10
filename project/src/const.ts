@@ -16,6 +16,15 @@ export enum AuthStatus {
   Unknown = 'UNKNOWN', // будет задействована при запросе данных с сервера
 }
 
+export const locations = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
+export enum OfferType {
+  Apartment = 'Apartment',
+  Hotel = 'Hotel',
+  House = 'House',
+  Room = 'Private Room',
+}
+
 // пока в приложении нет логики авторизации, здесь можно явно задать состояние
 export const isGuest = false;
 
