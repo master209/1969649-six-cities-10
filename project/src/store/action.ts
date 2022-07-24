@@ -1,3 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
 
-export const changeLocation = createAction<{location: string}>('changeLocation');
+export const changeCity = createAction<{city: string}>('changeCity');
+export const loadOffers = createAction('loadOffers');
+export const loadPoints = createAction('loadPoints');

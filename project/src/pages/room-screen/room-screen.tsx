@@ -19,8 +19,8 @@ import {reviews} from '../../mocks/map/reviews';
 
 type RoomProps = {
   isGuest?: boolean;
-  offers: Offers;
   city: City;
+  offers: Offers;
   points: Points;
   renderMap: (
     city: City,

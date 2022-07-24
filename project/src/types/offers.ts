@@ -17,7 +17,6 @@ export type User = {
 
 export type Offer = {
   id: string;
-  locations: string,
   photo: string;
   isPremium: boolean;
   price: string;
@@ -30,6 +29,10 @@ export type Offer = {
 };
 
 export type Offers = Offer[];
+
+export type CityOffers = {
+  [key: string]: Offers,
+};
 
 export type Review = {
   id: string;

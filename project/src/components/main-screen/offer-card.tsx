@@ -11,6 +11,7 @@ type OfferCardProps = {
   handleCardMouseOver: () => void;
 }
 
+// «Предложение по аренде»
 function OfferCard({offer, handleCardMouseOver}: OfferCardProps): JSX.Element {
   const {photo, isPremium, isFavorite, price, name, type, rating} = offer;
 

@@ -6,8 +6,6 @@ import {store} from './store';
 
 import App from './components/app/app';
 
-import {offers} from './mocks/offers';
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
@@ -15,10 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store = {store}>
-      <App
-        offersFound = {offers.length}
-        offers = {offers}
-      />
+      <App />
     </Provider>
   </React.StrictMode>,
 );

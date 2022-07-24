@@ -1,1 +1,1 @@
-export {LocationsList, OfferCard} from './main-screen';
+export {CitiesList, OfferCard} from './main-screen';
