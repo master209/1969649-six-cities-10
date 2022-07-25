@@ -13,7 +13,7 @@ import {
 import withMap from '../../hocs/with-map';
 
 import {useAppSelector} from '../../hooks';
-import ScrollToTop from '../../hooks/scroll-to-top';
+import ScrollToTop from '../common/scroll-to-top';
 
 import {AppRoute, cities} from '../../const';
 

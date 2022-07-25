@@ -1,4 +1,5 @@
 import {MouseEvent} from 'react';
+import {Link} from 'react-router-dom';
 
 import {
   changeCity,
@@ -7,6 +8,8 @@ import {
 } from '../../store/action';
 
 import {useAppDispatch} from '../../hooks';
+
+import {AppRoute} from '../../const';
 
 type CitiesListProps = {
   cities: string[];
@@ -32,11 +35,11 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
             const activeClass = `locations__item-link tabs__item${(city === activeCity) ? '--active' : ''}`;
             return (
               <li key={city} className="locations__item">
-                <a className={activeClass} href="/"
+                <Link className={activeClass} to={AppRoute.Main}
                   onClick={(ev) => onChangeCity(ev, city)}
                 >
                   <span>{city}</span>
-                </a>
+                </Link>
               </li>
             );
           })}
