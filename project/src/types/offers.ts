@@ -1,10 +1,3 @@
-export enum OfferType {
-  Apartment = 'Apartment',
-  Room = 'Private Room',
-  House = 'House',
-  Hotel = 'Hotel',
-}
-
 export type Rating = {
   stars: string;
   value?: string;
@@ -28,7 +21,7 @@ export type Offer = {
   isPremium: boolean;
   price: string;
   name: string;
-  type: OfferType;
+  type: string;
   rating: Rating;
   features: Features;
   hoster: User;
@@ -36,6 +29,10 @@ export type Offer = {
 };
 
 export type Offers = Offer[];
+
+export type CityOffers = {
+  [key: string]: Offers,
+};
 
 export type Review = {
   id: string;

@@ -13,9 +13,6 @@ export type Point = {
 
 export type Points = Point[];
 
-export type MapProps = {
-  city: City;
-  points: Points;
-  selectedPoint: Point | undefined;
-  className: string;
+export type CityPoints = {
+  [key: string]: Points,
 };
