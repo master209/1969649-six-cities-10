@@ -1,6 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import ScrollToTop from '../common/scroll-to-top';
 import {
   MainScreen,
   MainEmptyScreen,
@@ -29,7 +28,6 @@ function App(): JSX.Element {
 
   return (
     <BrowserRouter>
-      <ScrollToTop />
       <Routes>
         <Route path={Main} element={<MainScreenWrapped city={city} cities={cities} offers={offers} points={points} />} />
         <Route path={MainEmpty} element={<MainEmptyScreen cities={cities} />} />
