@@ -37,6 +37,10 @@ function MainScreen(props: MainProps): JSX.Element {
     setSelectedPoint(currentPoint);
   };
 
+  const onListItemOut = (offerId: string) => {
+    setSelectedPoint(undefined);
+  };
+
   return (
     <div className="page page--gray page--main">
       <Layout>
@@ -55,6 +59,7 @@ function MainScreen(props: MainProps): JSX.Element {
                 <OfferCardsList
                   offers={offers}
                   handleMouseOver={onListItemHover}
+                  handleMouseOut={onListItemOut}
                 />
               </section>
               <div className="cities__right-section">
