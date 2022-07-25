@@ -1,5 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
+import ScrollToTop from '../common/scroll-to-top';
 import {
   MainScreen,
   MainEmptyScreen,
@@ -13,7 +14,6 @@ import {
 import withMap from '../../hocs/with-map';
 
 import {useAppSelector} from '../../hooks';
-import ScrollToTop from '../common/scroll-to-top';
 
 import {AppRoute, cities} from '../../const';
 
