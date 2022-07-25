@@ -37,3 +37,9 @@ export enum OfferType {
   Room = 'Private Room',
 }
 
+export const offerSorts = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first'
+];

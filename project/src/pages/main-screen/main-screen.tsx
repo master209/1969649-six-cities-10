@@ -4,7 +4,7 @@ import Layout from '../../components/layout/layout';
 import {
   CitiesList,
   OfferCardsList,
-  FilterForm
+  SortingForm
 } from '../../components/main-screen';
 
 import {useAppSelector} from '../../hooks';
@@ -55,7 +55,7 @@ function MainScreen(props: MainProps): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-                {offers.length ? <FilterForm /> : null}
+                {offers.length ? <SortingForm /> : null}
                 <OfferCardsList
                   offers={offers}
                   handleMouseOver={onListItemHover}
