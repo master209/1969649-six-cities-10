@@ -8,6 +8,11 @@ import {
   changeSort
 } from './action';
 
+import {
+  lowToHigh,
+  highToLow
+} from '../utils';
+
 import {Offers} from '../types/offers';
 import {Points} from '../types/map';
 
@@ -16,7 +21,7 @@ import {offerSorts} from '../const';
 import {cityOffers} from '../mocks/offers';
 import {cityPoints} from '../mocks/map/points';
 
-const [Popular] = offerSorts;
+const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
 const initialState = {
   activeCity: 'Paris',
@@ -44,8 +49,26 @@ const reducer = createReducer(initialState, (builder) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;
     })
     .addCase(changeSort, (state, action) => {
-      state.sortBy = action.payload.sort;
+      const {offers} = state;
+      const {sort} = action.payload;
+      state.sortBy = sort;
       state.isSortListCollapsed = true;
+
+      switch (sort) {
+        case LowToHigh:
+          state.offers = lowToHigh(offers);
+          break;
+        case HighToLow:
+          state.offers = highToLow(offers);
+          break;
+        case TopRated:
+          // state.offers = topRated(offers);
+          break;
+
+        default:
+          // state.offers = popular(offers);
+          break;
+      }
     });
 });
 
