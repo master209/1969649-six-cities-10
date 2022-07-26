@@ -23,11 +23,11 @@ function SortingForm(): JSX.Element {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className={`places__options places__options--custom places__options${!isSortListCollapsed && '--opened'}`}>
+      <ul className={`places__options places__options--custom${isSortListCollapsed ? '' : ' places__options--opened'}`}>
         {offerSorts.map((sort) => (
           <li
             key={sort}
-            className={`places__option places__option${sortBy === sort && '--active'}`}
+            className={`places__option${sortBy === sort ? ' places__option--active' : ''}`}
             tabIndex={0}
             onClick={() => dispatch(changeSort({sort}))}
           >

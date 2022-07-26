@@ -10,9 +10,9 @@ import {
 } from './action';
 
 import {
-  lowToHigh,
-  highToLow,
-  topRated
+  sortToHigh,
+  sortToLow,
+  sortRated
 } from '../utils';
 
 import {Offers} from '../types/offers';
@@ -61,13 +61,13 @@ const reducer = createReducer(initialState, (builder) => {
 
       switch (sort) {
         case LowToHigh:
-          state.offers = lowToHigh(offers);
+          state.offers = sortToHigh(offers, 'price');
           break;
         case HighToLow:
-          state.offers = highToLow(offers);
+          state.offers = sortToLow(offers, 'price');
           break;
         case TopRated:
-          state.offers = topRated(offers);
+          state.offers = sortRated(offers, 'rating', 'value');
           break;
 
         default:
