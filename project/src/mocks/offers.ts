@@ -61,7 +61,7 @@ export const cityOffers: CityOffers = {
       type: Hotel,
       rating: {
         stars: '80%',
-        value: '4.8'
+        value: '4.9'
       },
       features: {
         bedrooms: '6',
@@ -133,7 +133,7 @@ export const cityOffers: CityOffers = {
       type: Hotel,
       rating: {
         stars: '80%',
-        value: '4.8'
+        value: '4.9'
       },
       features: {
         bedrooms: '6',

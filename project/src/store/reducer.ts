@@ -10,7 +10,8 @@ import {
 
 import {
   lowToHigh,
-  highToLow
+  highToLow,
+  topRated
 } from '../utils';
 
 import {Offers} from '../types/offers';
@@ -62,11 +63,11 @@ const reducer = createReducer(initialState, (builder) => {
           state.offers = highToLow(offers);
           break;
         case TopRated:
-          // state.offers = topRated(offers);
+          state.offers = topRated(offers);
           break;
 
         default:
-          // state.offers = popular(offers);
+          state.offers = cityOffers[state.activeCity] || [];
           break;
       }
     });
