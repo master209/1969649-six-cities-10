@@ -1,42 +1,31 @@
 export const lowToHigh = (array: any[]): any[] =>
-  array.sort((a,b) => {
-    const A = Number(a.price);
-    const B = Number(b.price);
-
-    if (A < B) {
-      return -1;
-    }
-    if (A > B) {
-      return 1;
-    }
-    return 0;
-  });
+  array.sort((a,b) =>
+    toHigh(Number(a.price),Number(b.price)));
 
 export const highToLow = (array: any[]): any[] =>
-  array.sort((a,b) => {
-    const A = Number(a.price);
-    const B = Number(b.price);
-
-    if (A < B) {
-      return 1;
-    }
-    if (A > B) {
-      return -1;
-    }
-    return 0;
-  });
+  array.sort((a,b) =>
+    toLow(Number(a.price),Number(b.price)));
 
 export const topRated = (array: any[]): any[] =>
-  array.sort((a,b) => {
-    const A = Number(a.rating.value);
-    const B = Number(b.rating.value);
+  array.sort((a,b) =>
+    toLow(Number(a.rating.value),Number(b.rating.value)));
 
-    if (A < B) {
-      return 1;
-    }
-    if (A > B) {
-      return -1;
-    }
-    return 0;
-  });
+export const toHigh = (A: number, B: number): number => {
+  if (A < B) {
+    return -1;
+  }
+  if (A > B) {
+    return 1;
+  }
+  return 0;
+};
 
+export const toLow = (A: number, B: number): number => {
+  if (A < B) {
+    return 1;
+  }
+  if (A > B) {
+    return -1;
+  }
+  return 0;
+};
