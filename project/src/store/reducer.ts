@@ -5,7 +5,8 @@ import {
   loadOffers,
   loadPoints,
   clickSort,
-  changeSort
+  changeSort,
+  collapseSortList
 } from './action';
 
 import {
@@ -48,6 +49,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(clickSort, (state) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;
+    })
+    .addCase(collapseSortList, (state) => {
+      state.isSortListCollapsed = true;
     })
     .addCase(changeSort, (state, action) => {
       const {offers} = state;
