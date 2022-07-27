@@ -1,13 +1,15 @@
-import {useState} from 'react';
+import {useState, KeyboardEvent} from 'react';
 
 import Layout from '../../components/layout/layout';
 import {
   CitiesList,
   OfferCardsList,
-  FilterForm
+  SortingForm
 } from '../../components/main-screen';
 
-import {useAppSelector} from '../../hooks';
+import {collapseSortList} from '../../store/action';
+
+import {useAppSelector, useAppDispatch} from '../../hooks';
 
 import {Offers} from '../../types/offers';
 import {City, Points, Point} from '../../types/map';
@@ -29,6 +31,7 @@ function MainScreen(props: MainProps): JSX.Element {
   const {city, cities, offers, points, renderMap} = props;
 
   const {activeCity} = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>();
 
@@ -41,8 +44,14 @@ function MainScreen(props: MainProps): JSX.Element {
     setSelectedPoint(undefined);
   };
 
+  const keyDownHandler = (ev: KeyboardEvent<HTMLInputElement>) => {
+    if (ev.code === 'Escape') {
+      dispatch(collapseSortList());
+    }
+  };
+
   return (
-    <div className="page page--gray page--main">
+    <div className="page page--gray page--main" onKeyDown={keyDownHandler}>
       <Layout>
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
@@ -55,7 +64,7 @@ function MainScreen(props: MainProps): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-                {offers.length ? <FilterForm /> : null}
+                {offers.length ? <SortingForm /> : null}
                 <OfferCardsList
                   offers={offers}
                   handleMouseOver={onListItemHover}

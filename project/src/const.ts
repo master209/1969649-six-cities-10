@@ -10,8 +10,6 @@ export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 
-export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
-
 export enum AppRoute {
   Main = '/',
   MainEmpty = '/empty',
@@ -37,3 +35,23 @@ export enum OfferType {
   Room = 'Private Room',
 }
 
+export const cities = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf'
+];
+
+export const offerSorts = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first'
+];
+
+export enum Order {
+  Asc = 'ASC',
+  Desc = 'DESC',
+}

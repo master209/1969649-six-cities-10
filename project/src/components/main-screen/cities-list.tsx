@@ -3,11 +3,12 @@ import {Link} from 'react-router-dom';
 
 import {
   changeCity,
+  changeSort,
   loadOffers,
   loadPoints
 } from '../../store/action';
 
-import {useAppDispatch} from '../../hooks';
+import {useAppSelector, useAppDispatch} from '../../hooks';
 
 import {AppRoute} from '../../const';
 
@@ -20,11 +21,14 @@ type CitiesListProps = {
 function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
+  const {sortBy} = useAppSelector((state) => state);
+
   const onChangeCity = (ev: MouseEvent<HTMLElement>, city: string) => {
     ev.preventDefault();
     dispatch(changeCity({city}));
     dispatch(loadOffers());
     dispatch(loadPoints());
+    dispatch(changeSort({sort:sortBy}));
   };
 
   return (
