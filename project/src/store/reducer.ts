@@ -14,7 +14,7 @@ import {sortTo} from '../utils';
 import {Offers} from '../types/offers';
 import {Points} from '../types/map';
 
-import {offerSorts} from '../const';
+import {offerSorts, Order} from '../const';
 
 import {cityOffers} from '../mocks/offers';
 import {cityPoints} from '../mocks/map/points';
@@ -57,7 +57,7 @@ const reducer = createReducer(initialState, (builder) => {
 
       switch (sort) {
         case LowToHigh:
-          state.offers = sortTo(offers, 'price', 'asc');
+          state.offers = sortTo(offers, 'price', Order.ASC);
           break;
         case HighToLow:
           state.offers = sortTo(offers, 'price');

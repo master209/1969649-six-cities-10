@@ -50,3 +50,8 @@ export const offerSorts = [
   'Price: high to low',
   'Top rated first'
 ];
+
+export enum Order {
+  ASC = 'ASC',
+  DESC = 'DESC',
+}
