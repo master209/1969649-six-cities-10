@@ -14,5 +14,5 @@ export const sortTo = (array: any[], key: string, direction?: string): any[] =>
     b = +b;
 
     /* eslint-disable-next-line */
-    return direction === Order.ASC ? (a < b ? -1 : a > b ? 1 : 0) : (a < b ? 1 : a > b ? -1 : 0);
+    return direction === Order.Asc ? (a < b ? -1 : a > b ? 1 : 0) : (a < b ? 1 : a > b ? -1 : 0);
   });

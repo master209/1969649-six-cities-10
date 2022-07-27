@@ -52,6 +52,6 @@ export const offerSorts = [
 ];
 
 export enum Order {
-  ASC = 'ASC',
-  DESC = 'DESC',
+  Asc = 'ASC',
+  Desc = 'DESC',
 }
