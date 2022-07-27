@@ -9,11 +9,7 @@ import {
   collapseSortList
 } from './action';
 
-import {
-  sortToHigh,
-  sortToLow,
-  sortRated
-} from '../utils';
+import {sortTo} from '../utils';
 
 import {Offers} from '../types/offers';
 import {Points} from '../types/map';
@@ -61,13 +57,13 @@ const reducer = createReducer(initialState, (builder) => {
 
       switch (sort) {
         case LowToHigh:
-          state.offers = sortToHigh(offers, 'price');
+          state.offers = sortTo(offers, 'price', 'high');
           break;
         case HighToLow:
-          state.offers = sortToLow(offers, 'price');
+          state.offers = sortTo(offers, 'price');
           break;
         case TopRated:
-          state.offers = sortRated(offers, 'rating', 'value');
+          state.offers = sortTo(offers, 'rating.value');
           break;
 
         default:
