@@ -57,7 +57,7 @@ const reducer = createReducer(initialState, (builder) => {
 
       switch (sort) {
         case LowToHigh:
-          state.offers = sortTo(offers, 'price', 'desc');
+          state.offers = sortTo(offers, 'price', 'asc');
           break;
         case HighToLow:
           state.offers = sortTo(offers, 'price');
