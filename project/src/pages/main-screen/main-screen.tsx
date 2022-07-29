@@ -32,8 +32,7 @@ function MainScreen(props: MainProps): JSX.Element {
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  const activeOffers = offers.filter(({city}) => (city.name === activeCity));
-  const locations = activeOffers.map((offer) => offer.location);
+  const locations = offers.map((offer) => offer.location);
 
   const onListItemHover = (offerId: number) => {
     const hoveredOffer = offers.find(({id}) => id === offerId);
@@ -63,16 +62,16 @@ function MainScreen(props: MainProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{activeOffers.length} places to stay in {activeCity}</b>
-                {activeOffers.length ? <SortingForm /> : null}
+                <b className="places__found">{offers.length} places to stay in {activeCity}</b>
+                {offers.length ? <SortingForm /> : null}
                 <OfferCardsList
-                  offers={activeOffers}
+                  offers={offers}
                   handleMouseOver={onListItemHover}
                   handleMouseOut={onListItemOut}
                 />
               </section>
               <div className="cities__right-section">
-                {renderMap(activeOffers[0].city, locations, selectedLocation, 'cities__map')}
+                {renderMap(offers[0].city, locations, selectedLocation, 'cities__map')}
               </div>
             </div>
           </div>

@@ -10,6 +10,8 @@ import {
 
 import {sortTo} from '../utils';
 
+import {Offers} from '../types/offers';
+
 import {offerSorts, Order} from '../const';
 
 import {offers} from '../mocks/offers';
@@ -18,7 +20,7 @@ const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
 const initialState = {
   activeCity: 'Paris',
-  offers: offers,
+  offers: [] as Offers,
   sortBy: Popular,
   isSortListCollapsed: true
 };

@@ -19,7 +19,6 @@ import {reviews} from '../../mocks/map/reviews';
 type RoomProps = {
   isGuest?: boolean;
   offers: Offers;
-  activeCity: string;
   renderMap: (
     city: City,
     locations: Locations,
@@ -29,7 +28,7 @@ type RoomProps = {
 };
 
 function RoomScreen(props: RoomProps): JSX.Element {
-  const {isGuest, offers, activeCity, renderMap} = props;
+  const {isGuest, offers, renderMap} = props;
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
@@ -42,8 +41,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
     return <Navigate to={AppRoute.NotFound} />;
   }
 
-  const activeOffers = offers.filter(({city}) => (city.name === activeCity));
-  const locations = activeOffers.map((_offer) => _offer.location);
+  const locations = offers.map((_offer) => _offer.location);
 
   const {
     isPremium,
@@ -166,7 +164,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
               </div>
             </div>
 
-            {renderMap(activeOffers[0].city, locations, selectedLocation, 'property__map')}
+            {renderMap(offers[0].city, locations, selectedLocation, 'property__map')}
           </section>
 
           <div className="container">
