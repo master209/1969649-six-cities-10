@@ -1,13 +1,14 @@
 import {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 
+import {store} from '../../store';
+import {fetchOfferAction} from '../../store/api-actions';
+
 import {
   changeCity,
-  changeSort,
-  loadOffers,
 } from '../../store/action';
 
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
 
 import {AppRoute} from '../../const';
 
@@ -20,12 +21,9 @@ type CitiesListProps = {
 function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const {sortBy} = useAppSelector((state) => state);
-
   const onChangeCity = (ev: MouseEvent<HTMLElement>, city: string) => {
     dispatch(changeCity({city}));
-    dispatch(loadOffers());
-    dispatch(changeSort({sort:sortBy}));
+    store.dispatch(fetchOfferAction());
   };
 
   return (

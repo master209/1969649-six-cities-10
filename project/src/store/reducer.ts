@@ -14,8 +14,6 @@ import {Offers} from '../types/offers';
 
 import {offerSorts, Order} from '../const';
 
-import {offers} from '../mocks/offers';
-
 const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
 const initialState = {
@@ -35,9 +33,9 @@ const reducer = createReducer(initialState, (builder) => {
       state.offers = [];
     })
     // отбираем из массива всех предложений те, что соответствуют выбранному городу
-    .addCase(loadOffers, (state) => {
+    .addCase(loadOffers, (state,action) => {
       state.isLoading = true;
-      state.offers = offers.filter(({city}) => (city.name === state.activeCity)) || [];
+      state.offers = action.payload.filter(({city}) => (city.name === state.activeCity)) || [];
       state.isLoading = false;
       state.isLoaded = true;
     })
@@ -64,7 +62,7 @@ const reducer = createReducer(initialState, (builder) => {
           break;
 
         default:
-          state.offers = offers.filter(({city}) => (city.name === state.activeCity)) || [];
+          state.offers = state.offers.filter(({city}) => (city.name === state.activeCity)) || [];
           break;
       }
     });

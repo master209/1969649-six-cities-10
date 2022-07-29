@@ -7,14 +7,13 @@ import {
   FavoritesEmptyScreen,
   RoomScreen,
   AuthScreen,
+  LoadingScreen,
   NotFoundScreen,
 } from '../../pages';
 
 import withMap from '../../hocs/with-map';
 
-import {loadOffers} from '../../store/action';
-
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppSelector} from '../../hooks';
 
 import {AppRoute, cities} from '../../const';
 
@@ -24,10 +23,10 @@ const RoomScreenWrapped = withMap(RoomScreen);
 function App(): JSX.Element {
   const {isLoading, isLoaded, offers, activeCity} = useAppSelector((state) => state);
 
-  const dispatch = useAppDispatch();
-
   if(offers.length === 0 && !isLoading && !isLoaded) {
-    dispatch(loadOffers());
+    return (
+      <LoadingScreen />
+    );
   }
 
   const {Main, MainEmpty, Favorites, FavoritesEmpty, OfferId, Login} = AppRoute;
@@ -36,7 +35,7 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path={Main} element={<MainScreenWrapped cities={cities} offers={offers} activeCity={activeCity} />} />
-        <Route path={MainEmpty} element={<MainEmptyScreen cities={cities} />} />
+        <Route path={MainEmpty} element={<MainEmptyScreen cities={cities} activeCity={activeCity} />} />
         <Route path={Favorites} element={<FavoritesScreen offers={offers} />} />
         <Route path={FavoritesEmpty} element={<FavoritesEmptyScreen />} />
         <Route path={OfferId} element={<RoomScreenWrapped offers={offers} />} />

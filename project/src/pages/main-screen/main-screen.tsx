@@ -43,7 +43,7 @@ function MainScreen(props: MainProps): JSX.Element {
 
   const onListItemHover = (offerId: number) => {
     const hoveredOffer = offers.find(({id}) => id === offerId);
-    setSelectedLocation(hoveredOffer && hoveredOffer.location);
+    setSelectedLocation(hoveredOffer?.location);
   };
 
   const onListItemOut = () => {

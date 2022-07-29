@@ -1,14 +1,12 @@
 import Layout from '../../components/layout/layout';
 import {CitiesList} from '../../components/main-screen';
 
-import {useAppSelector} from '../../hooks';
-
 type MainEmptyScreenProps = {
   cities: string[];
+  activeCity: string;
 };
 
-function MainEmptyScreen({cities} :MainEmptyScreenProps): JSX.Element {
-  const {activeCity} = useAppSelector((state) => state);
+function MainEmptyScreen({cities, activeCity} :MainEmptyScreenProps): JSX.Element {
 
   return (
     <div className="page page--gray page--main">

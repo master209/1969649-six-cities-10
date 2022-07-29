@@ -29,7 +29,6 @@ export type MapProps = {
 };
 
 function Map({city, locations, selectedLocation, className}: MapProps): JSX.Element {
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, city.location);
 
@@ -40,7 +39,8 @@ function Map({city, locations, selectedLocation, className}: MapProps): JSX.Elem
 
         marker
           .setIcon(
-            selectedLocation !== undefined
+            // selectedLocation !== undefined
+            selectedLocation?.latitude === lat && selectedLocation?.longitude === lng
               ? currentCustomIcon
               : defaultCustomIcon
           )
