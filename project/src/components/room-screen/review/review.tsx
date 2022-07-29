@@ -6,7 +6,7 @@ type ReviewProps = {
 
 // «Отзыв»
 function ReviewItem({review}: ReviewProps): JSX.Element {
-  const {user, rating, text, time} = review;
+  const {user, text, time} = review;
   const {avatar, name} = user;
 
   return (
@@ -22,7 +22,7 @@ function ReviewItem({review}: ReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: rating.stars}}></span>
+            <span style={{width: '80%'}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

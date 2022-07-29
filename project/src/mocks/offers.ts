@@ -13,10 +13,7 @@ export const cityOffers: CityOffers = {
       price: '120',
       name: 'Beautiful & luxurious apartment at great location',
       type: Apartment,
-      rating: {
-        stars: '80%',
-        value: '4.8'
-      },
+      rating: '4.8',
       features: {
         bedrooms: '3',
         adults: '4',
@@ -36,10 +33,7 @@ export const cityOffers: CityOffers = {
       price: '80',
       name: 'Wood and stone place',
       type: Room,
-      rating: {
-        stars: '60%',
-        value: '4'
-      },
+      rating: '4',
       features: {
         bedrooms: '2',
         adults: '3',
@@ -59,10 +53,7 @@ export const cityOffers: CityOffers = {
       price: '132',
       name: 'Canal View Prinsengracht',
       type: Hotel,
-      rating: {
-        stars: '80%',
-        value: '4.9'
-      },
+      rating: '4.9',
       features: {
         bedrooms: '6',
         adults: '9',
@@ -82,10 +73,7 @@ export const cityOffers: CityOffers = {
       price: '180',
       name: 'Nice, cozy, warm big bed apartment',
       type: House,
-      rating: {
-        stars: '100%',
-        value: '5.5'
-      },
+      rating: '5',
       features: {
         bedrooms: '6',
         adults: '12',
@@ -108,10 +96,7 @@ export const cityOffers: CityOffers = {
       price: '80',
       name: 'Wood and stone place',
       type: Room,
-      rating: {
-        stars: '60%',
-        value: '4'
-      },
+      rating: '4.1',
       features: {
         bedrooms: '2',
         adults: '3',
@@ -131,10 +116,7 @@ export const cityOffers: CityOffers = {
       price: '132',
       name: 'Canal View Prinsengracht',
       type: Hotel,
-      rating: {
-        stars: '80%',
-        value: '4.9'
-      },
+      rating: '4.9',
       features: {
         bedrooms: '6',
         adults: '9',
@@ -154,10 +136,7 @@ export const cityOffers: CityOffers = {
       price: '120',
       name: 'Beautiful & luxurious apartment at great location',
       type: Apartment,
-      rating: {
-        stars: '80%',
-        value: '4.8'
-      },
+      rating: '4.8',
       features: {
         bedrooms: '3',
         adults: '4',
@@ -180,10 +159,7 @@ export const cityOffers: CityOffers = {
       price: '180',
       name: 'Nice, cozy, warm big bed apartment',
       type: House,
-      rating: {
-        stars: '100%',
-        value: '5.5'
-      },
+      rating: '5',
       features: {
         bedrooms: '6',
         adults: '12',
@@ -203,10 +179,7 @@ export const cityOffers: CityOffers = {
       price: '80',
       name: 'Wood and stone place',
       type: Room,
-      rating: {
-        stars: '60%',
-        value: '4'
-      },
+      rating: '4',
       features: {
         bedrooms: '2',
         adults: '3',
@@ -229,10 +202,7 @@ export const cityOffers: CityOffers = {
       price: '180',
       name: 'Nice, cozy, warm big bed apartment',
       type: House,
-      rating: {
-        stars: '100%',
-        value: '5.5'
-      },
+      rating: '5',
       features: {
         bedrooms: '6',
         adults: '12',

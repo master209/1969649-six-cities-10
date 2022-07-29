@@ -13,7 +13,7 @@ type OfferNearCardProps = {
 
 /* «Карточка предложения неподалёку» */
 function OfferNearCard({offer, handleCardMouseOver}: OfferNearCardProps): JSX.Element {
-  const {photo, isPremium, price, name, type, rating} = offer;
+  const {photo, isPremium, price, name, type} = offer;
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
@@ -40,7 +40,7 @@ function OfferNearCard({offer, handleCardMouseOver}: OfferNearCardProps): JSX.El
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rating.stars}}></span>
+            <span style={{width: '80%'}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

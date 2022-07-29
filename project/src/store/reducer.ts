@@ -63,7 +63,7 @@ const reducer = createReducer(initialState, (builder) => {
           state.offers = sortTo(offers, 'price');
           break;
         case TopRated:
-          state.offers = sortTo(offers, 'rating.value');
+          state.offers = sortTo(offers, 'rating');
           break;
 
         default:

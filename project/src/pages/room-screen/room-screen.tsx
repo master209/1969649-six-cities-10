@@ -100,10 +100,10 @@ function RoomScreen(props: RoomProps): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: rating.stars}}></span>
+                    <span style={{width: '80%'}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">{rating.value}</span>
+                  <span className="property__rating-value rating__value">{rating}</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">

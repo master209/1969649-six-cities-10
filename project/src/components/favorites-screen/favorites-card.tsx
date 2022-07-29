@@ -11,7 +11,7 @@ type FavoritesCardProps = {
 }
 
 function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
-  const {photo, isPremium, price, name, type, rating} = offer;
+  const {photo, isPremium, price, name, type} = offer;
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
@@ -38,7 +38,7 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rating.stars}}></span>
+            <span style={{width: '80%'}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

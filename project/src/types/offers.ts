@@ -1,8 +1,3 @@
-export type Rating = {
-  stars: string;
-  value?: string;
-};
-
 export type Features = {
   bedrooms: string;
   adults: string;
@@ -22,7 +17,7 @@ export type Offer = {
   price: string;
   name: string;
   type: string;
-  rating: Rating;
+  rating: string;
   features: Features;
   hoster: User;
   isFavorite: boolean;
@@ -37,7 +32,7 @@ export type CityOffers = {
 export type Review = {
   id: string;
   user: User;
-  rating: Rating;
+  rating: string;
   text: string;
   time: string
 }

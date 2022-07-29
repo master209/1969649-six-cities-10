@@ -10,8 +10,8 @@ export const sortTo = (array: any[], key: string, direction?: string): any[] =>
       b = (b || rawB)[value];
     });
 
-    a = +a;
-    b = +b;
+    a = isNaN(+a) ? a : +a;
+    b = isNaN(+b) ? b : +b;
 
     /* eslint-disable-next-line */
     return direction === Order.Asc ? (a < b ? -1 : a > b ? 1 : 0) : (a < b ? 1 : a > b ? -1 : 0);
