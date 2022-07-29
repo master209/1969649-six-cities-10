@@ -23,7 +23,6 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
   const {sortBy} = useAppSelector((state) => state);
 
   const onChangeCity = (ev: MouseEvent<HTMLElement>, city: string) => {
-    ev.preventDefault();
     dispatch(changeCity({city}));
     dispatch(loadOffers());
     dispatch(changeSort({sort:sortBy}));

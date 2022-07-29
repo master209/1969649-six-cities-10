@@ -22,11 +22,11 @@ const MainScreenWrapped = withMap(MainScreen);
 const RoomScreenWrapped = withMap(RoomScreen);
 
 function App(): JSX.Element {
-  const {offers, activeCity} = useAppSelector((state) => state);
+  const {isLoading, isLoaded, offers, activeCity} = useAppSelector((state) => state);
 
   const dispatch = useAppDispatch();
 
-  if(offers.length === 0) {
+  if(offers.length === 0 && !isLoading && !isLoaded) {
     dispatch(loadOffers());
   }
 

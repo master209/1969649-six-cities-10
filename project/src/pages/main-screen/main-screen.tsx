@@ -1,4 +1,5 @@
 import {useState, KeyboardEvent} from 'react';
+import {Navigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {
@@ -12,6 +13,8 @@ import {collapseSortList} from '../../store/action';
 import {useAppDispatch} from '../../hooks';
 
 import {City, Offers, Location, Locations} from '../../types/offers';
+
+import {AppRoute} from '../../const';
 
 type MainProps = {
   cities: string[];
@@ -31,6 +34,10 @@ function MainScreen(props: MainProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
+
+  if(offers.length === 0) {
+    return <Navigate to={AppRoute.MainEmpty} />;
+  }
 
   const locations = offers.map((offer) => offer.location);
 
@@ -63,7 +70,7 @@ function MainScreen(props: MainProps): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-                {offers.length ? <SortingForm /> : null}
+                <SortingForm />
                 <OfferCardsList
                   offers={offers}
                   handleMouseOver={onListItemHover}
