@@ -6,6 +6,7 @@ export type User = {
 
 export type Offer = {
   id: number;
+  city: City;
   previewImage: string;
   isPremium: boolean;
   price: number;
@@ -18,13 +19,10 @@ export type Offer = {
   host: User;
   isFavorite: boolean;
   description: string;
+  location: Location;
 };
 
 export type Offers = Offer[];
-
-export type CityOffers = {
-  [key: string]: Offers,
-};
 
 export type Review = {
   id: string;
@@ -35,3 +33,16 @@ export type Review = {
 }
 
 export type Reviews = Review[];
+
+export type City = {
+  name: string;
+  location: Location;
+};
+
+export type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+export type Locations = Location[];

@@ -10,30 +10,28 @@ import {
   OfferNearsList
 } from '../../components/room-screen';
 
-import {Offers} from '../../types/offers';
-import {City, Point, Points} from '../../types/map';
+import {City, Offers, Location, Locations} from '../../types/offers';
 
-import {AppRoute, OFFERS_NEAR} from '../../const';
+import {AppRoute} from '../../const';
 
 import {reviews} from '../../mocks/map/reviews';
 
 type RoomProps = {
   isGuest?: boolean;
-  city: City;
   offers: Offers;
-  points: Points;
+  activeCity: string;
   renderMap: (
     city: City,
-    points: Points,
-    selectedPoint: Point | undefined,
+    locations: Locations,
+    selectedLocation: Location | undefined,
     className: string,
   ) => JSX.Element;
 };
 
 function RoomScreen(props: RoomProps): JSX.Element {
-  const {isGuest, offers, city, points, renderMap} = props;
+  const {isGuest, offers, activeCity, renderMap} = props;
 
-  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>();
+  const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
   const params = useParams();
 
@@ -43,6 +41,9 @@ function RoomScreen(props: RoomProps): JSX.Element {
   if(!offer) {
     return <Navigate to={AppRoute.NotFound} />;
   }
+
+  const activeOffers = offers.filter(({city}) => (city.name === activeCity));
+  const locations = activeOffers.map((_offer) => _offer.location);
 
   const {
     isPremium,
@@ -54,18 +55,16 @@ function RoomScreen(props: RoomProps): JSX.Element {
     bedrooms,
     maxAdults,
     host,
-    description
+    description,
   } = offer;
-  const {avatarUrl, name: userName, isPro} = host;
 
-  const [...pointsNear] = points;
-  pointsNear.length = OFFERS_NEAR;
+  const {avatarUrl, name: userName, isPro} = host;
 
   const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
 
-  const onListItemHover = (pointId: number) => {
-    const currentPoint = points.find(({id}) => id === pointId);
-    setSelectedPoint(currentPoint);
+  const onNearListItemHover = (offerId: number) => {
+    const hoveredOffer = offers.find(({id}) => id === offerId);
+    setSelectedLocation(hoveredOffer && hoveredOffer.location);
   };
 
   return (
@@ -167,13 +166,13 @@ function RoomScreen(props: RoomProps): JSX.Element {
               </div>
             </div>
 
-            {renderMap(city, pointsNear, selectedPoint, 'property__map')}
+            {renderMap(activeOffers[0].city, locations, selectedLocation, 'property__map')}
           </section>
 
           <div className="container">
             <OfferNearsList
               offers={offers}
-              handleMouseOver={onListItemHover}
+              handleMouseOver={onNearListItemHover}
             />
           </div>
         </main>

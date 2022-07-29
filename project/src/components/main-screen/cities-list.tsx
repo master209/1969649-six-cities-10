@@ -5,7 +5,6 @@ import {
   changeCity,
   changeSort,
   loadOffers,
-  loadPoints
 } from '../../store/action';
 
 import {useAppSelector, useAppDispatch} from '../../hooks';
@@ -27,7 +26,6 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
     ev.preventDefault();
     dispatch(changeCity({city}));
     dispatch(loadOffers());
-    dispatch(loadPoints());
     dispatch(changeSort({sort:sortBy}));
   };
 

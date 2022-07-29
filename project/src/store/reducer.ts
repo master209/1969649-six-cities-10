@@ -3,7 +3,6 @@ import {createReducer} from '@reduxjs/toolkit';
 import {
   changeCity,
   loadOffers,
-  loadPoints,
   clickSort,
   changeSort,
   collapseSortList
@@ -11,20 +10,15 @@ import {
 
 import {sortTo} from '../utils';
 
-import {Offers} from '../types/offers';
-import {Points} from '../types/map';
-
 import {offerSorts, Order} from '../const';
 
-import {cityOffers} from '../mocks/offers';
-import {cityPoints} from '../mocks/map/points';
+import {offers} from '../mocks/offers';
 
 const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
 const initialState = {
   activeCity: 'Paris',
-  offers: cityOffers['Paris'] as Offers,
-  points: cityPoints['Paris'] as Points,
+  offers: offers,
   sortBy: Popular,
   isSortListCollapsed: true
 };
@@ -37,11 +31,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     // отбираем из массива всех предложений те, что соответствуют выбранному городу
     .addCase(loadOffers, (state) => {
-      state.offers = cityOffers[state.activeCity] || [];
-    })
-    // отбираем маркеры для карты, соответствующие выбранному городу
-    .addCase(loadPoints, (state) => {
-      state.points = cityPoints[state.activeCity] || [];
+      state.offers = offers.filter(({city}) => (city.name === state.activeCity)) || [];
     })
     .addCase(clickSort, (state) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;
@@ -50,24 +40,24 @@ const reducer = createReducer(initialState, (builder) => {
       state.isSortListCollapsed = true;
     })
     .addCase(changeSort, (state, action) => {
-      const {offers} = state;
+      const {offers: _offers} = state;
       const {sort} = action.payload;
       state.sortBy = sort;
       state.isSortListCollapsed = true;
 
       switch (sort) {
         case LowToHigh:
-          state.offers = sortTo(offers, 'price', Order.Asc);
+          state.offers = sortTo(_offers, 'price', Order.Asc);
           break;
         case HighToLow:
-          state.offers = sortTo(offers, 'price');
+          state.offers = sortTo(_offers, 'price');
           break;
         case TopRated:
-          state.offers = sortTo(offers, 'rating');
+          state.offers = sortTo(_offers, 'rating');
           break;
 
         default:
-          state.offers = cityOffers[state.activeCity] || [];
+          state.offers = _offers.filter(({city}) => (city.name === state.activeCity)) || [];
           break;
       }
     });
