@@ -1,26 +1,23 @@
-export type Features = {
-  bedrooms: string;
-  adults: string;
-  whatInside: string[];
-};
-
 export type User = {
-  avatar: string;
+  avatarUrl: string;
   name: string;
   isPro?: boolean;
 };
 
 export type Offer = {
-  id: string;
-  photo: string;
+  id: number;
+  previewImage: string;
   isPremium: boolean;
-  price: string;
-  name: string;
+  price: number;
+  title: string;
   type: string;
-  rating: string;
-  features: Features;
-  hoster: User;
+  rating: number;
+  bedrooms: number;
+  maxAdults: number;
+  goods: string[];
+  host: User;
   isFavorite: boolean;
+  description: string;
 };
 
 export type Offers = Offer[];

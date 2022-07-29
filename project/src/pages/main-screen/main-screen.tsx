@@ -35,12 +35,12 @@ function MainScreen(props: MainProps): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>();
 
-  const onListItemHover = (offerId: string) => {
+  const onListItemHover = (offerId: number) => {
     const currentPoint = points.find(({id}) => id === offerId);
     setSelectedPoint(currentPoint);
   };
 
-  const onListItemOut = (offerId: string) => {
+  const onListItemOut = (offerId: number) => {
     setSelectedPoint(undefined);
   };
 

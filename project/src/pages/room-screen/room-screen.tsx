@@ -37,22 +37,33 @@ function RoomScreen(props: RoomProps): JSX.Element {
 
   const params = useParams();
 
-  const offer = offers.find(({id}) => (id === params.id));
+  const offer = offers.find(({id}) => (id.toString() === params.id));
 
   // обработка ошибки несуществующего OfferId
   if(!offer) {
     return <Navigate to={AppRoute.NotFound} />;
   }
 
-  const {isPremium, price, name, type, rating, features, hoster} = offer;
-  const {avatar, name: userName, isPro} = hoster;
+  const {
+    isPremium,
+    price,
+    title,
+    type,
+    rating,
+    goods,
+    bedrooms,
+    maxAdults,
+    host,
+    description
+  } = offer;
+  const {avatarUrl, name: userName, isPro} = host;
 
   const [...pointsNear] = points;
   pointsNear.length = OFFERS_NEAR;
 
   const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
 
-  const onListItemHover = (pointId: string) => {
+  const onListItemHover = (pointId: number) => {
     const currentPoint = points.find(({id}) => id === pointId);
     setSelectedPoint(currentPoint);
   };
@@ -90,7 +101,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
               <div className="property__wrapper">
                 {isPremium && <Premium containerClass="property__mark" /> }
                 <div className="property__name-wrapper">
-                  <h1 className="property__name">{name}</h1>
+                  <h1 className="property__name">{title}</h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
@@ -110,10 +121,10 @@ function RoomScreen(props: RoomProps): JSX.Element {
                     {type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {features.bedrooms} Bedrooms
+                    {bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {features.adults} adults
+                    Max {maxAdults} adults
                   </li>
                 </ul>
                 <div className="property__price">
@@ -123,7 +134,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {features.whatInside.map((item) => (
+                    {goods.map((item) => (
                       <OfferInsideItem key={item} label={item} />
                     ))}
                   </ul>
@@ -132,7 +143,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className={`property__avatar-wrapper ${hostProClass} user__avatar-wrapper`}>
-                      <img className="property__avatar user__avatar" src={avatar} width="74" height="74" alt="Host avatar" />
+                      <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar" />
                     </div>
                     <span className="property__user-name">
                       {userName}
@@ -141,10 +152,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
                   </div>
                   <div className="property__description">
                     <p className="property__text">
-                      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                    </p>
-                    <p className="property__text">
-                      An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                      {description}
                     </p>
                   </div>
                 </div>

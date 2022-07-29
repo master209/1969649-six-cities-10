@@ -6,7 +6,7 @@ import {OFFERS_NEAR} from '../../const';
 
 type OfferNearCardProps = {
   offers: Offers;
-  handleMouseOver: (id: string) => void;
+  handleMouseOver: (id: number) => void;
 }
 
 /* «Список предложений неподалёку» */

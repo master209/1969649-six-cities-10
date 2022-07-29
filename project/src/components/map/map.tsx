@@ -31,11 +31,11 @@ export type MapProps = {
 function Map({city, points, selectedPoint, className}: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, city.location);
 
   useEffect(() => {
     if (map) {
-      points.forEach(({lat, lng, id}) => {
+      points.forEach(({latitude:lat, longitude:lng, id}) => {
         const marker = new Marker({lat, lng});
 
         marker

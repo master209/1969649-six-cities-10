@@ -1,14 +1,18 @@
 export type City = {
-  title: string;
-  lat: number;
-  lng: number;
+  name: string;
+  location: Location;
+};
+
+export type Location = {
+  latitude: number;
+  longitude: number;
   zoom: number;
 };
 
 export type Point = {
-  id: string;
-  lat: number;
-  lng: number;
+  id: number;
+  latitude: number;
+  longitude: number;
 };
 
 export type Points = Point[];

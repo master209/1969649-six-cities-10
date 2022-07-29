@@ -4,7 +4,7 @@ export const reviews: Reviews = [
   {
     id: '1',
     user: {
-      avatar: 'img/avatar-max.jpg',
+      avatarUrl: 'img/avatar-max.jpg',
       name: 'Max'
     },
     rating: '80%',
@@ -14,7 +14,7 @@ export const reviews: Reviews = [
   {
     id: '2',
     user: {
-      avatar: 'img/avatar-max.jpg',
+      avatarUrl: 'img/avatar-max.jpg',
       name: 'Mafusail'
     },
     rating: '100%',
