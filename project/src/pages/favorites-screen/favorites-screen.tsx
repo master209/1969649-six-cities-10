@@ -1,11 +1,7 @@
 import Layout from '../../components/layout/layout';
 import {FavoritesCard} from '../../components/favorites-screen';
 
-import withPrivateRoute from '../../hocs/with-private-route';
-
 import {Offers} from '../../types/offers';
-
-import {isGuest} from '../../const';
 
 type FavoritesScreenProps = {
   offers: Offers;
@@ -55,4 +51,4 @@ function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
   );
 }
 
-export default withPrivateRoute(FavoritesScreen, isGuest);
+export default FavoritesScreen;

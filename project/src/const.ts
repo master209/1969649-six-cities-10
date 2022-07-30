@@ -22,10 +22,10 @@ export enum AppRoute {
   NotFound = '/not-found-screen'
 }
 
-export enum AuthStatus {
+export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN', // будет задействована при запросе данных с сервера
+  Unknown = 'UNKNOWN',
 }
 
 export enum OfferType {
@@ -58,6 +58,6 @@ export enum Order {
 
 export enum APIRoute {
   Offers = '/hotels',
-  // Login = '/login',
-  // Logout = '/logout',
+  Login = '/login',
+  Logout = '/logout',
 }

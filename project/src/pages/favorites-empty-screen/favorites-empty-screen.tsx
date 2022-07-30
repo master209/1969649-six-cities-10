@@ -1,9 +1,5 @@
 import Layout from '../../components/layout/layout';
 
-import withPrivateRoute from '../../hocs/with-private-route';
-
-import {isGuest} from '../../const';
-
 function FavoritesEmptyScreen(): JSX.Element {
   return (
     <div className="page page--favorites-empty">
@@ -24,4 +20,4 @@ function FavoritesEmptyScreen(): JSX.Element {
   );
 }
 
-export default withPrivateRoute(FavoritesEmptyScreen, isGuest);
+export default FavoritesEmptyScreen;

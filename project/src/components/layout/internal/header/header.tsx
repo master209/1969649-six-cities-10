@@ -1,4 +1,5 @@
 import Logo from './logo';
+import Nav from '../../../../components/nav/nav';
 
 function Header(): JSX.Element {
   return (
@@ -8,6 +9,7 @@ function Header(): JSX.Element {
           <div className="header__left">
             <Logo />
           </div>
+          <Nav />
         </div>
       </div>
     </header>

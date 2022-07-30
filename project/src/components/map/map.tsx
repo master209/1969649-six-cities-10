@@ -34,17 +34,17 @@ function Map({city, locations, selectedLocation, className}: MapProps): JSX.Elem
 
   useEffect(() => {
     map &&
-      locations.forEach(({latitude:lat, longitude:lng}) => {
-        const marker = new Marker({lat, lng});
+    locations.forEach(({latitude:lat, longitude:lng}) => {
+      const marker = new Marker({lat, lng});
 
-        marker
-          .setIcon(
-            selectedLocation?.latitude === lat && selectedLocation?.longitude === lng
-              ? currentCustomIcon
-              : defaultCustomIcon
-          )
-          .addTo(map);
-      });
+      marker
+        .setIcon(
+          selectedLocation?.latitude === lat && selectedLocation?.longitude === lng
+            ? currentCustomIcon
+            : defaultCustomIcon
+        )
+        .addTo(map);
+    });
   }, [map, locations, selectedLocation]);
 
   return (
