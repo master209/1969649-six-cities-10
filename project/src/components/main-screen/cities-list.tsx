@@ -3,10 +3,7 @@ import {Link} from 'react-router-dom';
 
 import {store} from '../../store';
 import {fetchOfferAction} from '../../store/api-actions';
-
-import {
-  changeCity,
-} from '../../store/action';
+import {changeCity} from '../../store/action';
 
 import {useAppDispatch} from '../../hooks';
 

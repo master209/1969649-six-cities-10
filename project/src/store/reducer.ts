@@ -27,15 +27,15 @@ const initialState = {
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCity, (state, action) => {
+    .addCase(changeCity, (state, {payload}) => {
       state.isLoaded = false;
-      state.activeCity = action.payload.city;
+      state.activeCity = payload.city;
       state.offers = [];
     })
     // отбираем из массива всех предложений те, что соответствуют выбранному городу
-    .addCase(loadOffers, (state,action) => {
+    .addCase(loadOffers, (state,{payload}) => {
       state.isLoading = true;
-      state.offers = action.payload.filter(({city}) => (city.name === state.activeCity)) || [];
+      state.offers = payload.filter(({city}) => (city.name === state.activeCity)) || [];
       state.isLoading = false;
       state.isLoaded = true;
     })
@@ -45,24 +45,25 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(collapseSortList, (state) => {
       state.isSortListCollapsed = true;
     })
-    .addCase(changeSort, (state, action) => {
-      const {sort} = action.payload;
+    .addCase(changeSort, (state, {payload}) => {
+      const {offers} = state;
+      const {sort} = payload;
       state.sortBy = sort;
       state.isSortListCollapsed = true;
 
       switch (sort) {
         case LowToHigh:
-          state.offers = sortTo(state.offers, 'price', Order.Asc);
+          state.offers = sortTo(offers, 'price', Order.Asc);
           break;
         case HighToLow:
-          state.offers = sortTo(state.offers, 'price');
+          state.offers = sortTo(offers, 'price');
           break;
         case TopRated:
-          state.offers = sortTo(state.offers, 'rating');
+          state.offers = sortTo(offers, 'rating');
           break;
 
         default:
-          state.offers = state.offers.filter(({city}) => (city.name === state.activeCity)) || [];
+          // state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
           break;
       }
     });

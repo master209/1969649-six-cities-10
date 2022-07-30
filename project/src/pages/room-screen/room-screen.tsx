@@ -14,7 +14,7 @@ import {City, Offers, Location, Locations} from '../../types/offers';
 
 import {AppRoute} from '../../const';
 
-import {reviews} from '../../mocks/map/reviews';
+import {reviews} from '../../mocks/reviews';
 
 type RoomProps = {
   isGuest?: boolean;

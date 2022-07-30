@@ -1,5 +1,5 @@
-import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import {AxiosInstance} from 'axios';
 
 import {changeSort, loadOffers} from './action';
 
