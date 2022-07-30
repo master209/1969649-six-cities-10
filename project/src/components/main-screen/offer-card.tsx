@@ -12,9 +12,9 @@ type OfferCardProps = {
   handleCardMouseOut: () => void;
 }
 
-// «Предложение по аренде»
+/* «Предложение по аренде» */
 function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardProps): JSX.Element {
-  const {previewImage, isPremium, isFavorite, price, title, type} = offer;
+  const {previewImage, isPremium, price, title, type, isFavorite} = offer;
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
@@ -54,7 +54,7 @@ function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardPr
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={linkToOffer}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

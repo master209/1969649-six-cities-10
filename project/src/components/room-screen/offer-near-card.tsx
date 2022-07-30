@@ -18,7 +18,10 @@ function OfferNearCard({offer, handleCardMouseOver}: OfferNearCardProps): JSX.El
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
   return (
-    <article className="near-places__card place-card" onMouseOver={handleCardMouseOver}>
+    <article
+      className="near-places__card place-card"
+      onMouseOver={handleCardMouseOver}
+    >
       {isPremium && <Premium /> }
       <div className="near-places__image-wrapper place-card__image-wrapper">
         <Link to={linkToOffer}>

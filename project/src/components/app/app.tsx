@@ -23,7 +23,7 @@ const RoomScreenWrapped = withMap(RoomScreen);
 function App(): JSX.Element {
   const {isLoading, isLoaded, offers, activeCity} = useAppSelector((state) => state);
 
-  if(offers.length === 0 && !isLoading && !isLoaded) {
+  if(!offers.length && !isLoading && !isLoaded) {
     return (
       <LoadingScreen />
     );

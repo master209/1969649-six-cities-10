@@ -33,20 +33,18 @@ function Map({city, locations, selectedLocation, className}: MapProps): JSX.Elem
   const map = useMap(mapRef, city.location);
 
   useEffect(() => {
-    if (map) {
+    map &&
       locations.forEach(({latitude:lat, longitude:lng}) => {
         const marker = new Marker({lat, lng});
 
         marker
           .setIcon(
-            // selectedLocation !== undefined
             selectedLocation?.latitude === lat && selectedLocation?.longitude === lng
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(map);
       });
-    }
   }, [map, locations, selectedLocation]);
 
   return (

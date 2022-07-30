@@ -10,6 +10,7 @@ type FavoritesCardProps = {
   offer: Offer;
 }
 
+/* «Карточка избранных предложений» */
 function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
   const {previewImage, isPremium, price, title, type} = offer;
 

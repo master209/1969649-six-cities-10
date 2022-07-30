@@ -35,7 +35,7 @@ function MainScreen(props: MainProps): JSX.Element {
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  if(offers.length === 0) {
+  if(!offers.length) {
     return <Navigate to={AppRoute.MainEmpty} />;
   }
 

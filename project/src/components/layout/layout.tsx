@@ -2,7 +2,7 @@ import {PropsWithChildren} from 'react';
 
 import {Header, Footer} from './internal';
 
-import {useScrollToTop} from '../../hooks/use-scroll-to-top';
+import {useScrollToTop} from '../../hooks/scroll-to-top';
 
 type LayoutProps = PropsWithChildren<{
   withFooter?: boolean;
