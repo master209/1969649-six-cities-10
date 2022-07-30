@@ -55,3 +55,9 @@ export enum Order {
   Asc = 'ASC',
   Desc = 'DESC',
 }
+
+export enum APIRoute {
+  Offers = '/hotels',
+  // Login = '/login',
+  // Logout = '/logout',
+}

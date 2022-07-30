@@ -2,13 +2,13 @@ import {ComponentType} from 'react';
 
 import Map from '../components/map/map';
 
-import {City, Point, Points} from '../types/map';
+import {City, Location, Locations} from '../types/offers';
 
 type HOCProps = {
   renderMap: (
     city: City,
-    points: Points,
-    selectedPoint: Point | undefined,
+    locations: Locations,
+    selectedLocation: Location | undefined,
     className: string,
   ) => void
 };
@@ -23,14 +23,14 @@ function withMap<T>(Component: ComponentType<T>): ComponentType<Omit<T, keyof HO
         {...props as T}
         renderMap={(
           city: City,
-          points: Points,
-          selectedPoint: Point | undefined,
+          locations: Locations,
+          selectedLocation: Location | undefined,
           className: string,
         ) => (
           <Map
             city={city}
-            points={points}
-            selectedPoint={selectedPoint}
+            locations={locations}
+            selectedLocation={selectedLocation}
             className={className}
           />
         )}

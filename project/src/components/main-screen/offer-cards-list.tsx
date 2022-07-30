@@ -4,8 +4,8 @@ import {Offers} from '../../types/offers';
 
 type OfferCardsListProps = {
   offers: Offers;
-  handleMouseOver: (id: string) => void;
-  handleMouseOut: (id: string) => void;
+  handleMouseOver: (id: number) => void;
+  handleMouseOut: (id: number) => void;
 };
 
 // «Список предложений по аренде»

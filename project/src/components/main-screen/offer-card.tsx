@@ -12,9 +12,9 @@ type OfferCardProps = {
   handleCardMouseOut: () => void;
 }
 
-// «Предложение по аренде»
+/* «Предложение по аренде» */
 function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardProps): JSX.Element {
-  const {photo, isPremium, isFavorite, price, name, type, rating} = offer;
+  const {previewImage, isPremium, price, title, type, isFavorite} = offer;
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
@@ -31,7 +31,7 @@ function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardPr
       {isPremium && <Premium /> }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={linkToOffer}>
-          <img className="place-card__image" src={photo} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">
@@ -49,12 +49,12 @@ function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardPr
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rating.stars}}></span>
+            <span style={{width: '80%'}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{name}</a>
+          <Link to={linkToOffer}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

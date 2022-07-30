@@ -3,7 +3,6 @@ import {createReducer} from '@reduxjs/toolkit';
 import {
   changeCity,
   loadOffers,
-  loadPoints,
   clickSort,
   changeSort,
   collapseSortList
@@ -12,36 +11,33 @@ import {
 import {sortTo} from '../utils';
 
 import {Offers} from '../types/offers';
-import {Points} from '../types/map';
 
 import {offerSorts, Order} from '../const';
-
-import {cityOffers} from '../mocks/offers';
-import {cityPoints} from '../mocks/map/points';
 
 const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
 const initialState = {
   activeCity: 'Paris',
-  offers: cityOffers['Paris'] as Offers,
-  points: cityPoints['Paris'] as Points,
+  offers: [] as Offers,
   sortBy: Popular,
-  isSortListCollapsed: true
+  isSortListCollapsed: true,
+  isLoading: false, // сейчас загрузка?
+  isLoaded: false, // уже загружено?
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCity, (state, action) => {
-      state.activeCity = action.payload.city;
+    .addCase(changeCity, (state, {payload}) => {
+      state.isLoaded = false;
+      state.activeCity = payload.city;
       state.offers = [];
     })
     // отбираем из массива всех предложений те, что соответствуют выбранному городу
-    .addCase(loadOffers, (state) => {
-      state.offers = cityOffers[state.activeCity] || [];
-    })
-    // отбираем маркеры для карты, соответствующие выбранному городу
-    .addCase(loadPoints, (state) => {
-      state.points = cityPoints[state.activeCity] || [];
+    .addCase(loadOffers, (state,{payload}) => {
+      state.isLoading = true;
+      state.offers = payload.filter(({city}) => (city.name === state.activeCity)) || [];
+      state.isLoading = false;
+      state.isLoaded = true;
     })
     .addCase(clickSort, (state) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;
@@ -49,9 +45,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(collapseSortList, (state) => {
       state.isSortListCollapsed = true;
     })
-    .addCase(changeSort, (state, action) => {
+    .addCase(changeSort, (state, {payload}) => {
       const {offers} = state;
-      const {sort} = action.payload;
+      const {sort} = payload;
       state.sortBy = sort;
       state.isSortListCollapsed = true;
 
@@ -63,11 +59,11 @@ const reducer = createReducer(initialState, (builder) => {
           state.offers = sortTo(offers, 'price');
           break;
         case TopRated:
-          state.offers = sortTo(offers, 'rating.value');
+          state.offers = sortTo(offers, 'rating');
           break;
 
         default:
-          state.offers = cityOffers[state.activeCity] || [];
+          // state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
           break;
       }
     });

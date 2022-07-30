@@ -1,4 +1,5 @@
 import {useState, KeyboardEvent} from 'react';
+import {Navigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {
@@ -9,39 +10,44 @@ import {
 
 import {collapseSortList} from '../../store/action';
 
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
 
-import {Offers} from '../../types/offers';
-import {City, Points, Point} from '../../types/map';
+import {City, Offers, Location, Locations} from '../../types/offers';
+
+import {AppRoute} from '../../const';
 
 type MainProps = {
-  city: City;
   cities: string[];
   offers: Offers;
-  points: Points;
+  activeCity: string;
   renderMap: (
-    city: City,
-    points: Points,
-    selectedPoint: Point | undefined,
+    activeCity: City,
+    locations: Locations,
+    selectedLocation: Location | undefined,
     className: string,
   ) => JSX.Element;
 };
 
 function MainScreen(props: MainProps): JSX.Element {
-  const {city, cities, offers, points, renderMap} = props;
+  const {cities, offers, activeCity, renderMap} = props;
 
-  const {activeCity} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
-  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>();
+  const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  const onListItemHover = (offerId: string) => {
-    const currentPoint = points.find(({id}) => id === offerId);
-    setSelectedPoint(currentPoint);
+  if(!offers.length) {
+    return <Navigate to={AppRoute.MainEmpty} />;
+  }
+
+  const locations = offers.map((offer) => offer.location);
+
+  const onListItemHover = (offerId: number) => {
+    const hoveredOffer = offers.find(({id}) => id === offerId);
+    setSelectedLocation(hoveredOffer?.location);
   };
 
-  const onListItemOut = (offerId: string) => {
-    setSelectedPoint(undefined);
+  const onListItemOut = () => {
+    setSelectedLocation(undefined);
   };
 
   const keyDownHandler = (ev: KeyboardEvent<HTMLInputElement>) => {
@@ -64,7 +70,7 @@ function MainScreen(props: MainProps): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-                {offers.length ? <SortingForm /> : null}
+                <SortingForm />
                 <OfferCardsList
                   offers={offers}
                   handleMouseOver={onListItemHover}
@@ -72,7 +78,7 @@ function MainScreen(props: MainProps): JSX.Element {
                 />
               </section>
               <div className="cities__right-section">
-                {renderMap(city, points, selectedPoint, 'cities__map')}
+                {renderMap(offers[0].city, locations, selectedLocation, 'cities__map')}
               </div>
             </div>
           </div>

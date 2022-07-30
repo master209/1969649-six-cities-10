@@ -3,7 +3,7 @@ import {Icon, Marker} from 'leaflet';
 
 import useMap from '../../hooks/use-map';
 
-import {City, Point, Points} from '../../types/map';
+import {City, Location, Locations} from '../../types/offers';
 
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 
@@ -23,31 +23,29 @@ const currentCustomIcon = createIcon(URL_MARKER_CURRENT);
 
 export type MapProps = {
   city: City;
-  points: Points;
-  selectedPoint: Point | undefined;
+  locations: Locations;
+  selectedLocation: Location | undefined;
   className: string;
 };
 
-function Map({city, points, selectedPoint, className}: MapProps): JSX.Element {
-
+function Map({city, locations, selectedLocation, className}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, city.location);
 
   useEffect(() => {
-    if (map) {
-      points.forEach(({lat, lng, id}) => {
+    map &&
+      locations.forEach(({latitude:lat, longitude:lng}) => {
         const marker = new Marker({lat, lng});
 
         marker
           .setIcon(
-            selectedPoint !== undefined && id === selectedPoint.id
+            selectedLocation?.latitude === lat && selectedLocation?.longitude === lng
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(map);
       });
-    }
-  }, [map, points, selectedPoint]);
+  }, [map, locations, selectedLocation]);
 
   return (
     <section className={`${className} map`} ref={mapRef}></section>
