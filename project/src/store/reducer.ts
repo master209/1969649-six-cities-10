@@ -5,6 +5,7 @@ import {
   changeCity,
   loadOffers,
   loadOffer,
+  loadOffersNear,
   clickSort,
   changeSort,
   collapseSortList
@@ -23,6 +24,7 @@ type InitalState = {
   activeCity: string;
   offers: Offers;
   offer: Offer | null;
+  offersNear: Offers;
   sortBy: string;
   isSortListCollapsed: boolean;
   isLoading: boolean;
@@ -34,6 +36,7 @@ const initialState: InitalState = {
   activeCity: 'Paris',
   offers: [],
   offer: null,
+  offersNear: [],
   sortBy: Popular,
   isSortListCollapsed: true,
   isLoading: false, // сейчас загрузка?
@@ -60,6 +63,11 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffer, (state,{payload}) => {
       state.isLoading = true;
       state.offer = payload;
+      state.isLoading = false;
+    })
+    .addCase(loadOffersNear, (state,{payload}) => {
+      state.isLoading = true;
+      state.offersNear = payload || [];
       state.isLoading = false;
     })
     .addCase(clickSort, (state) => {

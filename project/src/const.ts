@@ -1,6 +1,3 @@
-// количество элементов в блоке «Список предложений неподалёку»
-export const OFFERS_NEAR = 3;
-
 export const REVIEW_LENGTH = 10;
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';

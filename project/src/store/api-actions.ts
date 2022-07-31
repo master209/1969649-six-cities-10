@@ -7,7 +7,8 @@ import {
   requireAuthorization,
   changeSort,
   loadOffers,
-  loadOffer
+  loadOffer,
+  loadOffersNear
 } from './action';
 
 import {AppDispatch, State} from '../types/state.js';
@@ -39,6 +40,18 @@ export const fetchOfferAction = createAsyncThunk<void, string, {
   async (offerId, {dispatch, getState, extra: api}) => {
     const {data} = await api.get<Offer>(APIRoute.Offers.concat('/', offerId));
     dispatch(loadOffer(data));
+  },
+);
+
+export const fetchOffersNearAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'fetchOffersNear',
+  async (offerId, {dispatch, getState, extra: api}) => {
+    const {data} = await api.get<Offers>(APIRoute.Offers.concat('/', offerId, '/nearby'));
+    dispatch(loadOffersNear(data));
   },
 );
 

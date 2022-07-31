@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 
-import {fetchOfferAction} from '../../store/api-actions';
+import {fetchOfferAction, fetchOffersNearAction} from '../../store/api-actions';
 
 import Layout from '../../components/layout/layout';
 import {Premium, Loader} from '../../components/common';
@@ -37,11 +37,12 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const {isLoading, offers, offer} = useAppSelector((state) => state);
+  const {isLoading, offers, offer, offersNear} = useAppSelector((state) => state);
 
   useEffect((): any => {
     if(!isLoading && params.id) {
       dispatch(fetchOfferAction(params.id));
+      dispatch(fetchOffersNearAction(params.id));
     }
   },[]);
 
@@ -173,7 +174,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
           <div className="container">
             <OfferNearsList
-              offers={offers}
+              offersNear={offersNear}
               handleMouseOver={onNearListItemHover}
             />
           </div>
