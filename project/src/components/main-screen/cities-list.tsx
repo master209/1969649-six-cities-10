@@ -1,8 +1,7 @@
 import {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 
-import {store} from '../../store';
-import {fetchOfferAction} from '../../store/api-actions';
+import {fetchOffersAction} from '../../store/api-actions';
 import {changeCity} from '../../store/action';
 
 import {useAppDispatch} from '../../hooks';
@@ -20,7 +19,7 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
 
   const onChangeCity = (ev: MouseEvent<HTMLElement>, city: string) => {
     dispatch(changeCity({city}));
-    store.dispatch(fetchOfferAction());
+    dispatch(fetchOffersAction());
   };
 
   return (

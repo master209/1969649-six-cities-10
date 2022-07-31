@@ -6,17 +6,18 @@ import {saveToken, dropToken} from '../services/token';
 import {
   requireAuthorization,
   changeSort,
-  loadOffers
+  loadOffers,
+  loadOffer
 } from './action';
 
 import {AppDispatch, State} from '../types/state.js';
-import {Offers} from '../types/offers';
+import {Offer, Offers} from '../types/offers';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 
 import {APIRoute, AuthorizationStatus} from '../const';
 
-export const fetchOfferAction = createAsyncThunk<void, undefined, {
+export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -26,6 +27,18 @@ export const fetchOfferAction = createAsyncThunk<void, undefined, {
     const {data} = await api.get<Offers>(APIRoute.Offers);
     dispatch(loadOffers(data));
     dispatch(changeSort({sort: getState().sortBy}));
+  },
+);
+
+export const fetchOfferAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'fetchOffer',
+  async (offerId, {dispatch, getState, extra: api}) => {
+    const {data} = await api.get<Offer>(APIRoute.Offers.concat('/', offerId));
+    dispatch(loadOffer(data));
   },
 );
 

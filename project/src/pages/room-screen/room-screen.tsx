@@ -1,5 +1,7 @@
-import {useState} from 'react';
-import {useParams, Navigate} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+
+import {fetchOfferAction} from '../../store/api-actions';
 
 import Layout from '../../components/layout/layout';
 import {Premium} from '../../components/common';
@@ -10,16 +12,14 @@ import {
   OfferNearsList
 } from '../../components/room-screen';
 
+import {useAppSelector, useAppDispatch} from '../../hooks';
 import useIsAuth from '../../hooks/is-auth';
 
-import {City, Offers, Location, Locations} from '../../types/offers';
-
-import {AppRoute} from '../../const';
+import {Offer, City, Location, Locations} from '../../types/offers';
 
 import {reviews} from '../../mocks/reviews';
 
 type RoomProps = {
-  offers: Offers;
   renderMap: (
     city: City,
     locations: Locations,
@@ -28,47 +28,49 @@ type RoomProps = {
   ) => JSX.Element;
 };
 
-function RoomScreen(props: RoomProps): JSX.Element {
-  const {offers, renderMap} = props;
+function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
   const isAuth = useIsAuth();
   const params = useParams();
 
-  const offer = offers.find(({id}) => (id.toString() === params.id));
+  const dispatch = useAppDispatch();
 
-  // обработка ошибки несуществующего OfferId
-  if(!offer) {
-    return <Navigate to={AppRoute.NotFound} />;
-  }
+  const {isLoading, offers, offer} = useAppSelector((state) => state);
+
+  useEffect((): any => {
+    if(!isLoading && params.id) {
+      dispatch(fetchOfferAction(params.id));
+    }
+  },[]);
 
   const locations = offers.map((_offer) => _offer.location);
-
-  const {
-    isPremium,
-    price,
-    title,
-    type,
-    rating,
-    goods,
-    bedrooms,
-    maxAdults,
-    host,
-    description,
-  } = offer;
-
-  const {avatarUrl, name: userName, isPro} = host;
-
-  const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
 
   const onNearListItemHover = (offerId: number) => {
     const hoveredOffer = offers.find(({id}) => id === offerId);
     setSelectedLocation(hoveredOffer && hoveredOffer.location);
   };
 
-  return (
-    <div className="page">
+  const renderOffer = (_offer: Offer) => {
+    const {
+      isPremium,
+      price,
+      title,
+      type,
+      rating,
+      goods,
+      bedrooms,
+      maxAdults,
+      description,
+      host
+    } = _offer;
+
+    const {avatarUrl, name: userName, isPro} = host;
+
+    const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
+
+    return (
       <Layout>
         <main className="page__main page__main--property">
           <section className="property">
@@ -76,29 +78,29 @@ function RoomScreen(props: RoomProps): JSX.Element {
             <div className="property__gallery-container container">
               <div className="property__gallery">
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/room.jpg" alt="Photo studio" />
+                  <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
+                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio" />
+                  <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio" />
+                  <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/studio-01.jpg" alt="Photo studio" />
+                  <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
+                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
                 </div>
               </div>
             </div>
 
             <div className="property__container container">
               <div className="property__wrapper">
-                {isPremium && <Premium containerClass="property__mark" /> }
+                {isPremium && <Premium containerClass="property__mark"/>}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{title}</h1>
                   <button className="property__bookmark-button button" type="button">
@@ -134,7 +136,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
                     {goods.map((item) => (
-                      <OfferInsideItem key={item} label={item} />
+                      <OfferInsideItem key={item} label={item}/>
                     ))}
                   </ul>
                 </div>
@@ -142,7 +144,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className={`property__avatar-wrapper ${hostProClass} user__avatar-wrapper`}>
-                      <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar" />
+                      <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
                       {userName}
@@ -161,7 +163,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
                   <ReviewsList
                     reviews={reviews}
                   />
-                  {isAuth && <ReviewForm />}
+                  {isAuth && <ReviewForm/>}
                 </section>
               </div>
             </div>
@@ -177,6 +179,14 @@ function RoomScreen(props: RoomProps): JSX.Element {
           </div>
         </main>
       </Layout>
+    );
+  };
+
+  return (
+    <div className="page">
+      {offer && !isLoading
+        ? renderOffer(offer)
+        : null}
     </div>
   );
 }

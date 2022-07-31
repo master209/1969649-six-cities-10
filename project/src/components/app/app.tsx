@@ -84,7 +84,7 @@ function App(): JSX.Element {
         />
         <Route
           path={OfferId}
-          element={<RoomScreenWrapped offers={offers} />}
+          element={<RoomScreenWrapped />}
         />
         <Route
           path={Login}
