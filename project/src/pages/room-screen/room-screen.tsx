@@ -10,6 +10,8 @@ import {
   OfferNearsList
 } from '../../components/room-screen';
 
+import useIsAuth from '../../hooks/is-auth';
+
 import {City, Offers, Location, Locations} from '../../types/offers';
 
 import {AppRoute} from '../../const';
@@ -17,7 +19,6 @@ import {AppRoute} from '../../const';
 import {reviews} from '../../mocks/reviews';
 
 type RoomProps = {
-  isGuest?: boolean;
   offers: Offers;
   renderMap: (
     city: City,
@@ -28,10 +29,11 @@ type RoomProps = {
 };
 
 function RoomScreen(props: RoomProps): JSX.Element {
-  const {isGuest, offers, renderMap} = props;
+  const {offers, renderMap} = props;
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
+  const isGuest = !useIsAuth();
   const params = useParams();
 
   const offer = offers.find(({id}) => (id.toString() === params.id));

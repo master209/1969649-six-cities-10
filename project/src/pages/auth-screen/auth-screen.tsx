@@ -5,20 +5,21 @@ import {loginAction} from '../../store/api-actions';
 
 import Layout from '../../components/layout/layout';
 
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
+import useIsAuth from '../../hooks/is-auth';
 
 import {AuthData} from '../../types/auth-data';
 
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 
 function AuthScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
+  const isGuest = !useIsAuth();
 
-  const {authorizationStatus} = useAppSelector((state) => state);
-  if(authorizationStatus === AuthorizationStatus.Auth) {
+  if(!isGuest) {
     return <Navigate to={AppRoute.Main} />;
   }
 
