@@ -4,6 +4,8 @@ import {logoutAction} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 
+import {AppRoute} from '../../const';
+
 function Auth(): JSX.Element {
   const dispatch = useAppDispatch();
 
@@ -26,7 +28,7 @@ function Auth(): JSX.Element {
             evt.preventDefault();
             dispatch(logoutAction());
           }}
-          to='/'
+          to={AppRoute.Main}
         >
           <span className="header__signout">Sign out</span>
         </Link>

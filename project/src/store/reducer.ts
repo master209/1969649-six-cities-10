@@ -17,10 +17,20 @@ import {AuthorizationStatus, offerSorts, Order} from '../const';
 
 const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
-const initialState = {
+type InitalState = {
+  authorizationStatus: AuthorizationStatus;
+  activeCity: string;
+  offers: Offers;
+  sortBy: string;
+  isSortListCollapsed: boolean;
+  isLoading: boolean;
+  isLoaded: boolean;
+}
+
+const initialState: InitalState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   activeCity: 'Paris',
-  offers: [] as Offers,
+  offers: [],
   sortBy: Popular,
   isSortListCollapsed: true,
   isLoading: false, // сейчас загрузка?

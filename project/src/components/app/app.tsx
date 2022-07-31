@@ -10,7 +10,7 @@ import {
   Loader,
   NotFoundScreen,
 } from '../../pages';
-import PrivateRoute from '../../components/private-route/private-route';
+import {PrivateRoute} from '../../components/private-route';
 
 import withMap from '../../hocs/with-map';
 

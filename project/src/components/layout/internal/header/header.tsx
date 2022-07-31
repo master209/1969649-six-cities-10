@@ -1,5 +1,5 @@
 import Logo from './logo';
-import Nav from '../../../../components/nav/nav';
+import {Nav} from '../../../../components/nav';
 
 function Header(): JSX.Element {
   return (
