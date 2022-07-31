@@ -1,12 +1,12 @@
-import {Review} from '../../../types/offers';
+import {Comment} from '../../../types/offers';
 
-type ReviewProps = {
-  review: Review;
+type CommentProps = {
+  comment: Comment;
 };
 
 // «Отзыв»
-function ReviewItem({review}: ReviewProps): JSX.Element {
-  const {user, text, time} = review;
+function CommentItem({comment}: CommentProps): JSX.Element {
+  const {user, comment: text, date} = comment;
   const {avatarUrl, name} = user;
 
   return (
@@ -29,10 +29,10 @@ function ReviewItem({review}: ReviewProps): JSX.Element {
         <p className="reviews__text">
           {text}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{time}</time>
+        <time className="reviews__time" dateTime={date}>{new Date(date).toLocaleDateString()}</time>
       </div>
     </li>
   );
 }
 
-export default ReviewItem;
+export default CommentItem;

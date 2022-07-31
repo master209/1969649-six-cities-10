@@ -6,6 +6,7 @@ import {
   loadOffers,
   loadOffer,
   loadOffersNear,
+  loadComments,
   clickSort,
   changeSort,
   collapseSortList
@@ -13,7 +14,7 @@ import {
 
 import {sortTo} from '../utils';
 
-import {Offer, Offers} from '../types/offers';
+import {Offer, Offers, Comments} from '../types/offers';
 
 import {AuthorizationStatus, offerSorts, Order} from '../const';
 
@@ -25,6 +26,7 @@ type InitalState = {
   offers: Offers;
   offer: Offer | null;
   offersNear: Offers;
+  comments: Comments;
   sortBy: string;
   isSortListCollapsed: boolean;
   isLoading: boolean;
@@ -37,6 +39,7 @@ const initialState: InitalState = {
   offers: [],
   offer: null,
   offersNear: [],
+  comments: [],
   sortBy: Popular,
   isSortListCollapsed: true,
   isLoading: false, // сейчас загрузка?
@@ -68,6 +71,11 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffersNear, (state,{payload}) => {
       state.isLoading = true;
       state.offersNear = payload || [];
+      state.isLoading = false;
+    })
+    .addCase(loadComments, (state,{payload}) => {
+      state.isLoading = true;
+      state.comments = payload || [];
       state.isLoading = false;
     })
     .addCase(clickSort, (state) => {

@@ -24,15 +24,15 @@ export type Offer = {
 
 export type Offers = Offer[];
 
-export type Review = {
-  id: string;
+export type Comment = {
+  id: number;
   user: User;
   rating: string;
-  text: string;
-  time: string
+  comment: string;
+  date: string
 }
 
-export type Reviews = Review[];
+export type Comments = Comment[];
 
 export type City = {
   name: string;

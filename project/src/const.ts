@@ -52,6 +52,7 @@ export enum Order {
 
 export enum APIRoute {
   Offers = '/hotels',
+  Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
 }

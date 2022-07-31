@@ -3,16 +3,16 @@ import {useState, FormEvent, ChangeEvent} from 'react';
 import {REVIEW_LENGTH} from '../../../const';
 
 // «/Форма отзыва»
-function ReviewForm(): JSX.Element {
-  const [form, setForm] = useState({stars:0, review:''});
+function CommentForm(): JSX.Element {
+  const [form, setForm] = useState({stars:0, comment:''});
 
   const handleFormSubmit = () => {
     /* eslint-disable-next-line no-console */
-    console.log('ReviewForm: ', form);
+    console.log('CommentForm: ', form);
   };
 
   const isFormValid = () => (
-    form.stars > 0 && form.review.length >= REVIEW_LENGTH
+    form.stars > 0 && form.comment.length >= REVIEW_LENGTH
   );
 
   return (
@@ -117,7 +117,7 @@ function ReviewForm(): JSX.Element {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={({target}: ChangeEvent<HTMLTextAreaElement>) => {
-          setForm({...form, review: target.value});
+          setForm({...form, comment: target.value});
         }}
       >
       </textarea>
@@ -131,4 +131,4 @@ function ReviewForm(): JSX.Element {
   );
 }
 
-export default ReviewForm;
+export default CommentForm;

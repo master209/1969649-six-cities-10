@@ -1,13 +1,13 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 
-import {fetchOfferAction, fetchOffersNearAction} from '../../store/api-actions';
+import {fetchCommentsAction, fetchOfferAction, fetchOffersNearAction} from '../../store/api-actions';
 
 import Layout from '../../components/layout/layout';
 import {Premium, Loader} from '../../components/common';
 import {
-  ReviewForm,
-  ReviewsList,
+  CommentForm,
+  CommentsList,
   OfferInsideItem,
   OfferNearsList
 } from '../../components/room-screen';
@@ -16,8 +16,6 @@ import {useAppSelector, useAppDispatch} from '../../hooks';
 import useIsAuth from '../../hooks/is-auth';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
-
-import {reviews} from '../../mocks/reviews';
 
 type RoomProps = {
   renderMap: (
@@ -37,12 +35,19 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const {isLoading, offers, offer, offersNear} = useAppSelector((state) => state);
+  const {
+    isLoading,
+    offers,
+    offer,
+    offersNear,
+    comments
+  } = useAppSelector((state) => state);
 
   useEffect((): any => {
     if(!isLoading && params.id) {
       dispatch(fetchOfferAction(params.id));
       dispatch(fetchOffersNearAction(params.id));
+      dispatch(fetchCommentsAction(params.id));
     }
   },[]);
 
@@ -160,11 +165,11 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                 </div>
 
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                  <ReviewsList
-                    reviews={reviews}
+                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
+                  <CommentsList
+                    comments={comments}
                   />
-                  {isAuth && <ReviewForm/>}
+                  {isAuth && <CommentForm/>}
                 </section>
               </div>
             </div>
