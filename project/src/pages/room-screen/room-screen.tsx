@@ -33,7 +33,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  const isGuest = !useIsAuth();
+  const isAuth = useIsAuth();
   const params = useParams();
 
   const offer = offers.find(({id}) => (id.toString() === params.id));
@@ -161,7 +161,7 @@ function RoomScreen(props: RoomProps): JSX.Element {
                   <ReviewsList
                     reviews={reviews}
                   />
-                  {!isGuest && <ReviewForm />}
+                  {isAuth && <ReviewForm />}
                 </section>
               </div>
             </div>

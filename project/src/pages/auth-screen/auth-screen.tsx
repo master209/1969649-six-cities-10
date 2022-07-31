@@ -17,9 +17,9 @@ function AuthScreen(): JSX.Element {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const isGuest = !useIsAuth();
+  const isAuth = useIsAuth();
 
-  if(!isGuest) {
+  if(isAuth) {
     return <Navigate to={AppRoute.Main} />;
   }
 

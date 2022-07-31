@@ -11,7 +11,7 @@ function Nav(): JSX.Element {
 
   const {authorizationStatus} = useAppSelector((state) => state);
 
-  const isAuth = () => {
+  const renderAuthNav = () => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       return <Auth/>;
     } else {
@@ -21,7 +21,7 @@ function Nav(): JSX.Element {
 
   return (
     <nav className="header__nav">
-      {isAuth()}
+      {renderAuthNav()}
     </nav>
   );
 }

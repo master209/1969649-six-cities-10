@@ -9,12 +9,12 @@ type PrivateRouteProps = {
 };
 
 function PrivateRoute({children}: PrivateRouteProps): JSX.Element {
-  const isGuest = !useIsAuth();
+  const isAuth = useIsAuth();
 
   return (
-    isGuest
-      ? <Navigate to={AppRoute.Login} />
-      : children
+    isAuth
+      ? children
+      : <Navigate to={AppRoute.Login} />
   );
 }
 
