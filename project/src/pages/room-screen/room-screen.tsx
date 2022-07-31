@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {fetchOfferAction} from '../../store/api-actions';
 
 import Layout from '../../components/layout/layout';
-import {Premium} from '../../components/common';
+import {Premium, Loader} from '../../components/common';
 import {
   ReviewForm,
   ReviewsList,
@@ -186,7 +186,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
     <div className="page">
       {offer && !isLoading
         ? renderOffer(offer)
-        : null}
+        : <Loader />}
     </div>
   );
 }
