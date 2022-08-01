@@ -1,40 +1,25 @@
 import {FormEvent, useRef} from 'react';
-import {Navigate} from 'react-router-dom';
 
 import {loginAction} from '../../store/api-actions';
 
 import Layout from '../../components/layout/layout';
 
 import {useAppDispatch} from '../../hooks';
-import useIsAuth from '../../hooks/is-auth';
-
-import {AuthData} from '../../types/auth-data';
-
-import {AppRoute} from '../../const';
 
 function AuthScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const isAuth = useIsAuth();
-
-  if(isAuth) {
-    return <Navigate to={AppRoute.Main} />;
-  }
-
-  const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
-  };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
+    if (loginRef.current && passwordRef.current) {
+      dispatch(loginAction({
         login: loginRef.current.value,
         password: passwordRef.current.value,
-      });
+      }));
     }
   };
 

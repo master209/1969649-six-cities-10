@@ -169,7 +169,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                   <CommentsList
                     comments={comments}
                   />
-                  {isAuth && <CommentForm/>}
+                  {isAuth && offer && <CommentForm offerId={offer.id} />}
                 </section>
               </div>
             </div>

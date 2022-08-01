@@ -29,7 +29,7 @@ function CommentItem({comment}: CommentProps): JSX.Element {
         <p className="reviews__text">
           {text}
         </p>
-        <time className="reviews__time" dateTime={date}>{new Date(date).toLocaleDateString()}</time>
+        <time className="reviews__time" dateTime={date}>{new Date(date).toLocaleString()}</time>
       </div>
     </li>
   );

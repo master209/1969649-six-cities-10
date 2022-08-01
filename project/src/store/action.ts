@@ -1,6 +1,6 @@
 import {createAction} from '@reduxjs/toolkit';
 
-import {Offer, Offers, Comment, Comments} from '../types/offers';
+import {Offer, Offers, Comments} from '../types/offers';
 
 import {AuthorizationStatus} from '../const';
 

@@ -9,7 +9,8 @@ import {
   loadOffers,
   loadOffer,
   loadComments,
-  loadOffersNear, createComment
+  loadOffersNear,
+  createComment
 } from './action';
 
 import {AppDispatch, State} from '../types/state.js';
@@ -75,7 +76,7 @@ export const fetchCreateCommentAction = createAsyncThunk<void, CommentNew, {
 }>(
   'fetchCreateComment',
   async ({offerId, comment, rating}, {dispatch, extra: api}) => {
-    const {data} = await api.post<Comments>(APIRoute.Comments.concat('/', offerId), {comment, rating});
+    const {data} = await api.post<Comments>(APIRoute.Comments.concat('/', offerId.toString()), {comment, rating});
     dispatch(createComment(data));
   },
 );

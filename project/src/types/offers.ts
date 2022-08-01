@@ -33,9 +33,9 @@ export type Comment = {
 }
 
 export type CommentNew = {
-  offerId: string;
+  offerId: number;
   comment: string;
-  rating: string;
+  rating: number;
 }
 
 export type Comments = Comment[];

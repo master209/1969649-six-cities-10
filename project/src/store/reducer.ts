@@ -80,9 +80,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
     })
     .addCase(createComment, (state,{payload}) => {
-      state.isLoading = true;
-      state.comments = state.comments.push(payload);
-      state.isLoading = false;
+      state.comments = payload;
     })
     .addCase(clickSort, (state) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;
