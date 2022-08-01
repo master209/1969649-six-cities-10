@@ -1,10 +1,4 @@
-// пока в приложении нет логики авторизации, здесь можно явно задать состояние
-export const isGuest = false;
-
-// количество элементов в блоке «Список предложений неподалёку»
-export const OFFERS_NEAR = 3;
-
-export const REVIEW_LENGTH = 10;
+export const MIN_COMMENT_LENGTH = 10;
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
@@ -58,6 +52,7 @@ export enum Order {
 
 export enum APIRoute {
   Offers = '/hotels',
+  Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
 }
