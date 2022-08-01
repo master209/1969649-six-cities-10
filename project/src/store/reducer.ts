@@ -1,6 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 
 import {
+  requireAuthorization,
   changeCity,
   loadOffers,
   clickSort,
@@ -12,13 +13,24 @@ import {sortTo} from '../utils';
 
 import {Offers} from '../types/offers';
 
-import {offerSorts, Order} from '../const';
+import {AuthorizationStatus, offerSorts, Order} from '../const';
 
 const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
-const initialState = {
+type InitalState = {
+  authorizationStatus: AuthorizationStatus;
+  activeCity: string;
+  offers: Offers;
+  sortBy: string;
+  isSortListCollapsed: boolean;
+  isLoading: boolean;
+  isLoaded: boolean;
+}
+
+const initialState: InitalState = {
+  authorizationStatus: AuthorizationStatus.Unknown,
   activeCity: 'Paris',
-  offers: [] as Offers,
+  offers: [],
   sortBy: Popular,
   isSortListCollapsed: true,
   isLoading: false, // сейчас загрузка?
@@ -27,6 +39,9 @@ const initialState = {
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(requireAuthorization, (state, {payload}) => {
+      state.authorizationStatus = payload;
+    })
     .addCase(changeCity, (state, {payload}) => {
       state.isLoaded = false;
       state.activeCity = payload.city;

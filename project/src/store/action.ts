@@ -2,6 +2,8 @@ import {createAction} from '@reduxjs/toolkit';
 
 import {Offers} from '../types/offers';
 
+import {AuthorizationStatus} from '../const';
+
 export const loadOffers = createAction<Offers>('loadOffers');
 
 export const changeCity = createAction<{city: string}>('changeCity');
@@ -12,3 +14,4 @@ export const changeSort = createAction<{sort: string}>('changeSort');
 
 export const collapseSortList = createAction('collapseSortList');
 
+export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
