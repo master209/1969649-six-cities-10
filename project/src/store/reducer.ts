@@ -7,6 +7,7 @@ import {
   loadOffer,
   loadOffersNear,
   loadComments,
+  createComment,
   clickSort,
   changeSort,
   collapseSortList
@@ -76,6 +77,11 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadComments, (state,{payload}) => {
       state.isLoading = true;
       state.comments = payload || [];
+      state.isLoading = false;
+    })
+    .addCase(createComment, (state,{payload}) => {
+      state.isLoading = true;
+      state.comments = state.comments.push(payload);
       state.isLoading = false;
     })
     .addCase(clickSort, (state) => {

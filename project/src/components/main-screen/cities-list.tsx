@@ -17,7 +17,7 @@ type CitiesListProps = {
 function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const onChangeCity = (ev: MouseEvent<HTMLElement>, city: string) => {
+  const onChangeCity = (evt: MouseEvent<HTMLElement>, city: string) => {
     dispatch(changeCity({city}));
     dispatch(fetchOffersAction());
   };
@@ -31,7 +31,7 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
             return (
               <li key={city} className="locations__item">
                 <Link className={activeClass} to={AppRoute.Main}
-                  onClick={(ev) => onChangeCity(ev, city)}
+                  onClick={(evt) => onChangeCity(evt, city)}
                 >
                   <span>{city}</span>
                 </Link>

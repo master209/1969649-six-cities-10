@@ -1,18 +1,27 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
 
-import {REVIEW_LENGTH} from '../../../const';
+import {fetchCreateCommentAction} from '../../../store/api-actions'
+
+import {useAppDispatch} from '../../../hooks'
+
+import {CommentNew} from '../../../types/offers'
+
+import {MIN_REVIEW_LENGTH} from '../../../const';
 
 // «/Форма отзыва»
 function CommentForm(): JSX.Element {
   const [form, setForm] = useState({stars:0, comment:''});
 
+  const dispatch = useAppDispatch();
+
   const handleFormSubmit = () => {
     /* eslint-disable-next-line no-console */
     console.log('CommentForm: ', form);
+    dispatch(fetchCreateCommentAction(form));
   };
 
   const isFormValid = () => (
-    form.stars > 0 && form.comment.length >= REVIEW_LENGTH
+    form.stars > 0 && form.comment.length >= MIN_REVIEW_LENGTH
   );
 
   return (
@@ -123,7 +132,7 @@ function CommentForm(): JSX.Element {
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{REVIEW_LENGTH} characters</b>.
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{MIN_REVIEW_LENGTH} characters</b>.
         </p>
         <button className="reviews__submit form__submit button" type="submit" disabled={!isFormValid()}>Submit</button>
       </div>

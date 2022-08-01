@@ -9,11 +9,11 @@ import {
   loadOffers,
   loadOffer,
   loadComments,
-  loadOffersNear
+  loadOffersNear, createComment
 } from './action';
 
 import {AppDispatch, State} from '../types/state.js';
-import {Offer, Offers, Comments} from '../types/offers';
+import {Offer, Offers, CommentNew, Comments} from '../types/offers';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 
@@ -65,6 +65,18 @@ export const fetchCommentsAction = createAsyncThunk<void, string, {
   async (offerId, {dispatch, getState, extra: api}) => {
     const {data} = await api.get<Comments>(APIRoute.Comments.concat('/', offerId));
     dispatch(loadComments(data));
+  },
+);
+
+export const fetchCreateCommentAction = createAsyncThunk<void, CommentNew, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'fetchCreateComment',
+  async ({offerId, comment, rating}, {dispatch, extra: api}) => {
+    const {data} = await api.post<Comments>(APIRoute.Comments.concat('/', offerId), {comment, rating});
+    dispatch(createComment(data));
   },
 );
 

@@ -26,10 +26,16 @@ export type Offers = Offer[];
 
 export type Comment = {
   id: number;
-  user: User;
-  rating: string;
   comment: string;
   date: string
+  rating: string;
+  user: User;
+}
+
+export type CommentNew = {
+  offerId: string;
+  comment: string;
+  rating: string;
 }
 
 export type Comments = Comment[];
