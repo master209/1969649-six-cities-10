@@ -4,9 +4,9 @@ type CommentProps = {
   comment: Comment;
 };
 
-// «Отзыв»
+/* «Отзыв» */
 function CommentItem({comment}: CommentProps): JSX.Element {
-  const {user, comment: text, date} = comment;
+  const {user, date, comment: text} = comment;
   const {avatarUrl, name} = user;
 
   return (

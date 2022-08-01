@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
 
-function NoAuth(): JSX.Element {
+function SignIn(): JSX.Element {
   return (
     <ul className="header__nav-list">
       <li className="header__nav-item user">
@@ -19,4 +19,4 @@ function NoAuth(): JSX.Element {
   );
 }
 
-export default NoAuth;
+export default SignIn;

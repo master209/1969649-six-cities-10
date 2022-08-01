@@ -1,3 +1,3 @@
 export {default as Nav} from './nav';
-export {default as Auth} from './auth';
-export {default as NoAuth} from './no-auth';
+export {default as SignOut} from './sign-out';
+export {default as SignIn} from './sign-in';

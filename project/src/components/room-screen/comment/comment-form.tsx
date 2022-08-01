@@ -2,6 +2,8 @@ import {useState, useRef, FormEvent, ChangeEvent} from 'react';
 
 import {fetchCreateCommentAction} from '../../../store/api-actions';
 
+import CommentFormRatingItem from './comment-form-rating-item';
+
 import {useAppDispatch} from '../../../hooks';
 
 import {MIN_COMMENT_LENGTH} from '../../../const';
@@ -10,16 +12,26 @@ type CommentFormProp = {
   offerId: number;
 };
 
-// «/Форма отзыва»
+const INITIAL_STATE = {comment:'', rating:0};
+
+const ratings = [
+  {val: 5, title: 'perfect'},
+  {val: 4, title: 'good'},
+  {val: 3, title: 'not bad'},
+  {val: 2, title: 'badly'},
+  {val: 1, title: 'terribly'},
+];
+
+/* «/Форма комментариев» */
 function CommentForm({offerId} : CommentFormProp): JSX.Element {
-  const [form, setForm] = useState({comment:'', rating:0});
+  const [form, setForm] = useState(INITIAL_STATE);
   const commentFormRef = useRef<HTMLFormElement | null>(null);
 
   const dispatch = useAppDispatch();
 
   const handleFormSubmit = () => {
     dispatch(fetchCreateCommentAction({...form, offerId}));
-    setForm({rating:0, comment:''});
+    setForm(INITIAL_STATE);
     commentFormRef.current?.reset();
   };
 
@@ -38,90 +50,15 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="5"
-          id="5-rating"
-          type="radio"
-          checked={form.rating === 5}
-          onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-            setForm({...form, rating: 5});
-          }}
-        />
-        <label htmlFor="5-rating" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="4"
-          id="4-rating"
-          type="radio"
-          checked={form.rating === 4}
-          onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-            setForm({...form, rating: 4});
-          }}
-        />
-        <label htmlFor="4-rating" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="3"
-          id="3-rating"
-          type="radio"
-          checked={form.rating === 3}
-          onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-            setForm({...form, rating: 3});
-          }}
-        />
-        <label htmlFor="3-rating" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="2"
-          id="2-rating"
-          type="radio"
-          checked={form.rating === 2}
-          onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-            setForm({...form, rating: 2});
-          }}
-        />
-        <label htmlFor="2-rating" className="reviews__rating-label form__rating-label" title="badly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="1"
-          id="1-star"
-          type="radio"
-          checked={form.rating === 1}
-          onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-            setForm({...form, rating: 1});
-          }}
-        />
-        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
+        {ratings.map(({val, title}) => (
+          <CommentFormRatingItem
+            key={val.toString()}
+            rating={val}
+            title={title}
+            form={form}
+            setForm={setForm}
+          />
+        ))}
       </div>
 
       <textarea

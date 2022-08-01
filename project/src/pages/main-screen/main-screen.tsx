@@ -51,9 +51,7 @@ function MainScreen(props: MainProps): JSX.Element {
   };
 
   const keyDownHandler = (evt: KeyboardEvent<HTMLInputElement>) => {
-    if (evt.code === 'Escape') {
-      dispatch(collapseSortList());
-    }
+    evt.code === 'Escape' && dispatch(collapseSortList());
   };
 
   return (

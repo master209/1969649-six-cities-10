@@ -2,10 +2,10 @@ import {useAppSelector} from './';
 
 import {AuthorizationStatus} from '../const';
 
-const useIsAuth = () => {
+const useIsAuthorized = () => {
   const {authorizationStatus} = useAppSelector((state) => state);
 
   return authorizationStatus === AuthorizationStatus.Auth;
 };
 
-export default useIsAuth;
+export default useIsAuthorized;

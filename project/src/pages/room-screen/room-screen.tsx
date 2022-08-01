@@ -13,7 +13,7 @@ import {
 } from '../../components/room-screen';
 
 import {useAppSelector, useAppDispatch} from '../../hooks';
-import useIsAuth from '../../hooks/is-auth';
+import useIsAuthorized from '../../hooks/is-auth';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
 
@@ -30,8 +30,8 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  const isAuth = useIsAuth();
-  const params = useParams();
+  const isAuthorized = useIsAuthorized();
+  const {id} = useParams();
 
   const dispatch = useAppDispatch();
 
@@ -44,17 +44,17 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   } = useAppSelector((state) => state);
 
   useEffect((): any => {
-    if(!isLoading && params.id) {
-      dispatch(fetchOfferAction(params.id));
-      dispatch(fetchOffersNearAction(params.id));
-      dispatch(fetchCommentsAction(params.id));
+    if(!isLoading && id) {
+      dispatch(fetchOfferAction(id));
+      dispatch(fetchOffersNearAction(id));
+      dispatch(fetchCommentsAction(id));
     }
   },[]);
 
   const locations = offers.map((_offer) => _offer.location);
 
   const onNearListItemHover = (offerId: number) => {
-    const hoveredOffer = offers.find(({id}) => id === offerId);
+    const hoveredOffer = offers.find(({id: _id}) => _id === offerId);
     setSelectedLocation(hoveredOffer && hoveredOffer.location);
   };
 
@@ -169,7 +169,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                   <CommentsList
                     comments={comments}
                   />
-                  {isAuth && offer && <CommentForm offerId={offer.id} />}
+                  {isAuthorized && offer && <CommentForm offerId={offer.id} />}
                 </section>
               </div>
             </div>

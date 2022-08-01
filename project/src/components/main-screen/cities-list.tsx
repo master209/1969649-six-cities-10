@@ -1,4 +1,3 @@
-import {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 
 import {fetchOffersAction} from '../../store/api-actions';
@@ -13,11 +12,11 @@ type CitiesListProps = {
   activeCity: string;
 };
 
-//  «Список городов»
+/* «Список городов» */
 function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const onChangeCity = (evt: MouseEvent<HTMLElement>, city: string) => {
+  const onChangeCity = (city: string) => {
     dispatch(changeCity({city}));
     dispatch(fetchOffersAction());
   };
@@ -31,7 +30,7 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
             return (
               <li key={city} className="locations__item">
                 <Link className={activeClass} to={AppRoute.Main}
-                  onClick={(evt) => onChangeCity(evt, city)}
+                  onClick={() => onChangeCity(city)}
                 >
                   <span>{city}</span>
                 </Link>
