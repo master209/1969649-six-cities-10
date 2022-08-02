@@ -22,7 +22,12 @@ const MainScreenWrapped = withMap(MainScreen);
 const RoomScreenWrapped = withMap(RoomScreen);
 
 function App(): JSX.Element {
-  const {authorizationStatus, isLoading, isLoaded, offers, activeCity} = useAppSelector((state) => state);
+  const {
+    isLoading,
+    isLoaded,
+    offers,
+    activeCity
+  } = useAppSelector((state) => state);
 
   if(!offers.length && !isLoading && !isLoaded) {
     return (
@@ -30,7 +35,14 @@ function App(): JSX.Element {
     );
   }
 
-  const {Main, MainEmpty, Favorites, FavoritesEmpty, OfferId, Login} = AppRoute;
+  const {
+    Main,
+    MainEmpty,
+    Favorites,
+    FavoritesEmpty,
+    OfferId,
+    Login
+  } = AppRoute;
 
   return (
     <BrowserRouter>
@@ -57,9 +69,7 @@ function App(): JSX.Element {
         <Route
           path={Favorites}
           element={
-            <PrivateRoute
-              authorizationStatus={authorizationStatus}
-            >
+            <PrivateRoute>
               <FavoritesScreen offers={offers} />
             </PrivateRoute>
           }
@@ -67,16 +77,14 @@ function App(): JSX.Element {
         <Route
           path={FavoritesEmpty}
           element={
-            <PrivateRoute
-              authorizationStatus={authorizationStatus}
-            >
+            <PrivateRoute>
               <FavoritesEmptyScreen />
             </PrivateRoute>
           }
         />
         <Route
           path={OfferId}
-          element={<RoomScreenWrapped offers={offers} />}
+          element={<RoomScreenWrapped />}
         />
         <Route
           path={Login}

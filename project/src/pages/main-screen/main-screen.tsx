@@ -50,10 +50,8 @@ function MainScreen(props: MainProps): JSX.Element {
     setSelectedLocation(undefined);
   };
 
-  const keyDownHandler = (ev: KeyboardEvent<HTMLInputElement>) => {
-    if (ev.code === 'Escape') {
-      dispatch(collapseSortList());
-    }
+  const keyDownHandler = (evt: KeyboardEvent<HTMLInputElement>) => {
+    evt.code === 'Escape' && dispatch(collapseSortList());
   };
 
   return (

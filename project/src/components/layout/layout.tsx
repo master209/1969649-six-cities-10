@@ -3,10 +3,10 @@ import {Navigate, useLocation} from 'react-router-dom';
 
 import {Header, Footer} from './internal';
 
-import {useAppSelector} from '../../hooks';
 import {useScrollToTop} from '../../hooks/scroll-to-top';
+import useIsAuthorized from '../../hooks/is-auth';
 
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 
 type LayoutProps = PropsWithChildren<{
   withFooter?: boolean;
@@ -17,10 +17,9 @@ function Layout({children, withFooter, withFooterContainer}: LayoutProps): JSX.E
   useScrollToTop();
 
   const location = useLocation();
+  const isAuthorized = useIsAuthorized();
 
-  const {authorizationStatus} = useAppSelector((state) => state);
-
-  if(location.pathname === AppRoute.Login && authorizationStatus === AuthorizationStatus.Auth) {
+  if(location.pathname === AppRoute.Login && isAuthorized) {
     return <Navigate to={AppRoute.Main} />;
   }
 

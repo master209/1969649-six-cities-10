@@ -1,27 +1,28 @@
 import {useLocation} from 'react-router-dom';
 
-import {Auth, NoAuth} from './';
+import {SignOut, SignIn} from './';
 
-import {useAppSelector} from '../../hooks';
+import useIsAuthorized from '../../hooks/is-auth';
 
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 
 function Nav(): JSX.Element {
   const location = useLocation();
+  const isAuthorized = useIsAuthorized();
 
-  const {authorizationStatus} = useAppSelector((state) => state);
-
-  const isAuth = () => {
-    if (authorizationStatus === AuthorizationStatus.Auth) {
-      return <Auth/>;
+  const renderAuthNav = () => {
+    if (isAuthorized) {
+      return <SignOut />;
     } else {
-      return location.pathname === AppRoute.Login ? null : <NoAuth/>;
+      return location.pathname === AppRoute.Login
+        ? null
+        : <SignIn />;
     }
   };
 
   return (
     <nav className="header__nav">
-      {isAuth()}
+      {renderAuthNav()}
     </nav>
   );
 }

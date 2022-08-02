@@ -4,6 +4,10 @@ import {
   requireAuthorization,
   changeCity,
   loadOffers,
+  loadOffer,
+  loadOffersNear,
+  loadComments,
+  createComment,
   clickSort,
   changeSort,
   collapseSortList
@@ -11,7 +15,7 @@ import {
 
 import {sortTo} from '../utils';
 
-import {Offers} from '../types/offers';
+import {Offer, Offers, Comments} from '../types/offers';
 
 import {AuthorizationStatus, offerSorts, Order} from '../const';
 
@@ -21,6 +25,9 @@ type InitalState = {
   authorizationStatus: AuthorizationStatus;
   activeCity: string;
   offers: Offers;
+  offer: Offer | null;
+  offersNear: Offers;
+  comments: Comments;
   sortBy: string;
   isSortListCollapsed: boolean;
   isLoading: boolean;
@@ -31,6 +38,9 @@ const initialState: InitalState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   activeCity: 'Paris',
   offers: [],
+  offer: null,
+  offersNear: [],
+  comments: [],
   sortBy: Popular,
   isSortListCollapsed: true,
   isLoading: false, // сейчас загрузка?
@@ -53,6 +63,24 @@ const reducer = createReducer(initialState, (builder) => {
       state.offers = payload.filter(({city}) => (city.name === state.activeCity)) || [];
       state.isLoading = false;
       state.isLoaded = true;
+    })
+    .addCase(loadOffer, (state,{payload}) => {
+      state.isLoading = true;
+      state.offer = payload;
+      state.isLoading = false;
+    })
+    .addCase(loadOffersNear, (state,{payload}) => {
+      state.isLoading = true;
+      state.offersNear = payload || [];
+      state.isLoading = false;
+    })
+    .addCase(loadComments, (state,{payload}) => {
+      state.isLoading = true;
+      state.comments = payload || [];
+      state.isLoading = false;
+    })
+    .addCase(createComment, (state,{payload}) => {
+      state.comments = payload;
     })
     .addCase(clickSort, (state) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;

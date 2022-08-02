@@ -2,17 +2,13 @@ import {OfferNearCard} from '.';
 
 import {Offers} from '../../types/offers';
 
-import {OFFERS_NEAR} from '../../const';
-
 type OfferNearCardProps = {
-  offers: Offers;
+  offersNear: Offers;
   handleMouseOver: (id: number) => void;
 }
 
 /* «Список предложений неподалёку» */
-function OfferNearsList({offers, handleMouseOver}: OfferNearCardProps): JSX.Element {
-  const [...offersNear] = offers;
-  offersNear.length = OFFERS_NEAR;
+function OfferNearsList({offersNear, handleMouseOver}: OfferNearCardProps): JSX.Element {
 
   return (
     <section className="near-places places">

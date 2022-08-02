@@ -1,8 +1,6 @@
-import {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 
-import {store} from '../../store';
-import {fetchOfferAction} from '../../store/api-actions';
+import {fetchOffersAction} from '../../store/api-actions';
 import {changeCity} from '../../store/action';
 
 import {useAppDispatch} from '../../hooks';
@@ -14,13 +12,13 @@ type CitiesListProps = {
   activeCity: string;
 };
 
-//  «Список городов»
+/* «Список городов» */
 function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const onChangeCity = (ev: MouseEvent<HTMLElement>, city: string) => {
+  const onChangeCity = (city: string) => {
     dispatch(changeCity({city}));
-    store.dispatch(fetchOfferAction());
+    dispatch(fetchOffersAction());
   };
 
   return (
@@ -32,7 +30,7 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
             return (
               <li key={city} className="locations__item">
                 <Link className={activeClass} to={AppRoute.Main}
-                  onClick={(ev) => onChangeCity(ev, city)}
+                  onClick={() => onChangeCity(city)}
                 >
                   <span>{city}</span>
                 </Link>

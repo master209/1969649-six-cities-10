@@ -6,7 +6,7 @@ import {useAppDispatch} from '../../hooks';
 
 import {AppRoute} from '../../const';
 
-function Auth(): JSX.Element {
+function SignOut(): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
@@ -38,4 +38,4 @@ function Auth(): JSX.Element {
   );
 }
 
-export default Auth;
+export default SignOut;
