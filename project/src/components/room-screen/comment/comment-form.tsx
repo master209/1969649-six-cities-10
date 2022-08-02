@@ -6,6 +6,8 @@ import CommentFormRatingItem from './comment-form-rating-item';
 
 import {useAppDispatch} from '../../../hooks';
 
+import {CommentFormData} from '../../../types/offers';
+
 import {MIN_COMMENT_LENGTH} from '../../../const';
 
 type CommentFormProp = {
@@ -24,7 +26,7 @@ const ratings = [
 
 /* «/Форма комментариев» */
 function CommentForm({offerId} : CommentFormProp): JSX.Element {
-  const [form, setForm] = useState(INITIAL_STATE);
+  const [form, setForm] = useState<CommentFormData>(INITIAL_STATE);
   const commentFormRef = useRef<HTMLFormElement | null>(null);
 
   const dispatch = useAppDispatch();
@@ -53,7 +55,7 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
         {ratings.map(({val, title}) => (
           <CommentFormRatingItem
             key={val.toString()}
-            rating={val}
+            value={val}
             title={title}
             form={form}
             setForm={setForm}

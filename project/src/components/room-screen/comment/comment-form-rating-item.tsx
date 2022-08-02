@@ -1,26 +1,30 @@
+import {CommentFormData} from '../../../types/offers';
+
 type CommentFormRatingItemProps = {
-  rating: number;
+  value: number;
   title: string;
-  form: any,
+  form: CommentFormData,
   setForm: (form: any) => void,
 };
 
 /* «Один контрол рейтинга формы комментариев» */
-function CommentFormRatingItem({rating, title, form, setForm}: CommentFormRatingItemProps): JSX.Element {
+function CommentFormRatingItem(props: CommentFormRatingItemProps): JSX.Element {
+  const {value, title, form, setForm} = props;
+
   return (
     <>
       <input
         className="form__rating-input visually-hidden"
         name="rating"
-        value={rating}
-        id={`${rating}-rating`}
+        value={value}
+        id={`${value}-rating`}
         type="radio"
-        checked={form.rating === rating}
+        checked={form.rating === value}
         onChange={() => {
-          setForm({...form, rating});
+          setForm({...form, rating:value});
         }}
       />
-      <label htmlFor={`${rating}-rating`} className="reviews__rating-label form__rating-label" title={title}>
+      <label htmlFor={`${value}-rating`} className="reviews__rating-label form__rating-label" title={title}>
         <svg className="form__star-image" width="37" height="33">
           <use xlinkHref="#icon-star"></use>
         </svg>

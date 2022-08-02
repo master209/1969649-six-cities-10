@@ -40,6 +40,11 @@ export type CommentNew = {
 
 export type Comments = Comment[];
 
+export type CommentFormData = {
+  comment: string;
+  rating: number
+};
+
 export type City = {
   name: string;
   location: Location;

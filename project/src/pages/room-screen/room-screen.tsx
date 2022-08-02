@@ -54,7 +54,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const locations = offers.map((_offer) => _offer.location);
 
   const onNearListItemHover = (offerId: number) => {
-    const hoveredOffer = offers.find(({id: _id}) => _id === offerId);
+    const hoveredOffer = offers.find(({id:_id}) => _id === offerId);
     setSelectedLocation(hoveredOffer && hoveredOffer.location);
   };
 
