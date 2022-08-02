@@ -6,7 +6,7 @@ type CommentProps = {
 
 /* «Отзыв» */
 function CommentItem({comment}: CommentProps): JSX.Element {
-  const {user, date, comment: text} = comment;
+  const {user, date} = comment;
   const {avatarUrl, name} = user;
 
   return (
@@ -27,7 +27,7 @@ function CommentItem({comment}: CommentProps): JSX.Element {
           </div>
         </div>
         <p className="reviews__text">
-          {text}
+          {comment.comment}
         </p>
         <time className="reviews__time" dateTime={date}>{new Date(date).toLocaleString()}</time>
       </div>

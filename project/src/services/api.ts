@@ -9,13 +9,9 @@ import axios, {
 
 import {getToken} from './token';
 
-const StatusCodeMapping: Record<number, boolean> = {
-  [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true
-};
+const {BAD_REQUEST, UNAUTHORIZED, NOT_FOUND} = StatusCodes;
 
-const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
+const shouldDisplayError = (response: AxiosResponse) => [BAD_REQUEST, UNAUTHORIZED, NOT_FOUND].includes(response.status);
 
 const BACKEND_URL = 'https://10.react.pages.academy/six-cities';
 const REQUEST_TIMEOUT = 5000;
