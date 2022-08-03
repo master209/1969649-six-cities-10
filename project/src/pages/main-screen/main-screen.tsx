@@ -8,7 +8,7 @@ import {
   SortingForm
 } from '../../components/main-screen';
 
-import {collapseSortList} from '../../store/action';
+import {collapseSortList} from '../../store/main-process/main-process';
 
 import {useAppDispatch} from '../../hooks';
 

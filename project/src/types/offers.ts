@@ -8,6 +8,7 @@ export type Offer = {
   id: number;
   city: City;
   previewImage: string;
+  images: string[],
   isPremium: boolean;
   price: number;
   title: string;

@@ -19,7 +19,7 @@ function Layout({children, withFooter, withFooterContainer}: LayoutProps): JSX.E
   const location = useLocation();
   const isAuthorized = useIsAuthorized();
 
-  if(location.pathname === AppRoute.Login && isAuthorized) {
+  if (location.pathname === AppRoute.Login && isAuthorized) {
     return <Navigate to={AppRoute.Main} />;
   }
 

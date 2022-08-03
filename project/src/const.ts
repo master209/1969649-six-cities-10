@@ -10,7 +10,6 @@ export enum AppRoute {
   Favorites = '/favorites',
   FavoritesEmpty = '/favorites-empty',
   Login = '/login',
-  // OfferNotLogged = '/offer-not-logged',
   Offer = '/offer',
   OfferId = '/offer/:id',
   NotFound = '/not-found-screen'
@@ -22,20 +21,14 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum OfferType {
-  Apartment = 'Apartment',
-  Hotel = 'Hotel',
-  House = 'House',
-  Room = 'Private Room',
-}
-
 export const cities = [
+  'Saratov',
   'Paris',
   'Cologne',
   'Brussels',
   'Amsterdam',
   'Hamburg',
-  'Dusseldorf'
+  'Dusseldorf',
 ];
 
 export const offerSorts = [
@@ -55,4 +48,10 @@ export enum APIRoute {
   Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
+}
+
+export enum NameSpace {
+  User = 'USER',
+  Main = 'MAIN',
+  Offer = 'OFFER',
 }

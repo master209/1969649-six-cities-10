@@ -1,7 +1,5 @@
 import {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
-
-import {fetchCommentsAction, fetchOfferAction, fetchOffersNearAction} from '../../store/api-actions';
+import {useParams, useNavigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {Premium, Loader} from '../../components/common';
@@ -12,10 +10,26 @@ import {
   OfferNearsList
 } from '../../components/room-screen';
 
+import {
+  fetchCommentsAction,
+  fetchOfferAction,
+  fetchOffersNearAction
+} from '../../store/api-actions';
+import {getOffers} from '../../store/main-process/selectors';
+import {
+  getIsLoading,
+  getOffer,
+  getOffersNear,
+  getComments,
+  getIsError404
+} from '../../store/offer-data/selectors';
+
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import useIsAuthorized from '../../hooks/is-auth';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
+
+import {AppRoute} from '../../const';
 
 type RoomProps = {
   renderMap: (
@@ -34,22 +48,24 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const {id} = useParams();
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const {
-    isLoading,
-    offers,
-    offer,
-    offersNear,
-    comments
-  } = useAppSelector((state) => state);
+  const offers = useAppSelector(getOffers);
+  const isLoading = useAppSelector(getIsLoading);
+  const offer = useAppSelector(getOffer);
+  const offersNear = useAppSelector(getOffersNear);
+  const comments = useAppSelector(getComments);
+  const isError404 = useAppSelector(getIsError404);
 
-  useEffect((): any => {
-    if(!isLoading && id) {
+  useEffect((): void => {
+    if (!isLoading && id) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchOffersNearAction(id));
       dispatch(fetchCommentsAction(id));
     }
   },[]);
+
+  isError404 && navigate(AppRoute.NotFound);
 
   const locations = offers.map((_offer) => _offer.location);
 
@@ -69,7 +85,8 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       bedrooms,
       maxAdults,
       description,
-      host
+      host,
+      images
     } = _offer;
 
     const {avatarUrl, name: userName, isPro} = host;
@@ -83,24 +100,15 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-                </div>
+                {images.map((image, idx) => (
+                  <div className="property__image-wrapper" key={image}>
+                    <img
+                      className="property__image"
+                      src={image}
+                      alt="Studio"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
 

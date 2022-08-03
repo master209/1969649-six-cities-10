@@ -4,7 +4,7 @@ type CommentFormRatingItemProps = {
   value: number;
   title: string;
   form: CommentFormData,
-  setForm: (form: any) => void,
+  setForm: (form: CommentFormData) => void,
 };
 
 /* «Один контрол рейтинга формы комментариев» */

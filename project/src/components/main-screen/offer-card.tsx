@@ -31,7 +31,7 @@ function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardPr
       {isPremium && <Premium /> }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={linkToOffer}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </Link>
       </div>
       <div className="place-card__info">
