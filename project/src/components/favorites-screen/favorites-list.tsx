@@ -18,8 +18,8 @@ function FavoritesList(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const favorites = useAppSelector(getFavorites);
-  const isFavoritesLoading = useAppSelector(getIsFavoriteLoading);
   const isFavoritesLoaded = useAppSelector(getIsFavoritesLoaded);
+  const isFavoritesLoading = useAppSelector(getIsFavoriteLoading);
 
   useEffect((): void => {
     if (!isFavoritesLoaded && !isFavoritesLoading) {
@@ -42,8 +42,12 @@ function FavoritesList(): JSX.Element {
                 </div>
               </div>
               <div className="favorites__places">
-                <FavoritesCard offer={favorites[3]} />
-                <FavoritesCard offer={favorites[1]} />
+                {favorites.map((favorite) => (
+                  <FavoritesCard
+                    key={favorite.id}
+                    offer={favorite}
+                  />
+                ))}
               </div>
             </li>
           </ul>

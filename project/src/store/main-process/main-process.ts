@@ -29,6 +29,10 @@ export const mainProcess = createSlice({
       state.activeCity = city;
       state.offers = [];
     },
+    changeFavoriteStatus: (state, {payload: {favorites}}) => {
+      /* eslint-disable-next-line no-console */
+      console.log('changeFavoriteStatus favorites: ', favorites);
+    },
     clickSort: (state) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;
     },
@@ -73,4 +77,4 @@ export const mainProcess = createSlice({
 });
 
 
-export const {changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;
+export const {changeFavoriteStatus, changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;

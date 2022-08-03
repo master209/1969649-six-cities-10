@@ -1,13 +1,16 @@
 import {Link} from 'react-router-dom';
 
 import {logoutAction} from '../../store/api-actions';
+import {getFavorites} from '../../store/favorite-data/selectors';
 
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 
 import {AppRoute} from '../../const';
 
 function SignOut(): JSX.Element {
   const dispatch = useAppDispatch();
+
+  const favorites = useAppSelector(getFavorites);
 
   return (
     <ul className="header__nav-list">
@@ -17,7 +20,7 @@ function SignOut(): JSX.Element {
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
           <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-          <span className="header__favorite-count">3</span>
+          <span className="header__favorite-count">{favorites.length}</span>
         </Link>
       </li>
 

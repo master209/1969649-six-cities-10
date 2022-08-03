@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {
   fetchFavoritesAction,
+  fetchFavoriteStatusAction
 } from '../api-actions';
 
 import {FavoriteData} from '../../types/state';
@@ -28,6 +29,19 @@ export const favoriteData = createSlice({
         state.favorites = payload;
         state.isFavoritesLoading = false;
         state.isFavoritesLoaded = true;
+      })
+
+      .addCase(fetchFavoriteStatusAction.pending, (state) => {
+        state.isFavoritesLoading = true;
+      })
+      .addCase(fetchFavoriteStatusAction.fulfilled, (state, {payload}) => {
+        /* eslint-disable-next-line no-console */
+        console.log('fetchFavoriteStatusAction payload: ', payload);
+
+        // const favorites = {...state.favorites};
+        // favorites.push(payload);
+        // state.favorites = favorites || [];
+        // state.isFavoritesLoading = false;
       });
   }
 });
