@@ -16,7 +16,7 @@ const initialState: OfferData = {
   offersNear: [],
   comments: [],
   isError404: false,
-  isLoading: false, // сейчас загрузка?
+  isOfferLoading: false,
 };
 
 export const offerData = createSlice({
@@ -27,39 +27,39 @@ export const offerData = createSlice({
     builder
       .addCase(fetchOfferAction.pending, (state) => {
         state.isError404 = false;
-        state.isLoading = true;
+        state.isOfferLoading = true;
       })
       .addCase(fetchOfferAction.fulfilled, (state, {payload}) => {
         state.offer = payload;
-        state.isLoading = false;
+        state.isOfferLoading = false;
       })
       .addCase(fetchOfferAction.rejected, (state) => {
         state.isError404 = true;
-        state.isLoading = false;
+        state.isOfferLoading = false;
       })
 
       .addCase(fetchOffersNearAction.pending, (state) => {
-        state.isLoading = true;
+        state.isOfferLoading = true;
       })
       .addCase(fetchOffersNearAction.fulfilled, (state, {payload}) => {
         state.offersNear = payload || [];
-        state.isLoading = false;
+        state.isOfferLoading = false;
       })
 
       .addCase(fetchCommentsAction.pending, (state) => {
-        state.isLoading = true;
+        state.isOfferLoading = true;
       })
       .addCase(fetchCommentsAction.fulfilled, (state, {payload}) => {
         state.comments = payload || [];
-        state.isLoading = false;
+        state.isOfferLoading = false;
       })
 
       .addCase(fetchCreateCommentAction.pending, (state) => {
-        state.isLoading = true;
+        state.isOfferLoading = true;
       })
       .addCase(fetchCreateCommentAction.fulfilled, (state, {payload}) => {
         state.comments = payload || [];
-        state.isLoading = false;
+        state.isOfferLoading = false;
       });
   }
 });

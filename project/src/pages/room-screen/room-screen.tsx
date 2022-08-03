@@ -25,7 +25,7 @@ import {
 } from '../../store/offer-data/selectors';
 
 import {useAppSelector, useAppDispatch} from '../../hooks';
-import useIsAuthorized from '../../hooks/is-auth';
+import useIsAuthorized from '../../hooks/use-is-authorized';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
 
@@ -51,14 +51,14 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const navigate = useNavigate();
 
   const offers = useAppSelector(getOffers);
-  const isLoading = useAppSelector(getIsLoading);
+  const isOfferLoading = useAppSelector(getIsLoading);
   const offer = useAppSelector(getOffer);
   const offersNear = useAppSelector(getOffersNear);
   const comments = useAppSelector(getComments);
   const isError404 = useAppSelector(getIsError404);
 
   useEffect((): void => {
-    if (!isLoading && id) {
+    if (!isOfferLoading && id) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchOffersNearAction(id));
       dispatch(fetchCommentsAction(id));
@@ -198,7 +198,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   return (
     <div className="page">
-      {offer && !isLoading
+      {offer && !isOfferLoading
         ? renderOffer(offer)
         : <Loader />}
     </div>

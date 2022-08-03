@@ -3,8 +3,8 @@ import {Navigate, useLocation} from 'react-router-dom';
 
 import {Header, Footer} from './internal';
 
-import {useScrollToTop} from '../../hooks/scroll-to-top';
-import useIsAuthorized from '../../hooks/is-auth';
+import {useScrollToTop} from '../../hooks/use-scroll-to-top';
+import useIsAuthorized from '../../hooks/use-is-authorized';
 
 import {AppRoute} from '../../const';
 

@@ -22,7 +22,6 @@ export enum AuthorizationStatus {
 }
 
 export const cities = [
-  'Saratov',
   'Paris',
   'Cologne',
   'Brussels',
@@ -46,6 +45,7 @@ export enum Order {
 export enum APIRoute {
   Offers = '/hotels',
   Comments = '/comments',
+  Favorite = '/favorite',
   Login = '/login',
   Logout = '/logout',
 }
@@ -54,4 +54,5 @@ export enum NameSpace {
   User = 'USER',
   Main = 'MAIN',
   Offer = 'OFFER',
+  Favorite = 'FAVORITE',
 }

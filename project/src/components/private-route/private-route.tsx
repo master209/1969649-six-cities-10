@@ -1,6 +1,6 @@
 import {Navigate} from 'react-router-dom';
 
-import useIsAuthorized from '../../hooks/is-auth';
+import useIsAuthorized from '../../hooks/use-is-authorized';
 
 import {AppRoute} from '../../const';
 

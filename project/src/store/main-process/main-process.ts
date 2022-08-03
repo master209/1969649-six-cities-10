@@ -17,8 +17,8 @@ const initialState: MainProcess = {
   activeCity: 'Paris',
   sortBy: Popular,
   isSortListCollapsed: true,
-  isOffersLoading: false, // сейчас загрузка?
-  isOffersLoaded: false, // уже загружено?
+  isOffersLoading: false,
+  isOffersLoaded: false,
 };
 
 export const mainProcess = createSlice({
@@ -61,6 +61,7 @@ export const mainProcess = createSlice({
     builder
       .addCase(fetchOffersAction.pending, (state) => {
         state.isOffersLoading = true;
+        state.isOffersLoaded = false;
       })
       .addCase(fetchOffersAction.fulfilled, (state, {payload: {data, activeCity}}) => {
         const offers: Offers = data;

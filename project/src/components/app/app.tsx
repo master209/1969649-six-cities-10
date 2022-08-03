@@ -82,7 +82,7 @@ function App(): JSX.Element {
           path={Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen offers={offers} />
+              <FavoritesScreen />
             </PrivateRoute>
           }
         />
