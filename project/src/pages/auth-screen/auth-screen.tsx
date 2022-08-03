@@ -1,10 +1,13 @@
 import {FormEvent, useRef} from 'react';
+import {Link} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 
 import {loginAction} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
+
+import {AppRoute} from '../../const';
 
 function AuthScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -67,9 +70,9 @@ function AuthScreen(): JSX.Element {
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
-                <a className="locations__item-link" href="#">
+                <Link className="locations__item-link" to={AppRoute.Main}>
                   <span>Amsterdam</span>
-                </a>
+                </Link>
               </div>
             </section>
           </div>

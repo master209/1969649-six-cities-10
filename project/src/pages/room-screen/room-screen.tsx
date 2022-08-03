@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {useParams, Navigate} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {Premium, Loader} from '../../components/common';
@@ -48,6 +48,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const {id} = useParams();
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const offers = useAppSelector(getOffers);
   const isLoading = useAppSelector(getIsLoading);
@@ -56,7 +57,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const comments = useAppSelector(getComments);
   const isError404 = useAppSelector(getIsError404);
 
-  useEffect((): any => {
+  useEffect((): void => {
     if (!isLoading && id) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchOffersNearAction(id));
@@ -64,9 +65,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
     }
   },[]);
 
-  if (isError404) {
-    return <Navigate to={AppRoute.NotFound} />;
-  }
+  isError404 && navigate(AppRoute.NotFound);
 
   const locations = offers.map((_offer) => _offer.location);
 
@@ -101,22 +100,22 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
             <div className="property__gallery-container container">
               <div className="property__gallery">
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
+                  <img className="property__image" src="img/room.jpg" alt="Studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
+                  <img className="property__image" src="img/apartment-01.jpg" alt="Studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
+                  <img className="property__image" src="img/apartment-02.jpg" alt="Studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
+                  <img className="property__image" src="img/apartment-03.jpg" alt="Studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
+                  <img className="property__image" src="img/studio-01.jpg" alt="Studio"/>
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
+                  <img className="property__image" src="img/apartment-01.jpg" alt="Studio"/>
                 </div>
               </div>
             </div>
