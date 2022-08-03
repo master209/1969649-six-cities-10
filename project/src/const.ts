@@ -10,7 +10,6 @@ export enum AppRoute {
   Favorites = '/favorites',
   FavoritesEmpty = '/favorites-empty',
   Login = '/login',
-  // OfferNotLogged = '/offer-not-logged',
   Offer = '/offer',
   OfferId = '/offer/:id',
   NotFound = '/not-found-screen'
@@ -23,12 +22,13 @@ export enum AuthorizationStatus {
 }
 
 export const cities = [
+  'Saratov',
   'Paris',
   'Cologne',
   'Brussels',
   'Amsterdam',
   'Hamburg',
-  'Dusseldorf'
+  'Dusseldorf',
 ];
 
 export const offerSorts = [

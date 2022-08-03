@@ -1,5 +1,5 @@
 import {useState, KeyboardEvent} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {
@@ -32,11 +32,12 @@ function MainScreen(props: MainProps): JSX.Element {
   const {cities, offers, activeCity, renderMap} = props;
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  !offers.length && navigate(AppRoute.MainEmpty);
+  if(!offers.length) {
+    return <Navigate to={AppRoute.MainEmpty} />;
+  }
 
   const locations = offers.map((offer) => offer.location);
 

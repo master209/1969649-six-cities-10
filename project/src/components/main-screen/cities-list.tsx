@@ -18,7 +18,7 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
 
   const onChangeCity = (city: string) => {
     dispatch(changeCity({city}));
-    dispatch(fetchOffersAction(activeCity));
+    dispatch(fetchOffersAction(city));
   };
 
   return (

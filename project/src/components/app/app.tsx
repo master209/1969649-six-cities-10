@@ -37,7 +37,9 @@ function App(): JSX.Element {
   const isOffersLoading = useAppSelector(getIsOffersLoading);
   const isOffersLoaded = useAppSelector(getIsOffersLoaded);
 
-  !offers.length && !isOffersLoading && !isOffersLoaded && dispatch(fetchOffersAction(activeCity));
+  if (!offers.length && !isOffersLoading && !isOffersLoaded) {
+    dispatch(fetchOffersAction(activeCity));
+  }
 
   if (isOffersLoading) {
     return (
