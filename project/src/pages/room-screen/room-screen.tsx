@@ -85,7 +85,8 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       bedrooms,
       maxAdults,
       description,
-      host
+      host,
+      images
     } = _offer;
 
     const {avatarUrl, name: userName, isPro} = host;
@@ -99,24 +100,15 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/room.jpg" alt="Studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-02.jpg" alt="Studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-03.jpg" alt="Studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/studio-01.jpg" alt="Studio"/>
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Studio"/>
-                </div>
+                {images.map((image, idx) => (
+                  <div className="property__image-wrapper" key={image}>
+                    <img
+                      className="property__image"
+                      src={image}
+                      alt="Studio"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
 
