@@ -1,8 +1,8 @@
 import {FormEvent, useRef} from 'react';
 
-import {loginAction} from '../../store/api-actions';
-
 import Layout from '../../components/layout/layout';
+
+import {loginAction} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 
@@ -58,7 +58,6 @@ function AuthScreen(): JSX.Element {
                   />
                 </div>
                 <button
-                  // onClick={() => navigate(AppRoute.Main)}
                   className="login__submit form__submit button"
                   type="submit"
                 >

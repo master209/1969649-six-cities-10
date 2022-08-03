@@ -1,5 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
+import {PrivateRoute} from '../../components/private-route';
 import {
   MainScreen,
   MainEmptyScreen,
@@ -10,11 +11,18 @@ import {
   Loader,
   NotFoundScreen,
 } from '../../pages';
-import {PrivateRoute} from '../../components/private-route';
+
+import {fetchOffersAction} from '../../store/api-actions';
+import {
+  getActiveCity,
+  getOffers,
+  getIsOffersLoading,
+  getIsOffersLoaded
+} from '../../store/main-process/selectors';
 
 import withMap from '../../hocs/with-map';
 
-import {useAppSelector} from '../../hooks';
+import {useAppSelector, useAppDispatch} from '../../hooks';
 
 import {AppRoute, cities} from '../../const';
 
@@ -22,14 +30,16 @@ const MainScreenWrapped = withMap(MainScreen);
 const RoomScreenWrapped = withMap(RoomScreen);
 
 function App(): JSX.Element {
-  const {
-    isLoading,
-    isLoaded,
-    offers,
-    activeCity
-  } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
-  if(!offers.length && !isLoading && !isLoaded) {
+  const activeCity = useAppSelector(getActiveCity);
+  const offers = useAppSelector(getOffers);
+  const isOffersLoading = useAppSelector(getIsOffersLoading);
+  const isOffersLoaded = useAppSelector(getIsOffersLoaded);
+
+  !offers.length && !isOffersLoading && !isOffersLoaded && dispatch(fetchOffersAction(activeCity));
+
+  if (isOffersLoading) {
     return (
       <Loader />
     );

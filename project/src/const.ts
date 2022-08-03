@@ -22,13 +22,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum OfferType {
-  Apartment = 'Apartment',
-  Hotel = 'Hotel',
-  House = 'House',
-  Room = 'Private Room',
-}
-
 export const cities = [
   'Paris',
   'Cologne',
@@ -55,4 +48,10 @@ export enum APIRoute {
   Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
+}
+
+export enum NameSpace {
+  User = 'USER',
+  Main = 'MAIN',
+  Offer = 'OFFER',
 }

@@ -1,8 +1,8 @@
 import {useState, useRef, FormEvent, ChangeEvent} from 'react';
 
-import {fetchCreateCommentAction} from '../../../store/api-actions';
-
 import CommentFormRatingItem from './comment-form-rating-item';
+
+import {fetchCreateCommentAction} from '../../../store/api-actions';
 
 import {useAppDispatch} from '../../../hooks';
 
@@ -31,7 +31,9 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
     dispatch(fetchCreateCommentAction({...form, offerId}));
     setForm(INITIAL_STATE);
     commentFormRef.current?.reset();
@@ -45,10 +47,7 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
     <form
       ref={commentFormRef}
       className="reviews__form form"
-      onSubmit={(evt: FormEvent<HTMLFormElement>) => {
-        evt.preventDefault();
-        handleFormSubmit();
-      }}
+      onSubmit={handleFormSubmit}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
@@ -77,7 +76,13 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{MIN_COMMENT_LENGTH} characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!isFormValid()}>Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={!isFormValid()}
+        >
+          Submit
+        </button>
       </div>
     </form>
   );

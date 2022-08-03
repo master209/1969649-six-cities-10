@@ -8,7 +8,7 @@ import {
   SortingForm
 } from '../../components/main-screen';
 
-import {collapseSortList} from '../../store/action';
+import {collapseSortList} from '../../store/main-process/main-process';
 
 import {useAppDispatch} from '../../hooks';
 
@@ -35,7 +35,7 @@ function MainScreen(props: MainProps): JSX.Element {
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  if(!offers.length) {
+  if (!offers.length) {
     return <Navigate to={AppRoute.MainEmpty} />;
   }
 

@@ -1,8 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 
-import {fetchCommentsAction, fetchOfferAction, fetchOffersNearAction} from '../../store/api-actions';
-
 import Layout from '../../components/layout/layout';
 import {Premium, Loader} from '../../components/common';
 import {
@@ -11,6 +9,19 @@ import {
   OfferInsideItem,
   OfferNearsList
 } from '../../components/room-screen';
+
+import {
+  fetchCommentsAction,
+  fetchOfferAction,
+  fetchOffersNearAction
+} from '../../store/api-actions';
+import {getOffers} from '../../store/main-process/selectors';
+import {
+  getIsLoading,
+  getOffer,
+  getOffersNear,
+  getComments
+} from '../../store/offer-data/selectors';
 
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import useIsAuthorized from '../../hooks/is-auth';
@@ -35,16 +46,15 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const {
-    isLoading,
-    offers,
-    offer,
-    offersNear,
-    comments
-  } = useAppSelector((state) => state);
+  const offers = useAppSelector(getOffers);
+  const isLoading = useAppSelector(getIsLoading);
+  const offer = useAppSelector(getOffer);
+  const offersNear = useAppSelector(getOffersNear);
+  const comments = useAppSelector(getComments);
+
 
   useEffect((): any => {
-    if(!isLoading && id) {
+    if (!isLoading && id) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchOffersNearAction(id));
       dispatch(fetchCommentsAction(id));

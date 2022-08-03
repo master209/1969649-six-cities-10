@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 
 import {fetchOffersAction} from '../../store/api-actions';
-import {changeCity} from '../../store/action';
+import {changeCity} from '../../store/main-process/main-process';
 
 import {useAppDispatch} from '../../hooks';
 
@@ -18,7 +18,7 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
 
   const onChangeCity = (city: string) => {
     dispatch(changeCity({city}));
-    dispatch(fetchOffersAction());
+    dispatch(fetchOffersAction(activeCity));
   };
 
   return (
