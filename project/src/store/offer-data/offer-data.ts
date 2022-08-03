@@ -15,6 +15,7 @@ const initialState: OfferData = {
   offer: null,
   offersNear: [],
   comments: [],
+  isError404: false,
   isLoading: false, // сейчас загрузка?
 };
 
@@ -25,10 +26,15 @@ export const offerData = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchOfferAction.pending, (state) => {
+        state.isError404 = false;
         state.isLoading = true;
       })
       .addCase(fetchOfferAction.fulfilled, (state, {payload}) => {
         state.offer = payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchOfferAction.rejected, (state) => {
+        state.isError404 = true;
         state.isLoading = false;
       })
 

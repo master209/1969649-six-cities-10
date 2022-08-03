@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, Navigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {Premium, Loader} from '../../components/common';
@@ -20,13 +20,16 @@ import {
   getIsLoading,
   getOffer,
   getOffersNear,
-  getComments
+  getComments,
+  getIsError404
 } from '../../store/offer-data/selectors';
 
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import useIsAuthorized from '../../hooks/is-auth';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
+
+import {AppRoute} from '../../const';
 
 type RoomProps = {
   renderMap: (
@@ -51,7 +54,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const offer = useAppSelector(getOffer);
   const offersNear = useAppSelector(getOffersNear);
   const comments = useAppSelector(getComments);
-
+  const isError404 = useAppSelector(getIsError404);
 
   useEffect((): any => {
     if (!isLoading && id) {
@@ -60,6 +63,10 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       dispatch(fetchCommentsAction(id));
     }
   },[]);
+
+  if (isError404) {
+    return <Navigate to={AppRoute.NotFound} />;
+  }
 
   const locations = offers.map((_offer) => _offer.location);
 
