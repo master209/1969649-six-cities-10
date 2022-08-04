@@ -35,13 +35,8 @@ export const favoriteData = createSlice({
         state.isFavoritesLoading = true;
       })
       .addCase(fetchFavoriteStatusAction.fulfilled, (state, {payload}) => {
-        /* eslint-disable-next-line no-console */
-        console.log('fetchFavoriteStatusAction payload: ', payload);
-
-        // const favorites = {...state.favorites};
-        // favorites.push(payload);
-        // state.favorites = favorites || [];
-        // state.isFavoritesLoading = false;
+        state.favorites.push(payload);
+        state.isFavoritesLoading = false;
       });
   }
 });

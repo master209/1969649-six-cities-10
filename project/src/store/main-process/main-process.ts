@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {fetchOffersAction} from '../api-actions';
 
-import {sortTo} from '../../utils';
+import {sortTo, arrayToMap} from '../../utils';
 
 import {Offers} from '../../types/offers';
 
@@ -29,10 +29,20 @@ export const mainProcess = createSlice({
       state.activeCity = city;
       state.offers = [];
     },
-    changeFavoriteStatus: (state, {payload: {favorites}}) => {
-      /* eslint-disable-next-line no-console */
-      console.log('changeFavoriteStatus favorites: ', favorites);
+    setFavoriteStatus: (state, {payload}) => {
+      const favorites = arrayToMap(payload, 'id');
+      state.offers.forEach((offer) => {
+        /* eslint-disable-next-line no-console */
+        console.log('setFavoriteStatus offer.id, favorites[offer.id]: ', offer.id, favorites[offer.id]);
+
+        if (favorites[offer.id]) {
+          offer.isFavorite = true;
+        } else {
+          offer.isFavorite = false;
+        }
+      });
     },
+
     clickSort: (state) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;
     },
@@ -77,4 +87,4 @@ export const mainProcess = createSlice({
 });
 
 
-export const {changeFavoriteStatus, changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;
+export const {setFavoriteStatus, changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;
