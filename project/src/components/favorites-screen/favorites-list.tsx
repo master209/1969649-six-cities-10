@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
 import {FavoritesCard} from './';
 
@@ -7,7 +9,7 @@ import {useAppSelector} from '../../hooks';
 
 import {Offer} from '../../types/offers';
 
-import {cities} from '../../const';
+import {AppRoute, cities} from '../../const';
 
 /* «Список избранных предложений» */
 function FavoritesList(): JSX.Element {
@@ -17,7 +19,7 @@ function FavoritesList(): JSX.Element {
   // вычисляет количество favorites в городе city
   const favoritesByCityCount = (city: string): number =>
     favorites.reduce((acc, item: Offer) =>
-      item.city.name === city ? ++acc : 0, 0);
+      item.city.name === city ? ++acc : acc, 0);
 
   const renderFavorites = () => (
     <ul className="favorites__list">
@@ -28,9 +30,9 @@ function FavoritesList(): JSX.Element {
             <li key={city} className="favorites__locations-items">
               <div className="favorites__locations locations locations--current">
                 <div className="locations__item">
-                  <a className="locations__item-link" href="#todo">
+                  <Link className="locations__item-link" to={AppRoute.Main}>
                     <span>{city}</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="favorites__places">
