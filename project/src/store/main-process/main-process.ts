@@ -28,7 +28,7 @@ export const mainProcess = createSlice({
       state.activeCity = city;
       state.offers = [];
     },
-    setFavoriteStatus: (state, {payload: {favorites}}) => {
+    setFavoritesStatus: (state, {payload: {favorites}}) => {
       const _favorites = arrayToMap(favorites, 'id');
 
       state.offers.forEach((offer) => {
@@ -79,5 +79,4 @@ export const mainProcess = createSlice({
   }
 });
 
-
-export const {setFavoriteStatus, changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;
+export const {setFavoritesStatus, changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;

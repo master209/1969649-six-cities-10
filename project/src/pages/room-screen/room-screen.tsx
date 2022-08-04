@@ -10,12 +10,15 @@ import {
   OfferNearsList
 } from '../../components/room-screen';
 
+import {setFavoriteStatus} from '../../store/offer-data/offer-data';
 import {
   fetchCommentsAction,
+  fetchFavoriteStatusAction,
   fetchOfferAction,
   fetchOffersNearAction
 } from '../../store/api-actions';
 import {getOffers} from '../../store/main-process/selectors';
+import {getFavorites} from '../../store/favorite-data/selectors';
 import {
   getIsLoading,
   getOffer,
@@ -56,6 +59,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const offersNear = useAppSelector(getOffersNear);
   const comments = useAppSelector(getComments);
   const isError404 = useAppSelector(getIsError404);
+  const favorites = useAppSelector(getFavorites);
 
   useEffect((): void => {
     if (!isOfferLoading && id) {
@@ -64,6 +68,10 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       dispatch(fetchCommentsAction(id));
     }
   },[]);
+
+  useEffect((): void => {
+    dispatch(setFavoriteStatus());
+  },[favorites]);
 
   isError404 && navigate(AppRoute.NotFound);
 
@@ -76,6 +84,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   const renderOffer = (_offer: Offer) => {
     const {
+      isFavorite,
       isPremium,
       price,
       title,
@@ -92,6 +101,15 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
     const {avatarUrl, name: userName, isPro} = host;
 
     const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
+
+    const favoriteClass = isFavorite
+      ? 'place-card__bookmark-icon'
+      : 'property__bookmark-icon';
+
+    const handleOnChangeFavoriteStatus = () => {
+      dispatch(fetchFavoriteStatusAction({offerId: _offer.id, offerStatus: +!isFavorite}));
+    };
+
 
     return (
       <Layout>
@@ -117,8 +135,12 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                 {isPremium && <Premium containerClass="property__mark"/>}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{title}</h1>
-                  <button className="property__bookmark-button button" type="button">
-                    <svg className="property__bookmark-icon" width="31" height="33">
+                  <button
+                    className="property__bookmark-button property__bookmark-button--active button"
+                    type="button"
+                    onClick={handleOnChangeFavoriteStatus}
+                  >
+                    <svg className={favoriteClass} width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
                     <span className="visually-hidden">To bookmarks</span>

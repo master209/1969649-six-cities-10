@@ -14,7 +14,7 @@ import {
 } from '../../pages';
 
 import {fetchOffersAction, fetchFavoritesAction} from '../../store/api-actions';
-import {setFavoriteStatus} from '../../store/main-process/main-process';
+import {setFavoritesStatus} from '../../store/main-process/main-process';
 import {
   getActiveCity,
   getOffers,
@@ -67,7 +67,7 @@ function App(): JSX.Element {
 
   useEffect((): void => {
     if (isFavoritesLoaded) {
-      dispatch(setFavoriteStatus({favorites}));
+      dispatch(setFavoritesStatus({favorites}));
     }
   },[favorites]);
 
