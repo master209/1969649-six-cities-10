@@ -5,7 +5,6 @@ import {fetchOffersAction} from '../api-actions';
 import {sortTo, arrayToMap} from '../../utils';
 
 import {Offers} from '../../types/offers';
-
 import {MainProcess} from '../../types/state';
 
 import {NameSpace, offerSorts, Order} from '../../const';
@@ -29,17 +28,11 @@ export const mainProcess = createSlice({
       state.activeCity = city;
       state.offers = [];
     },
-    setFavoriteStatus: (state, {payload}) => {
-      const favorites = arrayToMap(payload, 'id');
-      state.offers.forEach((offer) => {
-        /* eslint-disable-next-line no-console */
-        console.log('setFavoriteStatus offer.id, favorites[offer.id]: ', offer.id, favorites[offer.id]);
+    setFavoriteStatus: (state, {payload: {favorites}}) => {
+      const _favorites = arrayToMap(favorites, 'id');
 
-        if (favorites[offer.id]) {
-          offer.isFavorite = true;
-        } else {
-          offer.isFavorite = false;
-        }
+      state.offers.forEach((offer) => {
+        _favorites[offer.id] ? offer.isFavorite = true : offer.isFavorite = false;
       });
     },
 

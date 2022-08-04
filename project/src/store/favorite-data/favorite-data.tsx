@@ -34,9 +34,18 @@ export const favoriteData = createSlice({
       .addCase(fetchFavoriteStatusAction.pending, (state) => {
         state.isFavoritesLoading = true;
       })
-      .addCase(fetchFavoriteStatusAction.fulfilled, (state, {payload}) => {
-        state.favorites.push(payload);
+      .addCase(fetchFavoriteStatusAction.fulfilled, (state, {payload: {data, offerStatus}}) => {
         state.isFavoritesLoading = false;
+
+        let fav = state.favorites;
+
+        offerStatus === 1
+          ? state.favorites.push(data)
+          : fav = state.favorites.filter((offer) => offer.id !== data.id);
+
+        state.favorites = fav;
+        /* eslint-disable-next-line no-console */
+        console.log('fav, state.favorites: ', fav, state.favorites);
       });
   }
 });

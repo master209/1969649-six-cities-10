@@ -66,8 +66,8 @@ function App(): JSX.Element {
   },[]);
 
   useEffect((): void => {
-    if (favorites.length && isFavoritesLoaded) {
-      dispatch(setFavoriteStatus(favorites));
+    if (isFavoritesLoaded) {
+      dispatch(setFavoriteStatus({favorites}));
     }
   },[favorites]);
 
