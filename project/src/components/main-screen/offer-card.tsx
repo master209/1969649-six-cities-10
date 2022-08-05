@@ -27,7 +27,6 @@ function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardPr
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
-
   const favoriteClass = isFavorite
     ? 'place-card__bookmark-button place-card__bookmark-button--active button'
     : 'place-card__bookmark-button button';
