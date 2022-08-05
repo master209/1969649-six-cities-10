@@ -110,7 +110,6 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       dispatch(fetchFavoriteStatusAction({offerId: _offer.id, offerStatus: +!isFavorite}));
     };
 
-
     return (
       <Layout>
         <main className="page__main page__main--property">
