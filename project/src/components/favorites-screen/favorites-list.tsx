@@ -25,6 +25,11 @@ function FavoritesList(): JSX.Element {
     favorites.reduce((acc, item: Offer) =>
       item.city.name === city ? ++acc : acc, 0);
 
+  const onChangeCity = (city: string) => {
+    dispatch(changeCity({city}));
+    dispatch(fetchOffersAction(city));
+  };
+
   const renderFavorites = () => (
     <ul className="favorites__list">
       {cities.map((city) =>
@@ -35,11 +40,7 @@ function FavoritesList(): JSX.Element {
               <div className="favorites__locations locations locations--current">
                 <div
                   className="locations__item"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    dispatch(changeCity({city}));
-                    dispatch(fetchOffersAction(city));
-                  }}
+                  onClick={() => onChangeCity(city)}
                 >
                   <Link className="locations__item-link" to={AppRoute.Main}>
                     <span>{city}</span>

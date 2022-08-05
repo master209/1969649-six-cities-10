@@ -29,7 +29,9 @@ function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
             const activeClass = `locations__item-link tabs__item${(city === activeCity) ? '--active' : ''}`;
             return (
               <li key={city} className="locations__item">
-                <Link className={activeClass} to={AppRoute.Main}
+                <Link
+                  className={activeClass}
+                  to={AppRoute.Main}
                   onClick={() => onChangeCity(city)}
                 >
                   <span>{city}</span>
