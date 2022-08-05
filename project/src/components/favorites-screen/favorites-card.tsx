@@ -1,6 +1,11 @@
-import {Link} from 'react-router-dom';
+import {Link/*, useNavigate*/} from 'react-router-dom';
 
 import {Premium} from '../common';
+
+import {fetchFavoriteStatusAction} from '../../store/api-actions';
+
+import {useAppDispatch} from '../../hooks';
+// import useIsAuthorized from '../../hooks/use-is-authorized';
 
 import {Offer} from '../../types/offers';
 
@@ -12,9 +17,21 @@ type FavoritesCardProps = {
 
 /* «Карточка избранных предложений» */
 function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
-  const {previewImage, isPremium, price, title, type} = offer;
+  const {previewImage, isPremium, price, title, type, isFavorite} = offer;
+
+  const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
+  // const isAuthorized = useIsAuthorized();
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
+
+  const favoriteClass = isFavorite
+    ? 'place-card__bookmark-button place-card__bookmark-button--active button'
+    : 'place-card__bookmark-button button';
+
+  const handleOnChangeFavoriteStatus = () => {
+    dispatch(fetchFavoriteStatusAction({offerId: offer.id, offerStatus: +!isFavorite}));
+  };
 
   return (
     <article className="favorites__card place-card">
@@ -30,7 +47,11 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&nbsp;&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+          <button
+            className={favoriteClass}
+            type="button"
+            onClick={handleOnChangeFavoriteStatus}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

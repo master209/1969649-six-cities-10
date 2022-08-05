@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {PrivateRoute} from '../../components/private-route';
@@ -12,13 +13,20 @@ import {
   NotFoundScreen,
 } from '../../pages';
 
-import {fetchOffersAction} from '../../store/api-actions';
+import {fetchOffersAction, fetchFavoritesAction} from '../../store/api-actions';
+import {setFavoritesStatus} from '../../store/main-process/main-process';
 import {
   getActiveCity,
   getOffers,
   getIsOffersLoading,
   getIsOffersLoaded
 } from '../../store/main-process/selectors';
+
+import {
+  getFavorites,
+  getIsFavoriteLoading,
+  getIsFavoritesLoaded
+} from '../../store/favorite-data/selectors';
 
 import withMap from '../../hocs/with-map';
 
@@ -30,23 +38,6 @@ const MainScreenWrapped = withMap(MainScreen);
 const RoomScreenWrapped = withMap(RoomScreen);
 
 function App(): JSX.Element {
-  const dispatch = useAppDispatch();
-
-  const activeCity = useAppSelector(getActiveCity);
-  const offers = useAppSelector(getOffers);
-  const isOffersLoading = useAppSelector(getIsOffersLoading);
-  const isOffersLoaded = useAppSelector(getIsOffersLoaded);
-
-  if (!offers.length && !isOffersLoading && !isOffersLoaded) {
-    dispatch(fetchOffersAction(activeCity));
-  }
-
-  if (isOffersLoading) {
-    return (
-      <Loader />
-    );
-  }
-
   const {
     Main,
     MainEmpty,
@@ -55,6 +46,39 @@ function App(): JSX.Element {
     OfferId,
     Login
   } = AppRoute;
+
+  const dispatch = useAppDispatch();
+
+  const activeCity = useAppSelector(getActiveCity);
+  const offers = useAppSelector(getOffers);
+  const isOffersLoading = useAppSelector(getIsOffersLoading);
+  const isOffersLoaded = useAppSelector(getIsOffersLoaded);
+
+  const favorites = useAppSelector(getFavorites);
+  const isFavoritesLoading = useAppSelector(getIsFavoriteLoading);
+  const isFavoritesLoaded = useAppSelector(getIsFavoritesLoaded);
+
+  useEffect((): void => {
+    if (!isFavoritesLoaded && !isFavoritesLoading) {
+      dispatch(fetchFavoritesAction());
+    }
+  },[]);
+
+  useEffect((): void => {
+    if (isFavoritesLoaded) {
+      dispatch(setFavoritesStatus({favorites}));
+    }
+  },[favorites]);
+
+  if (!offers.length && !isOffersLoading && !isOffersLoaded) {
+    dispatch(fetchOffersAction(activeCity));
+  }
+
+  if (isOffersLoading || isFavoritesLoading) {
+    return (
+      <Loader />
+    );
+  }
 
   return (
     <BrowserRouter>
@@ -82,7 +106,7 @@ function App(): JSX.Element {
           path={Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen offers={offers} />
+              <FavoritesScreen />
             </PrivateRoute>
           }
         />

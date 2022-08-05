@@ -2,10 +2,9 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {fetchOffersAction} from '../api-actions';
 
-import {sortTo} from '../../utils';
+import {sortTo, arrayToMap} from '../../utils';
 
 import {Offers} from '../../types/offers';
-
 import {MainProcess} from '../../types/state';
 
 import {NameSpace, offerSorts, Order} from '../../const';
@@ -17,8 +16,8 @@ const initialState: MainProcess = {
   activeCity: 'Paris',
   sortBy: Popular,
   isSortListCollapsed: true,
-  isOffersLoading: false, // сейчас загрузка?
-  isOffersLoaded: false, // уже загружено?
+  isOffersLoading: false,
+  isOffersLoaded: false,
 };
 
 export const mainProcess = createSlice({
@@ -29,6 +28,14 @@ export const mainProcess = createSlice({
       state.activeCity = city;
       state.offers = [];
     },
+    setFavoritesStatus: (state, {payload: {favorites}}) => {
+      const _favorites = arrayToMap(favorites, 'id');
+
+      state.offers.forEach((offer) => {
+        offer.isFavorite = !!_favorites[offer.id];
+      });
+    },
+
     clickSort: (state) => {
       state.isSortListCollapsed = !state.isSortListCollapsed;
     },
@@ -61,6 +68,7 @@ export const mainProcess = createSlice({
     builder
       .addCase(fetchOffersAction.pending, (state) => {
         state.isOffersLoading = true;
+        state.isOffersLoaded = false;
       })
       .addCase(fetchOffersAction.fulfilled, (state, {payload: {data, activeCity}}) => {
         const offers: Offers = data;
@@ -71,5 +79,4 @@ export const mainProcess = createSlice({
   }
 });
 
-
-export const {changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;
+export const {setFavoritesStatus, changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;

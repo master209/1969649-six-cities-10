@@ -10,12 +10,15 @@ import {
   OfferNearsList
 } from '../../components/room-screen';
 
+import {setFavoriteStatus} from '../../store/offer-data/offer-data';
 import {
   fetchCommentsAction,
+  fetchFavoriteStatusAction,
   fetchOfferAction,
   fetchOffersNearAction
 } from '../../store/api-actions';
 import {getOffers} from '../../store/main-process/selectors';
+import {getFavorites} from '../../store/favorite-data/selectors';
 import {
   getIsLoading,
   getOffer,
@@ -25,7 +28,7 @@ import {
 } from '../../store/offer-data/selectors';
 
 import {useAppSelector, useAppDispatch} from '../../hooks';
-import useIsAuthorized from '../../hooks/is-auth';
+import useIsAuthorized from '../../hooks/use-is-authorized';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
 
@@ -51,19 +54,24 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const navigate = useNavigate();
 
   const offers = useAppSelector(getOffers);
-  const isLoading = useAppSelector(getIsLoading);
+  const isOfferLoading = useAppSelector(getIsLoading);
   const offer = useAppSelector(getOffer);
   const offersNear = useAppSelector(getOffersNear);
   const comments = useAppSelector(getComments);
   const isError404 = useAppSelector(getIsError404);
+  const favorites = useAppSelector(getFavorites);
 
   useEffect((): void => {
-    if (!isLoading && id) {
+    if (!isOfferLoading && id) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchOffersNearAction(id));
       dispatch(fetchCommentsAction(id));
     }
   },[]);
+
+  useEffect((): void => {
+    dispatch(setFavoriteStatus());
+  },[favorites]);
 
   isError404 && navigate(AppRoute.NotFound);
 
@@ -76,6 +84,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   const renderOffer = (_offer: Offer) => {
     const {
+      isFavorite,
       isPremium,
       price,
       title,
@@ -92,6 +101,16 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
     const {avatarUrl, name: userName, isPro} = host;
 
     const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
+
+    const favoriteClass = isFavorite
+      ? 'place-card__bookmark-icon'
+      : 'property__bookmark-icon';
+
+    const handleOnChangeFavoriteStatus = () => {
+      isAuthorized
+        ? dispatch(fetchFavoriteStatusAction({offerId: _offer.id, offerStatus: +!isFavorite}))
+        : navigate(AppRoute.Login);
+    };
 
     return (
       <Layout>
@@ -117,8 +136,12 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                 {isPremium && <Premium containerClass="property__mark"/>}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{title}</h1>
-                  <button className="property__bookmark-button button" type="button">
-                    <svg className="property__bookmark-icon" width="31" height="33">
+                  <button
+                    className="property__bookmark-button property__bookmark-button--active button"
+                    type="button"
+                    onClick={handleOnChangeFavoriteStatus}
+                  >
+                    <svg className={favoriteClass} width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
                     <span className="visually-hidden">To bookmarks</span>
@@ -198,7 +221,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   return (
     <div className="page">
-      {offer && !isLoading
+      {offer && !isOfferLoading
         ? renderOffer(offer)
         : <Loader />}
     </div>

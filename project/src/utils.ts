@@ -16,3 +16,8 @@ export const sortTo = (array: any[], key: string, direction?: string): any[] =>
     /* eslint-disable-next-line */
     return direction === Order.Asc ? (a < b ? -1 : a > b ? 1 : 0) : (a < b ? 1 : a > b ? -1 : 0);
   });
+
+// преобразует массив объектов в коллекцию объектов с ключом byKey
+export const arrayToMap = (arr:any, byKey: string) =>
+  arr.reduce((acc: any, nextVal: any) =>
+    ({...acc, [nextVal[byKey]]: nextVal}), {});

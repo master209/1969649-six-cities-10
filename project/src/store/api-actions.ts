@@ -70,6 +70,30 @@ export const fetchCreateCommentAction = createAsyncThunk<Comments, CommentNew, {
   },
 );
 
+export const fetchFavoritesAction = createAsyncThunk<Offers, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'Favorite/fetchFavorites',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<Offers>(APIRoute.Favorite);
+    return data;
+  },
+);
+
+export const fetchFavoriteStatusAction = createAsyncThunk<{data: Offer, offerStatus: number}, {offerId: number, offerStatus: number}, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'Favorite/fetchFavoriteStatus',
+  async ({offerId, offerStatus}, {dispatch, extra: api}) => {
+    const {data} = await api.post<Offer>(APIRoute.Favorite.concat('/', offerId.toString(), '/', offerStatus.toString()));
+    return {data, offerStatus};
+  },
+);
+
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
   state: State,

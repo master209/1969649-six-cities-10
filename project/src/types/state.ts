@@ -22,7 +22,13 @@ export type OfferData = {
   offersNear: Offers;
   comments: Comments;
   isError404: boolean;
-  isLoading: boolean, // сейчас загрузка?
+  isOfferLoading: boolean,
+};
+
+export type FavoriteData = {
+  favorites: Offers;
+  isFavoritesLoading: boolean,
+  isFavoritesLoaded: boolean, // уже загружено?
 };
 
 export type State = ReturnType<typeof store.getState>;
