@@ -107,7 +107,9 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       : 'property__bookmark-icon';
 
     const handleOnChangeFavoriteStatus = () => {
-      dispatch(fetchFavoriteStatusAction({offerId: _offer.id, offerStatus: +!isFavorite}));
+      isAuthorized
+        ? dispatch(fetchFavoriteStatusAction({offerId: _offer.id, offerStatus: +!isFavorite}))
+        : navigate(AppRoute.Login);
     };
 
     return (

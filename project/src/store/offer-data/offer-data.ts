@@ -23,8 +23,8 @@ export const offerData = createSlice({
   name: NameSpace.Offer,
   initialState,
   reducers: {
-    setFavoriteStatus: (state) => {
-      state.offer && (state.offer.isFavorite = !state.offer.isFavorite);
+    setFavoriteStatus: ({offer}) => {
+      offer && (offer.isFavorite = !offer.isFavorite);
     }
   },
   extraReducers(builder) {

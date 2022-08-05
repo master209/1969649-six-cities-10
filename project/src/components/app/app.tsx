@@ -61,7 +61,6 @@ function App(): JSX.Element {
   useEffect((): void => {
     if (!isFavoritesLoaded && !isFavoritesLoading) {
       dispatch(fetchFavoritesAction());
-      <Loader />;
     }
   },[]);
 
@@ -75,7 +74,7 @@ function App(): JSX.Element {
     dispatch(fetchOffersAction(activeCity));
   }
 
-  if (isOffersLoading) {
+  if (isOffersLoading || isFavoritesLoading) {
     return (
       <Loader />
     );

@@ -33,8 +33,9 @@ function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardPr
     : 'place-card__bookmark-button button';
 
   const handleOnChangeFavoriteStatus = () => {
-    !isAuthorized && navigate(AppRoute.Login);
-    dispatch(fetchFavoriteStatusAction({offerId: offer.id, offerStatus: +!isFavorite}));
+    isAuthorized
+      ? dispatch(fetchFavoriteStatusAction({offerId: offer.id, offerStatus: +!isFavorite}))
+      : navigate(AppRoute.Login);
   };
 
   return (

@@ -30,7 +30,7 @@ export const favoriteData = createSlice({
       .addCase(fetchFavoriteStatusAction.fulfilled, (state, {payload: {data, offerStatus}}) => {
         offerStatus
           ? state.favorites.push(data)
-          : state.favorites = state.favorites.filter((offer) => offer.id !== data.id);
+          : state.favorites = state.favorites.filter(({id}) => id !== data.id);
       });
   }
 });

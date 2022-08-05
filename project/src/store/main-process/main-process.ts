@@ -32,7 +32,7 @@ export const mainProcess = createSlice({
       const _favorites = arrayToMap(favorites, 'id');
 
       state.offers.forEach((offer) => {
-        _favorites[offer.id] ? offer.isFavorite = true : offer.isFavorite = false;
+        offer.isFavorite = !!_favorites[offer.id];
       });
     },
 
