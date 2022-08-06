@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 
-import {logoutAction} from '../../store/api-actions';
+import {fetchLogout} from '../../store/api-actions';
+import {resetFavorites} from '../../store/favorite-data/favorite-data';
 import {getFavorites} from '../../store/favorite-data/selectors';
 
 import {useAppDispatch, useAppSelector} from '../../hooks';
@@ -29,7 +30,8 @@ function SignOut(): JSX.Element {
           className="header__nav-link"
           onClick={(evt) => {
             evt.preventDefault();
-            dispatch(logoutAction());
+            dispatch(resetFavorites());
+            dispatch(fetchLogout());
           }}
           to={AppRoute.Main}
         >

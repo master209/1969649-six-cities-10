@@ -1,4 +1,4 @@
-import {clickSort, changeSort} from '../../store/main-process/main-process';
+import {clickSort, setSort} from '../../store/main-process/main-process';
 import {getSortBy, getIsSortListCollapsed} from '../../store/main-process/selectors';
 
 import {useAppSelector, useAppDispatch} from '../../hooks';
@@ -31,7 +31,7 @@ function SortingForm(): JSX.Element {
             key={sort}
             className={`places__option${sortBy === sort ? ' places__option--active' : ''}`}
             tabIndex={0}
-            onClick={() => dispatch(changeSort({sort}))}
+            onClick={() => dispatch(setSort(sort))}
           >
             {sort}
           </li>

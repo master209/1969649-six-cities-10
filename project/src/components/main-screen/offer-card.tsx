@@ -2,7 +2,7 @@ import {Link, useNavigate} from 'react-router-dom';
 
 import {Premium} from '../../components/common';
 
-import {fetchFavoriteStatusAction} from '../../store/api-actions';
+import {fetchFavoriteStatus} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 import useIsAuthorized from '../../hooks/use-is-authorized';
@@ -33,7 +33,7 @@ function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardPr
 
   const handleOnChangeFavoriteStatus = () => {
     isAuthorized
-      ? dispatch(fetchFavoriteStatusAction({offerId: offer.id, offerStatus: +!isFavorite}))
+      ? dispatch(fetchFavoriteStatus({offerId: offer.id, offerStatus: +!isFavorite}))
       : navigate(AppRoute.Login);
   };
 

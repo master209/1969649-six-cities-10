@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
 import {FavoritesCard} from './';
 
-import {fetchOffersAction} from '../../store/api-actions';
+import {fetchLoadOffers} from '../../store/api-actions';
 import {changeCity} from '../../store/main-process/main-process';
 import {getFavorites, getIsFavoritesLoaded} from '../../store/favorite-data/selectors';
 
@@ -22,12 +22,12 @@ function FavoritesList(): JSX.Element {
 
   // вычисляет количество favorites в городе city
   const favoritesByCityCount = (city: string): number =>
-    favorites.reduce((acc, item: Offer) =>
-      item.city.name === city ? ++acc : acc, 0);
+    favorites.reduce((acc, next: Offer) =>
+      next.city.name === city ? ++acc : acc, 0);
 
   const onChangeCity = (city: string) => {
     dispatch(changeCity({city}));
-    dispatch(fetchOffersAction(city));
+    dispatch(fetchLoadOffers(city));
   };
 
   const renderFavorites = () => (

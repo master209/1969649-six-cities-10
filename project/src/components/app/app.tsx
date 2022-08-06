@@ -12,7 +12,7 @@ import {
   NotFoundScreen,
 } from '../../pages';
 
-import {fetchOffersAction} from '../../store/api-actions';
+import {fetchLoadOffers} from '../../store/api-actions';
 import {
   getActiveCity,
   getOffers,
@@ -47,7 +47,7 @@ function App(): JSX.Element {
   const isOffersLoaded = useAppSelector(getIsOffersLoaded);
 
   if (!offers.length && !isOffersLoading && !isOffersLoaded) {
-    dispatch(fetchOffersAction(activeCity));
+    dispatch(fetchLoadOffers(activeCity));
   }
 
   if (isOffersLoading) {

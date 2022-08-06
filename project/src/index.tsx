@@ -6,11 +6,11 @@ import {ToastContainer} from 'react-toastify';
 import App from './components/app/app';
 
 import {store} from './store';
-import {checkAuthAction} from './store/api-actions';
+import {fetchCheckAuth} from './store/api-actions';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-store.dispatch(checkAuthAction());
+store.dispatch(fetchCheckAuth());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

@@ -1,8 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 import {
-  fetchFavoritesAction,
-  fetchFavoriteStatusAction
+  fetchLoadFavorites,
+  fetchFavoriteStatus
 } from '../api-actions';
 
 import {FavoriteData} from '../../types/state';
@@ -19,26 +19,34 @@ const initialState: FavoriteData = {
 export const favoriteData = createSlice({
   name: NameSpace.Favorite,
   initialState,
-  reducers: {},
+  reducers: {
+    resetFavorites: (state) => {
+      state.favorites = [];
+      state.isFavoritesLoading = false;
+      state.isFavoritesLoaded = false;
+    },
+  },
   extraReducers(builder) {
     builder
-      .addCase(fetchFavoritesAction.pending, (state, {payload}) => {
+      .addCase(fetchLoadFavorites.pending, (state, {payload}) => {
         state.isError401 = false;
         state.isFavoritesLoading = false;
       })
-      .addCase(fetchFavoritesAction.fulfilled, (state, {payload}) => {
+      .addCase(fetchLoadFavorites.fulfilled, (state, {payload}) => {
         state.favorites = payload;
         state.isFavoritesLoading = false;
         state.isFavoritesLoaded = true;
       })
 
-      .addCase(fetchFavoriteStatusAction.fulfilled, (state, {payload: {data, offerStatus}}) => {
+      .addCase(fetchFavoriteStatus.fulfilled, (state, {payload: {data, offerStatus}}) => {
         offerStatus
           ? state.favorites.push(data)
           : state.favorites = state.favorites.filter(({id}) => id !== data.id);
       })
-      .addCase(fetchFavoriteStatusAction.rejected, (state) => {
+      .addCase(fetchFavoriteStatus.rejected, (state) => {
         state.isError401 = true;
       });
   }
 });
+
+export const {resetFavorites} = favoriteData.actions;

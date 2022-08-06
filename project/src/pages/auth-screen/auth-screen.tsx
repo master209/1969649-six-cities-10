@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 
-import {loginAction} from '../../store/api-actions';
+import {fetchLogin} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 
@@ -19,7 +19,7 @@ function AuthScreen(): JSX.Element {
     evt.preventDefault();
 
     if (loginRef.current && passwordRef.current) {
-      dispatch(loginAction({
+      dispatch(fetchLogin({
         login: loginRef.current.value,
         password: passwordRef.current.value,
       }));

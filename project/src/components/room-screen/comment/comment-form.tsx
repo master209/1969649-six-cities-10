@@ -2,7 +2,7 @@ import {useState, useRef, FormEvent, ChangeEvent} from 'react';
 
 import CommentFormRatingItem from './comment-form-rating-item';
 
-import {fetchCreateCommentAction} from '../../../store/api-actions';
+import {fetchCreateComment} from '../../../store/api-actions';
 
 import {useAppDispatch} from '../../../hooks';
 
@@ -34,7 +34,7 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    dispatch(fetchCreateCommentAction({...form, offerId}));
+    dispatch(fetchCreateComment({...form, offerId}));
     setForm(INITIAL_STATE);
     commentFormRef.current?.reset();
   };

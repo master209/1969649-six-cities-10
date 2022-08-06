@@ -12,10 +12,10 @@ import {
 
 import {setFavoriteStatus} from '../../store/offer-data/offer-data';
 import {
-  fetchCommentsAction,
-  fetchFavoriteStatusAction,
-  fetchOfferAction,
-  fetchOffersNearAction
+  fetchLoadComments,
+  fetchFavoriteStatus,
+  fetchOffer,
+  fetchLoadOffersNear
 } from '../../store/api-actions';
 import {getOffers} from '../../store/main-process/selectors';
 import {getFavorites} from '../../store/favorite-data/selectors';
@@ -63,9 +63,9 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   useEffect((): void => {
     if (!isOfferLoading && id) {
-      dispatch(fetchOfferAction(id));
-      dispatch(fetchOffersNearAction(id));
-      dispatch(fetchCommentsAction(id));
+      dispatch(fetchOffer(id));
+      dispatch(fetchLoadOffersNear(id));
+      dispatch(fetchLoadComments(id));
     }
   },[]);
 
@@ -108,7 +108,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
     const handleOnChangeFavoriteStatus = () => {
       isAuthorized
-        ? dispatch(fetchFavoriteStatusAction({offerId: _offer.id, offerStatus: +!isFavorite}))
+        ? dispatch(fetchFavoriteStatus({offerId: _offer.id, offerStatus: +!isFavorite}))
         : navigate(AppRoute.Login);
     };
 

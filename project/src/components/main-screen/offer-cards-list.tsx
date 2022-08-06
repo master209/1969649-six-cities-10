@@ -8,7 +8,7 @@ type OfferCardsListProps = {
   handleMouseOut: (id: number) => void;
 };
 
-// «Список предложений по аренде»
+/* «Список предложений по аренде» */
 function OfferCardsList({offers, handleMouseOver, handleMouseOut}: OfferCardsListProps): JSX.Element {
   return (offers && (
     <div className="cities__places-list places__list tabs__content">

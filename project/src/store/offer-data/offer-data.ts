@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 import {
-  fetchOfferAction,
-  fetchOffersNearAction,
-  fetchCommentsAction,
-  fetchCreateCommentAction
+  fetchOffer,
+  fetchLoadOffersNear,
+  fetchLoadComments,
+  fetchCreateComment
 } from '../api-actions';
 
 import {OfferData} from '../../types/state';
@@ -29,39 +29,39 @@ export const offerData = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchOfferAction.pending, (state) => {
+      .addCase(fetchOffer.pending, (state) => {
         state.isError404 = false;
         state.isOfferLoading = true;
       })
-      .addCase(fetchOfferAction.fulfilled, (state, {payload}) => {
+      .addCase(fetchOffer.fulfilled, (state, {payload}) => {
         state.offer = payload;
         state.isOfferLoading = false;
       })
-      .addCase(fetchOfferAction.rejected, (state) => {
+      .addCase(fetchOffer.rejected, (state) => {
         state.isError404 = true;
         state.isOfferLoading = false;
       })
 
-      .addCase(fetchOffersNearAction.pending, (state) => {
+      .addCase(fetchLoadOffersNear.pending, (state) => {
         state.isOfferLoading = true;
       })
-      .addCase(fetchOffersNearAction.fulfilled, (state, {payload}) => {
+      .addCase(fetchLoadOffersNear.fulfilled, (state, {payload}) => {
         state.offersNear = payload || [];
         state.isOfferLoading = false;
       })
 
-      .addCase(fetchCommentsAction.pending, (state) => {
+      .addCase(fetchLoadComments.pending, (state) => {
         state.isOfferLoading = true;
       })
-      .addCase(fetchCommentsAction.fulfilled, (state, {payload}) => {
+      .addCase(fetchLoadComments.fulfilled, (state, {payload}) => {
         state.comments = payload || [];
         state.isOfferLoading = false;
       })
 
-      .addCase(fetchCreateCommentAction.pending, (state) => {
+      .addCase(fetchCreateComment.pending, (state) => {
         state.isOfferLoading = true;
       })
-      .addCase(fetchCreateCommentAction.fulfilled, (state, {payload}) => {
+      .addCase(fetchCreateComment.fulfilled, (state, {payload}) => {
         state.comments = payload || [];
         state.isOfferLoading = false;
       });

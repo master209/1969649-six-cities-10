@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 
-import {fetchFavoritesAction} from '../store/api-actions';
+import {fetchLoadFavorites} from '../store/api-actions';
 import {setFavoritesStatus} from '../store/main-process/main-process';
 
 import {
@@ -23,13 +23,11 @@ const useFetchFavorites = () => {
   useEffect((): void => {
     isAuthorized
     && (!isFavoritesLoaded && !isFavoritesLoading)
-    && dispatch(fetchFavoritesAction());
+    && dispatch(fetchLoadFavorites());
   },[]);
 
   useEffect((): void => {
-    isAuthorized
-    && isFavoritesLoaded
-    && dispatch(setFavoritesStatus({favorites}));
+    dispatch(setFavoritesStatus({favorites}));
   },[favorites]);
 
   return [favorites, isFavoritesLoading, isFavoritesLoaded];

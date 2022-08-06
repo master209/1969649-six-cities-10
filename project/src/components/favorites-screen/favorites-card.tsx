@@ -2,10 +2,9 @@ import {Link/*, useNavigate*/} from 'react-router-dom';
 
 import {Premium} from '../common';
 
-import {fetchFavoriteStatusAction} from '../../store/api-actions';
+import {fetchFavoriteStatus} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
-// import useIsAuthorized from '../../hooks/use-is-authorized';
 
 import {Offer} from '../../types/offers';
 
@@ -20,8 +19,6 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
   const {previewImage, isPremium, price, title, type, isFavorite} = offer;
 
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
-  // const isAuthorized = useIsAuthorized();
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
@@ -30,7 +27,7 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
     : 'place-card__bookmark-button button';
 
   const handleOnChangeFavoriteStatus = () => {
-    dispatch(fetchFavoriteStatusAction({offerId: offer.id, offerStatus: +!isFavorite}));
+    dispatch(fetchFavoriteStatus({offerId: offer.id, offerStatus: +!isFavorite}));
   };
 
   return (

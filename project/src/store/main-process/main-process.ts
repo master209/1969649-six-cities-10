@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import {fetchOffersAction} from '../api-actions';
+import {fetchLoadOffers} from '../api-actions';
 
 import {sortTo, arrayToMap} from '../../utils';
 
@@ -42,10 +42,14 @@ export const mainProcess = createSlice({
     collapseSortList: (state) => {
       state.isSortListCollapsed = true;
     },
-    changeSort: (state, {payload: {sort}}) => {
+    setSort: (state, {payload: sort}) => {
       const {offers} = state;
+      sort = sort ?? state.sortBy;
       state.sortBy = sort;
       state.isSortListCollapsed = true;
+
+      /* eslint-disable-next-line no-console */
+      console.log('setSort sort: ', sort);
 
       switch (sort) {
         case LowToHigh:
@@ -66,11 +70,11 @@ export const mainProcess = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchOffersAction.pending, (state) => {
+      .addCase(fetchLoadOffers.pending, (state) => {
         state.isOffersLoading = true;
         state.isOffersLoaded = false;
       })
-      .addCase(fetchOffersAction.fulfilled, (state, {payload: {data, activeCity}}) => {
+      .addCase(fetchLoadOffers.fulfilled, (state, {payload: {data, activeCity}}) => {
         const offers: Offers = data;
         state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
         state.isOffersLoading = false;
@@ -79,4 +83,4 @@ export const mainProcess = createSlice({
   }
 });
 
-export const {setFavoritesStatus, changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;
+export const {setFavoritesStatus, changeCity, clickSort, collapseSortList, setSort} = mainProcess.actions;

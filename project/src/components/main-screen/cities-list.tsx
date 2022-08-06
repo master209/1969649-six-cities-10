@@ -1,9 +1,10 @@
 import {Link} from 'react-router-dom';
 
-import {fetchOffersAction} from '../../store/api-actions';
+import {fetchLoadOffers} from '../../store/api-actions';
 import {changeCity} from '../../store/main-process/main-process';
 
 import {useAppDispatch} from '../../hooks';
+import useSetSort from '../../hooks/use-set-sort';
 
 import {AppRoute} from '../../const';
 
@@ -15,10 +16,11 @@ type CitiesListProps = {
 /* «Список городов» */
 function CitiesList({cities, activeCity} : CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
+  useSetSort();
 
   const onChangeCity = (city: string) => {
     dispatch(changeCity({city}));
-    dispatch(fetchOffersAction(city));
+    dispatch(fetchLoadOffers(city));
   };
 
   return (
