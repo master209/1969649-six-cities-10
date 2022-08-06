@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
 import {FavoritesCard} from './';
 
-import useAppSelectors from '../../hooks/use-app-selectors';
+import useAppSelectors from '../../hooks/app-selectors';
 
 import {Offer} from '../../types/offers';
 

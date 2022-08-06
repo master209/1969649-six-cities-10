@@ -1,4 +1,4 @@
-import useAppSelectors from '../hooks/use-app-selectors';
+import useAppSelectors from './app-selectors';
 
 import {AuthorizationStatus} from '../const';
 

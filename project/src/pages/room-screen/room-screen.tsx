@@ -19,8 +19,8 @@ import {
 } from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
-import useIsAuthorized from '../../hooks/use-is-authorized';
-import useAppSelectors from '../../hooks/use-app-selectors';
+import useIsAuthorized from '../../hooks/is-authorized';
+import useAppSelectors from '../../hooks/app-selectors';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
 

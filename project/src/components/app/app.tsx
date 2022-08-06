@@ -18,7 +18,7 @@ import {changeCity} from '../../store/main-process/main-process';
 import withMap from '../../hocs/with-map';
 
 import {useAppDispatch} from '../../hooks';
-import useAppSelectors from '../../hooks/use-app-selectors';
+import useAppSelectors from '../../hooks/app-selectors';
 
 import {AppRoute, cities} from '../../const';
 

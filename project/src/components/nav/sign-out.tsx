@@ -4,7 +4,7 @@ import {fetchLogout} from '../../store/api-actions';
 import {resetFavorites} from '../../store/favorite-data/favorite-data';
 
 import {useAppDispatch} from '../../hooks';
-import useAppSelectors from '../../hooks/use-app-selectors';
+import useAppSelectors from '../../hooks/app-selectors';
 
 import {AppRoute} from '../../const';
 

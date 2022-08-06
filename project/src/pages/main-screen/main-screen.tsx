@@ -11,8 +11,8 @@ import {
 import {collapseSortList} from '../../store/main-process/main-process';
 
 import {useAppDispatch} from '../../hooks';
-import useFetchFavorites from '../../hooks/use-fetch-favorites';
-import useNeedAuthorize from '../../hooks/use-need-authorize';
+import useFetchFavorites from '../../hooks/fetch-favorites';
+import useNeedAuthorize from '../../hooks/need-authorize';
 
 import {City, Offers, Location, Locations} from '../../types/offers';
 

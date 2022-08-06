@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-import useSetSort from '../../hooks/use-set-sort';
+import useSetSort from '../../hooks/set-sort';
 
 import {AppRoute} from '../../const';
 

@@ -5,7 +5,7 @@ import {Premium} from '../../components/common';
 import {fetchFavoriteStatus} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
-import useIsAuthorized from '../../hooks/use-is-authorized';
+import useIsAuthorized from '../../hooks/is-authorized';
 
 import {Offer} from '../../types/offers';
 

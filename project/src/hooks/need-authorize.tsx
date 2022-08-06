@@ -1,8 +1,8 @@
 import {useNavigate} from 'react-router-dom';
 
-import useAppSelectors from '../hooks/use-app-selectors';
+import useAppSelectors from './app-selectors';
 
-import useIsAuthorized from './use-is-authorized';
+import useIsAuthorized from './is-authorized';
 
 import {AppRoute} from '../const';
 
