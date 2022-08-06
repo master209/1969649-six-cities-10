@@ -4,9 +4,10 @@ import {CitiesList} from '../../components/main-screen';
 type MainEmptyScreenProps = {
   cities: string[];
   activeCity: string;
+  onChangeCity: (city: string) => void;
 };
 
-function MainEmptyScreen({cities, activeCity} :MainEmptyScreenProps): JSX.Element {
+function MainEmptyScreen({cities, activeCity, onChangeCity} :MainEmptyScreenProps): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
@@ -16,6 +17,7 @@ function MainEmptyScreen({cities, activeCity} :MainEmptyScreenProps): JSX.Elemen
           <CitiesList
             cities={cities}
             activeCity={activeCity}
+            onChangeCity={onChangeCity}
           />
           <div className="cities">
             <div className="cities__places-container cities__places-container--empty container">

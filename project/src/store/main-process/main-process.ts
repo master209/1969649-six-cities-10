@@ -25,8 +25,10 @@ export const mainProcess = createSlice({
   initialState,
   reducers: {
     changeCity: (state, {payload: {city}}) => {
-      state.activeCity = city;
-      state.offers = [];
+      if (state.activeCity !== city) {
+        state.activeCity = city;
+        state.offers = [];
+      }
     },
     setFavoritesStatus: (state, {payload: {favorites}}) => {
       const _favorites = arrayToMap(favorites, 'id');

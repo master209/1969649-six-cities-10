@@ -13,9 +13,10 @@ import {
 } from '../../pages';
 
 import {fetchLoadOffers} from '../../store/api-actions';
+import {changeCity} from '../../store/main-process/main-process';
 import {
-  getActiveCity,
   getOffers,
+  getActiveCity,
   getIsOffersLoading,
   getIsOffersLoaded
 } from '../../store/main-process/selectors';
@@ -51,10 +52,13 @@ function App(): JSX.Element {
   }
 
   if (isOffersLoading) {
-    return (
-      <Loader />
-    );
+    return <Loader />;
   }
+
+  const onChangeCity = (city: string) => {
+    dispatch(changeCity({city}));
+    dispatch(fetchLoadOffers(city));
+  };
 
   return (
     <BrowserRouter>
@@ -66,6 +70,7 @@ function App(): JSX.Element {
               cities={cities}
               offers={offers}
               activeCity={activeCity}
+              onChangeCity={onChangeCity}
             />
           }
         />
@@ -75,6 +80,7 @@ function App(): JSX.Element {
             <MainEmptyScreen
               cities={cities}
               activeCity={activeCity}
+              onChangeCity={onChangeCity}
             />
           }
         />
@@ -82,7 +88,7 @@ function App(): JSX.Element {
           path={Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen />
+              <FavoritesScreen onChangeCity={onChangeCity} />
             </PrivateRoute>
           }
         />
@@ -100,7 +106,7 @@ function App(): JSX.Element {
         />
         <Route
           path={Login}
-          element={<AuthScreen />}
+          element={<AuthScreen onChangeCity={onChangeCity} />}
         />
         <Route
           path="*"

@@ -3,19 +3,20 @@ import {Link} from 'react-router-dom';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
 import {FavoritesCard} from './';
 
-import {fetchLoadOffers} from '../../store/api-actions';
-import {changeCity} from '../../store/main-process/main-process';
 import {getFavorites, getIsFavoritesLoaded} from '../../store/favorite-data/selectors';
 
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppSelector} from '../../hooks';
 
 import {Offer} from '../../types/offers';
 
 import {AppRoute, cities} from '../../const';
 
+type FavoritesListProps = {
+  onChangeCity: (city: string) => void;
+};
+
 /* «Список избранных предложений» */
-function FavoritesList(): JSX.Element {
-  const dispatch = useAppDispatch();
+function FavoritesList({onChangeCity}: FavoritesListProps): JSX.Element {
 
   const favorites = useAppSelector(getFavorites);
   const isFavoritesLoaded = useAppSelector(getIsFavoritesLoaded);
@@ -24,11 +25,6 @@ function FavoritesList(): JSX.Element {
   const favoritesByCityCount = (city: string): number =>
     favorites.reduce((acc, next: Offer) =>
       next.city.name === city ? ++acc : acc, 0);
-
-  const onChangeCity = (city: string) => {
-    dispatch(changeCity({city}));
-    dispatch(fetchLoadOffers(city));
-  };
 
   const renderFavorites = () => (
     <ul className="favorites__list">

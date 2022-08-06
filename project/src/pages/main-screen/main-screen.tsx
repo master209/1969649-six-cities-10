@@ -22,6 +22,7 @@ type MainProps = {
   cities: string[];
   offers: Offers;
   activeCity: string;
+  onChangeCity: (city: string) => void;
   renderMap: (
     activeCity: City,
     locations: Locations,
@@ -31,7 +32,7 @@ type MainProps = {
 };
 
 function MainScreen(props: MainProps): JSX.Element {
-  const {cities, offers, activeCity, renderMap} = props;
+  const {cities, offers, activeCity, renderMap, onChangeCity} = props;
 
   const dispatch = useAppDispatch();
   useNeedAuthorize();
@@ -66,6 +67,7 @@ function MainScreen(props: MainProps): JSX.Element {
           <CitiesList
             cities={cities}
             activeCity={activeCity}
+            onChangeCity={onChangeCity}
           />
           <div className="cities">
             <div className="cities__places-container container">

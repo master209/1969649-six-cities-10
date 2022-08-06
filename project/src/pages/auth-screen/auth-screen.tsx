@@ -9,7 +9,13 @@ import {useAppDispatch} from '../../hooks';
 
 import {AppRoute} from '../../const';
 
-function AuthScreen(): JSX.Element {
+const CITY = 'Amsterdam';
+
+type AuthScreenProps = {
+  onChangeCity: (city: string) => void;
+};
+
+function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
@@ -70,8 +76,12 @@ function AuthScreen(): JSX.Element {
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
-                <Link className="locations__item-link" to={AppRoute.Main}>
-                  <span>Amsterdam</span>
+                <Link
+                  className="locations__item-link"
+                  to={AppRoute.Main}
+                  onClick={() => onChangeCity(CITY)}
+                >
+                  <span>{CITY}</span>
                 </Link>
               </div>
             </section>
