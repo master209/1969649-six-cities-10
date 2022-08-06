@@ -48,9 +48,6 @@ export const mainProcess = createSlice({
       state.sortBy = sort;
       state.isSortListCollapsed = true;
 
-      /* eslint-disable-next-line no-console */
-      console.log('setSort sort: ', sort);
-
       switch (sort) {
         case LowToHigh:
           state.offers = sortTo(offers, 'price', Order.Asc);
@@ -61,10 +58,8 @@ export const mainProcess = createSlice({
         case TopRated:
           state.offers = sortTo(offers, 'rating');
           break;
-
         default:
-          // state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
-          break;
+          state.offers = sortTo(offers, 'id', Order.Asc);
       }
     }
   },
@@ -79,6 +74,10 @@ export const mainProcess = createSlice({
         state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
         state.isOffersLoading = false;
         state.isOffersLoaded = true;
+      })
+      .addCase(fetchLoadOffers.rejected, (state) => {
+        state.isOffersLoading = false;
+        state.isOffersLoaded = false;
       });
   }
 });
