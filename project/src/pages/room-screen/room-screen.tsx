@@ -17,18 +17,10 @@ import {
   fetchOffer,
   fetchLoadOffersNear
 } from '../../store/api-actions';
-import {getOffers} from '../../store/main-process/selectors';
-import {getFavorites} from '../../store/favorite-data/selectors';
-import {
-  getIsLoading,
-  getOffer,
-  getOffersNear,
-  getComments,
-  getIsError404
-} from '../../store/offer-data/selectors';
 
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
 import useIsAuthorized from '../../hooks/use-is-authorized';
+import useAppSelectors from '../../hooks/use-app-selectors';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
 
@@ -44,22 +36,15 @@ type RoomProps = {
 };
 
 function RoomScreen({renderMap}: RoomProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const isAuthorized = useIsAuthorized();
+
+  const {offers, isOfferLoading, offer, offersNear, comments, isError404, favorites} = useAppSelectors();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  const isAuthorized = useIsAuthorized();
   const {id} = useParams();
-
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const offers = useAppSelector(getOffers);
-  const isOfferLoading = useAppSelector(getIsLoading);
-  const offer = useAppSelector(getOffer);
-  const offersNear = useAppSelector(getOffersNear);
-  const comments = useAppSelector(getComments);
-  const isError404 = useAppSelector(getIsError404);
-  const favorites = useAppSelector(getFavorites);
 
   useEffect((): void => {
     if (!isOfferLoading && id) {

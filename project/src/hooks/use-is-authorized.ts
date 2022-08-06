@@ -1,11 +1,9 @@
-import {useAppSelector} from './';
-
-import {getAuthorizationStatus} from '../store/user-process/selectors';
+import useAppSelectors from '../hooks/use-app-selectors';
 
 import {AuthorizationStatus} from '../const';
 
 const useIsAuthorized = () => {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const {authorizationStatus} = useAppSelectors();
 
   return authorizationStatus === AuthorizationStatus.Auth;
 };

@@ -14,16 +14,11 @@ import {
 
 import {fetchLoadOffers} from '../../store/api-actions';
 import {changeCity} from '../../store/main-process/main-process';
-import {
-  getOffers,
-  getActiveCity,
-  getIsOffersLoading,
-  getIsOffersLoaded
-} from '../../store/main-process/selectors';
 
 import withMap from '../../hocs/with-map';
 
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
+import useAppSelectors from '../../hooks/use-app-selectors';
 
 import {AppRoute, cities} from '../../const';
 
@@ -41,11 +36,7 @@ function App(): JSX.Element {
   } = AppRoute;
 
   const dispatch = useAppDispatch();
-
-  const activeCity = useAppSelector(getActiveCity);
-  const offers = useAppSelector(getOffers);
-  const isOffersLoading = useAppSelector(getIsOffersLoading);
-  const isOffersLoaded = useAppSelector(getIsOffersLoaded);
+  const {offers, activeCity, isOffersLoading, isOffersLoaded} = useAppSelectors();
 
   if (!offers.length && !isOffersLoading && !isOffersLoaded) {
     dispatch(fetchLoadOffers(activeCity));
@@ -88,7 +79,9 @@ function App(): JSX.Element {
           path={Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen onChangeCity={onChangeCity} />
+              <FavoritesScreen
+                onChangeCity={onChangeCity}
+              />
             </PrivateRoute>
           }
         />
@@ -106,7 +99,11 @@ function App(): JSX.Element {
         />
         <Route
           path={Login}
-          element={<AuthScreen onChangeCity={onChangeCity} />}
+          element={
+            <AuthScreen
+              onChangeCity={onChangeCity}
+            />
+          }
         />
         <Route
           path="*"

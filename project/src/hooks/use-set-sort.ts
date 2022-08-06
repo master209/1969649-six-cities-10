@@ -1,13 +1,13 @@
 import {useEffect} from 'react';
 
 import {setSort} from '../store/main-process/main-process';
-import {getOffers} from '../store/main-process/selectors';
 
-import {useAppSelector, useAppDispatch} from '.';
+import {useAppDispatch} from '.';
+import useAppSelectors from '../hooks/use-app-selectors';
 
 const useSetSort = () => {
   const dispatch = useAppDispatch();
-  const offers = useAppSelector(getOffers);
+  const {offers} = useAppSelectors();
 
   useEffect(() => {
     dispatch(setSort(null));

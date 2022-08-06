@@ -2,20 +2,18 @@ import {Link} from 'react-router-dom';
 
 import {fetchLogout} from '../../store/api-actions';
 import {resetFavorites} from '../../store/favorite-data/favorite-data';
-import {getFavorites} from '../../store/favorite-data/selectors';
 
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
+import useAppSelectors from '../../hooks/use-app-selectors';
 
 import {AppRoute} from '../../const';
 
 function SignOut(): JSX.Element {
   const dispatch = useAppDispatch();
-
-  const favorites = useAppSelector(getFavorites);
+  const {favorites} = useAppSelectors();
 
   return (
     <ul className="header__nav-list">
-
       <li className="header__nav-item user">
         <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
           <div className="header__avatar-wrapper user__avatar-wrapper">
@@ -24,7 +22,6 @@ function SignOut(): JSX.Element {
           <span className="header__favorite-count">{favorites.length}</span>
         </Link>
       </li>
-
       <li className="header__nav-item">
         <Link
           className="header__nav-link"
@@ -38,7 +35,6 @@ function SignOut(): JSX.Element {
           <span className="header__signout">Sign out</span>
         </Link>
       </li>
-
     </ul>
   );
 }
