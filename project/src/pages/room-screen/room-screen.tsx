@@ -19,6 +19,7 @@ import {
 } from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
+import useFetchFavorites from '../../hooks/fetch-favorites';
 import useIsAuthorized from '../../hooks/is-authorized';
 import useAppSelectors from '../../hooks/app-selectors';
 
@@ -39,6 +40,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isAuthorized = useIsAuthorized();
+  useFetchFavorites();
 
   const {offers, isOfferLoading, offer, offersNear, comments, isError404, favorites} = useAppSelectors();
 

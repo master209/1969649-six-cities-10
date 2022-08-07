@@ -7,6 +7,8 @@ import {
   fetchCreateComment
 } from '../api-actions';
 
+import {arrayToMap} from '../../utils';
+
 import {OfferData} from '../../types/state';
 
 import {NameSpace} from '../../const';
@@ -25,7 +27,14 @@ export const offerData = createSlice({
   reducers: {
     setFavoriteStatus: ({offer}) => {
       offer && (offer.isFavorite = !offer.isFavorite);
-    }
+    },
+    setOffersNearFavoriteStatus: (state, {payload: {favorites}}) => {
+      const _favorites = arrayToMap(favorites, 'id');
+
+      state.offersNear.forEach((offer) => {
+        offer.isFavorite = !!_favorites[offer.id];
+      });
+    },
   },
   extraReducers(builder) {
     builder
@@ -68,4 +77,4 @@ export const offerData = createSlice({
   }
 });
 
-export const {setFavoriteStatus} = offerData.actions;
+export const {setFavoriteStatus, setOffersNearFavoriteStatus} = offerData.actions;

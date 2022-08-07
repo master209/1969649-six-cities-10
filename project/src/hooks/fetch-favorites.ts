@@ -1,7 +1,8 @@
 import {useEffect} from 'react';
 
 import {fetchLoadFavorites} from '../store/api-actions';
-import {setFavoritesStatus} from '../store/main-process/main-process';
+import {setOffersFavoriteStatus} from '../store/main-process/main-process';
+import {setOffersNearFavoriteStatus} from '../store/offer-data/offer-data';
 
 import {useAppDispatch} from '.';
 import useIsAuthorized from './is-authorized';
@@ -19,7 +20,8 @@ const useFetchFavorites = () => {
   },[]);
 
   useEffect((): void => {
-    dispatch(setFavoritesStatus({favorites}));
+    dispatch(setOffersFavoriteStatus({favorites}));
+    dispatch(setOffersNearFavoriteStatus({favorites}));
   },[favorites]);
 
   return [favorites, isFavoritesLoading, isFavoritesLoaded];
