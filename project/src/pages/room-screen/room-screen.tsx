@@ -19,7 +19,7 @@ import {
 } from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
-import useFetchFavorites from '../../hooks/fetch-favorites';
+import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
 import useIsAuthorized from '../../hooks/is-authorized';
 import useAppSelectors from '../../hooks/app-selectors';
 
@@ -40,9 +40,9 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isAuthorized = useIsAuthorized();
-  useFetchFavorites();
+  useSetOffersFavoriteStatus(true);
 
-  const {offers, isOfferLoading, offer, offersNear, comments, isError404, favorites} = useAppSelectors();
+  const {offers, isOfferLoading, offer, offersNear, comments, isError404} = useAppSelectors();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
@@ -55,10 +55,6 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       dispatch(fetchLoadComments(id));
     }
   },[]);
-
-  useEffect((): void => {
-    dispatch(setFavoriteStatus());
-  },[favorites]);
 
   isError404 && navigate(AppRoute.NotFound);
 
@@ -94,12 +90,21 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
     const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
 
     const favoriteClass = isFavorite
+      ? 'property__bookmark-button property__bookmark-button--active button'
+      : 'property__bookmark-button button';
+
+    const favoriteSvgClass = isFavorite
       ? 'place-card__bookmark-icon'
       : 'property__bookmark-icon';
 
+    const favoriteStatus = () => {
+      dispatch(fetchFavoriteStatus({offerId: _offer.id, offerStatus: +!isFavorite}));
+      dispatch(setFavoriteStatus());
+    };
+
     const handleOnChangeFavoriteStatus = () => {
       isAuthorized
-        ? dispatch(fetchFavoriteStatus({offerId: _offer.id, offerStatus: +!isFavorite}))
+        ? favoriteStatus()
         : navigate(AppRoute.Login);
     };
 
@@ -128,11 +133,11 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{title}</h1>
                   <button
-                    className="property__bookmark-button property__bookmark-button--active button"
+                    className={favoriteClass}
                     type="button"
                     onClick={handleOnChangeFavoriteStatus}
                   >
-                    <svg className={favoriteClass} width="31" height="33">
+                    <svg className={favoriteSvgClass} width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
                     <span className="visually-hidden">To bookmarks</span>

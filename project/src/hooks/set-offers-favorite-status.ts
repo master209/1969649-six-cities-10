@@ -8,7 +8,7 @@ import {useAppDispatch} from '.';
 import useIsAuthorized from './is-authorized';
 import useAppSelectors from './app-selectors';
 
-const useFetchFavorites = () => {
+const useSetOffersFavoriteStatus = (isForNear?: boolean) => {
   const dispatch = useAppDispatch();
   const isAuthorized = useIsAuthorized();
   const {favorites, isFavoritesLoading, isFavoritesLoaded} = useAppSelectors();
@@ -20,11 +20,12 @@ const useFetchFavorites = () => {
   },[]);
 
   useEffect((): void => {
-    dispatch(setOffersFavoriteStatus({favorites}));
-    dispatch(setOffersNearFavoriteStatus({favorites}));
+    isForNear
+      ? dispatch(setOffersNearFavoriteStatus({favorites}))
+      : dispatch(setOffersFavoriteStatus({favorites}));
   },[favorites]);
 
   return [favorites, isFavoritesLoading, isFavoritesLoaded];
 };
 
-export default useFetchFavorites;
+export default useSetOffersFavoriteStatus;

@@ -20,7 +20,8 @@ type OfferCardProps = {
 }
 
 /* «Карточка предложения по аренде» */
-function OfferCard({offer, handleCardMouseOver, handleCardMouseOut, classPrefix, imgSize:{width, height}}: OfferCardProps): JSX.Element {
+function OfferCard(props: OfferCardProps): JSX.Element {
+  const {offer, handleCardMouseOver, handleCardMouseOut, classPrefix, imgSize:{width, height}} = props;
   const {previewImage, isPremium, price, title, type, isFavorite} = offer;
 
   const dispatch = useAppDispatch();
