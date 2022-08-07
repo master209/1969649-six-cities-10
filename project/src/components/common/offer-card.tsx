@@ -13,12 +13,14 @@ import {AppRoute} from '../../const';
 
 type OfferCardProps = {
   offer: Offer;
-  handleCardMouseOver: () => void;
-  handleCardMouseOut: () => void;
+  handleCardMouseOver?: () => void;
+  handleCardMouseOut?: () => void;
+  classPrefix: string;
+  imgSize: {width: number, height: number};
 }
 
 /* «Карточка предложения по аренде» */
-function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardProps): JSX.Element {
+function OfferCard({offer, handleCardMouseOver, handleCardMouseOut, classPrefix, imgSize:{width, height}}: OfferCardProps): JSX.Element {
   const {previewImage, isPremium, price, title, type, isFavorite} = offer;
 
   const dispatch = useAppDispatch();
@@ -39,14 +41,14 @@ function OfferCard({offer, handleCardMouseOver, handleCardMouseOut}: OfferCardPr
 
   return (
     <article
-      className="cities__card place-card"
+      className={`${classPrefix}__card place-card`}
       onMouseOver={handleCardMouseOver}
       onMouseOut={handleCardMouseOut}
     >
       {isPremium && <Premium /> }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${classPrefix}__image-wrapper place-card__image-wrapper`}>
         <Link to={linkToOffer}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
+          <img className="place-card__image" src={previewImage} width={width} height={height} alt="Place" />
         </Link>
       </div>
       <div className="place-card__info">

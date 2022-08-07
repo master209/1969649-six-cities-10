@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
-import {FavoritesCard} from './';
+import {OfferCard} from '../../components/common';
 
 import useAppSelectors from '../../hooks/app-selectors';
 
@@ -42,9 +42,11 @@ function FavoritesList({onChangeCity}: FavoritesListProps): JSX.Element {
               <div className="favorites__places">
                 {favorites.map((favorite) => (
                   favorite.city.name === city && (
-                    <FavoritesCard
+                    <OfferCard
                       key={favorite.id}
                       offer={favorite}
+                      classPrefix="favorites"
+                      imgSize={{width: 150, height: 110}}
                     />)
                 ))}
               </div>

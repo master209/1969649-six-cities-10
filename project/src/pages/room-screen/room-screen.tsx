@@ -69,6 +69,10 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
     setSelectedLocation(hoveredOffer && hoveredOffer.location);
   };
 
+  const onListItemOut = () => {
+    setSelectedLocation(undefined);
+  };
+
   const renderOffer = (_offer: Offer) => {
     const {
       isFavorite,
@@ -199,6 +203,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
             <OfferNearsList
               offersNear={offersNear}
               handleMouseOver={onNearListItemHover}
+              handleMouseOut={onListItemOut}
             />
           </div>
         </main>

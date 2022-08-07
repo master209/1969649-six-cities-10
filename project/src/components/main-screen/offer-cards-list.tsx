@@ -1,4 +1,4 @@
-import {OfferCard} from '.';
+import {OfferCard} from '../../components/common';
 
 import {Offers} from '../../types/offers';
 
@@ -18,6 +18,8 @@ function OfferCardsList({offers, handleMouseOver, handleMouseOut}: OfferCardsLis
           offer={offer}
           handleCardMouseOver={() => handleMouseOver(offer.id)}
           handleCardMouseOut={() => handleMouseOut(offer.id)}
+          classPrefix="cities"
+          imgSize={{width: 260, height: 200}}
         />
       ))}
     </div>
