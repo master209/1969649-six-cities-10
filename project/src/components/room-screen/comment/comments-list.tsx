@@ -6,7 +6,7 @@ type CommentListProps = {
   comments: Comments;
 };
 
-// «Список отзывов»
+/* «Список отзывов» */
 function CommentsList({comments}: CommentListProps): JSX.Element {
   return (
     <ul className="reviews__list">

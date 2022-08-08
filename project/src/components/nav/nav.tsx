@@ -2,7 +2,7 @@ import {useLocation} from 'react-router-dom';
 
 import {SignOut, SignIn} from './';
 
-import useIsAuthorized from '../../hooks/use-is-authorized';
+import useIsAuthorized from '../../hooks/is-authorized';
 
 import {AppRoute} from '../../const';
 

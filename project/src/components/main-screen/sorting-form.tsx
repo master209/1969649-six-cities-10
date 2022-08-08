@@ -1,15 +1,13 @@
-import {clickSort, changeSort} from '../../store/main-process/main-process';
-import {getSortBy, getIsSortListCollapsed} from '../../store/main-process/selectors';
+import {clickSort, setSort} from '../../store/main-process/main-process';
 
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
+import useAppSelectors from '../../hooks/app-selectors';
 
 import {offerSorts} from '../../const';
 
 function SortingForm(): JSX.Element {
   const dispatch = useAppDispatch();
-
-  const sortBy = useAppSelector(getSortBy);
-  const isSortListCollapsed = useAppSelector(getIsSortListCollapsed);
+  const {sortBy, isSortListCollapsed} = useAppSelectors();
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -31,7 +29,7 @@ function SortingForm(): JSX.Element {
             key={sort}
             className={`places__option${sortBy === sort ? ' places__option--active' : ''}`}
             tabIndex={0}
-            onClick={() => dispatch(changeSort({sort}))}
+            onClick={() => dispatch(setSort(sort))}
           >
             {sort}
           </li>

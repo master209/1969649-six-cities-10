@@ -12,23 +12,16 @@ import {
 
 import {setFavoriteStatus} from '../../store/offer-data/offer-data';
 import {
-  fetchCommentsAction,
-  fetchFavoriteStatusAction,
-  fetchOfferAction,
-  fetchOffersNearAction
+  fetchLoadComments,
+  fetchFavoriteStatus,
+  fetchOffer,
+  fetchLoadOffersNear
 } from '../../store/api-actions';
-import {getOffers} from '../../store/main-process/selectors';
-import {getFavorites} from '../../store/favorite-data/selectors';
-import {
-  getIsLoading,
-  getOffer,
-  getOffersNear,
-  getComments,
-  getIsError404
-} from '../../store/offer-data/selectors';
 
-import {useAppSelector, useAppDispatch} from '../../hooks';
-import useIsAuthorized from '../../hooks/use-is-authorized';
+import {useAppDispatch} from '../../hooks';
+import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
+import useIsAuthorized from '../../hooks/is-authorized';
+import useAppSelectors from '../../hooks/app-selectors';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
 
@@ -44,34 +37,24 @@ type RoomProps = {
 };
 
 function RoomScreen({renderMap}: RoomProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const isAuthorized = useIsAuthorized();
+  useSetOffersFavoriteStatus(true);
+
+  const {offers, isOfferLoading, offer, offersNear, comments, isError404} = useAppSelectors();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  const isAuthorized = useIsAuthorized();
   const {id} = useParams();
-
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const offers = useAppSelector(getOffers);
-  const isOfferLoading = useAppSelector(getIsLoading);
-  const offer = useAppSelector(getOffer);
-  const offersNear = useAppSelector(getOffersNear);
-  const comments = useAppSelector(getComments);
-  const isError404 = useAppSelector(getIsError404);
-  const favorites = useAppSelector(getFavorites);
 
   useEffect((): void => {
     if (!isOfferLoading && id) {
-      dispatch(fetchOfferAction(id));
-      dispatch(fetchOffersNearAction(id));
-      dispatch(fetchCommentsAction(id));
+      dispatch(fetchOffer(id));
+      dispatch(fetchLoadOffersNear(id));
+      dispatch(fetchLoadComments(id));
     }
   },[]);
-
-  useEffect((): void => {
-    dispatch(setFavoriteStatus());
-  },[favorites]);
 
   isError404 && navigate(AppRoute.NotFound);
 
@@ -80,6 +63,10 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const onNearListItemHover = (offerId: number) => {
     const hoveredOffer = offers.find(({id:_id}) => _id === offerId);
     setSelectedLocation(hoveredOffer && hoveredOffer.location);
+  };
+
+  const onListItemOut = () => {
+    setSelectedLocation(undefined);
   };
 
   const renderOffer = (_offer: Offer) => {
@@ -103,12 +90,21 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
     const hostProClass = isPro ? 'property__avatar-wrapper--pro' : '';
 
     const favoriteClass = isFavorite
+      ? 'property__bookmark-button property__bookmark-button--active button'
+      : 'property__bookmark-button button';
+
+    const favoriteSvgClass = isFavorite
       ? 'place-card__bookmark-icon'
       : 'property__bookmark-icon';
 
+    const favoriteStatus = () => {
+      dispatch(fetchFavoriteStatus({offerId: _offer.id, offerStatus: +!isFavorite}));
+      dispatch(setFavoriteStatus());
+    };
+
     const handleOnChangeFavoriteStatus = () => {
       isAuthorized
-        ? dispatch(fetchFavoriteStatusAction({offerId: _offer.id, offerStatus: +!isFavorite}))
+        ? favoriteStatus()
         : navigate(AppRoute.Login);
     };
 
@@ -137,11 +133,11 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{title}</h1>
                   <button
-                    className="property__bookmark-button property__bookmark-button--active button"
+                    className={favoriteClass}
                     type="button"
                     onClick={handleOnChangeFavoriteStatus}
                   >
-                    <svg className={favoriteClass} width="31" height="33">
+                    <svg className={favoriteSvgClass} width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
                     <span className="visually-hidden">To bookmarks</span>
@@ -212,6 +208,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
             <OfferNearsList
               offersNear={offersNear}
               handleMouseOver={onNearListItemHover}
+              handleMouseOut={onListItemOut}
             />
           </div>
         </main>

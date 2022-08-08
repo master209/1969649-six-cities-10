@@ -1,27 +1,32 @@
-import {Link/*, useNavigate*/} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
-import {Premium} from '../common';
+import {Premium} from '../../components/common';
 
-import {fetchFavoriteStatusAction} from '../../store/api-actions';
+import {fetchFavoriteStatus} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
-// import useIsAuthorized from '../../hooks/use-is-authorized';
+import useIsAuthorized from '../../hooks/is-authorized';
 
 import {Offer} from '../../types/offers';
 
 import {AppRoute} from '../../const';
 
-type FavoritesCardProps = {
+type OfferCardProps = {
   offer: Offer;
+  handleCardMouseOver?: () => void;
+  handleCardMouseOut?: () => void;
+  classPrefix: string;
+  imgSize: {width: number, height: number};
 }
 
-/* «Карточка избранных предложений» */
-function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
+/* «Карточка предложения по аренде» */
+function OfferCard(props: OfferCardProps): JSX.Element {
+  const {offer, handleCardMouseOver, handleCardMouseOut, classPrefix, imgSize:{width, height}} = props;
   const {previewImage, isPremium, price, title, type, isFavorite} = offer;
 
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
-  // const isAuthorized = useIsAuthorized();
+  const navigate = useNavigate();
+  const isAuthorized = useIsAuthorized();
 
   const linkToOffer = `${AppRoute.Offer}/${offer.id}`;
 
@@ -30,18 +35,24 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
     : 'place-card__bookmark-button button';
 
   const handleOnChangeFavoriteStatus = () => {
-    dispatch(fetchFavoriteStatusAction({offerId: offer.id, offerStatus: +!isFavorite}));
+    isAuthorized
+      ? dispatch(fetchFavoriteStatus({offerId: offer.id, offerStatus: +!isFavorite}))
+      : navigate(AppRoute.Login);
   };
 
   return (
-    <article className="favorites__card place-card">
+    <article
+      className={`${classPrefix}__card place-card`}
+      onMouseOver={handleCardMouseOver}
+      onMouseOut={handleCardMouseOut}
+    >
       {isPremium && <Premium /> }
-      <div className="favorites__image-wrapper place-card__image-wrapper">
+      <div className={`${classPrefix}__image-wrapper place-card__image-wrapper`}>
         <Link to={linkToOffer}>
-          <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place" />
+          <img className="place-card__image" src={previewImage} width={width} height={height} alt="Place" />
         </Link>
       </div>
-      <div className="favorites__card-info place-card__info">
+      <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -55,7 +66,7 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">In bookmarks</span>
+            <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -73,4 +84,4 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
   );
 }
 
-export default FavoritesCard;
+export default OfferCard;

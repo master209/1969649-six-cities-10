@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import {fetchOffersAction} from '../api-actions';
+import {fetchLoadOffers} from '../api-actions';
 
 import {sortTo, arrayToMap} from '../../utils';
 
@@ -25,10 +25,12 @@ export const mainProcess = createSlice({
   initialState,
   reducers: {
     changeCity: (state, {payload: {city}}) => {
-      state.activeCity = city;
-      state.offers = [];
+      if (state.activeCity !== city) {
+        state.activeCity = city;
+        state.offers = [];
+      }
     },
-    setFavoritesStatus: (state, {payload: {favorites}}) => {
+    setOffersFavoriteStatus: (state, {payload: {favorites}}) => {
       const _favorites = arrayToMap(favorites, 'id');
 
       state.offers.forEach((offer) => {
@@ -42,8 +44,9 @@ export const mainProcess = createSlice({
     collapseSortList: (state) => {
       state.isSortListCollapsed = true;
     },
-    changeSort: (state, {payload: {sort}}) => {
+    setSort: (state, {payload: sort}) => {
       const {offers} = state;
+      sort = sort ?? state.sortBy;
       state.sortBy = sort;
       state.isSortListCollapsed = true;
 
@@ -57,26 +60,28 @@ export const mainProcess = createSlice({
         case TopRated:
           state.offers = sortTo(offers, 'rating');
           break;
-
         default:
-          // state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
-          break;
+          state.offers = sortTo(offers, 'id', Order.Asc);
       }
     }
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchOffersAction.pending, (state) => {
+      .addCase(fetchLoadOffers.pending, (state) => {
         state.isOffersLoading = true;
         state.isOffersLoaded = false;
       })
-      .addCase(fetchOffersAction.fulfilled, (state, {payload: {data, activeCity}}) => {
+      .addCase(fetchLoadOffers.fulfilled, (state, {payload: {data, activeCity}}) => {
         const offers: Offers = data;
         state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
         state.isOffersLoading = false;
         state.isOffersLoaded = true;
+      })
+      .addCase(fetchLoadOffers.rejected, (state) => {
+        state.isOffersLoading = false;
+        state.isOffersLoaded = false;
       });
   }
 });
 
-export const {setFavoritesStatus, changeCity, clickSort, collapseSortList, changeSort} = mainProcess.actions;
+export const {setOffersFavoriteStatus, changeCity, clickSort, collapseSortList, setSort} = mainProcess.actions;

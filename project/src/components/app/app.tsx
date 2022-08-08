@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {PrivateRoute} from '../../components/private-route';
@@ -13,24 +12,13 @@ import {
   NotFoundScreen,
 } from '../../pages';
 
-import {fetchOffersAction, fetchFavoritesAction} from '../../store/api-actions';
-import {setFavoritesStatus} from '../../store/main-process/main-process';
-import {
-  getActiveCity,
-  getOffers,
-  getIsOffersLoading,
-  getIsOffersLoaded
-} from '../../store/main-process/selectors';
-
-import {
-  getFavorites,
-  getIsFavoriteLoading,
-  getIsFavoritesLoaded
-} from '../../store/favorite-data/selectors';
+import {fetchLoadOffers} from '../../store/api-actions';
+import {changeCity} from '../../store/main-process/main-process';
 
 import withMap from '../../hocs/with-map';
 
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
+import useAppSelectors from '../../hooks/app-selectors';
 
 import {AppRoute, cities} from '../../const';
 
@@ -48,37 +36,20 @@ function App(): JSX.Element {
   } = AppRoute;
 
   const dispatch = useAppDispatch();
-
-  const activeCity = useAppSelector(getActiveCity);
-  const offers = useAppSelector(getOffers);
-  const isOffersLoading = useAppSelector(getIsOffersLoading);
-  const isOffersLoaded = useAppSelector(getIsOffersLoaded);
-
-  const favorites = useAppSelector(getFavorites);
-  const isFavoritesLoading = useAppSelector(getIsFavoriteLoading);
-  const isFavoritesLoaded = useAppSelector(getIsFavoritesLoaded);
-
-  useEffect((): void => {
-    if (!isFavoritesLoaded && !isFavoritesLoading) {
-      dispatch(fetchFavoritesAction());
-    }
-  },[]);
-
-  useEffect((): void => {
-    if (isFavoritesLoaded) {
-      dispatch(setFavoritesStatus({favorites}));
-    }
-  },[favorites]);
+  const {offers, activeCity, isOffersLoading, isOffersLoaded} = useAppSelectors();
 
   if (!offers.length && !isOffersLoading && !isOffersLoaded) {
-    dispatch(fetchOffersAction(activeCity));
+    dispatch(fetchLoadOffers(activeCity));
   }
 
-  if (isOffersLoading || isFavoritesLoading) {
-    return (
-      <Loader />
-    );
+  if (isOffersLoading) {
+    return <Loader />;
   }
+
+  const onChangeCity = (city: string) => {
+    dispatch(changeCity({city}));
+    dispatch(fetchLoadOffers(city));
+  };
 
   return (
     <BrowserRouter>
@@ -90,6 +61,7 @@ function App(): JSX.Element {
               cities={cities}
               offers={offers}
               activeCity={activeCity}
+              onChangeCity={onChangeCity}
             />
           }
         />
@@ -99,6 +71,7 @@ function App(): JSX.Element {
             <MainEmptyScreen
               cities={cities}
               activeCity={activeCity}
+              onChangeCity={onChangeCity}
             />
           }
         />
@@ -106,7 +79,9 @@ function App(): JSX.Element {
           path={Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen />
+              <FavoritesScreen
+                onChangeCity={onChangeCity}
+              />
             </PrivateRoute>
           }
         />
@@ -124,7 +99,11 @@ function App(): JSX.Element {
         />
         <Route
           path={Login}
-          element={<AuthScreen />}
+          element={
+            <AuthScreen
+              onChangeCity={onChangeCity}
+            />
+          }
         />
         <Route
           path="*"

@@ -27,6 +27,7 @@ export type OfferData = {
 
 export type FavoriteData = {
   favorites: Offers;
+  isError401: boolean;
   isFavoritesLoading: boolean,
   isFavoritesLoaded: boolean, // уже загружено?
 };

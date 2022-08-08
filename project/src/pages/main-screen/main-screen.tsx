@@ -11,6 +11,8 @@ import {
 import {collapseSortList} from '../../store/main-process/main-process';
 
 import {useAppDispatch} from '../../hooks';
+import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
+import useNeedAuthorize from '../../hooks/need-authorize';
 
 import {City, Offers, Location, Locations} from '../../types/offers';
 
@@ -20,6 +22,7 @@ type MainProps = {
   cities: string[];
   offers: Offers;
   activeCity: string;
+  onChangeCity: (city: string) => void;
   renderMap: (
     activeCity: City,
     locations: Locations,
@@ -29,9 +32,11 @@ type MainProps = {
 };
 
 function MainScreen(props: MainProps): JSX.Element {
-  const {cities, offers, activeCity, renderMap} = props;
+  const {cities, offers, activeCity, renderMap, onChangeCity} = props;
 
   const dispatch = useAppDispatch();
+  useNeedAuthorize();
+  useSetOffersFavoriteStatus();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
@@ -62,6 +67,7 @@ function MainScreen(props: MainProps): JSX.Element {
           <CitiesList
             cities={cities}
             activeCity={activeCity}
+            onChangeCity={onChangeCity}
           />
           <div className="cities">
             <div className="cities__places-container container">
