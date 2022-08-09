@@ -1,4 +1,4 @@
-import {Order} from './const';
+import {Order} from '../const';
 
 export const sortTo = (array: any[], key: string, direction?: string): any[] =>
   array.sort((rawA, rawB) => {
