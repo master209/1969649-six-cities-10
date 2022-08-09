@@ -22,6 +22,7 @@ export enum AuthorizationStatus {
 }
 
 export const cities = [
+  'Saratov',
   'Paris',
   'Cologne',
   'Brussels',
