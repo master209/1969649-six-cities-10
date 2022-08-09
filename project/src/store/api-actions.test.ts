@@ -8,8 +8,6 @@ import {fetchLoadOffers, fetchCheckAuth, fetchLogin, fetchLogout} from './api-ac
 
 import {State} from '../types/state';
 import {AuthData} from '../types/auth-data';
-import {Offers} from '../types/offers';
-
 import {APIRoute} from '../const';
 
 import {makeFakeOffers} from '../utils/mocks'
@@ -66,24 +64,6 @@ describe('Async actions', () => {
     expect(Storage.prototype.setItem).toBeCalledWith('six-cities-token', 'secret');
   });
 
-  it('should dispatch LoadOffers when GET /Offers', async () => {
-    const mockOffers = makeFakeOffers();
-
-    mockAPI
-      .onGet(APIRoute.Offers)
-      .reply(200, {data: mockOffers, activeCity: 'Paris'});
-
-    const store = mockStore();
-    await store.dispatch(fetchLoadOffers('Paris'));
-
-    const actions = store.getActions().map(({type}) => type);
-
-    expect(actions).toEqual([
-      fetchLoadOffers.pending.type,
-      fetchLoadOffers.fulfilled.type
-    ]);
-  });
-
   it('should dispatch Logout when Delete /logout', async () => {
     mockAPI
       .onDelete(APIRoute.Logout)
@@ -103,5 +83,23 @@ describe('Async actions', () => {
 
     expect(Storage.prototype.removeItem).toBeCalledTimes(1);
     expect(Storage.prototype.removeItem).toBeCalledWith('six-cities-token');
+  });
+
+  it('should dispatch LoadOffers when GET /Offers', async () => {
+    const mockOffers = makeFakeOffers();
+
+    mockAPI
+      .onGet(APIRoute.Offers)
+      .reply(200, {data: mockOffers, activeCity: 'Paris'});
+
+    const store = mockStore();
+    await store.dispatch(fetchLoadOffers('Paris'));
+
+    const actions = store.getActions().map(({type}) => type);
+
+    expect(actions).toEqual([
+      fetchLoadOffers.pending.type,
+      fetchLoadOffers.fulfilled.type
+    ]);
   });
 });
