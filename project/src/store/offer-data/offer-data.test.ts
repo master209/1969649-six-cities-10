@@ -3,10 +3,10 @@ import {setFavoriteStatus} from './offer-data';
 
 import {makeFakeOffer} from '../../utils/mocks';
 
-const fakeOffer = makeFakeOffer();
+const mockOffer = makeFakeOffer();
 
 const state = {
-  offer: fakeOffer,
+  offer: mockOffer,
   offersNear: [],
   comments: [],
   isError404: false,
@@ -14,10 +14,11 @@ const state = {
 };
 
 describe('Reducer: offerData', () => {
-  it('Should invert setFavoriteStatus', () => {
-    state.offer.isFavorite = !state.offer.isFavorite;
+  it('Should return inverted setFavoriteStatus', () => {
+    const offer = {...state.offer, isFavorite: true};
+    const resultState = {...state, offer};
 
     expect(offerData.reducer(state, setFavoriteStatus()))
-      .toEqual(state);
+      .toEqual(resultState);
   });
 });

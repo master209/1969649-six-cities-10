@@ -13,26 +13,24 @@ const location = {
   zoom: num,
 };
 
-
-const images = new Array(3).fill(null).map(() => lorem.word(1));
-const goods = new Array(3).fill(null).map(() => lorem.word(1));
+const strings = new Array(3).fill(null).map(() => lorem.word(1));
 
 export const makeFakeOffer = () => ({
-  id: num,
+  id: datatype.number(99),
   city: {
     name: lorem.word(1),
     location,
   },
   previewImage: image.imageUrl(),
-  images,
+  images: strings,
   isPremium: false,
-  price: num,
+  price: datatype.number(9999),
   title: name.title(),
   type: lorem.word(),
-  rating: num,
-  bedrooms: num,
-  maxAdults: num,
-  goods,
+  rating: datatype.number(5),
+  bedrooms: datatype.number(3),
+  maxAdults: datatype.number(10),
+  goods: strings,
   host: {
     avatarUrl: image.avatar(),
     name: name.title(),
@@ -43,3 +41,6 @@ export const makeFakeOffer = () => ({
   location
 });
 
+export const makeFakeOffers = () => ({
+  offers: new Array(5).fill(null).map(() => makeFakeOffer())
+});

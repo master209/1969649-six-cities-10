@@ -17,30 +17,16 @@ describe('Reducer: mainProcess', () => {
   });
 
   it('Should return changed city', () => {
-    const newState = {
-      offers: [],
-      activeCity: 'Hamburg',
-      sortBy: 'Popular',
-      isSortListCollapsed: true,
-      isOffersLoading: false,
-      isOffersLoaded: false,
-    };
+    const resultState = {...state, activeCity: 'Hamburg'};
 
     expect(mainProcess.reducer(state, changeCity({city: 'Hamburg'})))
-      .toEqual(newState);
+      .toEqual(resultState);
   });
 
-  it('Should invert isSortListCollapsed', () => {
-    const newState = {
-      offers: [],
-      activeCity: 'Paris',
-      sortBy: 'Popular',
-      isSortListCollapsed: false,
-      isOffersLoading: false,
-      isOffersLoaded: false,
-    };
+  it('Should return inverted isSortListCollapsed', () => {
+    const resultState = {...state, isSortListCollapsed: false};
 
     expect(mainProcess.reducer(state, clickSort()))
-      .toEqual(newState);
+      .toEqual(resultState);
   });
 });
