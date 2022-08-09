@@ -1,4 +1,4 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 
 import {PrivateRoute} from '../../components/private-route';
 import {
@@ -52,65 +52,63 @@ function App(): JSX.Element {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={Main}
-          element={
-            <MainScreenWrapped
-              cities={cities}
-              offers={offers}
-              activeCity={activeCity}
+    <Routes>
+      <Route
+        path={Main}
+        element={
+          <MainScreenWrapped
+            cities={cities}
+            offers={offers}
+            activeCity={activeCity}
+            onChangeCity={onChangeCity}
+          />
+        }
+      />
+      <Route
+        path={MainEmpty}
+        element={
+          <MainEmptyScreen
+            cities={cities}
+            activeCity={activeCity}
+            onChangeCity={onChangeCity}
+          />
+        }
+      />
+      <Route
+        path={Favorites}
+        element={
+          <PrivateRoute>
+            <FavoritesScreen
               onChangeCity={onChangeCity}
             />
-          }
-        />
-        <Route
-          path={MainEmpty}
-          element={
-            <MainEmptyScreen
-              cities={cities}
-              activeCity={activeCity}
-              onChangeCity={onChangeCity}
-            />
-          }
-        />
-        <Route
-          path={Favorites}
-          element={
-            <PrivateRoute>
-              <FavoritesScreen
-                onChangeCity={onChangeCity}
-              />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={FavoritesEmpty}
-          element={
-            <PrivateRoute>
-              <FavoritesEmptyScreen />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={OfferId}
-          element={<RoomScreenWrapped />}
-        />
-        <Route
-          path={Login}
-          element={
-            <AuthScreen
-              onChangeCity={onChangeCity}
-            />
-          }
-        />
-        <Route
-          path="*"
-          element={<NotFoundScreen />}
-        />
-      </Routes>
-    </BrowserRouter>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path={FavoritesEmpty}
+        element={
+          <PrivateRoute>
+            <FavoritesEmptyScreen />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path={OfferId}
+        element={<RoomScreenWrapped />}
+      />
+      <Route
+        path={Login}
+        element={
+          <AuthScreen
+            onChangeCity={onChangeCity}
+          />
+        }
+      />
+      <Route
+        path="*"
+        element={<NotFoundScreen />}
+      />
+    </Routes>
   );
 }
 

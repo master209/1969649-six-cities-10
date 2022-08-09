@@ -1,13 +1,16 @@
 import {render, screen} from '@testing-library/react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
+import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 
+import HistoryRouter from '../../components/history-route/history-route';
 import MainEmptyScreen from './main-empty-screen';
 
 import {AppRoute, cities} from '../../const';
 
 const mockStore = configureMockStore();
+const history = createMemoryHistory();
 const store = mockStore({});
 const activeCity = 'Paris';
 
@@ -17,7 +20,7 @@ describe('Component: MainEmptyScreen', () => {
   it('should render correctly', () => {
     render(
       <Provider store={store}>
-        <BrowserRouter>
+        <HistoryRouter history={history}>
           <Routes>
             <Route
               path={AppRoute.MainEmpty}
@@ -30,7 +33,7 @@ describe('Component: MainEmptyScreen', () => {
               }
             />
           </Routes>
-        </BrowserRouter>
+        </HistoryRouter>
       </Provider>);
 
     // console.info(screen.);
