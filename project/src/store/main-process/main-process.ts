@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {fetchLoadOffers} from '../api-actions';
 
-import {sortTo, arrayToMap} from '../../utils';
+import {sortTo, arrayToMap} from '../../utils/utils';
 
 import {Offers} from '../../types/offers';
 import {MainProcess} from '../../types/state';

@@ -40,6 +40,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isAuthorized = useIsAuthorized();
+
   useSetOffersFavoriteStatus(true);
 
   const {offers, isOfferLoading, offer, offersNear, comments, isError404} = useAppSelectors();
@@ -50,11 +51,16 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   useEffect((): void => {
     if (!isOfferLoading && id) {
-      dispatch(fetchOffer(id));
       dispatch(fetchLoadOffersNear(id));
       dispatch(fetchLoadComments(id));
     }
   },[]);
+
+  useEffect((): void => {
+    if (id) {
+      dispatch(fetchOffer(id));
+    }
+  },[id]);
 
   isError404 && navigate(AppRoute.NotFound);
 
