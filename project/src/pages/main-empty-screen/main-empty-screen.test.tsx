@@ -18,8 +18,6 @@ const mockStore = configureMockStore();
 const history = createMemoryHistory();
 const activeCity = 'Paris';
 
-const onChangeCity = (city: string) => {};
-
 describe('Component: MainEmptyScreen', () => {
   it('should render correctly', () => {
     const store = mockStore({
@@ -41,7 +39,7 @@ describe('Component: MainEmptyScreen', () => {
                 <MainEmptyScreen
                   cities={cities}
                   activeCity={activeCity}
-                  onChangeCity={onChangeCity}
+                  onChangeCity={(city: string) => {}}
                 />
               }
             />

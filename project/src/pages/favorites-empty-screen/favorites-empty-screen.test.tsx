@@ -1,15 +1,15 @@
 import {render, screen} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
-import {configureMockStore} from '@jedmao/redux-mock-store';
 
-import {FavoritesEmptyScreen} from "../index";
+import {FavoritesEmptyScreen} from '../index';
 
 describe('Component: FavoritesEmptyScreen', () => {
   it('should render correctly', () => {
     render(
-        <BrowserRouter >
-          <FavoritesEmptyScreen />
-        </BrowserRouter>);
+      <BrowserRouter >
+        <FavoritesEmptyScreen />
+      </BrowserRouter>
+    );
 
     expect(screen.getByText('Favorites (empty)')).toBeInTheDocument();
     expect(screen.getByText('Nothing yet saved.')).toBeInTheDocument();
