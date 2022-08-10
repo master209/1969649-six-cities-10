@@ -7,7 +7,7 @@ import {
   fetchCreateComment
 } from '../api-actions';
 
-import {arrayToMap} from '../../utils/utils';
+import {arrayToMap} from '../../utils';
 
 import {OfferData} from '../../types/state';
 

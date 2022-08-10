@@ -1,5 +1,4 @@
-import {mainProcess} from './main-process';
-import {changeCity, clickSort} from './main-process';
+import {mainProcess, changeCity, clickSort} from './main-process';
 
 const state = {
   offers: [],

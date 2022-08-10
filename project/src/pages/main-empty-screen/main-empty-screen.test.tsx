@@ -1,7 +1,7 @@
-import {render, screen} from '@testing-library/react';
 import {Routes, Route} from 'react-router-dom';
-import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
+import {createMemoryHistory} from 'history';
+import {render, screen} from '@testing-library/react';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 
 import HistoryRouter from '../../components/history-route/history-route';
@@ -41,7 +41,7 @@ describe('Component: MainEmptyScreen', () => {
                 <MainEmptyScreen
                   cities={cities}
                   activeCity={activeCity}
-                  onChangeCity={(city: string) => {}}
+                  onChangeCity={jest.fn()}
                 />
               }
             />

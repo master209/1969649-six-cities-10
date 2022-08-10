@@ -1,10 +1,10 @@
 import {Routes, Route} from 'react-router-dom';
-import {render, screen} from '@testing-library/react';
 import {Provider} from 'react-redux';
 import {createMemoryHistory} from 'history';
+import {render, screen} from '@testing-library/react';
 import {configureMockStore} from '@jedmao/redux-mock-store';
-import HistoryRouter from '../history-route/history-route';
 
+import HistoryRouter from '../history-route/history-route';
 import AuthScreen from '../../pages/auth-screen/auth-screen';
 
 import {AppRoute, AuthorizationStatus} from '../../const';
@@ -25,7 +25,7 @@ const store = mockStore({
 
 const history = createMemoryHistory();
 
-const onChangeCity = (city: string) => {};
+global.window.scrollTo = jest.fn();
 
 const fakeApp = (
   <Provider store={store}>
@@ -39,7 +39,7 @@ const fakeApp = (
           path={AppRoute.Login}
           element={
             <AuthScreen
-              onChangeCity={onChangeCity}
+              onChangeCity={jest.fn()}
             />
           }
         />

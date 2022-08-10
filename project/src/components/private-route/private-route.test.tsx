@@ -1,11 +1,13 @@
 import {Routes, Route} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import {createMemoryHistory} from 'history';
 import {render, screen} from '@testing-library/react';
-import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
+
 import HistoryRouter from '../history-route/history-route';
-import {AppRoute, AuthorizationStatus} from '../../const';
 import PrivateRoute from './private-route';
+
+import {AppRoute, AuthorizationStatus} from '../../const';
 
 import {makeFakeOffers, makeFakeOffer} from '../../utils/mocks';
 

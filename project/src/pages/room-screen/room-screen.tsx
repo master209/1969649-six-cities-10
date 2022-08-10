@@ -57,9 +57,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   },[]);
 
   useEffect((): void => {
-    if (id) {
-      dispatch(fetchOffer(id));
-    }
+    id && dispatch(fetchOffer(id));
   },[id]);
 
   isError404 && navigate(AppRoute.NotFound);

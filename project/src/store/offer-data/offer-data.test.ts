@@ -1,5 +1,4 @@
-import {offerData} from './offer-data';
-import {setFavoriteStatus} from './offer-data';
+import {offerData, setFavoriteStatus} from './offer-data';
 
 import {makeFakeOffer} from '../../utils/mocks';
 
