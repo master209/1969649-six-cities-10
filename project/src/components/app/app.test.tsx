@@ -1,33 +1,49 @@
+import {Routes, Route} from 'react-router-dom';
 import {render, screen} from '@testing-library/react';
 import {Provider} from 'react-redux';
 import {createMemoryHistory} from 'history';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import HistoryRouter from '../history-route/history-route';
 
-import App from './app';
+import AuthScreen from '../../pages/auth-screen/auth-screen';
 
-import {makeFakeOffer, makeFakeOffers} from '../../utils/mocks';
+import {AppRoute, AuthorizationStatus} from '../../const';
+
+import {makeFakeOffers, makeFakeOffer} from '../../utils/mocks';
 
 const mockOffers = makeFakeOffers();
 const mockOffer = makeFakeOffer();
 
-import {AuthorizationStatus, AppRoute} from '../../const';
-
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Auth},
+  USER: {authorizationStatus: AuthorizationStatus.NoAuth},
   MAIN: {offers: mockOffers},
   OFFER: {offer: mockOffer},
-  FAVORITE: {favorites: []}
+  FAVORITE: {favorites: []},
 });
 
 const history = createMemoryHistory();
 
+const onChangeCity = (city: string) => {};
+
 const fakeApp = (
   <Provider store={store}>
     <HistoryRouter history={history}>
-      <App />
+      <Routes>
+        <Route
+          path={AppRoute.Main}
+          element={<h1>Main Screen page</h1>}
+        />
+        <Route
+          path={AppRoute.Login}
+          element={
+            <AuthScreen
+              onChangeCity={onChangeCity}
+            />
+          }
+        />
+      </Routes>
     </HistoryRouter>
   </Provider>
 );
@@ -38,7 +54,7 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByText(/__/i)).toBeInTheDocument();
+    expect(screen.getByText(/Main Screen page/i)).toBeInTheDocument();
   });
 
   it('should render "AuthScreen" when user navigate to "/login"', () => {
@@ -46,7 +62,7 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByLabelText(/Логин/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Пароль/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
   });
 });
