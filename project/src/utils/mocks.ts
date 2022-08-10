@@ -41,6 +41,4 @@ export const makeFakeOffer = () => ({
   location
 });
 
-export const makeFakeOffers = () => (
-  new Array(5).fill(null).map(() => makeFakeOffer())
-);
+export const makeFakeOffers = () => new Array(5).fill(null).map(() => makeFakeOffer());

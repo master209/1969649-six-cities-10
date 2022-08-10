@@ -7,7 +7,7 @@ import HistoryRouter from '../components/history-route/history-route';
 import MainScreen from '../pages/main-screen/main-screen';
 import withMap from './with-map';
 
-import {AuthorizationStatus, cities} from "../const";
+import {AuthorizationStatus, cities} from '../const';
 
 import {makeFakeOffer, makeFakeOffers} from '../utils/mocks';
 
@@ -38,7 +38,6 @@ jest.mock('../components/map/map', () => {
 });
 
 describe('HOC: withMap', () => {
-/*
   it('base component should correct rendering when use with HOC', () => {
     const BaseComponentWrapped = withMap(() => <h1>Some component withMap</h1>);
 
@@ -46,13 +45,9 @@ describe('HOC: withMap', () => {
 
     expect(screen.getByText(/Some component withMap/i)).toBeInTheDocument();
   });
-*/
 
   it('base component should correct rendering another component with render-prop', () => {
     const BaseComponentWrapped = withMap(MainScreen);
-
-    console.info(mockOffers);
-
 
     render(
       <Provider store={store}>
@@ -62,15 +57,12 @@ describe('HOC: withMap', () => {
             offers={mockOffers}
             activeCity={activeCity}
             onChangeCity={jest.fn}
-          >
-            <p>This is children component</p>
-          </BaseComponentWrapped>
+          />
         </HistoryRouter>,
       </Provider>
     );
 
-    // expect(screen.getByText(/This is children component/i)).toBeInTheDocument();
-    // expect(screen.getByText(/This is mock Map/i)).toBeInTheDocument();
+    expect(screen.getByText(/This is mock Map/i)).toBeInTheDocument();
     expect(screen.getByText(/places to stay in Paris/i)).toBeInTheDocument();
   });
 });
