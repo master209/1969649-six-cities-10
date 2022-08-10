@@ -18,6 +18,8 @@ const mockStore = configureMockStore();
 const history = createMemoryHistory();
 const activeCity = 'Paris';
 
+global.window.scrollTo = jest.fn();
+
 describe('Component: MainEmptyScreen', () => {
   it('should render correctly', () => {
     const store = mockStore({

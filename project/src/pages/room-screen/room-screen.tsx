@@ -22,7 +22,6 @@ import {useAppDispatch} from '../../hooks';
 import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
 import useIsAuthorized from '../../hooks/is-authorized';
 import useAppSelectors from '../../hooks/app-selectors';
-import {useScrollToTop} from '../../hooks/scroll-to-top';
 
 import {Offer, City, Location, Locations} from '../../types/offers';
 
@@ -43,7 +42,6 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const isAuthorized = useIsAuthorized();
 
   useSetOffersFavoriteStatus(true);
-  useScrollToTop();
 
   const {offers, isOfferLoading, offer, offersNear, comments, isError404} = useAppSelectors();
 
