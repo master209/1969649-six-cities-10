@@ -5,19 +5,16 @@ import {render, screen} from '@testing-library/react';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import userEvent from '@testing-library/user-event';
 
-import AuthScreen from '../../pages/auth-screen/auth-screen'
+import AuthScreen from '../../pages/auth-screen/auth-screen';
 import SignIn from './sign-in';
 import HistoryRouter from '../../components/history-route/history-route';
 
 import {AppRoute, AuthorizationStatus} from '../../const';
 
-const history = createMemoryHistory();
-
 import {makeFakeOffers, makeFakeOffer} from '../../utils';
 
 const mockOffers = makeFakeOffers();
 const mockOffer = makeFakeOffer();
-
 const mockStore = configureMockStore();
 
 const store = mockStore({
@@ -27,9 +24,9 @@ const store = mockStore({
   FAVORITE: {favorites: []},
 });
 
-
 global.window.scrollTo = jest.fn();
-const onChangeCity =() => jest.fn();
+const history = createMemoryHistory();
+const onChangeCity = () => jest.fn();
 
 const fakeApp = (
   <Provider store={store}>

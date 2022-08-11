@@ -14,7 +14,6 @@ import {makeFakeOffers, makeFakeOffer} from '../../utils';
 
 const mockOffers = makeFakeOffers();
 const mockOffer = makeFakeOffer();
-
 const mockStore = configureMockStore();
 
 const store = mockStore({
