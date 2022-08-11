@@ -1,3 +1,7 @@
+import {cities} from '../const'
+
+import {uniqueId} from './utils';
+
 import {
   datatype,
   name,
@@ -13,12 +17,12 @@ const location = {
   zoom: num,
 };
 
-const strings = new Array(3).fill(null).map(() => lorem.word(1));
+const strings = new Array(3).fill(null).map(() => lorem.word());
 
 export const makeFakeOffer = () => ({
-  id: datatype.number(99),
+  id: uniqueId(),
   city: {
-    name: lorem.word(1),
+    name: cities[Math.floor(Math.random() * cities.length)],
     location,
   },
   previewImage: image.imageUrl(),
@@ -41,4 +45,4 @@ export const makeFakeOffer = () => ({
   location
 });
 
-export const makeFakeOffers = () => new Array(5).fill(null).map(() => makeFakeOffer());
+export const makeFakeOffers = () => new Array(10).fill(null).map(() => makeFakeOffer());

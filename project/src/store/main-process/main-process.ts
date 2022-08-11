@@ -71,7 +71,7 @@ export const mainProcess = createSlice({
         state.isOffersLoading = true;
         state.isOffersLoaded = false;
       })
-      .addCase(fetchLoadOffers.fulfilled, (state, {payload: {data, activeCity}}) => {
+      .addCase(fetchLoadOffers.fulfilled, (state, {payload: {activeCity, data}}) => {
         const offers: Offers = data;
         state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
         state.isOffersLoading = false;
