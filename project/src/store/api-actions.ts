@@ -111,7 +111,7 @@ export const fetchLogin = createAsyncThunk<{email: string}, AuthData, {
   extra: AxiosInstance
 }>(
   'User/fetchLogin',
-  async ({login: email, password}, {dispatch, extra: api}) => {
+  async ({email, password}, {dispatch, extra: api}) => {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     return {email};

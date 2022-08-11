@@ -29,6 +29,7 @@ export const userProcess = createSlice({
       })
       .addCase(fetchLogin.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.email = '';
       })
       .addCase(fetchLogout.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
