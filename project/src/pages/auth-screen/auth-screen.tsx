@@ -52,6 +52,7 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
                     type="email"
                     id="email"
                     name="email"
+                    data-testid="email"
                     placeholder="Email"
                     required
                   />
@@ -64,6 +65,7 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
                     type="password"
                     id="password"
                     name="password"
+                    data-testid="password"
                     placeholder="Password"
                     required
                   />

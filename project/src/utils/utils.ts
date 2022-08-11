@@ -1,4 +1,4 @@
-import {Order, cities} from '../const';
+import {Order} from '../const';
 
 export const sortTo = (array: any[], key: string, direction?: string): any[] =>
   array.sort((rawA, rawB) => {
@@ -22,7 +22,5 @@ export const arrayToMap = (arr:any, byKey: string) =>
   arr.reduce((acc: any, next: any) =>
     ({...acc, [next[byKey]]: next}), {});
 
-
-export const uniqueId = (length=4) => {
-  return parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(length).toString().replace(".", ""))
-}
+export const uniqueId = (len = 4) =>
+  parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(len).toString().replace('.', ''), 10);
