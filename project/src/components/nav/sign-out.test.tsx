@@ -10,8 +10,6 @@ import HistoryRouter from '../../components/history-route/history-route';
 
 import {AppRoute, AuthorizationStatus} from '../../const';
 
-const history = createMemoryHistory();
-
 import {makeFakeOffers, makeFakeOffer} from '../../utils';
 
 const mockOffers = makeFakeOffers();
@@ -25,6 +23,8 @@ const store = mockStore({
   OFFER: {offer: mockOffer},
   FAVORITE: {favorites: []},
 });
+
+const history = createMemoryHistory();
 
 const fakeApp = (
   <Provider store={store}>
