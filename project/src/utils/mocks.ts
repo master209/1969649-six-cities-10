@@ -1,4 +1,4 @@
-import {cities} from '../const'
+import {cities} from '../const';
 
 import {uniqueId} from './utils';
 

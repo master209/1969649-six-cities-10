@@ -9,7 +9,7 @@ import AuthScreen from '../../pages/auth-screen/auth-screen';
 
 import {AppRoute, AuthorizationStatus} from '../../const';
 
-import {makeFakeOffers, makeFakeOffer} from '../../utils/mocks';
+import {makeFakeOffers, makeFakeOffer} from '../../utils';
 
 const mockOffers = makeFakeOffers();
 const mockOffer = makeFakeOffer();

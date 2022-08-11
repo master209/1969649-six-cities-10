@@ -10,7 +10,7 @@ import {State} from '../types/state';
 import {AuthData} from '../types/auth-data';
 import {APIRoute} from '../const';
 
-import {makeFakeOffers} from '../utils/mocks';
+import {makeFakeOffers} from '../utils';
 
 describe('Async actions', () => {
   const api = createAPI();

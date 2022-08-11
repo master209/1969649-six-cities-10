@@ -2,7 +2,7 @@ import {mainProcess, changeCity, clickSort} from './main-process';
 
 import {fetchLoadOffers} from '../api-actions';
 
-import {makeFakeOffers} from '../../utils/mocks';
+import {makeFakeOffers} from '../../utils';
 
 const mockOffers = makeFakeOffers();
 const activeCity = 'Paris';
@@ -42,5 +42,5 @@ describe('Reducer: mainProcess', () => {
 
     expect(mainProcess.reducer(state, {type: fetchLoadOffers.fulfilled.type, payload: {activeCity, data: mockOffers}}))
       .toEqual(resultState);
-  })
+  });
 });

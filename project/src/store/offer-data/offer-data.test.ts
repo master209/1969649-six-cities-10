@@ -1,6 +1,6 @@
 import {offerData, setFavoriteStatus} from './offer-data';
 
-import {makeFakeOffer} from '../../utils/mocks';
+import {makeFakeOffer} from '../../utils';
 
 const mockOffer = makeFakeOffer();
 

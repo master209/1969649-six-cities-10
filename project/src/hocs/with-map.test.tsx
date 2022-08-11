@@ -9,7 +9,7 @@ import withMap from './with-map';
 
 import {AuthorizationStatus, cities} from '../const';
 
-import {makeFakeOffer, makeFakeOffers} from '../utils/mocks';
+import {makeFakeOffer, makeFakeOffers} from '../utils';
 
 const activeCity = 'Paris';
 const mockOffers = makeFakeOffers();

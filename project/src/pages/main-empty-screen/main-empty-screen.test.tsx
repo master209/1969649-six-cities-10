@@ -9,7 +9,7 @@ import MainEmptyScreen from './main-empty-screen';
 
 import {AppRoute, AuthorizationStatus, cities} from '../../const';
 
-import {makeFakeOffers, makeFakeOffer} from '../../utils/mocks';
+import {makeFakeOffers, makeFakeOffer} from '../../utils';
 
 const mockOffers = makeFakeOffers();
 const mockOffer = makeFakeOffer();

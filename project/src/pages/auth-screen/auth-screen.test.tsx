@@ -9,7 +9,7 @@ import HistoryRouter from '../../components/history-route/history-route';
 
 import {AuthorizationStatus} from '../../const';
 
-import {makeFakeOffers, makeFakeOffer} from '../../utils/mocks';
+import {makeFakeOffers, makeFakeOffer} from '../../utils';
 
 const mockOffers = makeFakeOffers();
 const mockOffer = makeFakeOffer();
