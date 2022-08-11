@@ -10,7 +10,7 @@ import {AppRoute} from '../../const';
 
 function SignOut(): JSX.Element {
   const dispatch = useAppDispatch();
-  const {favorites} = useAppSelectors();
+  const {favorites, email} = useAppSelectors();
 
   return (
     <ul className="header__nav-list">
@@ -22,7 +22,7 @@ function SignOut(): JSX.Element {
         >
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
-          <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+          <span className="header__user-name user__name">{email}</span>
           <span className="header__favorite-count">{favorites.length}</span>
         </Link>
       </li>

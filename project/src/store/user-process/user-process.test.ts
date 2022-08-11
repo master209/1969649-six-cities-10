@@ -7,7 +7,10 @@ describe('Reducer: userProcess', () => {
   let state: UserProcess;
 
   beforeEach(() => {
-    state = {authorizationStatus: AuthorizationStatus.Unknown};
+    state = {
+      authorizationStatus: AuthorizationStatus.Unknown,
+      email: ''
+    };
   });
 
   it('without additional parameters should return initial state', () => {

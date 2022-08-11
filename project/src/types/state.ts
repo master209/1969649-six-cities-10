@@ -5,7 +5,8 @@ import {Offer, Offers, Comments} from './offers';
 import {AuthorizationStatus} from '../const';
 
 export type UserProcess = {
-  authorizationStatus: AuthorizationStatus
+  authorizationStatus: AuthorizationStatus,
+  email: string,
 };
 
 export type MainProcess = {

@@ -8,6 +8,7 @@ import {NameSpace, AuthorizationStatus} from '../../const';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
+  email: '',
 };
 
 export const userProcess = createSlice({
@@ -22,14 +23,16 @@ export const userProcess = createSlice({
       .addCase(fetchCheckAuth.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
-      .addCase(fetchLogin.fulfilled, (state) => {
+      .addCase(fetchLogin.fulfilled, (state, {payload: {email}}) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
+        state.email = email;
       })
       .addCase(fetchLogin.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
-      .addCase(fetchLogout.fulfilled, (state, action) => {
+      .addCase(fetchLogout.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.email = '';
       });
   }
 });
