@@ -1,13 +1,11 @@
-import {cities} from '../const';
+import {configureMockStore} from '@jedmao/redux-mock-store';
+import {datatype, name, image, lorem} from 'faker';
+
+import {AuthorizationStatus, cities} from '../const';
 
 import {uniqueId} from './utils';
 
-import {
-  datatype,
-  name,
-  image,
-  lorem,
-} from 'faker';
+const mockStore = configureMockStore();
 
 const num = datatype.number(99);
 
@@ -46,3 +44,13 @@ export const makeFakeOffer = () => ({
 });
 
 export const makeFakeOffers = () => new Array(10).fill(null).map(() => makeFakeOffer());
+
+export const mockOffers = makeFakeOffers();
+export const mockOffer = makeFakeOffer();
+
+export const store = mockStore({
+  USER: {authorizationStatus: AuthorizationStatus.NoAuth},
+  MAIN: {offers: mockOffers},
+  OFFER: {offer: mockOffer},
+  FAVORITE: {favorites: []},
+});

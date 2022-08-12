@@ -1,29 +1,16 @@
 import {Provider} from 'react-redux';
 import {render, screen} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
-import {configureMockStore} from '@jedmao/redux-mock-store';
 
 import HistoryRouter from '../components/history-route/history-route';
 import MainScreen from '../pages/main-screen/main-screen';
 import withMap from './with-map';
 
-import {AuthorizationStatus, cities} from '../const';
+import {cities} from '../const';
 
-import {makeFakeOffer, makeFakeOffers} from '../utils';
+import {store, mockOffers} from '../utils';
 
 const activeCity = 'Paris';
-const mockOffers = makeFakeOffers();
-const mockOffer = makeFakeOffer();
-
-const mockStore = configureMockStore();
-
-const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.NoAuth},
-  MAIN: {activeCity, offers: mockOffers},
-  OFFER: {offer: mockOffer},
-  FAVORITE: {favorites: []},
-});
-
 const history = createMemoryHistory();
 
 global.window.scrollTo = jest.fn();
