@@ -1,8 +1,5 @@
 import {Order} from '../const';
 
-const ID_LEN = 4;
-const RADIX = 10;
-
 export const sortTo = (array: any[], key: string, direction?: string): any[] =>
   array.sort((rawA, rawB) => {
     let a: any;
@@ -25,5 +22,7 @@ export const arrayToMap = (arr:any, byKey: string) =>
   arr.reduce((acc: any, next: any) =>
     ({...acc, [next[byKey]]: next}), {});
 
-export const uniqueId = (len = ID_LEN) =>
-  parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(len).toString().replace('.', ''), RADIX);
+const ID_LEN = 4;
+// генерит уникальный числовой ID длиной ID_LEN
+export const uniqueId = (len = ID_LEN): number =>
+  parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(len).toString().replace('.', ''), 10);
