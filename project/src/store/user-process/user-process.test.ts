@@ -8,7 +8,7 @@ const {Auth, NoAuth, Unknown} = AuthorizationStatus;
 const email = 'test11@test.test';
 const password = '123456';
 
-let state: UserProcess = {
+const state: UserProcess = {
   authorizationStatus: Unknown,
   email: '',
 };
