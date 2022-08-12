@@ -12,7 +12,6 @@ import {AppRoute} from '../../const';
 
 import {store} from '../../utils';
 
-global.window.scrollTo = jest.fn();
 const history = createMemoryHistory();
 const onChangeCity = () => jest.fn();
 

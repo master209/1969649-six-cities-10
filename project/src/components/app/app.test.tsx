@@ -12,8 +12,6 @@ import {store} from '../../utils';
 
 const history = createMemoryHistory();
 
-global.window.scrollTo = jest.fn();
-
 const fakeApp = (
   <Provider store={store}>
     <HistoryRouter history={history}>

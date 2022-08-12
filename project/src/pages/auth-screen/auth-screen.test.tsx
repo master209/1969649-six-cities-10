@@ -6,15 +6,16 @@ import userEvent from '@testing-library/user-event';
 import AuthScreen from './auth-screen';
 import HistoryRouter from '../../components/history-route/history-route';
 
+import {AppRoute} from '../../const';
+
 import {store} from '../../utils';
 
-global.window.scrollTo = jest.fn();
 const onChangeCity = () => jest.fn();
 
 describe('Component: AuthScreen', () => {
   it('should render "AuthScreen" when user navigate to "login" url', async () => {
     const history = createMemoryHistory();
-    history.push('/login');
+    history.push(AppRoute.Login);
 
     render(
       <Provider store={store}>

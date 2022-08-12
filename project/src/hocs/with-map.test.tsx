@@ -13,8 +13,6 @@ import {store, mockOffers} from '../utils';
 const activeCity = 'Paris';
 const history = createMemoryHistory();
 
-global.window.scrollTo = jest.fn();
-
 jest.mock('../components/map/map', () => {
   const mockMap = () => <>This is mock Map</>;
 

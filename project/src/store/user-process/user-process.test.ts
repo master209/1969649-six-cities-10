@@ -8,19 +8,17 @@ const {Auth, NoAuth, Unknown} = AuthorizationStatus;
 const email = 'test11@test.test';
 const password = '123456';
 
-describe('Reducer: userProcess', () => {
-  let state: UserProcess;
+let state: UserProcess = {
+  authorizationStatus: Unknown,
+  email: '',
+};
 
-  beforeEach(() => {
-    state = {
-      authorizationStatus: Unknown,
-      email: ''
-    };
-  });
+describe('Reducer: userProcess', () => {
+  beforeEach(() => state);
 
   it('without additional parameters should return initial state', () => {
     expect(userProcess.reducer(undefined, {type: 'UNKNOWN_ACTION'}))
-      .toEqual({authorizationStatus: Unknown, email: ''});
+      .toEqual(state);
   });
 
   describe('fetchCheckAuth test', () => {
@@ -31,12 +29,12 @@ describe('Reducer: userProcess', () => {
 
     it('should update authorizationStatus to "NO_AUTH" if fetchCheckAuth fulfilled and email is empty', () => {
       expect(userProcess.reducer(state, { type: fetchCheckAuth.fulfilled.type }))
-        .toEqual({authorizationStatus: NoAuth, email: ''});
+        .toEqual({...state, authorizationStatus: NoAuth});
     });
 
     it('should update authorizationStatus to "NO_AUTH" if fetchCheckAuth rejected', () => {
       expect(userProcess.reducer(state, { type: fetchCheckAuth.rejected.type }))
-        .toEqual({authorizationStatus: NoAuth, email: ''});
+        .toEqual({...state, authorizationStatus: NoAuth});
     });
   });
 
@@ -48,7 +46,7 @@ describe('Reducer: userProcess', () => {
 
     it('should update authorizationStatus to "NO_AUTH" if fetchLogin rejected', () => {
       expect(userProcess.reducer(state, {type: fetchLogin.rejected.type}))
-        .toEqual({authorizationStatus: NoAuth, email: ''});
+        .toEqual({...state, authorizationStatus: NoAuth});
     });
   });
 

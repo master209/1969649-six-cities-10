@@ -13,8 +13,6 @@ import {store} from '../../utils';
 const activeCity = 'Paris';
 const history = createMemoryHistory();
 
-global.window.scrollTo = jest.fn();
-
 describe('Component: MainEmptyScreen', () => {
   it('should render correctly', () => {
     history.push(AppRoute.MainEmpty);
