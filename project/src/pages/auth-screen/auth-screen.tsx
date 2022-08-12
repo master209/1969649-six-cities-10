@@ -26,7 +26,7 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
 
     if (loginRef.current && passwordRef.current) {
       dispatch(fetchLogin({
-        login: loginRef.current.value,
+        email: loginRef.current.value,
         password: passwordRef.current.value,
       }));
     }
@@ -52,6 +52,7 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
                     type="email"
                     id="email"
                     name="email"
+                    data-testid="email"
                     placeholder="Email"
                     required
                   />
@@ -64,6 +65,7 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
                     type="password"
                     id="password"
                     name="password"
+                    data-testid="password"
                     placeholder="Password"
                     required
                   />

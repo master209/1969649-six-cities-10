@@ -6,8 +6,11 @@ import {UserProcess} from '../../types/state';
 
 import {NameSpace, AuthorizationStatus} from '../../const';
 
+const {Auth, NoAuth, Unknown} = AuthorizationStatus;
+
 const initialState: UserProcess = {
-  authorizationStatus: AuthorizationStatus.Unknown,
+  authorizationStatus: Unknown,
+  email: '',
 };
 
 export const userProcess = createSlice({
@@ -17,19 +20,22 @@ export const userProcess = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchCheckAuth.fulfilled, (state) => {
-        state.authorizationStatus = AuthorizationStatus.Auth;
+        state.authorizationStatus = state.email ? Auth : NoAuth;
       })
       .addCase(fetchCheckAuth.rejected, (state) => {
-        state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.authorizationStatus = NoAuth;
       })
-      .addCase(fetchLogin.fulfilled, (state) => {
-        state.authorizationStatus = AuthorizationStatus.Auth;
+      .addCase(fetchLogin.fulfilled, (state, {payload: {email}}) => {
+        state.authorizationStatus = Auth;
+        state.email = email;
       })
       .addCase(fetchLogin.rejected, (state) => {
-        state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.authorizationStatus = NoAuth;
+        state.email = '';
       })
-      .addCase(fetchLogout.fulfilled, (state, action) => {
-        state.authorizationStatus = AuthorizationStatus.NoAuth;
+      .addCase(fetchLogout.fulfilled, (state) => {
+        state.authorizationStatus = NoAuth;
+        state.email = '';
       });
   }
 });

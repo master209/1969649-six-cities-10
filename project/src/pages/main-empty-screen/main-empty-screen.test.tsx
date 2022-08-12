@@ -1,34 +1,20 @@
-import {render, screen} from '@testing-library/react';
 import {Routes, Route} from 'react-router-dom';
-import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
-import {configureMockStore} from '@jedmao/redux-mock-store';
+import {createMemoryHistory} from 'history';
+import {render, screen} from '@testing-library/react';
 
 import HistoryRouter from '../../components/history-route/history-route';
 import MainEmptyScreen from './main-empty-screen';
 
-import {AppRoute, AuthorizationStatus, cities} from '../../const';
+import {AppRoute, cities} from '../../const';
 
-import {makeFakeOffers, makeFakeOffer} from '../../utils/mocks';
+import {store} from '../../utils';
 
-const mockOffers = makeFakeOffers();
-const mockOffer = makeFakeOffer();
-
-const mockStore = configureMockStore();
-const history = createMemoryHistory();
 const activeCity = 'Paris';
-
-global.window.scrollTo = jest.fn();
+const history = createMemoryHistory();
 
 describe('Component: MainEmptyScreen', () => {
   it('should render correctly', () => {
-    const store = mockStore({
-      USER: {authorizationStatus: AuthorizationStatus.NoAuth},
-      MAIN: {offers: mockOffers},
-      OFFER: {offer: mockOffer},
-      FAVORITE: {favorites: []},
-    });
-
     history.push(AppRoute.MainEmpty);
 
     render(
@@ -41,7 +27,7 @@ describe('Component: MainEmptyScreen', () => {
                 <MainEmptyScreen
                   cities={cities}
                   activeCity={activeCity}
-                  onChangeCity={(city: string) => {}}
+                  onChangeCity={jest.fn()}
                 />
               }
             />
@@ -52,6 +38,4 @@ describe('Component: MainEmptyScreen', () => {
     expect(screen.getByText(/No places to stay available/i)).toBeInTheDocument();
     expect(screen.getByText(`We could not find any property available at the moment in ${activeCity}`)).toBeInTheDocument();
   });
-
 });
-

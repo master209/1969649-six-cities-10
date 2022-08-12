@@ -1,9 +1,11 @@
-import {
-  datatype,
-  name,
-  image,
-  lorem,
-} from 'faker';
+import {configureMockStore} from '@jedmao/redux-mock-store';
+import {datatype, name, image, lorem} from 'faker';
+
+import {AuthorizationStatus, cities} from '../const';
+
+import {uniqueId} from './utils';
+
+const mockStore = configureMockStore();
 
 const num = datatype.number(99);
 
@@ -13,12 +15,12 @@ const location = {
   zoom: num,
 };
 
-const strings = new Array(3).fill(null).map(() => lorem.word(1));
+const strings = new Array(3).fill(null).map(() => lorem.word());
 
 export const makeFakeOffer = () => ({
-  id: datatype.number(99),
+  id: uniqueId(),
   city: {
-    name: lorem.word(1),
+    name: cities[Math.floor(Math.random() * cities.length)],
     location,
   },
   previewImage: image.imageUrl(),
@@ -41,6 +43,14 @@ export const makeFakeOffer = () => ({
   location
 });
 
-export const makeFakeOffers = () => ({
-  offers: new Array(5).fill(null).map(() => makeFakeOffer())
+export const makeFakeOffers = () => new Array(10).fill(null).map(() => makeFakeOffer());
+
+export const mockOffers = makeFakeOffers();
+export const mockOffer = makeFakeOffer();
+
+export const store = mockStore({
+  USER: {authorizationStatus: AuthorizationStatus.NoAuth},
+  MAIN: {offers: mockOffers},
+  OFFER: {offer: mockOffer},
+  FAVORITE: {favorites: []},
 });

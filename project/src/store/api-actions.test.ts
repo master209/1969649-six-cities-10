@@ -10,7 +10,7 @@ import {State} from '../types/state';
 import {AuthData} from '../types/auth-data';
 import {APIRoute} from '../const';
 
-import {makeFakeOffers} from '../utils/mocks';
+import {makeFakeOffers} from '../utils';
 
 describe('Async actions', () => {
   const api = createAPI();
@@ -42,7 +42,7 @@ describe('Async actions', () => {
   });
 
   it('should dispatch RequriedAuthorization when POST /login', async () => {
-    const fakeUser: AuthData = {login: 'test@test.ru', password: '123456'};
+    const fakeUser: AuthData = {email: 'test@test.ru', password: '123456'};
 
     mockAPI
       .onPost(APIRoute.Login)

@@ -1,6 +1,9 @@
 import {useAppSelector} from '.';
 
-import {getAuthorizationStatus} from '../store/user-process/selectors';
+import {
+  getAuthorizationStatus,
+  getEmail
+} from '../store/user-process/selectors';
 
 import {
   getOffers,
@@ -8,7 +11,7 @@ import {
   getSortBy,
   getIsSortListCollapsed,
   getIsOffersLoading,
-  getIsOffersLoaded,
+  getIsOffersLoaded
 } from '../store/main-process/selectors';
 
 import {
@@ -28,6 +31,7 @@ import {
 
 const useAppSelectors = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const email = useAppSelector(getEmail);
 
   const offers = useAppSelector(getOffers);
   const activeCity = useAppSelector(getActiveCity);
@@ -48,7 +52,7 @@ const useAppSelectors = () => {
   const isFavoritesLoaded = useAppSelector(getIsFavoritesLoaded);
 
   return {
-    authorizationStatus,
+    authorizationStatus, email,
     offers, activeCity, sortBy, isSortListCollapsed, isOffersLoading, isOffersLoaded,
     offer, offersNear, comments, isError404, isOfferLoading,
     favorites , isError401, isFavoritesLoading, isFavoritesLoaded,

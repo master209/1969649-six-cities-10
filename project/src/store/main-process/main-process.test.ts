@@ -1,9 +1,15 @@
-import {mainProcess} from './main-process';
-import {changeCity, clickSort} from './main-process';
+import {mainProcess, changeCity, clickSort} from './main-process';
+
+import {fetchLoadOffers} from '../api-actions';
+
+import {makeFakeOffers} from '../../utils';
+
+const mockOffers = makeFakeOffers();
+const activeCity = 'Paris';
 
 const state = {
   offers: [],
-  activeCity: 'Paris',
+  activeCity,
   sortBy: 'Popular',
   isSortListCollapsed: true,
   isOffersLoading: false,
@@ -27,6 +33,14 @@ describe('Reducer: mainProcess', () => {
     const resultState = {...state, isSortListCollapsed: false};
 
     expect(mainProcess.reducer(state, clickSort()))
+      .toEqual(resultState);
+  });
+
+  it('should update offers by load offers', () => {
+    const offers = mockOffers.filter(({city}) => (city.name === activeCity)) || [];
+    const resultState = {...state, offers, isOffersLoaded: true};
+
+    expect(mainProcess.reducer(state, {type: fetchLoadOffers.fulfilled.type, payload: {activeCity, data: mockOffers}}))
       .toEqual(resultState);
   });
 });

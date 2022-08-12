@@ -1,31 +1,16 @@
 import {Routes, Route} from 'react-router-dom';
-import {render, screen} from '@testing-library/react';
 import {Provider} from 'react-redux';
 import {createMemoryHistory} from 'history';
-import {configureMockStore} from '@jedmao/redux-mock-store';
-import HistoryRouter from '../history-route/history-route';
+import {render, screen} from '@testing-library/react';
 
+import HistoryRouter from '../history-route/history-route';
 import AuthScreen from '../../pages/auth-screen/auth-screen';
 
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 
-import {makeFakeOffers, makeFakeOffer} from '../../utils/mocks';
-
-const mockOffers = makeFakeOffers();
-const mockOffer = makeFakeOffer();
-
-const mockStore = configureMockStore();
-
-const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.NoAuth},
-  MAIN: {offers: mockOffers},
-  OFFER: {offer: mockOffer},
-  FAVORITE: {favorites: []},
-});
+import {store} from '../../utils';
 
 const history = createMemoryHistory();
-
-const onChangeCity = (city: string) => {};
 
 const fakeApp = (
   <Provider store={store}>
@@ -39,7 +24,7 @@ const fakeApp = (
           path={AppRoute.Login}
           element={
             <AuthScreen
-              onChangeCity={onChangeCity}
+              onChangeCity={jest.fn()}
             />
           }
         />
