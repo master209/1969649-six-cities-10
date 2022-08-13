@@ -16,6 +16,7 @@ describe('Async actions', () => {
   const api = createAPI();
   const mockAPI = new MockAdapter(api);
   const middlewares = [thunk.withExtraArgument(api)];
+  const email = 'test@test.ru';
 
   const mockStore = configureMockStore<
       State,
@@ -31,7 +32,7 @@ describe('Async actions', () => {
     const store = mockStore();
     expect(store.getActions()).toEqual([]);
 
-    await store.dispatch(fetchCheckAuth());
+    await store.dispatch(fetchCheckAuth(email));
 
     const actions = store.getActions().map(({type}) => type);
 
