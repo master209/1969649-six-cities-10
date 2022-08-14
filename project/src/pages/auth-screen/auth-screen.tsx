@@ -7,9 +7,9 @@ import {fetchLogin} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 
-import {AppRoute} from '../../const';
+import {AppRoute, cities} from '../../const';
 
-const CITY = 'Amsterdam';
+const CITY = cities[Math.floor(Math.random() * cities.length)];
 
 type AuthScreenProps = {
   onChangeCity: (city: string) => void;

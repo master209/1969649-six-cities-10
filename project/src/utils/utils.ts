@@ -26,3 +26,6 @@ const ID_LEN = 4;
 // генерит уникальный числовой ID длиной ID_LEN
 export const uniqueId = (len = ID_LEN): number =>
   parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(len).toString().replace('.', ''), 10);
+
+export const dateFormatted = (date: string) =>
+  new Date(date).toLocaleDateString('en', { month: 'long', year: 'numeric'});

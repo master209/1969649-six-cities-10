@@ -11,7 +11,9 @@ import {arrayToMap} from '../../utils';
 
 import {OfferData} from '../../types/state';
 
-import {NameSpace} from '../../const';
+import {NameSpace, Order} from '../../const';
+
+import {sortTo} from '../../utils';
 
 const initialState: OfferData = {
   offer: null,
@@ -63,7 +65,7 @@ export const offerData = createSlice({
         state.isOfferLoading = true;
       })
       .addCase(fetchLoadComments.fulfilled, (state, {payload}) => {
-        state.comments = payload || [];
+        state.comments = sortTo(payload, 'id', Order.Desc) || [];
         state.isOfferLoading = false;
       })
 
@@ -71,7 +73,7 @@ export const offerData = createSlice({
         state.isOfferLoading = true;
       })
       .addCase(fetchCreateComment.fulfilled, (state, {payload}) => {
-        state.comments = payload || [];
+        state.comments = sortTo(payload, 'id', Order.Desc) || [];
         state.isOfferLoading = false;
       });
   }

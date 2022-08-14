@@ -1,4 +1,6 @@
 export const MIN_COMMENT_LENGTH = 10;
+export const MAX_COMMENT_LENGTH = 30;
+export const MAX_COMMENT_COUNT = 10;
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 

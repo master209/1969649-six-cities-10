@@ -19,9 +19,8 @@ export const userProcess = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchCheckAuth.fulfilled, (state, {payload: {email}}) => {
-        /* eslint-disable-next-line no-console */
-        console.info('fetchCheckAuth: ', email);
+      .addCase(fetchCheckAuth.fulfilled, (state, {payload}) => {
+        const {email} = payload || '';
         state.authorizationStatus = email ? Auth : NoAuth;
         state.email = email ? email : '';
       })

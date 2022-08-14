@@ -22,14 +22,9 @@ describe('Reducer: userProcess', () => {
   });
 
   describe('fetchCheckAuth test', () => {
-    it('should update authorizationStatus to "AUTH" if fetchCheckAuth fulfilled and email is not empty', () => {
+    it('should update authorizationStatus to "AUTH" if fetchCheckAuth fulfilled', () => {
       expect(userProcess.reducer({...state, email}, { type: fetchCheckAuth.fulfilled.type }))
-        .toEqual({authorizationStatus: Auth, email});
-    });
-
-    it('should update authorizationStatus to "NO_AUTH" if fetchCheckAuth fulfilled and email is empty', () => {
-      expect(userProcess.reducer(state, { type: fetchCheckAuth.fulfilled.type }))
-        .toEqual({...state, authorizationStatus: NoAuth});
+        .toEqual(email ? {authorizationStatus: NoAuth, email: ''} : {authorizationStatus: Auth, email});
     });
 
     it('should update authorizationStatus to "NO_AUTH" if fetchCheckAuth rejected', () => {

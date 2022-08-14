@@ -61,8 +61,9 @@ describe('Async actions', () => {
       fetchLogin.fulfilled.type
     ]);
 
-    expect(Storage.prototype.setItem).toBeCalledTimes(1);
+    expect(Storage.prototype.setItem).toBeCalledTimes(2);
     expect(Storage.prototype.setItem).toBeCalledWith('six-cities-token', 'secret');
+    expect(Storage.prototype.setItem).toBeCalledWith('six-cities-email', 'test@test.ru');
   });
 
   it('should dispatch Logout when Delete /logout', async () => {
@@ -82,8 +83,9 @@ describe('Async actions', () => {
       fetchLogout.fulfilled.type
     ]);
 
-    expect(Storage.prototype.removeItem).toBeCalledTimes(1);
+    expect(Storage.prototype.removeItem).toBeCalledTimes(2);
     expect(Storage.prototype.removeItem).toBeCalledWith('six-cities-token');
+    expect(Storage.prototype.removeItem).toBeCalledWith('six-cities-email');
   });
 
   it('should dispatch LoadOffers when GET /Offers', async () => {

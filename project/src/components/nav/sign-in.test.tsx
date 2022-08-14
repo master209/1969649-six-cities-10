@@ -52,7 +52,6 @@ describe('Component: SignIn', () => {
 
     await userEvent.click(screen.getByRole('link'));
 
-    expect(screen.getByText('Amsterdam')).toBeInTheDocument();
     expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
   });
