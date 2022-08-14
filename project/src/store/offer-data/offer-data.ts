@@ -69,12 +69,8 @@ export const offerData = createSlice({
         state.isOfferLoading = false;
       })
 
-      .addCase(fetchCreateComment.pending, (state) => {
-        state.isOfferLoading = true;
-      })
       .addCase(fetchCreateComment.fulfilled, (state, {payload}) => {
         state.comments = sortTo(payload, 'id', Order.Desc) || [];
-        state.isOfferLoading = false;
       });
   }
 });

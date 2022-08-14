@@ -1,4 +1,4 @@
-import CommentItem from './comment-item';
+import {CommentItem} from './';
 
 import {Comments} from '../../../types/offers';
 
