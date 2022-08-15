@@ -28,12 +28,13 @@ function FavoritesList({onChangeCity}: FavoritesListProps): JSX.Element {
         favoritesByCityCount(city)
           ?
           (
-            <li key={city} className="favorites__locations-items">
+            <li
+              key={city}
+              className="favorites__locations-items"
+              onClick={() => onChangeCity(city)}
+            >
               <div className="favorites__locations locations locations--current">
-                <div
-                  className="locations__item"
-                  onClick={() => onChangeCity(city)}
-                >
+                <div className="locations__item">
                   <Link className="locations__item-link" to={AppRoute.Main}>
                     <span>{city}</span>
                   </Link>
