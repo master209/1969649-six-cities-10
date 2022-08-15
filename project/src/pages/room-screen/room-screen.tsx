@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
@@ -47,7 +47,6 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   const {offers, isOfferLoading, offer, offersNear, comments, isError404} = useAppSelectors();
 
-  const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
   const {id} = useParams();
 
@@ -61,16 +60,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   isError404 && navigate(AppRoute.NotFound);
 
-  const locations = offers.map((_offer) => _offer.location);
-
-  const onNearListItemHover = (offerId: number) => {
-    const hoveredOffer = offers.find(({id:_id}) => _id === offerId);
-    setSelectedLocation(hoveredOffer && hoveredOffer.location);
-  };
-
-  const onListItemOut = () => {
-    setSelectedLocation(undefined);
-  };
+  const locations = offersNear.map((offerNear) => offerNear.location);
 
   const renderOffer = (_offer: Offer) => {
     const {
@@ -87,6 +77,9 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       host,
       images
     } = _offer;
+
+    const selectedLocation = _offer.location;
+    locations.push(selectedLocation);
 
     const {avatarUrl, name: userName, isPro} = host;
 
@@ -208,11 +201,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
           </section>
 
           <div className="container">
-            <OfferNearsList
-              offersNear={offersNear}
-              handleMouseOver={onNearListItemHover}
-              handleMouseOut={onListItemOut}
-            />
+            <OfferNearsList offersNear={offersNear} />
           </div>
         </main>
       </Layout>
