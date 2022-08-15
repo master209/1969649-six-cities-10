@@ -29,3 +29,7 @@ export const uniqueId = (len = ID_LEN): number =>
 
 export const dateFormatted = (date: string) =>
   new Date(date).toLocaleDateString('en', { month: 'long', year: 'numeric'});
+
+export const starsClass = (rating: number) => ({width: `${roundRating(rating)}%`});
+
+const roundRating = (rating: number) => Math.round(rating) * 20;

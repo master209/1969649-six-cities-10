@@ -27,6 +27,8 @@ import {Offer, City, Location, Locations} from '../../types/offers';
 
 import {AppRoute} from '../../const';
 
+import {starsClass} from '../../utils';
+
 type RoomProps = {
   renderMap: (
     city: City,
@@ -146,7 +148,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: '80%'}}></span>
+                    <span style={starsClass(rating)}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">{rating}</span>
