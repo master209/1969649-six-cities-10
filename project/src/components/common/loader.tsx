@@ -1,6 +1,6 @@
 function Loader(): JSX.Element {
   return (
-    <p>Loading ...</p>
+    <p className="loading">Loading ...</p>
   );
 }
 

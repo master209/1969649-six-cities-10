@@ -40,6 +40,8 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   useSetOffersFavoriteStatus(true);
 
+  const locations = offersNear.map((_offer) => _offer.location);
+
   const {id} = useParams();
 
   useEffect((): void => {
@@ -49,8 +51,6 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
       dispatch(fetchLoadComments(id));
     }
   },[id]);
-
-  const locations = offersNear.map((_offer) => _offer.location);
 
   useEffect((): void => {
     offer && locations.push(offer.location);
