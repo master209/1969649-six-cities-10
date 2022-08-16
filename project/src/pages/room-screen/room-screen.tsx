@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
 import {Loader} from '../../components/common';
@@ -38,8 +38,6 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   const navigate = useNavigate();
   const isAuthorized = useIsAuthorized();
 
-  isError404 && navigate(AppRoute.NotFound);
-
   useSetOffersFavoriteStatus(true);
 
   const {id} = useParams();
@@ -57,6 +55,10 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
   useEffect((): void => {
     offer && locations.push(offer.location);
   },[locations]);
+
+  useEffect((): void => {
+    isError404 && navigate(AppRoute.NotFound);
+  });
 
   return (
     <div className="page">
