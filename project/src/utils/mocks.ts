@@ -49,7 +49,7 @@ export const mockOffers = makeFakeOffers();
 export const mockOffer = makeFakeOffer();
 
 export const makeFakeComment = () => ({
-  id: uniqueId(),
+  offerId: uniqueId(),
   comment: lorem.words(5),
   date: lorem.word(),
   rating: datatype.number(5),
@@ -61,7 +61,7 @@ export const makeFakeComment = () => ({
 });
 
 export const makeFakeCommentNew = () => ({
-  id: uniqueId(),
+  offerId: uniqueId(),
   comment: lorem.words(5),
   rating: datatype.number(5),
 });

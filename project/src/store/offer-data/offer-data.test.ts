@@ -48,16 +48,9 @@ describe('Reducer: offerData', () => {
   });
 
   it('should update comments by load comments', () => {
-    const resultState = {...state, comments: sortTo(mockComments, 'id', Order.Desc) || []};
+    const resultState = {...state, comments: sortTo(mockComments, 'id', Order.Desc)};
 
     expect(offerData.reducer(state, {type: fetchLoadComments.fulfilled.type, payload: mockComments}))
-      .toEqual(resultState);
-  });
-
-  it('should update comments by create comment', () => {
-    const resultState = {...state, comments: sortTo(mockComments, 'id', Order.Desc) || []};
-
-    expect(offerData.reducer(state, {type: fetchCreateComment.fulfilled.type, payload: mockComments}))
       .toEqual(resultState);
   });
 });
