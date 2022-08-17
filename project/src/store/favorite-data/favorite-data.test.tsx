@@ -28,7 +28,7 @@ describe('Reducer: favoriteData', () => {
     const resultState = {...state, favorites: mockFavorites};
 
     expect(favoriteData.reducer(state, resetFavorites()))
-    .not.toEqual(resultState);
+      .not.toEqual(resultState);
   });
 
   it('should update favorites by load favorites', () => {

@@ -1,15 +1,15 @@
 import {offerData, setFavoriteStatus} from './offer-data';
 
-import {fetchCreateComment, fetchLoadComments, fetchLoadOffersNear, fetchOffer} from '../api-actions';
+import {fetchLoadComments, fetchLoadOffersNear, fetchOffer} from '../api-actions';
 
-import {makeFakeOffer, makeFakeOffers, makeFakeComments, makeFakeCommentNew, sortTo} from '../../utils';
-import {Order} from "../../const";
+import {makeFakeOffer, makeFakeOffers, makeFakeComments, sortTo} from '../../utils';
+
+import {Order} from '../../const';
 
 const mockOffer = makeFakeOffer();
 const mockOffers = makeFakeOffers();
 
 const mockComments = makeFakeComments();
-const mockCommentNew = makeFakeCommentNew();
 
 const state = {
   offer: null,
