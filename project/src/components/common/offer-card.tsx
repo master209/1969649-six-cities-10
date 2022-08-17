@@ -7,11 +7,11 @@ import {fetchFavoriteStatus} from '../../store/api-actions';
 import {useAppDispatch} from '../../hooks';
 import useIsAuthorized from '../../hooks/is-authorized';
 
+import {starsClass} from '../../utils';
+
 import {Offer} from '../../types/offers';
 
 import {AppRoute} from '../../const';
-
-import {starsClass} from '../../utils';
 
 type OfferCardProps = {
   offer: Offer;

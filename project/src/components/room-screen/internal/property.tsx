@@ -8,10 +8,11 @@ import {fetchFavoriteStatus} from '../../../store/api-actions';
 
 import {useAppDispatch} from '../../../hooks';
 
-import {Offer} from '../../../types/offers';
-import {AppRoute} from '../../../const';
-
 import {starsClass} from '../../../utils';
+
+import {Offer} from '../../../types/offers';
+
+import {AppRoute} from '../../../const';
 
 type PropertyProps = {
   offer: Offer;

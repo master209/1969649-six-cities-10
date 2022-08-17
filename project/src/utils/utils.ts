@@ -33,3 +33,5 @@ export const dateFormatted = (date: string) =>
 export const starsClass = (rating: number) => ({width: `${roundRating(rating)}%`});
 
 const roundRating = (rating: number) => Math.round(rating) * 20;
+
+export const titleCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
