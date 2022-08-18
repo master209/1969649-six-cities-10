@@ -28,7 +28,7 @@ export const favoriteData = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchLoadFavorites.pending, (state, {payload}) => {
+      .addCase(fetchLoadFavorites.pending, (state) => {
         state.isError401 = false;
         state.isFavoritesLoading = false;
       })
@@ -40,7 +40,7 @@ export const favoriteData = createSlice({
 
       .addCase(fetchFavoriteStatus.fulfilled, (state, {payload: {data, offerStatus}}) => {
         offerStatus
-          ? state.favorites.push(data)
+          ? !state.favorites.find(({id}) => id === data.id) && state.favorites.push(data)
           : state.favorites = state.favorites.filter(({id}) => id !== data.id);
       })
       .addCase(fetchFavoriteStatus.rejected, (state) => {

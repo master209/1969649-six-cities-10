@@ -11,8 +11,6 @@ import {
 import {collapseSortList} from '../../store/main-process/main-process';
 
 import {useAppDispatch} from '../../hooks';
-import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
-import useNeedAuthorize from '../../hooks/need-authorize';
 
 import {City, Offers, Location, Locations} from '../../types/offers';
 
@@ -35,8 +33,6 @@ function MainScreen(props: MainProps): JSX.Element {
   const {cities, offers, activeCity, renderMap, onChangeCity} = props;
 
   const dispatch = useAppDispatch();
-  useNeedAuthorize();
-  useSetOffersFavoriteStatus();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 

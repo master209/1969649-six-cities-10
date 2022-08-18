@@ -48,6 +48,27 @@ export const makeFakeOffers = () => new Array(10).fill(null).map(() => makeFakeO
 export const mockOffers = makeFakeOffers();
 export const mockOffer = makeFakeOffer();
 
+export const makeFakeComment = () => ({
+  offerId: uniqueId(),
+  comment: lorem.words(5),
+  date: lorem.word(),
+  rating: datatype.number(5),
+  user: {
+    avatarUrl: image.avatar(),
+    name: name.title(),
+    isPro: false,
+  },
+});
+
+export const makeFakeCommentNew = () => ({
+  offerId: uniqueId(),
+  comment: lorem.words(5),
+  rating: datatype.number(5),
+});
+
+export const makeFakeComments = () => new Array(3).fill(null).map(() => makeFakeComment());
+
+
 export const store = mockStore({
   USER: {authorizationStatus: AuthorizationStatus.NoAuth},
   MAIN: {offers: mockOffers},

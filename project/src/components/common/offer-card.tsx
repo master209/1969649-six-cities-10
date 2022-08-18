@@ -7,6 +7,8 @@ import {fetchFavoriteStatus} from '../../store/api-actions';
 import {useAppDispatch} from '../../hooks';
 import useIsAuthorized from '../../hooks/is-authorized';
 
+import {getStarsClass, getOfferStatus} from '../../utils';
+
 import {Offer} from '../../types/offers';
 
 import {AppRoute} from '../../const';
@@ -22,7 +24,7 @@ type OfferCardProps = {
 /* «Карточка предложения по аренде» */
 function OfferCard(props: OfferCardProps): JSX.Element {
   const {offer, handleCardMouseOver, handleCardMouseOut, classPrefix, imgSize:{width, height}} = props;
-  const {previewImage, isPremium, price, title, type, isFavorite} = offer;
+  const {previewImage, isPremium, price, title, type, isFavorite, rating} = offer;
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ function OfferCard(props: OfferCardProps): JSX.Element {
 
   const handleOnChangeFavoriteStatus = () => {
     isAuthorized
-      ? dispatch(fetchFavoriteStatus({offerId: offer.id, offerStatus: +!isFavorite}))
+      ? dispatch(fetchFavoriteStatus({offerId: offer.id, offerStatus: getOfferStatus(isFavorite)}))
       : navigate(AppRoute.Login);
   };
 
@@ -71,7 +73,7 @@ function OfferCard(props: OfferCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={getStarsClass(rating)}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

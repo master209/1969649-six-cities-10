@@ -1,4 +1,4 @@
-import {FormEvent, useRef} from 'react';
+import {FormEvent, useRef, MutableRefObject} from 'react';
 import {Link} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
@@ -7,12 +7,20 @@ import {fetchLogin} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 
-import {AppRoute} from '../../const';
+import {capitalize} from '../../utils';
 
-const CITY = 'Amsterdam';
+import {AppRoute, cities} from '../../const';
+
+const RANDOM_CITY = cities[Math.floor(Math.random() * cities.length)];
 
 type AuthScreenProps = {
   onChangeCity: (city: string) => void;
+};
+
+type LoginInputProps = {
+  _ref: MutableRefObject<HTMLInputElement | null>;
+  name: string;
+  label: string;
 };
 
 function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
@@ -32,6 +40,22 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
     }
   };
 
+  const Input = ({_ref, name, label}: LoginInputProps) => (
+    <div className="login__input-wrapper form__input-wrapper">
+      <label className="visually-hidden" htmlFor={name}>{label}</label>
+      <input
+        ref={_ref}
+        className="login__input form__input"
+        type={name}
+        id={name}
+        name={name}
+        data-testid={name}
+        placeholder={capitalize(name)}
+        required
+      />
+    </div>
+  );
+
   return (
     <div className="page page--gray page--login">
       <Layout>
@@ -44,32 +68,8 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
                 action="#"
                 onSubmit={handleSubmit}
               >
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden" htmlFor="email">E-mail</label>
-                  <input
-                    ref={loginRef}
-                    className="login__input form__input"
-                    type="email"
-                    id="email"
-                    name="email"
-                    data-testid="email"
-                    placeholder="Email"
-                    required
-                  />
-                </div>
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden" htmlFor="password">Password</label>
-                  <input
-                    ref={passwordRef}
-                    className="login__input form__input"
-                    type="password"
-                    id="password"
-                    name="password"
-                    data-testid="password"
-                    placeholder="Password"
-                    required
-                  />
-                </div>
+                <Input _ref={loginRef} name="email" label="E-mail" />
+                <Input _ref={passwordRef} name="password" label="Password" />
                 <button
                   className="login__submit form__submit button"
                   type="submit"
@@ -83,9 +83,9 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
                 <Link
                   className="locations__item-link"
                   to={AppRoute.Main}
-                  onClick={() => onChangeCity(CITY)}
+                  onClick={() => onChangeCity(RANDOM_CITY)}
                 >
-                  <span>{CITY}</span>
+                  <span>{RANDOM_CITY}</span>
                 </Link>
               </div>
             </section>

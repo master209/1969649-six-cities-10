@@ -25,7 +25,6 @@ describe('Component: AuthScreen', () => {
       </Provider>,
     );
 
-    expect(screen.getByText('Amsterdam')).toBeInTheDocument();
     expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
 

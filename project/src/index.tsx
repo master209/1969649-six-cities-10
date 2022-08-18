@@ -10,9 +10,12 @@ import App from './components/app/app';
 import {store} from './store';
 import {fetchCheckAuth} from './store/api-actions';
 
+import {getEmail} from './services/email';
+
 import 'react-toastify/dist/ReactToastify.css';
 
-store.dispatch(fetchCheckAuth());
+const email = getEmail();
+store.dispatch(fetchCheckAuth(email));
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

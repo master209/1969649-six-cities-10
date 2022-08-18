@@ -2,6 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AxiosInstance} from 'axios';
 
 import {saveToken, dropToken} from '../services/token';
+import {saveEmail, dropEmail} from '../services/email';
 
 import {AppDispatch, State} from '../types/state';
 import {Offer, Offers, CommentNew, Comments} from '../types/offers';
@@ -94,14 +95,16 @@ export const fetchFavoriteStatus = createAsyncThunk<{data: Offer, offerStatus: n
   },
 );
 
-export const fetchCheckAuth = createAsyncThunk<void, undefined, {
+export const fetchCheckAuth = createAsyncThunk<{email: string}, string, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'User/fetchCheckAuth',
-  async (_arg, {dispatch, extra: api}) => {
+  async (email, {dispatch, extra: api}) => {
     await api.get(APIRoute.Login);
+    saveEmail(email);
+    return {email};
   },
 );
 
@@ -114,6 +117,7 @@ export const fetchLogin = createAsyncThunk<{email: string}, AuthData, {
   async ({email, password}, {dispatch, extra: api}) => {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
+    saveEmail(email);
     return {email};
   },
 );
@@ -127,5 +131,6 @@ export const fetchLogout = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+    dropEmail();
   },
 );

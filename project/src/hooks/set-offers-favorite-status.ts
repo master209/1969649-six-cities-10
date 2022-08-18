@@ -17,7 +17,7 @@ const useSetOffersFavoriteStatus = (isForNear?: boolean) => {
     isAuthorized
     && (!isFavoritesLoaded && !isFavoritesLoading)
     && dispatch(fetchLoadFavorites());
-  },[]);
+  },[isFavoritesLoaded, isFavoritesLoading]);
 
   useEffect((): void => {
     isForNear
