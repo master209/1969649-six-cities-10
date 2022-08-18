@@ -39,8 +39,10 @@ export const favoriteData = createSlice({
       })
 
       .addCase(fetchFavoriteStatus.fulfilled, (state, {payload: {data, offerStatus}}) => {
+        const newFavorite = !state.favorites.find(({id}) => id === data.id);
+
         offerStatus
-          ? !state.favorites.find(({id}) => id === data.id) && state.favorites.push(data)
+          ? newFavorite && state.favorites.push(data)
           : state.favorites = state.favorites.filter(({id}) => id !== data.id);
       })
       .addCase(fetchFavoriteStatus.rejected, (state) => {
