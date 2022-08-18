@@ -2,7 +2,6 @@ import {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 
 import Layout from '../../components/layout/layout';
-import {Loader} from '../../components/common';
 import {
   OfferNearsList,
   Gallery,
@@ -32,7 +31,7 @@ type RoomProps = {
 };
 
 function RoomScreen({renderMap}: RoomProps): JSX.Element {
-  const {offers, isOfferLoading, offer, offersNear, comments, isError404} = useAppSelectors();
+  const {offers, offer, offersNear, comments, isError404} = useAppSelectors();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -62,8 +61,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
 
   return (
     <div className="page">
-      {offer && !isOfferLoading
-        ?
+      {offer ?
         (
           <Layout>
             <main className="page__main page__main--property">
@@ -84,8 +82,7 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
               </div>
             </main>
           </Layout>
-        )
-        : <Loader />}
+        ) : null}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import {Route, Routes} from 'react-router-dom';
 
 import {PrivateRoute} from '../../components/private-route';
+import Loader from '../common/Loader/loader';
 import {
   MainScreen,
   MainEmptyScreen,
@@ -8,7 +9,6 @@ import {
   FavoritesEmptyScreen,
   RoomScreen,
   AuthScreen,
-  Loader,
   NotFoundScreen,
 } from '../../pages';
 
@@ -42,7 +42,7 @@ function App(): JSX.Element {
     dispatch(fetchLoadOffers(activeCity));
   }
 
-  if (isOffersLoading) {
+  if (!isOffersLoading) {
     return <Loader />;
   }
 
