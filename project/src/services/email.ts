@@ -4,7 +4,7 @@ export type Email = string;
 
 export const getEmail = (): Email => {
   const email = localStorage.getItem(EMAIL_KEY_NAME);
-  return email ?? '';
+  return email || '';
 };
 
 export const saveEmail = (email: Email): void => {

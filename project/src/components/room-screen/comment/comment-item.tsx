@@ -1,6 +1,6 @@
 import {Comment} from '../../../types/offers';
 
-import {dateFormatted} from '../../../utils';
+import {getFormattedDate} from '../../../utils';
 
 type CommentProps = {
   comment: Comment;
@@ -31,7 +31,7 @@ function CommentItem({comment}: CommentProps): JSX.Element {
         <p className="reviews__text">
           {comment.comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{dateFormatted(date)}</time>
+        <time className="reviews__time" dateTime={date}>{getFormattedDate(date)}</time>
       </div>
     </li>
   );

@@ -7,7 +7,7 @@ import {fetchFavoriteStatus} from '../../store/api-actions';
 import {useAppDispatch} from '../../hooks';
 import useIsAuthorized from '../../hooks/is-authorized';
 
-import {starsClass} from '../../utils';
+import {getStarsClass, getOfferStatus} from '../../utils';
 
 import {Offer} from '../../types/offers';
 
@@ -38,7 +38,7 @@ function OfferCard(props: OfferCardProps): JSX.Element {
 
   const handleOnChangeFavoriteStatus = () => {
     isAuthorized
-      ? dispatch(fetchFavoriteStatus({offerId: offer.id, offerStatus: +!isFavorite}))
+      ? dispatch(fetchFavoriteStatus({offerId: offer.id, offerStatus: getOfferStatus(isFavorite)}))
       : navigate(AppRoute.Login);
   };
 
@@ -73,7 +73,7 @@ function OfferCard(props: OfferCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={starsClass(rating)}></span>
+            <span style={getStarsClass(rating)}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

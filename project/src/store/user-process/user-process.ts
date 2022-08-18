@@ -22,7 +22,7 @@ export const userProcess = createSlice({
       .addCase(fetchCheckAuth.fulfilled, (state, {payload}) => {
         const {email} = payload || '';
         state.authorizationStatus = email ? Auth : NoAuth;
-        state.email = email ? email : '';
+        state.email = email || '';
       })
       .addCase(fetchCheckAuth.rejected, (state) => {
         state.authorizationStatus = NoAuth;

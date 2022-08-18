@@ -7,7 +7,7 @@ import {fetchLogin} from '../../store/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 
-import {titleCase} from '../../utils';
+import {capitalize} from '../../utils';
 
 import {AppRoute, cities} from '../../const';
 
@@ -50,7 +50,7 @@ function AuthScreen({onChangeCity}: AuthScreenProps): JSX.Element {
         id={name}
         name={name}
         data-testid={name}
-        placeholder={titleCase(name)}
+        placeholder={capitalize(name)}
         required
       />
     </div>

@@ -13,9 +13,6 @@ const useNeedAuthorize = (): any => {
   const {isError401} = useAppSelectors();
 
   if (isAuthorized && isError401) {
-    /* eslint-disable-next-line no-console */
-    // console.log('useNeedAuthorize');
-
     return navigate(AppRoute.Login);
   }
 };
