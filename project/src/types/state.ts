@@ -24,6 +24,7 @@ export type OfferData = {
   comments: Comments;
   isError404: boolean;
   isOfferLoading: boolean,
+  isOfferLoaded: boolean,
 };
 
 export type FavoriteData = {

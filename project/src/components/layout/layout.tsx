@@ -17,7 +17,7 @@ type LayoutProps = PropsWithChildren<{
 }>;
 
 function Layout({children, withFooter, withFooterContainer}: LayoutProps): JSX.Element {
-  const {isOffersLoading, isOfferLoading} = useAppSelectors();
+  const {isOffersLoading, isOfferLoading, isFavoritesLoading} = useAppSelectors();
 
   const location = useLocation();
   const isAuthorized = useIsAuthorized();
@@ -25,7 +25,7 @@ function Layout({children, withFooter, withFooterContainer}: LayoutProps): JSX.E
   useNeedAuthorize();
   useSetOffersFavoriteStatus();
 
-  const renderLoader = () => isOffersLoading || isOfferLoading ? <Loader /> : null;
+  const renderLoader = () => isOffersLoading || isOfferLoading || isFavoritesLoading ? <Loader /> : null;
 
   if (location.pathname === AppRoute.Login && isAuthorized) {
     return <Navigate to={AppRoute.Main} />;

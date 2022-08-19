@@ -20,6 +20,7 @@ type MainProps = {
   cities: string[];
   offers: Offers;
   activeCity: string;
+  isOffersLoaded: boolean;
   onChangeCity: (city: string) => void;
   renderMap: (
     activeCity: City,
@@ -30,13 +31,13 @@ type MainProps = {
 };
 
 function MainScreen(props: MainProps): JSX.Element {
-  const {cities, offers, activeCity, renderMap, onChangeCity} = props;
+  const {cities, offers, activeCity, isOffersLoaded, renderMap, onChangeCity} = props;
 
   const dispatch = useAppDispatch();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  if(!offers.length) {
+  if(isOffersLoaded && !offers.length) {
     return <Navigate to={AppRoute.MainEmpty} />;
   }
 
@@ -65,23 +66,26 @@ function MainScreen(props: MainProps): JSX.Element {
             activeCity={activeCity}
             onChangeCity={onChangeCity}
           />
-          <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-                <SortingForm />
-                <OfferCardsList
-                  offers={offers}
-                  handleMouseOver={onListItemHover}
-                  handleMouseOut={onListItemOut}
-                />
-              </section>
-              <div className="cities__right-section">
-                {renderMap(offers[0].city, locations, selectedLocation, 'cities__map')}
+          {isOffersLoaded && offers.length ?
+            (
+              <div className="cities">
+                <div className="cities__places-container container">
+                  <section className="cities__places places">
+                    <h2 className="visually-hidden">Places</h2>
+                    <b className="places__found">{offers.length} places to stay in {activeCity}</b>
+                    <SortingForm/>
+                    <OfferCardsList
+                      offers={offers}
+                      handleMouseOver={onListItemHover}
+                      handleMouseOut={onListItemOut}
+                    />
+                  </section>
+                  <div className="cities__right-section">
+                    {renderMap(offers[0].city, locations, selectedLocation, 'cities__map')}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            ) : null}
         </main>
       </Layout>
     </div>

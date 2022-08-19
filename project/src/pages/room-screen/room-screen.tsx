@@ -22,6 +22,7 @@ import {City, Location, Locations} from '../../types/offers';
 import {AppRoute} from '../../const';
 
 type RoomProps = {
+  isOffersLoaded: boolean;
   renderMap: (
     city: City,
     locations: Locations,
@@ -30,8 +31,8 @@ type RoomProps = {
   ) => JSX.Element;
 };
 
-function RoomScreen({renderMap}: RoomProps): JSX.Element {
-  const {offers, offer, offersNear, comments, isError404} = useAppSelectors();
+function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
+  const {offers, offer, offersNear, isOfferLoaded, isFavoritesLoaded, comments, isError404} = useAppSelectors();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -59,11 +60,20 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
     isError404 && navigate(AppRoute.NotFound);
   });
 
+  // проверка загрузки всех зависимостей
+  const isDataLoaded = () =>
+    offers.length
+    && isOfferLoaded
+    && isOffersLoaded
+    && isFavoritesLoaded
+    && offersNear.length
+    && locations.length;
+
   return (
     <div className="page">
-      {offer ?
-        (
-          <Layout>
+      <Layout>
+        {offer && isDataLoaded() ?
+          (
             <main className="page__main page__main--property">
               <section className="property">
                 <Gallery offer={offer}/>
@@ -81,8 +91,8 @@ function RoomScreen({renderMap}: RoomProps): JSX.Element {
                 <OfferNearsList offersNear={offersNear} />
               </div>
             </main>
-          </Layout>
-        ) : null}
+          ) : null}
+      </Layout>
     </div>
   );
 }

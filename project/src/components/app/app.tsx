@@ -1,7 +1,6 @@
 import {Route, Routes} from 'react-router-dom';
 
 import {PrivateRoute} from '../../components/private-route';
-import Loader from '../common/Loader/loader';
 import {
   MainScreen,
   MainEmptyScreen,
@@ -42,10 +41,6 @@ function App(): JSX.Element {
     dispatch(fetchLoadOffers(activeCity));
   }
 
-  if (!isOffersLoading) {
-    return <Loader />;
-  }
-
   const onChangeCity = (city: string) => {
     dispatch(changeCity({city}));
     dispatch(fetchLoadOffers(city));
@@ -60,6 +55,7 @@ function App(): JSX.Element {
             cities={cities}
             offers={offers}
             activeCity={activeCity}
+            isOffersLoaded={isOffersLoaded}
             onChangeCity={onChangeCity}
           />
         }
@@ -94,7 +90,11 @@ function App(): JSX.Element {
       />
       <Route
         path={OfferId}
-        element={<RoomScreenWrapped />}
+        element={
+          <RoomScreenWrapped
+            isOffersLoaded={isOffersLoaded}
+          />
+        }
       />
       <Route
         path={Login}

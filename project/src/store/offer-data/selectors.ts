@@ -8,3 +8,4 @@ export const getOffersNear = (state: State): Offers => state[NameSpace.Offer].of
 export const getComments = (state: State): Comments => state[NameSpace.Offer].comments;
 export const getIsError404 = (state: State): boolean => state[NameSpace.Offer].isError404;
 export const getIsLoading = (state: State): boolean => state[NameSpace.Offer].isOfferLoading;
+export const getIsLoaded = (state: State): boolean => state[NameSpace.Offer].isOfferLoaded;
