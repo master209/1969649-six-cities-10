@@ -1,5 +1,5 @@
 import Layout from '../../components/layout/layout';
-import {FavoritesList} from '../../components/favorites-screen';
+import {FavoritesList} from '../../components/favorites';
 
 type FavoritesScreenProps = {
   onChangeCity: (city: string) => void;

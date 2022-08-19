@@ -3,7 +3,7 @@ import {datatype, name, image, lorem} from 'faker';
 
 import {AuthorizationStatus, cities} from '../const';
 
-import {uniqueId} from './utils';
+import {getUniqueId} from './utils';
 
 const mockStore = configureMockStore();
 
@@ -15,16 +15,16 @@ const location = {
   zoom: num,
 };
 
-const strings = new Array(3).fill(null).map(() => lorem.word());
+const mockStrings = new Array(3).fill(null).map(() => lorem.word());
 
 export const makeFakeOffer = () => ({
-  id: uniqueId(),
+  id: getUniqueId(),
   city: {
     name: cities[Math.floor(Math.random() * cities.length)],
     location,
   },
   previewImage: image.imageUrl(),
-  images: strings,
+  images: mockStrings,
   isPremium: false,
   price: datatype.number(9999),
   title: name.title(),
@@ -32,7 +32,7 @@ export const makeFakeOffer = () => ({
   rating: datatype.number(5),
   bedrooms: datatype.number(3),
   maxAdults: datatype.number(10),
-  goods: strings,
+  goods: mockStrings,
   host: {
     avatarUrl: image.avatar(),
     name: name.title(),
@@ -49,7 +49,7 @@ export const mockOffers = makeFakeOffers();
 export const mockOffer = makeFakeOffer();
 
 export const makeFakeComment = () => ({
-  offerId: uniqueId(),
+  offerId: getUniqueId(),
   comment: lorem.words(5),
   date: lorem.word(),
   rating: datatype.number(5),
@@ -61,7 +61,7 @@ export const makeFakeComment = () => ({
 });
 
 export const makeFakeCommentNew = () => ({
-  offerId: uniqueId(),
+  offerId: getUniqueId(),
   comment: lorem.words(5),
   rating: datatype.number(5),
 });

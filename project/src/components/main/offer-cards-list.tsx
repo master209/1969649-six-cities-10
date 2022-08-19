@@ -1,4 +1,4 @@
-import {OfferCard} from '../../components/common';
+import {OfferCard} from './';
 
 import {Offers} from '../../types/offers';
 

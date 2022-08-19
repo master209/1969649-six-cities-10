@@ -8,7 +8,7 @@ import {
   Property,
   Host,
   Reviews
-} from '../../components/room-screen';
+} from '../../components/room';
 
 import {fetchLoadComments, fetchOffer, fetchLoadOffersNear} from '../../store/api-actions';
 

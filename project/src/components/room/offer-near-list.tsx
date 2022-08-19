@@ -1,4 +1,4 @@
-import {OfferCard} from '../../components/common';
+import {OfferCard} from '../main';
 
 import {Offers} from '../../types/offers';
 
@@ -7,7 +7,7 @@ type OfferNearCardProps = {
 }
 
 /* «Список предложений неподалёку» */
-function OfferNearsList({offersNear}: OfferNearCardProps): JSX.Element {
+function OfferNearList({offersNear}: OfferNearCardProps): JSX.Element {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -25,4 +25,4 @@ function OfferNearsList({offersNear}: OfferNearCardProps): JSX.Element {
   );
 }
 
-export default OfferNearsList;
+export default OfferNearList;

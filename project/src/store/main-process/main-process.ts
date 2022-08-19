@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {fetchLoadOffers} from '../api-actions';
 
-import {sortTo, arrayToMap} from '../../utils';
+import {sortTo, convertArrayToMap} from '../../utils';
 
 import {Offers} from '../../types/offers';
 import {MainProcess} from '../../types/state';
@@ -31,7 +31,7 @@ export const mainProcess = createSlice({
       }
     },
     setOffersFavoriteStatus: (state, {payload: {favorites}}) => {
-      const _favorites = arrayToMap(favorites, 'id');
+      const _favorites = convertArrayToMap(favorites, 'id');
 
       state.offers.forEach((offer) => {
         offer.isFavorite = !!_favorites[offer.id];

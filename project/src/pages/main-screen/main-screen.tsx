@@ -6,7 +6,7 @@ import {
   CitiesList,
   OfferCardsList,
   SortingForm
-} from '../../components/main-screen';
+} from '../../components/main';
 
 import {collapseSortList} from '../../store/main-process/main-process';
 

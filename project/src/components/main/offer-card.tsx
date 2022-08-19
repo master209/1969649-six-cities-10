@@ -1,6 +1,6 @@
 import {Link, useNavigate} from 'react-router-dom';
 
-import {Premium} from '../../components/common';
+import {Premium} from '.';
 
 import {fetchFavoriteStatus} from '../../store/api-actions';
 
