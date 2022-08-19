@@ -53,14 +53,6 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
   },[id]);
 
   useEffect((): void => {
-    if (offer) {
-      const len = locations.push(offer);
-      /* eslint-disable-next-line no-console */
-      console.log('useEffect() locations, length: ', locations, locations.length, len);
-    }
-  },[offer, offersNear]);
-
-  useEffect((): void => {
     isError404 && navigate(AppRoute.NotFound);
   });
 
@@ -71,7 +63,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     && isOffersLoaded
     && isFavoritesLoaded
     && offersNear.length
-    && locations.length === 4;
+    && locations.length === 3;
 
   return (
     <div className="page">
@@ -88,7 +80,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
                     <Reviews offer={offer} comments={comments} isAuthorized={isAuthorized} />
                   </div>
                 </div>
-                {renderMap(offers[0].city, locations, offer.location, 'property__map')}
+                {renderMap(offers[0].city, [...locations, offer], offer.location, 'property__map')}
               </section>
 
               <div className="container">
