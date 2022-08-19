@@ -11,7 +11,6 @@ import {
 } from '../../components/room-screen';
 
 import {fetchLoadComments, fetchOffer, fetchLoadOffersNear} from '../../store/api-actions';
-import {setNearLocations} from '../../store/offer-data/offer-data';
 
 import {useAppDispatch} from '../../hooks';
 import useAppSelectors from '../../hooks/app-selectors';
@@ -33,22 +32,15 @@ type RoomProps = {
 };
 
 function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
-  const {
-    offers,
-    offer,
-    offersNear,
-    nearLocations,
-    isOfferLoaded,
-    isFavoritesLoaded,
-    comments,
-    isError404
-  } = useAppSelectors();
+  const {offers, offer, offersNear, isOfferLoaded, isFavoritesLoaded, comments, isError404} = useAppSelectors();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isAuthorized = useIsAuthorized();
 
   useSetOffersFavoriteStatus(true);
+
+  const locations = offersNear.map((_offer) => _offer.location);
 
   const {id} = useParams();
 
@@ -60,18 +52,9 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     }
   },[id]);
 
-
   useEffect((): void => {
-    const locations = offersNear.map((_offer) => _offer.location);
-    dispatch(setNearLocations(locations));
-  },[offersNear]);
-
-  useEffect((): void => {
-    offer
-    && nearLocations.length
-    && nearLocations.length < 3
-    && dispatch(setNearLocations(nearLocations.push(offer.location)));
-  },[offer]);
+    offer && locations.push(offer.location);
+  },[offer, offersNear, locations]);
 
   useEffect((): void => {
     isError404 && navigate(AppRoute.NotFound);
@@ -84,7 +67,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     && isOffersLoaded
     && isFavoritesLoaded
     && offersNear.length
-    && nearLocations.length === 3;
+    && locations.length === 3;
 
   return (
     <div className="page">
@@ -101,7 +84,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
                     <Reviews offer={offer} comments={comments} isAuthorized={isAuthorized} />
                   </div>
                 </div>
-                {renderMap(offers[0].city, nearLocations, offer.location, 'property__map')}
+                {renderMap(offers[0].city, locations, offer.location, 'property__map')}
               </section>
 
               <div className="container">

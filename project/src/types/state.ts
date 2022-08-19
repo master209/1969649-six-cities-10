@@ -1,6 +1,6 @@
 import {store} from '../store';
 
-import {Offer, Offers, Comments} from './offers';
+import {Offer, Offers, Comments, Locations} from './offers';
 
 import {AuthorizationStatus} from '../const';
 
@@ -23,15 +23,16 @@ export type OfferData = {
   offersNear: Offers;
   comments: Comments;
   isError404: boolean;
-  isOfferLoading: boolean,
-  isOfferLoaded: boolean,
+  isOfferLoading: boolean;
+  isOfferLoaded: boolean;
+  nearLocations: Locations;
 };
 
 export type FavoriteData = {
   favorites: Offers;
   isError401: boolean;
-  isFavoritesLoading: boolean,
-  isFavoritesLoaded: boolean, // уже загружено?
+  isFavoritesLoading: boolean;
+  isFavoritesLoaded: boolean; // уже загружено?
 };
 
 export type State = ReturnType<typeof store.getState>;

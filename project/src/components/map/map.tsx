@@ -29,9 +29,6 @@ export type MapProps = {
 };
 
 function Map({city, locations, selectedLocation, className}: MapProps): JSX.Element {
-  /* eslint-disable-next-line no-console */
-  console.log('Map() locations, length: ', locations, locations.length);
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, city.location);
 

@@ -22,6 +22,7 @@ const initialState: OfferData = {
   isError404: false,
   isOfferLoading: false,
   isOfferLoaded: false,
+  nearLocations: [],
 };
 
 export const offerData = createSlice({
@@ -30,6 +31,12 @@ export const offerData = createSlice({
   reducers: {
     setFavoriteStatus: ({offer}) => {
       offer && (offer.isFavorite = !offer.isFavorite);
+    },
+    setNearLocations: (state, {payload}) => {
+      /* eslint-disable-next-line no-console */
+      console.log('setNearLocations locations, locations.length: ', payload);
+
+      state.nearLocations = payload;
     },
     setOffersNearFavoriteStatus: (state, {payload: {favorites}}) => {
       const _favorites = arrayToMap(favorites, 'id');
@@ -78,4 +85,4 @@ export const offerData = createSlice({
   }
 });
 
-export const {setFavoriteStatus, setOffersNearFavoriteStatus} = offerData.actions;
+export const {setFavoriteStatus, setNearLocations, setOffersNearFavoriteStatus} = offerData.actions;

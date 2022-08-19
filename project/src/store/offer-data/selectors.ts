@@ -1,5 +1,5 @@
 import {State} from '../../types/state';
-import {Offer, Offers, Comments} from '../../types/offers';
+import {Offer, Offers, Comments, Locations} from '../../types/offers';
 
 import {NameSpace} from '../../const';
 
@@ -9,3 +9,4 @@ export const getComments = (state: State): Comments => state[NameSpace.Offer].co
 export const getIsError404 = (state: State): boolean => state[NameSpace.Offer].isError404;
 export const getIsLoading = (state: State): boolean => state[NameSpace.Offer].isOfferLoading;
 export const getIsLoaded = (state: State): boolean => state[NameSpace.Offer].isOfferLoaded;
+export const getNearLocations = (state: State): Locations => state[NameSpace.Offer].nearLocations;

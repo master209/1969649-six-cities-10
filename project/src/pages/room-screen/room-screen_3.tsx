@@ -60,18 +60,16 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     }
   },[id]);
 
+  let locations = [...nearLocations];
 
   useEffect((): void => {
-    const locations = offersNear.map((_offer) => _offer.location);
-    dispatch(setNearLocations(locations));
+    locations = offersNear.map((_offer) => _offer.location);
   },[offersNear]);
 
   useEffect((): void => {
-    offer
-    && nearLocations.length
-    && nearLocations.length < 3
-    && dispatch(setNearLocations(nearLocations.push(offer.location)));
-  },[offer]);
+    offer && locations.push(offer.location);
+    locations.length && dispatch(setNearLocations(locations));
+  },[offer, locations]);
 
   useEffect((): void => {
     isError404 && navigate(AppRoute.NotFound);
@@ -84,7 +82,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     && isOffersLoaded
     && isFavoritesLoaded
     && offersNear.length
-    && nearLocations.length === 3;
+    && locations.length === 3;
 
   return (
     <div className="page">
@@ -101,7 +99,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
                     <Reviews offer={offer} comments={comments} isAuthorized={isAuthorized} />
                   </div>
                 </div>
-                {renderMap(offers[0].city, nearLocations, offer.location, 'property__map')}
+                {renderMap(offers[0].city, locations, offer.location, 'property__map')}
               </section>
 
               <div className="container">
