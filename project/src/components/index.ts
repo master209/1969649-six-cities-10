@@ -1,1 +1,1 @@
-export {CitiesList} from './main-screen';
+export {CitiesList} from './main';

@@ -1,5 +1,5 @@
 import Layout from '../../components/layout/layout';
-import {CitiesList} from '../../components/main-screen';
+import {CitiesList} from '../../components/main';
 
 type MainEmptyScreenProps = {
   cities: string[];

@@ -1,6 +1,6 @@
-import {Comment} from '../../../types/offers';
+import {Comment} from '../../types/offers';
 
-import {getFormattedDate} from '../../../utils';
+import {getFormattedDate} from '../../utils';
 
 type CommentProps = {
   comment: Comment;

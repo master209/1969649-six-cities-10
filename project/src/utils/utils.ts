@@ -18,13 +18,13 @@ export const sortTo = (array: any[], key: string, direction?: string): any[] =>
   });
 
 // преобразует массив объектов в коллекцию объектов с ключом byKey
-export const arrayToMap = (arr:any, byKey: string) =>
+export const convertArrayToMap = (arr:any, byKey: string) =>
   arr.reduce((acc: any, next: any) =>
     ({...acc, [next[byKey]]: next}), {});
 
 const ID_LEN = 4;
 // генерит уникальный числовой ID длиной ID_LEN
-export const uniqueId = (len = ID_LEN): number =>
+export const getUniqueId = (len = ID_LEN): number =>
   parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(len).toString().replace('.', ''), 10);
 
 export const getFormattedDate = (date: string) =>

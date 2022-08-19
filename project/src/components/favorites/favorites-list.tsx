@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
-import {OfferCard} from '../../components/common';
+import {OfferCard} from '../main';
 
 import useAppSelectors from '../../hooks/app-selectors';
 
@@ -18,14 +18,14 @@ function FavoritesList({onChangeCity}: FavoritesListProps): JSX.Element {
   const {favorites, isFavoritesLoaded} = useAppSelectors();
 
   // вычисляет количество favorites в городе city
-  const favoritesByCityCount = (city: string): number =>
+  const getFavoritesByCityCount = (city: string): number =>
     favorites.reduce((acc, next: Offer) =>
       next.city.name === city ? ++acc : acc, 0);
 
   const renderFavorites = () => (
     <ul className="favorites__list">
       {cities.map((city) =>
-        favoritesByCityCount(city)
+        getFavoritesByCityCount(city)
           ?
           (
             <li

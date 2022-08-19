@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 
 import {OfferInsideItem} from '../index';
-import {Premium} from '../../common';
+import {Premium} from '../../main';
 
 import {setFavoriteStatus} from '../../../store/offer-data/offer-data';
 import {fetchFavoriteStatus} from '../../../store/api-actions';
@@ -44,14 +44,14 @@ function Property({offer, isAuthorized}: PropertyProps): JSX.Element {
     ? 'place-card__bookmark-icon'
     : 'property__bookmark-icon';
 
-  const favoriteStatus = () => {
+  const dispatchFavoriteStatus = () => {
     dispatch(fetchFavoriteStatus({offerId: offer.id, offerStatus: getOfferStatus(isFavorite)}));
     dispatch(setFavoriteStatus());
   };
 
   const handleOnChangeFavoriteStatus = () => {
     isAuthorized
-      ? favoriteStatus()
+      ? dispatchFavoriteStatus()
       : navigate(AppRoute.Login);
   };
 

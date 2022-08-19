@@ -1,8 +1,8 @@
-import {CommentItem} from './';
+import {CommentItem} from './index';
 
-import {Comments} from '../../../types/offers';
+import {Comments} from '../../types/offers';
 
-import {MAX_COMMENT_COUNT} from '../../../const';
+import {MAX_COMMENT_COUNT} from '../../const';
 
 type CommentListProps = {
   comments: Comments;

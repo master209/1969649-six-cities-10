@@ -1,4 +1,4 @@
-import {CommentFormData} from '../../../types/offers';
+import {CommentFormData} from '../../types/offers';
 
 type CommentFormRatingItemProps = {
   value: number;
