@@ -41,7 +41,7 @@ describe('HOC: withMap', () => {
             cities={cities}
             offers={mockOffers}
             activeCity={activeCity}
-            isOffersLoaded={true}
+            isOffersLoaded
             onChangeCity={jest.fn}
           />
         </HistoryRouter>,
