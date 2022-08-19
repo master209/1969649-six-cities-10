@@ -13,7 +13,7 @@ const state = {
   sortBy: 'Popular',
   isSortListCollapsed: true,
   isOffersLoading: false,
-  isOffersLoaded: false,
+  areOffersLoaded: false,
 };
 
 describe('Reducer: mainProcess', () => {
@@ -38,7 +38,7 @@ describe('Reducer: mainProcess', () => {
 
   it('should update offers by load offers', () => {
     const offers = mockOffers.filter(({city}) => (city.name === activeCity)) || [];
-    const resultState = {...state, offers, isOffersLoaded: true};
+    const resultState = {...state, offers, areOffersLoaded: true};
 
     expect(mainProcess.reducer(state, {type: fetchLoadOffers.fulfilled.type, payload: {activeCity, data: mockOffers}}))
       .toEqual(resultState);

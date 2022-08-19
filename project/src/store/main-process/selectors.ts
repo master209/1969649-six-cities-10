@@ -8,4 +8,4 @@ export const getActiveCity = (state: State): string => state[NameSpace.Main].act
 export const getSortBy = (state: State): string => state[NameSpace.Main].sortBy;
 export const getIsSortListCollapsed = (state: State): boolean => state[NameSpace.Main].isSortListCollapsed;
 export const getIsOffersLoading = (state: State): boolean => state[NameSpace.Main].isOffersLoading;
-export const getIsOffersLoaded = (state: State): boolean => state[NameSpace.Main].isOffersLoaded;
+export const getIsOffersLoaded = (state: State): boolean => state[NameSpace.Main].areOffersLoaded;

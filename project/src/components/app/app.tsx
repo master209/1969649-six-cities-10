@@ -8,7 +8,6 @@ import {
   FavoritesEmptyScreen,
   RoomScreen,
   AuthScreen,
-  Loader,
   NotFoundScreen,
 } from '../../pages';
 
@@ -36,14 +35,10 @@ function App(): JSX.Element {
   } = AppRoute;
 
   const dispatch = useAppDispatch();
-  const {offers, activeCity, isOffersLoading, isOffersLoaded} = useAppSelectors();
+  const {offers, activeCity, isOffersLoading, areOffersLoaded} = useAppSelectors();
 
-  if (!offers.length && !isOffersLoading && !isOffersLoaded) {
+  if (!offers.length && !isOffersLoading && !areOffersLoaded) {
     dispatch(fetchLoadOffers(activeCity));
-  }
-
-  if (isOffersLoading) {
-    return <Loader />;
   }
 
   const onChangeCity = (city: string) => {
@@ -60,6 +55,7 @@ function App(): JSX.Element {
             cities={cities}
             offers={offers}
             activeCity={activeCity}
+            areOffersLoaded={areOffersLoaded}
             onChangeCity={onChangeCity}
           />
         }
@@ -94,7 +90,11 @@ function App(): JSX.Element {
       />
       <Route
         path={OfferId}
-        element={<RoomScreenWrapped />}
+        element={
+          <RoomScreenWrapped
+            areOffersLoaded={areOffersLoaded}
+          />
+        }
       />
       <Route
         path={Login}

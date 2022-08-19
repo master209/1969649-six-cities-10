@@ -19,7 +19,8 @@ import {
   getOffersNear,
   getComments,
   getIsError404,
-  getIsLoading
+  getIsLoading,
+  getIsLoaded
 } from '../store/offer-data/selectors';
 
 import {
@@ -38,13 +39,14 @@ const useAppSelectors = () => {
   const sortBy = useAppSelector(getSortBy);
   const isSortListCollapsed = useAppSelector(getIsSortListCollapsed);
   const isOffersLoading = useAppSelector(getIsOffersLoading);
-  const isOffersLoaded = useAppSelector(getIsOffersLoaded);
+  const areOffersLoaded = useAppSelector(getIsOffersLoaded);
 
   const offer = useAppSelector(getOffer);
   const offersNear = useAppSelector(getOffersNear);
   const comments = useAppSelector(getComments);
   const isError404 = useAppSelector(getIsError404);
   const isOfferLoading = useAppSelector(getIsLoading);
+  const isOfferLoaded = useAppSelector(getIsLoaded);
 
   const favorites = useAppSelector(getFavorites);
   const isError401 = useAppSelector(getIsError401);
@@ -53,8 +55,8 @@ const useAppSelectors = () => {
 
   return {
     authorizationStatus, email,
-    offers, activeCity, sortBy, isSortListCollapsed, isOffersLoading, isOffersLoaded,
-    offer, offersNear, comments, isError404, isOfferLoading,
+    offers, activeCity, sortBy, isSortListCollapsed, isOffersLoading, areOffersLoaded,
+    offer, offersNear, comments, isError404, isOfferLoading, isOfferLoaded,
     favorites , isError401, isFavoritesLoading, isFavoritesLoaded,
   };
 };

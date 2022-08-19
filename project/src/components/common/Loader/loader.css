@@ -1,0 +1,18 @@
+.loader-root {
+  position: relative;
+  z-index: 999;
+}
+.app-loader {
+  margin: 0;
+  padding: 3px 0 0 6px;
+  background-color: rgba(0,0,0,0.1);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: .8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

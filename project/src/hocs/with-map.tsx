@@ -2,12 +2,12 @@ import {ComponentType} from 'react';
 
 import Map from '../components/map/map';
 
-import {City, Location, Locations} from '../types/offers';
+import {City, Location, Offers} from '../types/offers';
 
 type HOCProps = {
   renderMap: (
     city: City,
-    locations: Locations,
+    locations: Offers,
     selectedLocation: Location | undefined,
     className: string,
   ) => void
@@ -23,11 +23,12 @@ function withMap<T>(Component: ComponentType<T>): ComponentType<Omit<T, keyof HO
         {...props as T}
         renderMap={(
           city: City,
-          locations: Locations,
+          locations: Offers,
           selectedLocation: Location | undefined,
           className: string,
         ) => (
           <Map
+            key={locations[3].id.toString()} // картра должна перерисовываться каждый раз, иначе новые маркеры добавляются к старым
             city={city}
             locations={locations}
             selectedLocation={selectedLocation}

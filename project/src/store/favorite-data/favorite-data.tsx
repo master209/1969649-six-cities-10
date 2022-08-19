@@ -37,10 +37,17 @@ export const favoriteData = createSlice({
         state.isFavoritesLoading = false;
         state.isFavoritesLoaded = true;
       })
+      .addCase(fetchLoadFavorites.rejected, (state) => {
+        state.favorites = [];
+        state.isFavoritesLoading = false;
+        state.isFavoritesLoaded = true;
+      })
 
       .addCase(fetchFavoriteStatus.fulfilled, (state, {payload: {data, offerStatus}}) => {
+        const newFavorite = !state.favorites.find(({id}) => id === data.id);
+
         offerStatus
-          ? !state.favorites.find(({id}) => id === data.id) && state.favorites.push(data)
+          ? newFavorite && state.favorites.push(data)
           : state.favorites = state.favorites.filter(({id}) => id !== data.id);
       })
       .addCase(fetchFavoriteStatus.rejected, (state) => {

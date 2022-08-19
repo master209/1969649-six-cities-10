@@ -7,17 +7,17 @@ import {sortTo, arrayToMap} from '../../utils';
 import {Offers} from '../../types/offers';
 import {MainProcess} from '../../types/state';
 
-import {NameSpace, offerSorts, Order} from '../../const';
+import {initialCity, NameSpace, offerSorts, Order} from '../../const';
 
 const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
 const initialState: MainProcess = {
   offers: [],
-  activeCity: 'Paris',
+  activeCity: initialCity,
   sortBy: Popular,
   isSortListCollapsed: true,
   isOffersLoading: false,
-  isOffersLoaded: false,
+  areOffersLoaded: false,
 };
 
 export const mainProcess = createSlice({
@@ -69,17 +69,17 @@ export const mainProcess = createSlice({
     builder
       .addCase(fetchLoadOffers.pending, (state) => {
         state.isOffersLoading = true;
-        state.isOffersLoaded = false;
+        state.areOffersLoaded = false;
       })
       .addCase(fetchLoadOffers.fulfilled, (state, {payload: {activeCity, data}}) => {
         const offers: Offers = data;
         state.offers = offers.filter(({city}) => (city.name === activeCity)) || [];
         state.isOffersLoading = false;
-        state.isOffersLoaded = true;
+        state.areOffersLoaded = true;
       })
       .addCase(fetchLoadOffers.rejected, (state) => {
         state.isOffersLoading = false;
-        state.isOffersLoaded = false;
+        state.areOffersLoaded = false;
       });
   }
 });

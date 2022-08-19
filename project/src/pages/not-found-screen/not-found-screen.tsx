@@ -15,7 +15,7 @@ function NotFoundScreen(): JSX.Element {
                 <p className="cities__status-description"><Link to={AppRoute.Main}>Вернуться на главную</Link></p>
               </div>
             </section>
-            <div className="cities__right-section"></div>
+            <div className="cities__right-section" />
           </div>
         </div>
       </main>

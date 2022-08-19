@@ -2,7 +2,9 @@ import {PropsWithChildren} from 'react';
 import {Navigate, useLocation} from 'react-router-dom';
 
 import {Header, Footer} from './internal';
+import {Loader} from '../common';
 
+import useAppSelectors from '../../hooks/app-selectors';
 import useIsAuthorized from '../../hooks/is-authorized';
 import useNeedAuthorize from '../../hooks/need-authorize';
 import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
@@ -15,11 +17,15 @@ type LayoutProps = PropsWithChildren<{
 }>;
 
 function Layout({children, withFooter, withFooterContainer}: LayoutProps): JSX.Element {
+  const {isOffersLoading, isOfferLoading, isFavoritesLoading} = useAppSelectors();
+
   const location = useLocation();
   const isAuthorized = useIsAuthorized();
 
   useNeedAuthorize();
   useSetOffersFavoriteStatus();
+
+  const renderLoader = () => isOffersLoading || isOfferLoading || isFavoritesLoading ? <Loader /> : null;
 
   if (location.pathname === AppRoute.Login && isAuthorized) {
     return <Navigate to={AppRoute.Main} />;
@@ -30,6 +36,7 @@ function Layout({children, withFooter, withFooterContainer}: LayoutProps): JSX.E
       <Header />
       {children}
       {withFooter && <Footer withContainer={withFooterContainer} />}
+      {renderLoader()}
     </>
   );
 }

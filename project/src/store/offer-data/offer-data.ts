@@ -21,6 +21,7 @@ const initialState: OfferData = {
   comments: [],
   isError404: false,
   isOfferLoading: false,
+  isOfferLoaded: false,
 };
 
 export const offerData = createSlice({
@@ -47,10 +48,12 @@ export const offerData = createSlice({
       .addCase(fetchOffer.fulfilled, (state, {payload}) => {
         state.offer = payload;
         state.isOfferLoading = false;
+        state.isOfferLoaded = true;
       })
       .addCase(fetchOffer.rejected, (state) => {
         state.isError404 = true;
         state.isOfferLoading = false;
+        state.isOfferLoaded = true;
       })
 
       .addCase(fetchLoadOffersNear.pending, (state) => {
