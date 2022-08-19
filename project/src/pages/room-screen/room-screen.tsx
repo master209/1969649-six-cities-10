@@ -17,7 +17,7 @@ import useAppSelectors from '../../hooks/app-selectors';
 import useIsAuthorized from '../../hooks/is-authorized';
 import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
 
-import {City, Location, Locations} from '../../types/offers';
+import {City, Location, Offers} from '../../types/offers';
 
 import {AppRoute} from '../../const';
 
@@ -25,7 +25,7 @@ type RoomProps = {
   isOffersLoaded: boolean;
   renderMap: (
     city: City,
-    locations: Locations,
+    locations: Offers,
     selectedLocation: Location | undefined,
     className: string,
   ) => JSX.Element;
@@ -40,7 +40,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
 
   useSetOffersFavoriteStatus(true);
 
-  const locations = offersNear.map((_offer) => _offer.location);
+  const locations = offersNear.map((offerNear) => offerNear);
 
   const {id} = useParams();
 
@@ -53,8 +53,12 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
   },[id]);
 
   useEffect((): void => {
-    offer && locations.push(offer.location);
-  },[offer, offersNear, locations]);
+    if (offer) {
+      const len = locations.push(offer);
+      /* eslint-disable-next-line no-console */
+      console.log('useEffect() locations, length: ', locations, locations.length, len);
+    }
+  },[offer, offersNear]);
 
   useEffect((): void => {
     isError404 && navigate(AppRoute.NotFound);
@@ -67,7 +71,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     && isOffersLoaded
     && isFavoritesLoaded
     && offersNear.length
-    && locations.length === 3;
+    && locations.length === 4;
 
   return (
     <div className="page">

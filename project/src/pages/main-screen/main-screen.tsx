@@ -12,7 +12,7 @@ import {collapseSortList} from '../../store/main-process/main-process';
 
 import {useAppDispatch} from '../../hooks';
 
-import {City, Offers, Location, Locations} from '../../types/offers';
+import {City, Offers, Location} from '../../types/offers';
 
 import {AppRoute} from '../../const';
 
@@ -24,7 +24,7 @@ type MainProps = {
   onChangeCity: (city: string) => void;
   renderMap: (
     activeCity: City,
-    locations: Locations,
+    locations: Offers,
     selectedLocation: Location | undefined,
     className: string,
   ) => JSX.Element;
@@ -41,7 +41,7 @@ function MainScreen(props: MainProps): JSX.Element {
     return <Navigate to={AppRoute.MainEmpty} />;
   }
 
-  const locations = offers.map((offer) => offer.location);
+  const locations = offers.map((offer) => offer);
 
   const onListItemHover = (offerId: number) => {
     const hoveredOffer = offers.find(({id}) => id === offerId);
