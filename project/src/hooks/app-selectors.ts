@@ -39,7 +39,7 @@ const useAppSelectors = () => {
   const sortBy = useAppSelector(getSortBy);
   const isSortListCollapsed = useAppSelector(getIsSortListCollapsed);
   const isOffersLoading = useAppSelector(getIsOffersLoading);
-  const isOffersLoaded = useAppSelector(getIsOffersLoaded);
+  const areOffersLoaded = useAppSelector(getIsOffersLoaded);
 
   const offer = useAppSelector(getOffer);
   const offersNear = useAppSelector(getOffersNear);
@@ -55,7 +55,7 @@ const useAppSelectors = () => {
 
   return {
     authorizationStatus, email,
-    offers, activeCity, sortBy, isSortListCollapsed, isOffersLoading, isOffersLoaded,
+    offers, activeCity, sortBy, isSortListCollapsed, isOffersLoading, areOffersLoaded,
     offer, offersNear, comments, isError404, isOfferLoading, isOfferLoaded,
     favorites , isError401, isFavoritesLoading, isFavoritesLoaded,
   };

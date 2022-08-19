@@ -35,9 +35,9 @@ function App(): JSX.Element {
   } = AppRoute;
 
   const dispatch = useAppDispatch();
-  const {offers, activeCity, isOffersLoading, isOffersLoaded} = useAppSelectors();
+  const {offers, activeCity, isOffersLoading, areOffersLoaded} = useAppSelectors();
 
-  if (!offers.length && !isOffersLoading && !isOffersLoaded) {
+  if (!offers.length && !isOffersLoading && !areOffersLoaded) {
     dispatch(fetchLoadOffers(activeCity));
   }
 
@@ -55,7 +55,7 @@ function App(): JSX.Element {
             cities={cities}
             offers={offers}
             activeCity={activeCity}
-            isOffersLoaded={isOffersLoaded}
+            areOffersLoaded={areOffersLoaded}
             onChangeCity={onChangeCity}
           />
         }
@@ -92,7 +92,7 @@ function App(): JSX.Element {
         path={OfferId}
         element={
           <RoomScreenWrapped
-            isOffersLoaded={isOffersLoaded}
+            areOffersLoaded={areOffersLoaded}
           />
         }
       />

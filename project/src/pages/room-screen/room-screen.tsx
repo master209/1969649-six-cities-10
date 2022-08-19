@@ -22,16 +22,16 @@ import {City, Location, Offers} from '../../types/offers';
 import {AppRoute} from '../../const';
 
 type RoomProps = {
-  isOffersLoaded: boolean;
+  areOffersLoaded: boolean;
   renderMap: (
     city: City,
-    offersNear4: Offers, // 4 оффера для отрисовки на карте
+    locations: Offers,
     selectedLocation: Location | undefined,
     className: string,
   ) => JSX.Element;
 };
 
-function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
+function RoomScreen({renderMap, areOffersLoaded}: RoomProps): JSX.Element {
   const {offers, offer, offersNear, isOfferLoaded, isFavoritesLoaded, comments, isError404} = useAppSelectors();
 
   const dispatch = useAppDispatch();
@@ -39,8 +39,6 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
   const isAuthorized = useIsAuthorized();
 
   useSetOffersFavoriteStatus(true);
-
-  const locations = offersNear.map((offerNear) => offerNear);
 
   const {id} = useParams();
 
@@ -60,7 +58,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
   const isDataLoaded = () =>
     offers.length
     && isOfferLoaded
-    && isOffersLoaded
+    && areOffersLoaded
     && offersNear.length
     && (isFavoritesLoaded || !isAuthorized);
 
@@ -79,7 +77,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
                     <Reviews offer={offer} comments={comments} isAuthorized={isAuthorized} />
                   </div>
                 </div>
-                {renderMap(offers[0].city, [...locations, offer], offer.location, 'property__map')}
+                {renderMap(offers[0].city, [...offersNear, offer], offer.location, 'property__map')}
               </section>
 
               <div className="container">

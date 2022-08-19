@@ -20,7 +20,7 @@ type MainProps = {
   cities: string[];
   offers: Offers;
   activeCity: string;
-  isOffersLoaded: boolean;
+  areOffersLoaded: boolean;
   onChangeCity: (city: string) => void;
   renderMap: (
     activeCity: City,
@@ -31,17 +31,15 @@ type MainProps = {
 };
 
 function MainScreen(props: MainProps): JSX.Element {
-  const {cities, offers, activeCity, isOffersLoaded, renderMap, onChangeCity} = props;
+  const {cities, offers, activeCity, areOffersLoaded, renderMap, onChangeCity} = props;
 
   const dispatch = useAppDispatch();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | undefined>();
 
-  if(isOffersLoaded && !offers.length) {
+  if(areOffersLoaded && !offers.length) {
     return <Navigate to={AppRoute.MainEmpty} />;
   }
-
-  const locations = offers.map((offer) => offer);
 
   const onListItemHover = (offerId: number) => {
     const hoveredOffer = offers.find(({id}) => id === offerId);
@@ -66,7 +64,7 @@ function MainScreen(props: MainProps): JSX.Element {
             activeCity={activeCity}
             onChangeCity={onChangeCity}
           />
-          {isOffersLoaded && offers.length ?
+          {areOffersLoaded && offers.length ?
             (
               <div className="cities">
                 <div className="cities__places-container container">
@@ -81,7 +79,7 @@ function MainScreen(props: MainProps): JSX.Element {
                     />
                   </section>
                   <div className="cities__right-section">
-                    {renderMap(offers[0].city, locations, selectedLocation, 'cities__map')}
+                    {renderMap(offers[0].city, offers, selectedLocation, 'cities__map')}
                   </div>
                 </div>
               </div>

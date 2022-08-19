@@ -23,19 +23,19 @@ const currentCustomIcon = createIcon(URL_MARKER_CURRENT);
 
 export type MapProps = {
   city: City;
-  offersNear4: Offers; // 4 оффера для отрисовки на карте
+  locations: Offers;
   selectedLocation: Location | undefined;
   className: string;
 };
 
-function Map({city, offersNear4, selectedLocation, className}: MapProps): JSX.Element {
-  const locations = offersNear4.map((_offer) => _offer.location);
+function Map({city, locations, selectedLocation, className}: MapProps): JSX.Element {
+  const _locations = locations.map((_offer) => _offer.location);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city.location);
 
   useEffect(() => {
     map &&
-    locations.forEach(({latitude:lat, longitude:lng}) => {
+    _locations.forEach(({latitude:lat, longitude:lng}) => {
       const marker = new Marker({lat, lng});
 
       marker
@@ -46,7 +46,7 @@ function Map({city, offersNear4, selectedLocation, className}: MapProps): JSX.El
         )
         .addTo(map);
     });
-  }, [map, locations, selectedLocation]);
+  }, [map, _locations, selectedLocation]);
 
   return (
     <section className={`${className} map`} ref={mapRef} />

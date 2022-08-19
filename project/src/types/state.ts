@@ -15,7 +15,7 @@ export type MainProcess = {
   sortBy: string;
   isSortListCollapsed: boolean;
   isOffersLoading: boolean, // сейчас загрузка?
-  isOffersLoaded: boolean, // уже загружено?
+  areOffersLoaded: boolean, // уже загружено?
 };
 
 export type OfferData = {
