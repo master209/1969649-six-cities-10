@@ -21,6 +21,8 @@ import {City, Location, Offers} from '../../types/offers';
 
 import {AppRoute} from '../../const';
 
+const LOCATIONS_COUNT = 3; // отрисовки на карте нужно 3 offersNear + 1 текущий оффер
+
 type RoomProps = {
   isOffersLoaded: boolean;
   renderMap: (
@@ -63,7 +65,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     && isOffersLoaded
     && isFavoritesLoaded
     && offersNear.length
-    && locations.length === 3;
+    && locations.length === LOCATIONS_COUNT;
 
   return (
     <div className="page">
