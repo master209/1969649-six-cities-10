@@ -63,7 +63,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     offers.length
     && isOfferLoaded
     && isOffersLoaded
-    && isFavoritesLoaded
+    && (isFavoritesLoaded || !isAuthorized)
     && offersNear.length
     && locations.length === LOCATIONS_COUNT;
 
