@@ -25,7 +25,7 @@ type RoomProps = {
   isOffersLoaded: boolean;
   renderMap: (
     city: City,
-    locations: Offers,
+    offersNear4: Offers, // 4 оффера для отрисовки на карте
     selectedLocation: Location | undefined,
     className: string,
   ) => JSX.Element;
