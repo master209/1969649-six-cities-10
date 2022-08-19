@@ -7,13 +7,13 @@ import {sortTo, arrayToMap} from '../../utils';
 import {Offers} from '../../types/offers';
 import {MainProcess} from '../../types/state';
 
-import {NameSpace, offerSorts, Order} from '../../const';
+import {initialCity, NameSpace, offerSorts, Order} from '../../const';
 
 const [Popular, LowToHigh, HighToLow, TopRated] = offerSorts;
 
 const initialState: MainProcess = {
   offers: [],
-  activeCity: 'Paris',
+  activeCity: initialCity,
   sortBy: Popular,
   isSortListCollapsed: true,
   isOffersLoading: false,

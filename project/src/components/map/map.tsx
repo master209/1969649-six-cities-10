@@ -29,6 +29,9 @@ export type MapProps = {
 };
 
 function Map({city, locations, selectedLocation, className}: MapProps): JSX.Element {
+  /* eslint-disable-next-line no-console */
+  console.log('Map() locations, length: ', locations, locations.length);
+
   const mapRef = useRef(null);
   const map = useMap(mapRef, city.location);
 
@@ -48,7 +51,7 @@ function Map({city, locations, selectedLocation, className}: MapProps): JSX.Elem
   }, [map, locations, selectedLocation]);
 
   return (
-    <section className={`${className} map`} ref={mapRef}></section>
+    <section className={`${className} map`} ref={mapRef} />
   );
 }
 

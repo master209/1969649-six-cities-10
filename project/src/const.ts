@@ -23,6 +23,8 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export const initialCity = 'Paris';
+
 export const cities = [
   'Paris',
   'Cologne',

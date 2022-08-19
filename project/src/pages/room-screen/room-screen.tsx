@@ -54,7 +54,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
 
   useEffect((): void => {
     offer && locations.push(offer.location);
-  },[locations]);
+  },[offer, offersNear, locations]);
 
   useEffect((): void => {
     isError404 && navigate(AppRoute.NotFound);
@@ -67,7 +67,7 @@ function RoomScreen({renderMap, isOffersLoaded}: RoomProps): JSX.Element {
     && isOffersLoaded
     && isFavoritesLoaded
     && offersNear.length
-    && locations.length;
+    && locations.length === 3;
 
   return (
     <div className="page">
