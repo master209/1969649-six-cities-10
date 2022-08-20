@@ -1,4 +1,4 @@
-import {CommentForm, CommentsList} from '../../comment';
+import {CommentForm, CommentsList} from '../../comment-form';
 
 import {Offer, Comments} from '../../../types/offers';
 

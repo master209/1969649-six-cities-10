@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
 
-import useSetSort from '../../hooks/set-sort';
+import useSetSort from '../../../hooks/set-sort';
 
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../../const';
 
 type CitiesListProps = {
   cities: string[];

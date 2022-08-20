@@ -1,6 +1,6 @@
-import {OfferCard} from './';
+import OfferCard from '../../offer-card/offer-card';
 
-import {Offers} from '../../types/offers';
+import {Offers} from '../../../types/offers';
 
 type OfferCardsListProps = {
   offers: Offers;

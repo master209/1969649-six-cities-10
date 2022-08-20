@@ -4,13 +4,13 @@ import {createMemoryHistory} from 'history';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import AuthScreen from '../../pages/auth-screen/auth-screen';
+import AuthScreen from '../../../pages/auth-screen/auth-screen';
 import SignIn from './sign-in';
-import HistoryRouter from '../../components/history-route/history-route';
+import HistoryRouter from '../../history-route/history-route';
 
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../../const';
 
-import {store} from '../../utils';
+import {store} from '../../../utils';
 
 const history = createMemoryHistory();
 const onChangeCity = () => jest.fn();

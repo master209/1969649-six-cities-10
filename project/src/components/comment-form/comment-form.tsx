@@ -8,7 +8,7 @@ import {useAppDispatch} from '../../hooks';
 
 import {CommentFormData} from '../../types/offers';
 
-import {MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH} from '../../const';
+import {Comment} from '../../const';
 
 import './style.css';
 
@@ -43,8 +43,8 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
 
   const checkIsFormValid = () => (
     form.rating > 0
-    && form.comment.length >= MIN_COMMENT_LENGTH
-    && form.comment.length <= MAX_COMMENT_LENGTH
+    && form.comment.length >= Comment.MinLength
+    && form.comment.length <= Comment.MaxLength
   );
 
   return (
@@ -79,8 +79,8 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
       <div className="reviews__button-wrapper">
         <p className={`reviews__help ${checkIsFormValid() ? '' : 'error'}`}>
           To submit review please make sure to set <span className="reviews__star">rating</span>&nbsp;
-          and describe your stay with at least <b className="reviews__text-amount">{MIN_COMMENT_LENGTH} characters</b>&nbsp;
-          and no more than <b className="reviews__text-amount">{MAX_COMMENT_LENGTH} characters</b>.
+          and describe your stay with at least <b className="reviews__text-amount">{Comment.MinLength} characters</b>&nbsp;
+          and no more than <b className="reviews__text-amount">{Comment.MaxLength} characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"

@@ -1,7 +1,7 @@
 import {PropsWithChildren} from 'react';
 import {Navigate, useLocation} from 'react-router-dom';
 
-import {Header, Footer} from './internal';
+import {Header, Footer} from './index';
 import Loader from '../loader/loader';
 
 import useAppSelectors from '../../hooks/app-selectors';

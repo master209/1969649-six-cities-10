@@ -5,11 +5,11 @@ import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import SignOut from './sign-out';
-import HistoryRouter from '../../components/history-route/history-route';
+import HistoryRouter from '../../history-route/history-route';
 
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../../const';
 
-import {store} from '../../utils';
+import {store} from '../../../utils';
 
 const history = createMemoryHistory();
 

@@ -4,7 +4,7 @@ import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Logo from './logo';
-import HistoryRouter from '../../../../components/history-route/history-route';
+import HistoryRouter from '../../../history-route/history-route';
 
 const history = createMemoryHistory();
 

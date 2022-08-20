@@ -1,14 +1,14 @@
 import {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 
-import Layout from '../../components/layout/layout';
+import {Layout} from '../../components/layout';
 import {
-  OfferNearsList,
+  OfferNearList,
   Gallery,
   Property,
   Host,
   Reviews
-} from '../../components/room';
+} from '../../components/offer';
 
 import {fetchLoadComments, fetchOffer, fetchLoadOffersNear} from '../../store/api-actions';
 
@@ -81,7 +81,7 @@ function RoomScreen({renderMap, areOffersLoaded}: RoomProps): JSX.Element {
               </section>
 
               <div className="container">
-                <OfferNearsList offersNear={offersNear} />
+                <OfferNearList offersNear={offersNear} />
               </div>
             </main>
           ) : null}

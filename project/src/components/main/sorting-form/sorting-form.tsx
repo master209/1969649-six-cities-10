@@ -1,9 +1,9 @@
-import {clickSort, setSort} from '../../store/main-process/main-process';
+import {clickSort, setSort} from '../../../store/main-process/main-process';
 
-import {useAppDispatch} from '../../hooks';
-import useAppSelectors from '../../hooks/app-selectors';
+import {useAppDispatch} from '../../../hooks';
+import useAppSelectors from '../../../hooks/app-selectors';
 
-import {offerSorts} from '../../const';
+import {offerSorts} from '../../../const';
 
 function SortingForm(): JSX.Element {
   const dispatch = useAppDispatch();
