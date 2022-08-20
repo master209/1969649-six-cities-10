@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import {Layout} from '../../components/layout';
 
-import {fetchLogin} from '../../store/api-actions';
+import {fetchLogin} from '../../store/api-actions/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 

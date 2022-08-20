@@ -2,10 +2,10 @@ import {Link, useNavigate} from 'react-router-dom';
 
 import {Premium} from '../main';
 
-import {fetchFavoriteStatus} from '../../store/api-actions';
+import {fetchFavoriteStatus} from '../../store/api-actions/api-actions';
 
 import {useAppDispatch} from '../../hooks';
-import useIsAuthorized from '../../hooks/is-authorized';
+import useIsAuthorized from '../../hooks/is-authorized/is-authorized';
 
 import {getStarsClass, getOfferStatus} from '../../utils';
 

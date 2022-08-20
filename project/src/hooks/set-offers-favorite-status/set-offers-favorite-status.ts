@@ -1,12 +1,12 @@
 import {useEffect} from 'react';
 
-import {fetchLoadFavorites} from '../store/api-actions';
-import {setOffersFavoriteStatus} from '../store/main-process/main-process';
-import {setOffersNearFavoriteStatus} from '../store/offer-data/offer-data';
+import {fetchLoadFavorites} from '../../store/api-actions/api-actions';
+import {setOffersFavoriteStatus} from '../../store/main-process/main-process';
+import {setOffersNearFavoriteStatus} from '../../store/offer-data/offer-data';
 
-import {useAppDispatch} from '.';
-import useIsAuthorized from './is-authorized';
-import useAppSelectors from './app-selectors';
+import {useAppDispatch} from '../index';
+import useIsAuthorized from '../is-authorized/is-authorized';
+import useAppSelectors from '../app-selectors';
 
 const useSetOffersFavoriteStatus = (isForNear?: boolean) => {
   const dispatch = useAppDispatch();

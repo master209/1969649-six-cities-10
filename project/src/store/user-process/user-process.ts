@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import {fetchCheckAuth, fetchLogin, fetchLogout} from '../api-actions';
+import {fetchCheckAuth, fetchLogin, fetchLogout} from '../api-actions/api-actions';
 
 import {UserProcess} from '../../types/state';
 

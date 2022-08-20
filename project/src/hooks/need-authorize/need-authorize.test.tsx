@@ -2,7 +2,7 @@ import {render, screen} from '@testing-library/react';
 
 import useNeedAuthorize from './need-authorize';
 
-jest.mock('./app-selectors', () => {
+jest.mock('../app-selectors', () => {
   const mockUseAppSelectors = () => ({isError401: true});
 
   return {
@@ -11,7 +11,7 @@ jest.mock('./app-selectors', () => {
   };
 });
 
-jest.mock('./is-authorized', () => {
+jest.mock('../is-authorized/is-authorized', () => {
   const mockUseIsAuthorized = () => true;
 
   return {

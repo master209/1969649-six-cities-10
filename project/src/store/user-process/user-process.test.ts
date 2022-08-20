@@ -1,7 +1,7 @@
 import {userProcess} from './user-process';
 import {UserProcess} from '../../types/state';
 import {AuthorizationStatus} from '../../const';
-import {fetchCheckAuth, fetchLogin, fetchLogout} from '../api-actions';
+import {fetchCheckAuth, fetchLogin, fetchLogout} from '../api-actions/api-actions';
 
 const {Auth, NoAuth, Unknown} = AuthorizationStatus;
 

@@ -1,9 +1,9 @@
 import {useEffect} from 'react';
 
-import {setSort} from '../store/main-process/main-process';
+import {setSort} from '../../store/main-process/main-process';
 
-import {useAppDispatch} from '.';
-import useAppSelectors from './app-selectors';
+import {useAppDispatch} from '../index';
+import useAppSelectors from '../app-selectors';
 
 const useSetSort = () => {
   const dispatch = useAppDispatch();

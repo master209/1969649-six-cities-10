@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import {fetchLoadOffers} from '../api-actions';
+import {fetchLoadOffers} from '../api-actions/api-actions';
 
 import {sortTo, convertArrayToMap} from '../../utils';
 

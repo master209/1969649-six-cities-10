@@ -1,6 +1,6 @@
 import {favoriteData, resetFavorites} from './favorite-data';
 
-import {fetchFavoriteStatus, fetchLoadFavorites} from '../api-actions';
+import {fetchFavoriteStatus, fetchLoadFavorites} from '../api-actions/api-actions';
 
 import {makeFakeOffers} from '../../utils';
 

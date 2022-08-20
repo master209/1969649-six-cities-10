@@ -3,7 +3,7 @@ import thunk, {ThunkDispatch} from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 
-import {createAPI} from '../services/api';
+import {createAPI} from '../../services/api';
 import {
   fetchLoadOffers,
   fetchLoadOffersNear,
@@ -15,11 +15,11 @@ import {
   fetchLogout
 } from './api-actions';
 
-import {State} from '../types/state';
-import {AuthData} from '../types/auth-data';
-import {APIRoute} from '../const';
+import {State} from '../../types/state';
+import {AuthData} from '../../types/auth-data';
+import {APIRoute} from '../../const';
 
-import {makeFakeOffers} from '../utils';
+import {makeFakeOffers} from '../../utils';
 
 describe('Async actions', () => {
   const api = createAPI();

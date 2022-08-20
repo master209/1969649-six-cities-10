@@ -8,7 +8,7 @@ import browserHistory from './browser-history';
 import App from './components/app/app';
 
 import {store} from './store';
-import {fetchCheckAuth} from './store/api-actions';
+import {fetchCheckAuth} from './store/api-actions/api-actions';
 
 import {getEmail} from './services/email';
 

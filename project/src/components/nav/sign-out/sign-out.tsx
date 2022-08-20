@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-import {fetchLogout} from '../../../store/api-actions';
+import {fetchLogout} from '../../../store/api-actions/api-actions';
 import {resetFavorites} from '../../../store/favorite-data/favorite-data';
 
 import {useAppDispatch} from '../../../hooks';

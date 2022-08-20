@@ -5,7 +5,7 @@ import {
   fetchLoadOffersNear,
   fetchLoadComments,
   fetchCreateComment
-} from '../api-actions';
+} from '../api-actions/api-actions';
 
 import {convertArrayToMap} from '../../utils';
 

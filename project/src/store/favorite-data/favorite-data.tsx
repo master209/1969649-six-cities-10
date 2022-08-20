@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import {
   fetchLoadFavorites,
   fetchFavoriteStatus
-} from '../api-actions';
+} from '../api-actions/api-actions';
 
 import {FavoriteData} from '../../types/state';
 
