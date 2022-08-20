@@ -1,6 +1,6 @@
 import {mainProcess, changeCity, clickSort} from './main-process';
 
-import {fetchLoadOffers} from '../api-actions';
+import {fetchLoadOffers} from '../api-actions/api-actions';
 
 import {makeFakeOffers} from '../../utils';
 

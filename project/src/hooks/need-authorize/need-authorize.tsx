@@ -1,10 +1,10 @@
 import {useNavigate} from 'react-router-dom';
 
-import useAppSelectors from './app-selectors';
+import useAppSelectors from '../app-selectors';
 
-import useIsAuthorized from './is-authorized';
+import useIsAuthorized from '../is-authorized/is-authorized';
 
-import {AppRoute} from '../const';
+import {AppRoute} from '../../const';
 
 // если пользователь авторизован, но сервер вернул 401, то нужна повторная авторизация
 const useNeedAuthorize = (): any => {

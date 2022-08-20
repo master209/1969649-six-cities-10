@@ -1,7 +1,7 @@
 import {useEffect, useState, MutableRefObject} from 'react';
 import {Map, TileLayer} from 'leaflet';
 
-import {Location} from '../types/offers';
+import {Location} from '../../types/offers';
 
 function useMap(mapRef: MutableRefObject<HTMLElement | null>, {latitude:lat, longitude:lng, zoom}: Location): Map | null {
   const [map, setMap] = useState<Map | null>(null);

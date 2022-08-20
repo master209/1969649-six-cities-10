@@ -11,7 +11,7 @@ import {
   NotFoundScreen,
 } from '../../pages';
 
-import {fetchLoadOffers} from '../../store/api-actions';
+import {fetchLoadOffers} from '../../store/api-actions/api-actions';
 import {changeCity} from '../../store/main-process/main-process';
 
 import withMap from '../../hocs/with-map';

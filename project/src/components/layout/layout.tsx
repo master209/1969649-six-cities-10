@@ -5,9 +5,9 @@ import {Header, Footer} from './index';
 import Loader from '../loader/loader';
 
 import useAppSelectors from '../../hooks/app-selectors';
-import useIsAuthorized from '../../hooks/is-authorized';
-import useNeedAuthorize from '../../hooks/need-authorize';
-import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
+import useIsAuthorized from '../../hooks/is-authorized/is-authorized';
+import useNeedAuthorize from '../../hooks/need-authorize/need-authorize';
+import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status/set-offers-favorite-status';
 
 import {AppRoute} from '../../const';
 

@@ -10,12 +10,12 @@ import {
   Reviews
 } from '../../components/offer';
 
-import {fetchLoadComments, fetchOffer, fetchLoadOffersNear} from '../../store/api-actions';
+import {fetchLoadComments, fetchOffer, fetchLoadOffersNear} from '../../store/api-actions/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 import useAppSelectors from '../../hooks/app-selectors';
-import useIsAuthorized from '../../hooks/is-authorized';
-import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status';
+import useIsAuthorized from '../../hooks/is-authorized/is-authorized';
+import useSetOffersFavoriteStatus from '../../hooks/set-offers-favorite-status/set-offers-favorite-status';
 
 import {City, Location, Offers} from '../../types/offers';
 

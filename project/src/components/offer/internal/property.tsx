@@ -4,7 +4,7 @@ import {OfferInsideItem} from '../index';
 import {Premium} from '../../main';
 
 import {setFavoriteStatus} from '../../../store/offer-data/offer-data';
-import {fetchFavoriteStatus} from '../../../store/api-actions';
+import {fetchFavoriteStatus} from '../../../store/api-actions/api-actions';
 
 import {useAppDispatch} from '../../../hooks';
 

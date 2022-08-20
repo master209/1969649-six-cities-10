@@ -1,15 +1,15 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AxiosInstance} from 'axios';
 
-import {saveToken, dropToken} from '../services/token';
-import {saveEmail, dropEmail} from '../services/email';
+import {saveToken, dropToken} from '../../services/token';
+import {saveEmail, dropEmail} from '../../services/email';
 
-import {AppDispatch, State} from '../types/state';
-import {Offer, Offers, CommentNew, Comments} from '../types/offers';
-import {AuthData} from '../types/auth-data';
-import {UserData} from '../types/user-data';
+import {AppDispatch, State} from '../../types/state';
+import {Offer, Offers, CommentNew, Comments} from '../../types/offers';
+import {AuthData} from '../../types/auth-data';
+import {UserData} from '../../types/user-data';
 
-import {APIRoute} from '../const';
+import {APIRoute} from '../../const';
 
 export const fetchLoadOffers = createAsyncThunk<{activeCity: string, data: Offers}, string, {
   dispatch: AppDispatch,

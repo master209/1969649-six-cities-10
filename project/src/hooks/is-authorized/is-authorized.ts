@@ -1,6 +1,6 @@
-import useAppSelectors from './app-selectors';
+import useAppSelectors from '../app-selectors';
 
-import {AuthorizationStatus} from '../const';
+import {AuthorizationStatus} from '../../const';
 
 const useIsAuthorized = () => {
   const {authorizationStatus} = useAppSelectors();

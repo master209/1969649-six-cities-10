@@ -2,7 +2,7 @@ import {useState, useRef, FormEvent, ChangeEvent} from 'react';
 
 import CommentFormRatingItem from './comment-form-rating-item';
 
-import {fetchCreateComment} from '../../store/api-actions';
+import {fetchCreateComment} from '../../store/api-actions/api-actions';
 
 import {useAppDispatch} from '../../hooks';
 
