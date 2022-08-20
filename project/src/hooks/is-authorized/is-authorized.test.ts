@@ -1,6 +1,6 @@
 import useIsAuthorized from './is-authorized';
 
-jest.mock('./app-selectors', () => {
+jest.mock('../app-selectors', () => {
   const mockUseAppSelectors = () => ({authorizationStatus: 'AUTH'});
 
   return {
