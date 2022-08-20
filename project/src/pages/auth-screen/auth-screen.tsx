@@ -1,7 +1,7 @@
 import {FormEvent, useRef, MutableRefObject} from 'react';
 import {Link} from 'react-router-dom';
 
-import Layout from '../../components/layout/layout';
+import {Layout} from '../../components/layout';
 
 import {fetchLogin} from '../../store/api-actions';
 

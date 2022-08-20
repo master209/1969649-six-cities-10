@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-import {AppRoute} from '../../../../const';
+import {AppRoute} from '../../../const';
 
 type FooterProps = {
   withContainer?: boolean;

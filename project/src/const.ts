@@ -1,7 +1,3 @@
-export const MIN_COMMENT_LENGTH = 10;
-export const MAX_COMMENT_LENGTH = 30;
-export const MAX_COMMENT_COUNT = 10;
-
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
@@ -59,4 +55,10 @@ export enum NameSpace {
   Main = 'MAIN',
   Offer = 'OFFER',
   Favorite = 'FAVORITE',
+}
+
+export enum Comment {
+  MinLength = 50,
+  MaxLength = 300,
+  MaxCount = 10,
 }

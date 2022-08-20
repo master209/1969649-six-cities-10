@@ -1,7 +1,7 @@
 import {useState, KeyboardEvent} from 'react';
 import {Navigate} from 'react-router-dom';
 
-import Layout from '../../components/layout/layout';
+import {Layout} from '../../components/layout';
 import {
   CitiesList,
   OfferCardsList,

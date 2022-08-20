@@ -1,12 +1,12 @@
 import {Link} from 'react-router-dom';
 
-import {fetchLogout} from '../../store/api-actions';
-import {resetFavorites} from '../../store/favorite-data/favorite-data';
+import {fetchLogout} from '../../../store/api-actions';
+import {resetFavorites} from '../../../store/favorite-data/favorite-data';
 
-import {useAppDispatch} from '../../hooks';
-import useAppSelectors from '../../hooks/app-selectors';
+import {useAppDispatch} from '../../../hooks';
+import useAppSelectors from '../../../hooks/app-selectors';
 
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../../const';
 
 function SignOut(): JSX.Element {
   const dispatch = useAppDispatch();
