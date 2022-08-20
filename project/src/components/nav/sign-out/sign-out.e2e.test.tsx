@@ -2,9 +2,9 @@ import {Provider} from 'react-redux';
 import {Routes, Route} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import {render, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import AuthScreen from '../../../pages/auth-screen/auth-screen';
-import SignIn from './sign-in';
+import SignOut from './sign-out';
 import HistoryRouter from '../../history-route/history-route';
 
 import {AppRoute} from '../../../const';
@@ -12,33 +12,30 @@ import {AppRoute} from '../../../const';
 import {store} from '../../../utils';
 
 const history = createMemoryHistory();
-const onChangeCity = () => jest.fn();
 
 const fakeApp = (
   <Provider store={store}>
     <HistoryRouter history={history}>
       <Routes>
         <Route
-          path={AppRoute.Login}
-          element={
-            <AuthScreen
-              onChangeCity={onChangeCity}
-            />
-          }
+          path={AppRoute.Favorites}
+          element={<h1>This is Favorites page</h1>}
         />
         <Route
           path='*'
-          element={<SignIn />}
+          element={<SignOut />}
         />
       </Routes>
     </HistoryRouter>
   </Provider>
 );
 
-it('Component SignIn: should render correctly', async () => {
+it('Component SignOut: should redirect to Favorites url when user clicked to "Sign out" link', async () => {
   history.push('/fake');
 
   render(fakeApp);
 
-  expect(screen.getByText(/Sign in/i)).toBeInTheDocument();
+  await userEvent.click(screen.getByTestId('header__nav-link--profile'));
+
+  expect(screen.getByText(/This is Favorites page/i)).toBeInTheDocument();
 });

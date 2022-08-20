@@ -2,7 +2,6 @@ import {Provider} from 'react-redux';
 import {Routes, Route} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import {render, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import SignOut from './sign-out';
 import HistoryRouter from '../../history-route/history-route';
@@ -30,22 +29,10 @@ const fakeApp = (
   </Provider>
 );
 
-describe('Component: SignOut', () => {
-  it('should render correctly', async () => {
-    history.push('/fake');
+it('Component SignOut: should render correctly', async () => {
+  history.push('/fake');
 
-    render(fakeApp);
+  render(fakeApp);
 
-    expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
-  });
-
-  it('should redirect to Favorites url when user clicked to "Sign out" link', async () => {
-    history.push('/fake');
-
-    render(fakeApp);
-
-    await userEvent.click(screen.getByTestId('header__nav-link--profile'));
-
-    expect(screen.getByText(/This is Favorites page/i)).toBeInTheDocument();
-  });
+  expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
 });
