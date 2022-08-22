@@ -1,6 +1,5 @@
 import {useNavigate} from 'react-router-dom';
 
-import {OfferInsideItem} from '../index';
 import {Premium} from '../../main';
 
 import {setFavoriteStatus} from '../../../store/offer-data/offer-data';
@@ -102,7 +101,9 @@ function Property({offer, isAuthorized}: PropertyProps): JSX.Element {
         <h2 className="property__inside-title">What&apos;s inside</h2>
         <ul className="property__inside-list">
           {goods.map((item) => (
-            <OfferInsideItem key={item} label={item}/>
+            <li className="property__inside-item" key={item}>
+              {item}
+            </li>
           ))}
         </ul>
       </div>
