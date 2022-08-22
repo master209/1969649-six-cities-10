@@ -9,7 +9,7 @@ const mockStore = configureMockStore();
 
 const num = datatype.number(99);
 
-const location = {
+export const location = {
   latitude: num,
   longitude: num,
   zoom: num,
@@ -17,12 +17,14 @@ const location = {
 
 const mockStrings = new Array(3).fill(null).map(() => lorem.word());
 
+export const mockCity = {
+  name: cities[Math.floor(Math.random() * cities.length)],
+  location,
+}
+
 export const makeFakeOffer = () => ({
   id: getUniqueId(),
-  city: {
-    name: cities[Math.floor(Math.random() * cities.length)],
-    location,
-  },
+  city: mockCity,
   previewImage: image.imageUrl(),
   images: mockStrings,
   isPremium: false,

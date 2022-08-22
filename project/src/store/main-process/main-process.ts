@@ -46,7 +46,7 @@ export const mainProcess = createSlice({
     },
     setSort: (state, {payload: sort}) => {
       const {offers} = state;
-      sort = sort ?? state.sortBy;
+      sort = sort ? sort : state.sortBy;
       state.sortBy = sort;
       state.isSortListCollapsed = true;
 

@@ -49,7 +49,11 @@ function Map({city, locations, selectedLocation, className}: MapProps): JSX.Elem
   }, [map, _locations, selectedLocation]);
 
   return (
-    <section className={`${className} map`} ref={mapRef} />
+    <section
+      className={`${className} map`}
+      ref={mapRef}
+      data-testid={'map-section'}
+    />
   );
 }
 
