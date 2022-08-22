@@ -50,7 +50,7 @@ function OfferCard(props: OfferCardProps): JSX.Element {
     >
       {isPremium && <Premium /> }
       <div className={`${classPrefix}__image-wrapper place-card__image-wrapper`}>
-        <Link to={linkToOffer}>
+        <Link to={linkToOffer} data-testid={'link-to-offer'}>
           <img className="place-card__image" src={previewImage} width={width} height={height} alt="Place" />
         </Link>
       </div>
