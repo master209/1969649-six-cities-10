@@ -11,7 +11,7 @@ type OfferCardsListProps = {
 /* «Список предложений по аренде» */
 function OfferCardsList({offers, handleMouseOver, handleMouseOut}: OfferCardsListProps): JSX.Element {
   return (offers && (
-    <div className="cities__places-list places__list tabs__content">
+    <div className="cities__places-list places__list tabs__content" data-testid="offer-cards-list">
       {offers.map((offer) => (
         <OfferCard
           key={offer.id}

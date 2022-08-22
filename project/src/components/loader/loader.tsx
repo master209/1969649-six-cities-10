@@ -14,7 +14,7 @@ function Loader(): JSX.Element {
     };
   }, [el]);
 
-  return createPortal(<p className="app-loader">Loading ...</p>, el);
+  return createPortal(<p className="app-loader">Loading...</p>, el);
 }
 
 export default Loader;

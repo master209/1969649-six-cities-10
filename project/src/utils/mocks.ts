@@ -5,7 +5,7 @@ import {AuthorizationStatus, cities} from '../const';
 
 import {getUniqueId} from './utils';
 
-const mockStore = configureMockStore();
+export const mockStore = configureMockStore();
 
 const num = datatype.number(99);
 
@@ -20,7 +20,7 @@ const mockStrings = new Array(3).fill(null).map(() => lorem.word());
 export const mockCity = {
   name: cities[Math.floor(Math.random() * cities.length)],
   location,
-}
+};
 
 export const makeFakeOffer = () => ({
   id: getUniqueId(),
@@ -45,7 +45,7 @@ export const makeFakeOffer = () => ({
   location
 });
 
-export const makeFakeOffers = () => new Array(10).fill(null).map(() => makeFakeOffer());
+export const makeFakeOffers = () => new Array(5).fill(null).map(() => makeFakeOffer());
 
 export const mockOffers = makeFakeOffers();
 export const mockOffer = makeFakeOffer();
