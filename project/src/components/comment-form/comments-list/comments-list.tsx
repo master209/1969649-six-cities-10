@@ -1,8 +1,8 @@
-import {CommentItem} from './index';
+import {CommentItem} from '../index';
 
-import {Comments} from '../../types/offers';
+import {Comments} from '../../../types/offers';
 
-import {Comment} from '../../const';
+import {Comment} from '../../../const';
 
 type CommentListProps = {
   comments: Comments;
@@ -11,7 +11,7 @@ type CommentListProps = {
 /* «Список отзывов» */
 function CommentsList({comments}: CommentListProps): JSX.Element {
   return (
-    <ul className="reviews__list">
+    <ul className="reviews__list" data-testid="comments-list">
       {comments.map((comment, idx) => (
         idx < Comment.MaxCount
           ? <CommentItem key={comment.id} comment={comment}/>

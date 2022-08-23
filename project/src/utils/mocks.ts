@@ -45,17 +45,13 @@ export const makeFakeOffer = () => ({
   location
 });
 
-export const makeFakeOffers = () => new Array(5).fill(null).map(() => makeFakeOffer());
-
-export const mockOffers = makeFakeOffers();
-export const mockOffer = makeFakeOffer();
-
 export const makeFakeComment = () => ({
-  offerId: getUniqueId(),
+  id: getUniqueId(),
   comment: lorem.words(5),
   date: lorem.word(),
-  rating: datatype.number(5),
+  rating: lorem.word(),
   user: {
+    id: getUniqueId(),
     avatarUrl: image.avatar(),
     name: name.title(),
     isPro: false,
@@ -68,8 +64,14 @@ export const makeFakeCommentNew = () => ({
   rating: datatype.number(5),
 });
 
+export const makeFakeOffers = () => new Array(5).fill(null).map(() => makeFakeOffer());
 export const makeFakeComments = () => new Array(3).fill(null).map(() => makeFakeComment());
 
+export const mockOffers = makeFakeOffers();
+export const mockOffer = makeFakeOffer();
+
+export const mockComment = makeFakeComment();
+export const mockComments = makeFakeComments();
 
 export const store = mockStore({
   USER: {authorizationStatus: AuthorizationStatus.NoAuth},

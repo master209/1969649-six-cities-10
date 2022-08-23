@@ -1,16 +1,16 @@
 import {useState, useRef, FormEvent, ChangeEvent} from 'react';
 
-import CommentFormRatingItem from './comment-form-rating-item';
+import CommentFormRatingInput from '../comment-form-rating-input/comment-form-rating-input';
 
-import {fetchCreateComment} from '../../store/api-actions/api-actions';
+import {fetchCreateComment} from '../../../store/api-actions/api-actions';
 
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../../hooks';
 
-import {CommentFormData} from '../../types/offers';
+import {CommentFormData} from '../../../types/offers';
 
-import {Comment} from '../../const';
+import {Comment} from '../../../const';
 
-import './style.css';
+import '../style.css';
 
 type CommentFormProp = {
   offerId: number;
@@ -56,7 +56,7 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {ratings.map(({val, title}) => (
-          <CommentFormRatingItem
+          <CommentFormRatingInput
             key={val.toString()}
             value={val}
             title={title}

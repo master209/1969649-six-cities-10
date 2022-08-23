@@ -1,6 +1,6 @@
-import {CommentFormData} from '../../types/offers';
+import {CommentFormData} from '../../../types/offers';
 
-type CommentFormRatingItemProps = {
+type CommentFormRatingInputProps = {
   value: number;
   title: string;
   form: CommentFormData,
@@ -8,7 +8,7 @@ type CommentFormRatingItemProps = {
 };
 
 /* «Один контрол рейтинга формы комментариев» */
-function CommentFormRatingItem(props: CommentFormRatingItemProps): JSX.Element {
+function CommentFormRatingInput(props: CommentFormRatingInputProps): JSX.Element {
   const {value, title, form, setForm} = props;
 
   return (
@@ -33,4 +33,4 @@ function CommentFormRatingItem(props: CommentFormRatingItemProps): JSX.Element {
   );
 }
 
-export default CommentFormRatingItem;
+export default CommentFormRatingInput;

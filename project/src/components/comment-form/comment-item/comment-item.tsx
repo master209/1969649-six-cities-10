@@ -1,6 +1,6 @@
-import {Comment} from '../../types/offers';
+import {Comment} from '../../../types/offers';
 
-import {getFormattedDate} from '../../utils';
+import {getFormattedDate} from '../../../utils';
 
 type CommentProps = {
   comment: Comment;
@@ -12,7 +12,7 @@ function CommentItem({comment}: CommentProps): JSX.Element {
   const {avatarUrl, name} = user;
 
   return (
-    <li className="reviews__item">
+    <li className="reviews__item" data-testid="comment-item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src={avatarUrl} width="54" height="54" alt="Reviews avatar" />
