@@ -1,6 +1,6 @@
 import {Comment} from '../../../types/offers';
 
-import {getFormattedDate} from '../../../utils';
+import {getStarsClass, getFormattedDate} from '../../../utils';
 
 type CommentProps = {
   comment: Comment;
@@ -8,7 +8,7 @@ type CommentProps = {
 
 /* «Отзыв» */
 function CommentItem({comment}: CommentProps): JSX.Element {
-  const {user, date} = comment;
+  const {user, date, rating} = comment;
   const {avatarUrl, name} = user;
 
   return (
@@ -24,7 +24,7 @@ function CommentItem({comment}: CommentProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={getStarsClass(+rating)}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
