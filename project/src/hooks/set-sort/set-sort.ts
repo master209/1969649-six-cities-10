@@ -11,7 +11,7 @@ const useSetSort = () => {
 
   useEffect(() => {
     dispatch(setSort(null));
-  }, [offers]);
+  }, [dispatch, offers]);
 };
 
 export default useSetSort;

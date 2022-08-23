@@ -6,7 +6,7 @@ import {render, screen} from '@testing-library/react';
 import CommentFormRatingInput from './comment-form-rating-input';
 import HistoryRouter from '../../../components/history-route/history-route';
 
-import {store, mockComment} from '../../../utils';
+import {store} from '../../../utils';
 
 const history = createMemoryHistory();
 
@@ -16,12 +16,14 @@ const fakeApp = (
       <Routes>
         <Route
           path="*"
-          element={<CommentFormRatingInput
-            value={4}
-            title={'good'}
-            form={{comment:'', rating:0}}
-            setForm={jest.fn}
-          />}
+          element={
+            <CommentFormRatingInput
+              value={4}
+              title={'good'}
+              form={{comment:'', rating:0}}
+              setForm={jest.fn}
+            />
+          }
         />
       </Routes>
     </HistoryRouter>

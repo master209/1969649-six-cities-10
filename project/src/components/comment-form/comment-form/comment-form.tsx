@@ -70,6 +70,7 @@ function CommentForm({offerId} : CommentFormProp): JSX.Element {
         className="reviews__textarea form__textarea"
         id="comment"
         name="comment"
+        data-testid="comment-input"
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={({target}: ChangeEvent<HTMLTextAreaElement>) => {
           setForm({...form, comment: target.value});

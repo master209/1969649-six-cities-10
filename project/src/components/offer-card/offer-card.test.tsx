@@ -8,8 +8,6 @@ import OfferCard from '../offer-card/offer-card';
 
 import {store, mockOffer} from '../../utils';
 
-import {AppRoute} from '../../const';
-
 const history = createMemoryHistory();
 
 const fakeRoute = '/fakeRoute';

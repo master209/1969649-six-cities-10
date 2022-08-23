@@ -6,7 +6,7 @@ import {render, screen} from '@testing-library/react';
 import Premium from './premium';
 import HistoryRouter from '../../../components/history-route/history-route';
 
-import {store, mockOffers} from '../../../utils';
+import {store} from '../../../utils';
 
 const history = createMemoryHistory();
 

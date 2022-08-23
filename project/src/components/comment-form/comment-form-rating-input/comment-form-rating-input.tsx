@@ -18,6 +18,7 @@ function CommentFormRatingInput(props: CommentFormRatingInputProps): JSX.Element
         name="rating"
         value={value}
         id={`${value}-rating`}
+        data-testid={`${value}-rating`}
         type="radio"
         checked={form.rating === value}
         onChange={() => {
