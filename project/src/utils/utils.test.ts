@@ -1,4 +1,4 @@
-import {sortTo, convertArrayToMap, capitalize} from './utils'
+import {sortTo, convertArrayToMap, capitalize} from './utils';
 
 import {Order} from '../const';
 

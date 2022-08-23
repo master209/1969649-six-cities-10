@@ -23,7 +23,7 @@ const fakeApp = (
               cities={cities}
               offers={mockOffers}
               activeCity="Paris"
-              areOffersLoaded={true}
+              areOffersLoaded
               onChangeCity={jest.fn}
               renderMap={jest.fn()}
             />

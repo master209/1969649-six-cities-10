@@ -39,7 +39,7 @@ describe('Component CommentForm', () => {
     expect(screen.getByPlaceholderText('Tell how was your stay, what you like and what can be improved')).toBeInTheDocument();
 
     expect(screen.getByRole('button')).toBeInTheDocument();
-    expect(screen.getByRole('button').getAttribute('disabled')).not.toBeNull;
+    expect(screen.getByRole('button').getAttribute('disabled')).toEqual('');
   });
 
   it('submit button should enabled if comment is correct', async () => {
@@ -50,12 +50,12 @@ describe('Component CommentForm', () => {
     expect(screen.getByText('Your review')).toBeInTheDocument();
 
     expect(screen.getByRole('button')).toBeInTheDocument();
-    expect(screen.getByRole('button').getAttribute('disabled')).not.toBeNull;
+    expect(screen.getByRole('button').getAttribute('disabled')).toEqual('');
 
     await userEvent.type(screen.getByTestId('4-rating'), mockComment.rating.toString());
     await userEvent.type(screen.getByTestId('comment-input'), mockComment.comment);
 
-    expect(screen.getByRole('button').getAttribute('disabled')).toBeNull;
+    expect(screen.getByRole('button').getAttribute('disabled')).not.toEqual('');
     expect(screen.getByDisplayValue(mockComment.comment)).toBeInTheDocument();
   });
 });
